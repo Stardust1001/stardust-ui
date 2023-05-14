@@ -1,7 +1,5 @@
+import { h, resolveComponent } from 'vue'
 import { funcs } from '../../utils/index.js'
-
-const { h } = Vue
-const { resolveComponent } = funcs
 
 const compRender = (vm) => {
   const { $props, $attrs, attrs, $emit } = vm
@@ -14,7 +12,7 @@ const compRender = (vm) => {
   if (compType === 'html') {
     opts.class = 'comp-html'
   } else {
-    comp = resolveComponent(vm, comp)
+    comp = resolveComponent(comp)
   }
   if (html) {
     opts.innerHTML = html
@@ -65,7 +63,7 @@ const MobileItem = (vm) => {
     'onUpdate:modelValue': value => $emit('update:modelValue', value)
   }
   if (slot && $attrs.label || comp) {
-    return h(resolveComponent(vm, 'van-field'), opts, {
+    return h(resolveComponent('van-field'), opts, {
       input: () => {
         if (slot && $attrs.label) {
           return $slots.default()
@@ -75,7 +73,7 @@ const MobileItem = (vm) => {
     })
   } else {
     Object.assign(opts, attrs)
-    return h(resolveComponent(vm, 'van-field'), opts)
+    return h(resolveComponent('van-field'), opts)
   }
 }
 

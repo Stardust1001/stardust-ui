@@ -21,27 +21,21 @@ export default defineConfig(({ command, mode }) => {
     ],
     runtimeCompiler: true,
     build: {
-      outDir: '../dist',
+      outDir: './',
       lib: {
         entry: './packages/index.js',
         name: 'StardustUI',
-        fileName: 'stardust-ui',
+        fileName: 'index',
         formats: ['es']
       },
       rollupOptions: {
         external: [
           'vue',
-          'element-plus',
-          'vant',
-          'axios',
         ],
         plugins: [
           commonjs(),
           externalGlobals({
-            'vue': 'Vue',
-            'element-plus': 'ElementPlus',
-            'vant': 'vant',
-            'axios': 'axios',
+            // 'vue': 'Vue'
           })
         ],
         output: {

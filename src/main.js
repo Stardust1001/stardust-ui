@@ -3,8 +3,10 @@ import { createApp } from 'vue'
 import ElementPlus from 'element-plus'
 import Vant from 'vant'
 
-import StardustUI from '../packages/index.js'
-import '../packages/index.scss'
+// import StardustUI from '../packages/index.js'
+// import '../packages/index.scss'
+import StardustUI from '../index.js'
+import '../style.css'
 
 import App from '@/App.vue'
 

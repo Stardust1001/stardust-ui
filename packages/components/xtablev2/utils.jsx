@@ -1,7 +1,5 @@
+import { h, resolveComponent } from 'vue'
 import { funcs } from '../../utils/index.js'
-
-const { h } = Vue
-const { resolveComponent } = funcs
 
 const makeSelectionHeader = (vm) => {
   const all = vm._data.length > 0 && (vm.selected.size === vm._data.length)
@@ -144,7 +142,7 @@ const makeRenderer = (col, vm) => {
         row[column.prop] = value
       }
       const comp = column.comp || 'ElInput'
-      return h(resolveComponent(vm, comp), {
+      return h(resolveComponent(comp), {
         ...column,
         ...column.formAttrs,
         modelValue: row[column.prop],

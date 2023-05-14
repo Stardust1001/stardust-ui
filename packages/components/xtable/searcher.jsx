@@ -1,7 +1,5 @@
+import { h, resolveComponent } from 'vue'
 import { funcs } from '../../utils/index.js'
-
-const { h } = Vue
-const { resolveComponent } = funcs
 
 export const OPS = {
   eq: { text: '等于', value: 'eq' },
@@ -100,7 +98,7 @@ export default function () {
 function calcConditionValueComponent (vm, condition) {
 	const component = (options) => {
 		return h(
-			resolveComponent(vm, condition.component),
+			resolveComponent(condition.component),
 			Object.assign({
 					modelValue: condition.value,
 					'onUpdate:modelValue': (value) => condition.value = value

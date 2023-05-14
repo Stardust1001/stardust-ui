@@ -1,4 +1,5 @@
-const { watch } = Vue
+import { watch } from 'vue'
+
 const { funcs } = StardustJs
 
 export const initModel = (model, fields) => {

@@ -1,8 +1,8 @@
-import utils from './utils/index.js'
+import { h, resolveComponent } from 'vue'
+
 import './index.scss'
 
-const { h } = Vue
-const { resolveComponent } = utils.funcs
+import utils from './utils/index.js'
 
 const modules = import.meta.globEager('./components/*/*.vue')
 
@@ -21,7 +21,7 @@ const makePlatformComp = (name) => {
       this.name = (this.platform.toLowerCase() === 'pc' ? 'Pc' : 'Mobile') + name
     },
     render () {
-      return h(resolveComponent(this, this.name), {
+      return h(resolveComponent(this.name), {
         platform: this.platform,
         ...this.$attrs
       }, this.$slots)
