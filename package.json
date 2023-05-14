@@ -1,6 +1,7 @@
 {
-  "name": "stardust-ui",
-  "description": "",
+  "name": "@stardust-js/ui",
+  "version": "1.0.0",
+  "description": "Everything I want to publish here",
   "type": "module",
   "main": "index.js",
   "scripts": {
@@ -13,11 +14,24 @@
     "cloc": "cloc vite.config.js src",
     "cloc-plop": "cloc plopfile.js .plop"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Stardust1001/stardust-browser.git"
+  },
   "keywords": [
-    "stardust-ui"
+    "stardust",
+    "stardust-browser"
   ],
   "author": "Stardust",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Stardust1001/stardust-browser/issues"
+  },
+  "homepage": "https://github.com/Stardust1001/stardust-browser#readme",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "dependencies": {
     "@stardust-js/browser": "latest",
     "@stardust-js/js": "latest",
