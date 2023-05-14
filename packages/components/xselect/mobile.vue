@@ -1,5 +1,5 @@
 <script>
-import utils from '../../utils/index.js'
+import { formatOptions } from '../../utils/index.js'
 import { remoteSearch } from './util.js'
 
 export default {
@@ -41,7 +41,7 @@ export default {
       immediate: true,
       deep: true,
       handler () {
-        this._options = utils.formatOptions(this.options, this)
+        this._options = formatOptions(this.options, this)
       }
     }
   },
@@ -51,7 +51,7 @@ export default {
     }
   },
   methods: {
-    formatOptions: utils.formatOptions,
+    formatOptions,
     remoteSearch (query) {
       if (!this.modelName) {
         return this._options

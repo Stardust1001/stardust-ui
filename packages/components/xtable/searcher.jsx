@@ -1,5 +1,4 @@
 import { h, resolveComponent } from 'vue'
-import { funcs } from '../../utils/index.js'
 
 export const OPS = {
   eq: { text: '等于', value: 'eq' },

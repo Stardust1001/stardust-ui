@@ -1,5 +1,5 @@
 <script>
-import utils from '../../utils/index.js'
+import { formatOptions } from '../../utils/index.js'
 
 export default {
   name: 'MobileXCheckboxs',
@@ -38,7 +38,7 @@ export default {
     }
   },
   methods: {
-    formatOptions: utils.formatOptions
+    formatOptions
   }
 }
 </script>

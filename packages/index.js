@@ -68,4 +68,8 @@ const StardustUI = {
   install
 }
 
+export {
+  utils
+}
+
 export default StardustUI

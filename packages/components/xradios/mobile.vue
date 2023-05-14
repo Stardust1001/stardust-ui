@@ -1,5 +1,5 @@
 <script>
-import utils from '../../utils/index.js'
+import { formatOptions } from '../../utils/index.js'
 
 export default {
   name: 'MobileXRadios',
@@ -21,7 +21,7 @@ export default {
     options: Array | Object
   },
   methods: {
-    formatOptions: utils.formatOptions
+    formatOptions
   }
 }
 </script>

@@ -1,13 +1,50 @@
-import funcs from './funcs.js'
-import modelUtils from './modelUtils.js'
+import {
+  formatOptions
+} from './funcs.js'
+
+import {
+  baseForm,
+  baseTable,
+  baseDialog,
+  baseModel
+} from './model.js'
+
+import {
+  initModel,
+  initTable,
+  initDialog,
+  initForm,
+  initFormRules,
+  initDefaultForm,
+  triggers
+} from './modelUtils.js'
 
 export {
-  funcs,
-  modelUtils
+  formatOptions,
+  baseForm,
+  baseTable,
+  baseDialog,
+  baseModel,
+  initModel,
+  initTable,
+  initDialog,
+  initForm,
+  initFormRules,
+  initDefaultForm,
+  triggers
 }
 
 export default {
-  funcs,
-  ...funcs,
-  modelUtils
+  formatOptions,
+  baseForm,
+  baseTable,
+  baseDialog,
+  baseModel,
+  initModel,
+  initTable,
+  initDialog,
+  initForm,
+  initFormRules,
+  initDefaultForm,
+  triggers
 }

@@ -1,5 +1,4 @@
 import { h, resolveComponent } from 'vue'
-import { funcs } from '../../utils/index.js'
 
 const compRender = (vm) => {
   const { $props, $attrs, attrs, $emit } = vm

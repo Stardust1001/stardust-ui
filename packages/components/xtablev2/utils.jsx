@@ -1,5 +1,4 @@
 import { h, resolveComponent } from 'vue'
-import { funcs } from '../../utils/index.js'
 
 const makeSelectionHeader = (vm) => {
   const all = vm._data.length > 0 && (vm.selected.size === vm._data.length)
