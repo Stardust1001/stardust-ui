@@ -1,0 +1,43 @@
+{
+  "name": "stardust-ui",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite --host=0.0.0.0 --port=3006 --open",
+    "build": "vite build --config vite.lib.config.js",
+    "serve": "vite preview",
+    "push": "git add . && git commit -m \"add\" && git push origin master",
+    "pull": "git status && git pull",
+    "force-pull": "git status && git checkout . && git pull origin master",
+    "cloc": "cloc vite.config.js src",
+    "cloc-plop": "cloc plopfile.js .plop"
+  },
+  "keywords": [
+    "stardust-ui"
+  ],
+  "author": "Stardust",
+  "license": "MIT",
+  "dependencies": {
+    "@stardust-js/browser": "latest",
+    "@stardust-js/js": "latest",
+    "@vant/area-data": "^1.4.0",
+    "element-plus": "^2.2.32",
+    "vant": "^4.0.11",
+    "vue": "^3.2.47"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@vitejs/plugin-legacy": "^4.0.1",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "@vitejs/plugin-vue-jsx": "^3.0.0",
+    "@vue/cli": "^5.0.8",
+    "@vue/compiler-sfc": "^3.2.47",
+    "consola": "^3.1.0",
+    "rollup-plugin-external-globals": "^0.7.1",
+    "sass": "^1.58.3",
+    "terser": "^5.16.4",
+    "vite": "^4.1.2",
+    "vite-plugin-style-import": "^2.0.0"
+  }
+}

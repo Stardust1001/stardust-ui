@@ -1,0 +1,116 @@
+:root {
+  --x-tr-height: 45px;
+  --x-table-img-height: 66px;
+  --el-dialog-body-padding: 15px 15px 0;
+}
+
+.el-table {
+  thead tr {
+    height: var(--x-tr-height);
+  }
+  img {
+    height: var(--x-table-img-height);
+  }
+}
+
+.el-table-v2 {
+  color: var(--el-table-text-color);
+}
+
+.el-table, .el-table-v2 {
+  .el-switch {
+    height: 20px;
+  }
+  .el-switch__core {
+    width: 40px !important;
+  }
+}
+
+.el-dialog__body {
+  padding: var(--el-dialog-body-padding);
+}
+
+.el-form {
+  width: 100%;
+  margin: auto;
+  display: inline-block;
+  vertical-align: middle;
+  .el-form-item__label,
+  .el-form-item__content {
+    display: inline-block;
+    vertical-align: top;
+    & > * {
+      vertical-align: top;
+    }
+  }
+  .el-form-item {
+    display: inline-block;
+    width: 100%;
+    padding: 0 2px;
+  }
+  .el-select, .el-input__wrapper, .el-input-number, .el-date-editor, .el-cascader {
+    width: 100%;
+  }
+}
+
+.el-dialog {
+  .el-dialog__header {
+    text-align: left;
+    border-bottom: var(--x-default-border);
+    .el-dialog__close {
+      font-size: 22px;
+    }
+  }
+  .el-form {
+    display: block;
+  }
+  .el-select, .el-input-number, .el-date-editor, .el-cascader {
+    width: 100%;
+  }
+  .el-dialog__footer {
+    background-color: var(--x-bg-color);
+    padding-top: var(--x-large-padding);
+  }
+}
+
+.el-drawer {
+  .el-drawer__header {
+    margin-bottom: 0;
+  }
+}
+
+.el-button {
+  .el-icon {
+    font-size: inherit;
+    margin-right: 3px;
+  }
+}
+
+.el-icon {
+  vertical-align: bottom;
+}
+
+.el-input-number__decrease, .el-input-number__increase {
+  top: 2px !important;
+}
+
+.el-pagination {
+  margin: var(--x-medium-padding) 0;
+}
+
+.el-overlay.is-message-box {
+  z-index: 3000 !important;
+}
+
+.el-message {
+  z-index: 11111 !important;
+}
+
+.el-collapse {
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.el-collapse-item__wrap {
+  border-bottom: 0;
+}
