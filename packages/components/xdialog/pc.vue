@@ -22,7 +22,9 @@ export default {
     draggable: {
       type: Boolean,
       default: true
-    }
+    },
+    onSubmit: Function,
+    onCancel: Function
   },
   emits: [
     'update:modelValue',
@@ -83,7 +85,7 @@ export default {
       <slot v-if="$slots.footer" name="footer" />
 
       <el-button
-        v-if="!!$attrs.onSubmit || !!$parent.$attrs.onSubmit"
+        v-if="!!onSubmit || !!$parent.$attrs.onSubmit"
         type="primary"
         :disabled="$attrs['submit-disabled']"
         @click="$emit('submit')"
@@ -91,7 +93,7 @@ export default {
         {{ submitText }}
       </el-button>
       <el-button
-        v-if="!!$attrs.onCancel || !!$parent.$attrs.onCancel"
+        v-if="!!onCancel || !!$parent.$attrs.onCancel"
         :disabled="$attrs['cancel-disabled']"
         @click="$emit('cancel')"
       >

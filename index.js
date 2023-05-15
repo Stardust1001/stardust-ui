@@ -533,7 +533,9 @@ const Ct = /* @__PURE__ */ $(kt, [["render", wt]]), Ot = /* @__PURE__ */ Object.
     draggable: {
       type: Boolean,
       default: !0
-    }
+    },
+    onSubmit: Function,
+    onCancel: Function
   },
   emits: [
     "update:modelValue",
@@ -586,7 +588,7 @@ function xt(e, t, o, s, n, l) {
     ]),
     footer: u(() => [
       e.$slots.footer ? y(e.$slots, "footer", { key: 0 }) : b("", !0),
-      e.$attrs.onSubmit || e.$parent.$attrs.onSubmit ? (r(), p(a, {
+      o.onSubmit || e.$parent.$attrs.onSubmit ? (r(), p(a, {
         key: 1,
         type: "primary",
         disabled: e.$attrs["submit-disabled"],
@@ -597,7 +599,7 @@ function xt(e, t, o, s, n, l) {
         ]),
         _: 1
       }, 8, ["disabled"])) : b("", !0),
-      e.$attrs.onCancel || e.$parent.$attrs.onCancel ? (r(), p(a, {
+      o.onCancel || e.$parent.$attrs.onCancel ? (r(), p(a, {
         key: 2,
         disabled: e.$attrs["cancel-disabled"],
         onClick: t[1] || (t[1] = (c) => e.$emit("cancel"))
