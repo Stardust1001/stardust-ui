@@ -3,8 +3,7 @@ import { h, resolveComponent } from 'vue'
 import './index.scss'
 
 import utils from './utils/index.js'
-
-const modules = import.meta.globEager('./components/*/*.vue')
+import all from './comps'
 
 const makePlatformComp = (name) => {
   return {
@@ -30,13 +29,6 @@ const makePlatformComp = (name) => {
 }
 
 const components = (() => {
-  const all = {}
-  for (const key in modules) {
-    const comp = modules[key].default
-    // 含有 X 的组件名称才是要注册的，其他的是内部组件，不是对外提供的
-    if (!/X[A-Z][a-z]/.test(comp.name)) continue
-    all[comp.name] = comp
-  }
   const names = Object.keys(all)
   const union = [...new Set(names.map(n => n.replace(/(pc|mobile)/i, '')))]
 
