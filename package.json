@@ -11,7 +11,7 @@
     "push": "git add . && git commit -m \"add\" && git push origin master",
     "pull": "git status && git pull",
     "force-pull": "git status && git checkout . && git pull origin master",
-    "cloc": "cloc vite.config.js src",
+    "cloc": "cloc vite.config.js src packages",
     "cloc-plop": "cloc plopfile.js .plop"
   },
   "repository": {
