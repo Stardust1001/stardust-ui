@@ -4549,6 +4549,7 @@ const Ei = (e) => ({
   for (let s in re)
     e.component(s, re[s]);
 }, Ai = {
+  version: "1.0.5",
   ...re,
   ...Ie,
   ...lt,
