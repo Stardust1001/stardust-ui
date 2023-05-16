@@ -1,6 +1,13 @@
 import {
+  formatPrecision,
   formatOptions
 } from './funcs.js'
+
+import {
+  Message,
+  Notify,
+  Confirm
+} from './message.js'
 
 import {
   baseForm,
@@ -20,7 +27,11 @@ import {
 } from './modelUtils.js'
 
 export {
+  formatPrecision,
   formatOptions,
+  Message,
+  Notify,
+  Confirm,
   baseForm,
   baseTable,
   baseDialog,
@@ -35,7 +46,11 @@ export {
 }
 
 export default {
+  formatPrecision,
   formatOptions,
+  Message,
+  Notify,
+  Confirm,
   baseForm,
   baseTable,
   baseDialog,

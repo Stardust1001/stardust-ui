@@ -3,6 +3,7 @@ import { h, resolveComponent } from 'vue'
 import './index.scss'
 
 import utils from './utils/index.js'
+import controllers from './controllers/index.js'
 import all from './comps'
 
 const makePlatformComp = (name) => {
@@ -57,11 +58,16 @@ const install = (app, options) => {
 const StardustUI = {
   ...components,
   ...utils,
+  ...controllers,
   install
 }
 
 export {
-  utils
+  utils,
+  controllers
 }
+
+export * from './utils/index.js'
+export * from './controllers/index.js'
 
 export default StardustUI
