@@ -200,8 +200,10 @@ class CrudController extends BaseController {
     let data = selection.length > 0 ? selection : list
     data = funcs.deepCopy(data)
     data = this.processExportingData(data)
-    const keys = Object.keys(data[0])
-    cols = cols.filter(col => keys.includes(col.prop))
+    if (data.length) {
+      const keys = Object.keys(data[0])
+      cols = cols.filter(col => keys.includes(col.prop))
+    }
     const props = cols.map(col => col.prop)
     const header = this.processExportingHeader(cols.map(col => col.label))
     data = data.map(row => props.map(prop => row[prop]))
