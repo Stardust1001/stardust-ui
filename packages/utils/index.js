@@ -1,3 +1,5 @@
+import effects from './effects.js'
+
 import {
   formatPrecision,
   formatOptions
@@ -8,6 +10,8 @@ import {
   Notify,
   Confirm
 } from './message.js'
+
+import middlewares from './middlewares.js'
 
 import {
   baseForm,
@@ -27,6 +31,7 @@ import {
 } from './modelUtils.js'
 
 export {
+  effects,
   formatPrecision,
   formatOptions,
   Message,
@@ -46,11 +51,13 @@ export {
 }
 
 export default {
+  effects,
   formatPrecision,
   formatOptions,
   Message,
   Notify,
   Confirm,
+  middlewares,
   baseForm,
   baseTable,
   baseDialog,

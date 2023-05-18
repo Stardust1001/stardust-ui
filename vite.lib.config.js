@@ -30,7 +30,7 @@ export default defineConfig(({ command, mode }) => {
       },
       rollupOptions: {
         external: [
-          'vue',
+          'vue'
         ],
         plugins: [
           commonjs(),

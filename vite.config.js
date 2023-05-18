@@ -30,13 +30,11 @@ export default defineConfig(({ command, mode }) => {
       rollupOptions: {
         external: [
           'vue',
-          'axios',
         ],
         plugins: [
           commonjs(),
           externalGlobals({
             'vue': 'Vue',
-            'axios': 'axios',
           })
         ],
         output: {
