@@ -1,5 +1,6 @@
 <script>
 import render, { OPS, COMPONENT_OPS } from './searcher.jsx'
+import { Message } from '../../utils/index.js'
 
 const { storage } = StardustBrowser
 
@@ -65,7 +66,7 @@ export default {
       try {
         params = this.calcParams()
       } catch (err) {
-        this.utils.message.Message({ type: 'warning', message: err.toString() })
+        Message({ type: 'warning', message: err.toString() })
         return
       }
       this.uid && params && this.saveCache()
