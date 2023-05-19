@@ -140,9 +140,7 @@ const et = (e) => {
   });
 }, ft = (e, t) => {
   e.beforeEach((s, o, n) => {
-    if (s.name === "Login" && t.getters.logined && s.query.redirectTo)
-      return e.replace(s.query.redirectTo);
-    n();
+    s.name === "Login" && t.getters.logined && s.query.redirectTo ? n(s.query.redirectTo) : n();
   });
 }, _t = {
   check404: ht,
@@ -4650,7 +4648,7 @@ const Ui = (e) => ({
   for (let s in he)
     e.component(s, he[s]);
 }, Li = {
-  version: "1.0.9",
+  version: "1.0.10",
   ...he,
   ...Xe,
   ...wt,
