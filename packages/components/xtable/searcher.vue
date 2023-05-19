@@ -216,7 +216,7 @@ export default {
   .conditions {
     margin: 10px 0;
     max-height: 60vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     border-top: 1px solid #d0dddd;
   }
   .condition {

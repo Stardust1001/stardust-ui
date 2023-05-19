@@ -323,7 +323,7 @@ export default {
   position: relative;
   .x-info {
     height: calc(100% - 65px);
-    overflow-y: scroll;
+    overflow-y: auto;
   }
   .operates {
     position: absolute;

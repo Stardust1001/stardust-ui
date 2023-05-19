@@ -108,7 +108,7 @@ export default {
   .el-tabs {
     :deep(.el-tabs__content) {
       max-height: 60vh !important;
-      overflow-y: scroll;
+      overflow-y: auto;
     }
   }
   .el-checkbox {

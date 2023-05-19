@@ -6,7 +6,7 @@
 
 .van-dialog {
   max-height: var(--var-dialog-max-height);
-  overflow-y: scroll;
+  overflow-y: auto;
   .van-dialog__header {
     padding: var(--van-dialog-header-padding);
   }
