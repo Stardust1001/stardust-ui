@@ -32,9 +32,10 @@ export const checkRolesPages = (router, store) => {
 export const redirectTo = (router, store) => {
   router.beforeEach((to, from, next) => {
     if (to.name === 'Login' && store.getters.logined && to.query.redirectTo) {
-      return router.replace(to.query.redirectTo)
+      next(to.query.redirectTo)
+    } else {
+      next()
     }
-    next()
   })
 }
 
