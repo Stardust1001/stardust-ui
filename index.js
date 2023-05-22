@@ -180,9 +180,13 @@ const et = (e) => {
 }), gt = () => ({
   table: Te(),
   dialog: De()
-}), { funcs: de } = StardustJs, bt = (e, t) => (Object.values(e).forEach((s) => {
-  !s || typeof s != "object" || (s._isBaseTable ? Be(s, t) : s._isBaseDialog ? Ie(s, t) : s._isBaseForm && fe(s, t));
-}), e), Be = (e, t) => (e.columns.push(...t.filter((s) => s.visible === !1 ? s.canView : s.canView !== !1)), e), Ie = (e, t) => (e.formItems = t.filter((s) => s.visible === !1 ? s.canAdd || s.canEdit : s.canAdd !== !1 || s.canEdit !== !1), fe(e, t), e), fe = (e, t) => (e._isBaseForm && !e._isBaseDialog && (e.formItems = t.filter((o) => o.visible !== !1)), Pe(e.form, e.formItems), e.initialForm = de.deepCopy(e.form), e.initialFormRules = de.deepCopy(e.formRules), Ae(() => e.formItems, () => {
+}), { funcs: de } = StardustJs, bt = (e, t) => {
+  for (let s in e) {
+    const o = e[s];
+    !o || typeof o != "object" || (s === "table" && e[s]._isBaseTable && Be(o, t), s === "dialog" && e[s]._isBaseDialog && Ie(o, t), s === "form" && e[s]._isBaseForm && fe(o, t));
+  }
+  return e;
+}, Be = (e, t) => (e.columns.push(...t.filter((s) => s.visible === !1 ? s.canView : s.canView !== !1)), e), Ie = (e, t) => (e.formItems = t.filter((s) => s.visible === !1 ? s.canAdd || s.canEdit : s.canAdd !== !1 || s.canEdit !== !1), fe(e, t), e), fe = (e, t) => (e._isBaseForm && !e._isBaseDialog && (e.formItems = t.filter((o) => o.visible !== !1)), Pe(e.form, e.formItems), e.initialForm = de.deepCopy(e.form), e.initialFormRules = de.deepCopy(e.formRules), Ae(() => e.formItems, () => {
   Ne(e);
 }, { immediate: !0, deep: !0 }), e), Ne = (e) => {
   const { formItems: t, initialFormRules: s } = e, o = t.filter((i) => {
@@ -4650,7 +4654,7 @@ const Ui = (e) => ({
   for (let s in he)
     e.component(s, he[s]);
 }, Li = {
-  version: "1.0.11",
+  version: "1.0.12",
   ...he,
   ...Xe,
   ...wt,

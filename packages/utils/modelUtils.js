@@ -3,18 +3,21 @@ import { watch } from 'vue'
 const { funcs } = StardustJs
 
 export const initModel = (model, fields) => {
-  Object.values(model).forEach(ele => {
-    if (!ele || typeof ele !== 'object') {
-      return
+  for (let key in model) {
+    const value = model[key]
+    if (!value || typeof value !== 'object') {
+      continue
     }
-    if (ele._isBaseTable) {
-      initTable(ele, fields)
-    } else if (ele._isBaseDialog) {
-      initDialog(ele, fields)
-    } else if (ele._isBaseForm) {
-      initForm(ele, fields)
+    if (key === 'table' && model[key]._isBaseTable) {
+      initTable(value, fields)
     }
-  })
+    if (key === 'dialog' && model[key]._isBaseDialog) {
+      initDialog(value, fields)
+    }
+    if (key === 'form' && model[key]._isBaseForm) {
+      initForm(value, fields)
+    }
+  }
   return model
 }
 
