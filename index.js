@@ -3189,7 +3189,9 @@ function jo() {
       modelValue: m.op,
       onChange: (b) => h(m, b),
       options: m.ops
-    }, null), Mo(this, m)])]))]), f(u("el-input"), _({
+    }, null), f("div", {
+      class: "value-container"
+    }, [Mo(this, m)])])]))]), f(u("el-input"), _({
       type: "textarea",
       autosize: {
         minRows: 3,
@@ -3370,7 +3372,7 @@ const { storage: ae } = StardustBrowser, Ro = {
       e.op = t, t === "between" ? e.value = ["", ""] : ["in", "notIn"].includes(t) && (e.value = []), !["between", "in", "notIn"].includes(t) && Array.isArray(t) && (e.value = "");
     }
   }
-}, He = /* @__PURE__ */ k(Ro, [["__scopeId", "data-v-42258c11"]]);
+}, He = /* @__PURE__ */ k(Ro, [["__scopeId", "data-v-2229ab5d"]]);
 const Fo = {
   name: "Settings",
   props: {
@@ -4648,7 +4650,7 @@ const Ui = (e) => ({
   for (let s in he)
     e.component(s, he[s]);
 }, Li = {
-  version: "1.0.10",
+  version: "1.0.11",
   ...he,
   ...Xe,
   ...wt,

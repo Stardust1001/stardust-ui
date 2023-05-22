@@ -240,15 +240,15 @@ export default {
     & > * {
       width: 100%;
     }
+    :deep(.value-container) > * {
+      width: 100%;
+    }
   }
   .col-2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 10px;
     position: relative;
-    & > * {
-      width: 100%;
-    }
     &::after {
       content: '-';
       position: absolute;
@@ -257,5 +257,8 @@ export default {
       transform: translate(-50%, -50%);
     }
   }
+}
+:deep(.col-2) > * {
+  width: 100% !important;
 }
 </style>
