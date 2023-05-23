@@ -1,6 +1,6 @@
 import { h, resolveComponent } from 'vue'
 
-const compRender = (vm) => {
+export const compRender = (vm) => {
   const { $props, $attrs, attrs, $emit } = vm
   let { comp, compType, html, text } = $props
   const opts = {
@@ -24,7 +24,7 @@ const compRender = (vm) => {
   })
 }
 
-const PcItem = (vm) => {
+export const PcItem = (vm) => {
   const { $props, $attrs, attrs, $emit, $slots } = vm
   const { slot, showTooltip, placeholder } = $props
   
@@ -49,7 +49,7 @@ const PcItem = (vm) => {
   )
 }
 
-const MobileItem = (vm) => {
+export const MobileItem = (vm) => {
   const { $props, $attrs, attrs, $emit, $slots, mValue } = vm
   const { slot, comp, modelValue } = $props
 
@@ -74,10 +74,4 @@ const MobileItem = (vm) => {
     Object.assign(opts, attrs)
     return h(resolveComponent('van-field'), opts)
   }
-}
-
-export {
-	compRender,
-  PcItem,
-  MobileItem
 }
