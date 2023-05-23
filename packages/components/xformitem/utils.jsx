@@ -33,7 +33,9 @@ export const PcItem = (vm) => {
   }
 
   let inner = null
-  if (showTooltip) {
+  if (slot) {
+    inner = $slots.default()
+  } else if (showTooltip) {
     inner = (
       <el-tooltip effect="dark" content={placeholder} placement="bottom">
         { compRender(vm) }

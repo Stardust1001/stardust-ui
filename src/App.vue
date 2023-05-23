@@ -21,6 +21,7 @@ const form = reactive({
     { label: '姓名', prop: 'name' },
     { label: '性别', prop: 'gender', comp: 'XSelect', options: ['男', '女'] },
     { label: '年龄', prop: 'age', comp: 'ElInputNumber' },
+    { label: '插槽', prop: 'slot', slot: 'slot' }
   ].map(e => ({ span: 8, ...e }))
 })
 
@@ -55,6 +56,10 @@ const controller = {
       listen="search,add,edit,export,search-export"
     ></pc-x-table>
     <br>
-    <pc-x-form label-width="40px" :form="form"></pc-x-form>
+    <pc-x-form label-width="40px" :form="form">
+      <template #slot>
+        this is 插槽
+      </template>
+    </pc-x-form>
   </div>
 </template>

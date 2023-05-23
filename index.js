@@ -1651,7 +1651,9 @@ const ue = (e) => {
   if (l && !s.label)
     return i.default();
   let h = null;
-  if (a) {
+  if (l)
+    h = i.default();
+  else if (a) {
     let m;
     h = f(u("el-tooltip"), {
       effect: "dark",
@@ -4654,7 +4656,7 @@ const Ui = (e) => ({
   for (let s in he)
     e.component(s, he[s]);
 }, Li = {
-  version: "1.0.13",
+  version: "1.0.14",
   ...he,
   ...Xe,
   ...wt,
