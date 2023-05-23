@@ -56,7 +56,7 @@ export default {
       if (!this.modelName) {
         return this._options
       }
-      remoteSearch(this.$api.restful, query, this)
+      remoteSearch(this.service.restful, query, this)
     },
     onClick (e) {
       if (!e.target.classList.contains('van-overlay')) {

@@ -2674,7 +2674,7 @@ const oo = /* @__PURE__ */ k(to, [["render", no]]), We = async (e, t, s) => {
     remoteSearch(e) {
       if (!this.modelName)
         return this._options;
-      We(this.$api.restful, e, this);
+      We(this.service.restful, e, this);
     },
     onClick(e) {
       e.target.classList.contains("van-overlay") || (this.visible = !0);
@@ -2747,7 +2747,7 @@ const uo = {
     remoteSearch(e) {
       if (!this.remote && !this.modelName)
         return this._options;
-      We(this.$api.restful, e, this);
+      We(this.service.restful, e, this);
     },
     calcMainLabel(e) {
       return io(e, this);
@@ -2785,7 +2785,7 @@ function fo(e, t, s, o, n, i) {
     _: 3
   }, 16, ["loading", "filterable", "remote-method"]);
 }
-const _o = /* @__PURE__ */ k(uo, [["render", fo], ["__scopeId", "data-v-0baced1c"]]);
+const _o = /* @__PURE__ */ k(uo, [["render", fo], ["__scopeId", "data-v-a80c4d71"]]);
 const go = {
   name: "MobileXTable",
   inheritAttrs: !1,
@@ -4654,7 +4654,7 @@ const Ui = (e) => ({
   for (let s in he)
     e.component(s, he[s]);
 }, Li = {
-  version: "1.0.12",
+  version: "1.0.13",
   ...he,
   ...Xe,
   ...wt,

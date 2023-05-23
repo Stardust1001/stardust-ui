@@ -52,7 +52,7 @@ export default {
       if (!this.remote && !this.modelName) {
         return this._options
       }
-      remoteSearch(this.$api.restful, query, this)
+      remoteSearch(this.service.restful, query, this)
     },
     calcMainLabel (option) {
       return calcMainLabel(option, this)
