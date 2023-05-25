@@ -9,7 +9,7 @@
     "build": "vite build --config vite.lib.config.js",
     "serve": "vite preview",
     "push": "git add . && git commit -m \"add\" && git push origin master",
-    "pull": "git status && git pull",
+    "pull": "git status && git pull origin master",
     "force-pull": "git status && git checkout . && git pull origin master",
     "cloc": "cloc vite.config.js src packages",
     "cloc-plop": "cloc plopfile.js .plop"
