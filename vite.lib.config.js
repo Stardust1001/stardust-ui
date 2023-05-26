@@ -32,11 +32,13 @@ export default defineConfig(({ command, mode }) => {
         external: [
           'vue'
         ],
+        output: {
+          globals: {
+            vue: Vue
+          }
+        },
         plugins: [
           commonjs(),
-          externalGlobals({
-            // 'vue': 'Vue'
-          })
         ],
         output: {
           manualChunks (id) {
