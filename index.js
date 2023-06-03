@@ -3643,11 +3643,13 @@ function Lo(e, t, s, o, n, i) {
                       }, null, 40, Xo)) : g.slot ? w(e.$slots, g.slot, {
                         key: 1,
                         scope: C,
-                        column: g
+                        column: g,
+                        value: C.row[g.prop]
                       }) : e.slotAll ? w(e.$slots, "all", {
                         key: 2,
                         scope: C,
-                        column: g
+                        column: g,
+                        value: C.row[g.prop]
                       }) : (c(), v(j, { key: 3 }, [
                         g.comp === "ElSwitch" || e.table.isRowEdit && C.row.isEditing && (g.visible !== !1 || g.canEdit) ? (c(), p(K(g.comp || "ElInput"), _({ key: 0 }, { ...g, ...g.formAttrs }, {
                           modelValue: C.row[g.prop],
@@ -4656,7 +4658,7 @@ const Ui = (e) => ({
   for (let s in he)
     e.component(s, he[s]);
 }, Li = {
-  version: "1.0.14",
+  version: "1.0.15",
   ...he,
   ...Xe,
   ...wt,
