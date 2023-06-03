@@ -128,12 +128,14 @@ export default {
                 :name="column.slot"
                 :scope="scope"
                 :column="column"
+                :value="scope.row[column.prop]"
               />
               <slot
                 v-else-if="slotAll"
                 name="all"
                 :scope="scope"
                 :column="column"
+                :value="scope.row[column.prop]"
               />
               <template v-else>
                 <component
