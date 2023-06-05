@@ -3,15 +3,19 @@ export default {
   name: 'XImageUploader',
   props: {
     modelValue: Array | String,
-    multiple: Boolean
+    multiple: Boolean,
+    baseURL: String
   },
   emits: ['update:modelValue'],
   data () {
     return {
-      action: `${this.$api.API_BASE_URL}/upload_file`
+
     }
   },
   computed: {
+    action () {
+      return (this.baseURL || this.API_BASE_URL) + '/upload_file'
+    },
     image () {
       const model = this.modelValue
       return Array.isArray(model) ? model[0] : model

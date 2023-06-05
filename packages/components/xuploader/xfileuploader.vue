@@ -4,15 +4,19 @@ export default {
   props: {
     modelValue: Array | String,
     multiple: Boolean,
-    accept: String
+    accept: String,
+    baseURL: String
   },
   emits: ['update:modelValue'],
   data () {
     return {
-      action: `${this.$api.API_BASE_URL}/upload_file`
+
     }
   },
   computed: {
+    action () {
+      return (this.baseURL || this.API_BASE_URL) + '/upload_file'
+    },
     filepath () {
       const model = this.modelValue
       return Array.isArray(model) ? model[0] : model
@@ -20,7 +24,7 @@ export default {
   },
   methods: {
     onSuccess (res, file, fileList) {
-      const path = this.$api.API_BASE_URL + '/' + res.filename
+      const path = this.API_BASE_URL + '/' + res.filename
       this.$emit('update:modelValue', path)
     }
   }

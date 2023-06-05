@@ -4483,15 +4483,17 @@ const Vi = {
   props: {
     modelValue: Array | String,
     multiple: Boolean,
-    accept: String
+    accept: String,
+    baseURL: String
   },
   emits: ["update:modelValue"],
   data() {
-    return {
-      action: `${this.$api.API_BASE_URL}/upload_file`
-    };
+    return {};
   },
   computed: {
+    action() {
+      return (this.baseURL || this.API_BASE_URL) + "/upload_file";
+    },
     filepath() {
       const e = this.modelValue;
       return Array.isArray(e) ? e[0] : e;
@@ -4499,11 +4501,11 @@ const Vi = {
   },
   methods: {
     onSuccess(e, t, s) {
-      const o = this.$api.API_BASE_URL + "/" + e.filename;
+      const o = this.API_BASE_URL + "/" + e.filename;
       this.$emit("update:modelValue", o);
     }
   }
-}, Ai = (e) => (pe("data-v-e756c8fc"), e = e(), me(), e), Oi = { class: "mask" }, ji = /* @__PURE__ */ Ai(() => /* @__PURE__ */ O("div", { class: "el-upload__text" }, [
+}, Ai = (e) => (pe("data-v-58137523"), e = e(), me(), e), Oi = { class: "mask" }, ji = /* @__PURE__ */ Ai(() => /* @__PURE__ */ O("div", { class: "el-upload__text" }, [
   /* @__PURE__ */ $(" 将文件拖到此处，或"),
   /* @__PURE__ */ O("em", null, "点击上传")
 ], -1)), Mi = {
@@ -4515,7 +4517,7 @@ function Ri(e, t, s, o, n, i) {
   return c(), p(a, {
     drag: "",
     "show-file-list": !1,
-    action: n.action,
+    action: i.action,
     accept: s.accept,
     multiple: s.multiple,
     "on-success": i.onSuccess,
@@ -4531,20 +4533,22 @@ function Ri(e, t, s, o, n, i) {
     _: 1
   }, 8, ["action", "accept", "multiple", "on-success"]);
 }
-const Fi = /* @__PURE__ */ k(Vi, [["render", Ri], ["__scopeId", "data-v-e756c8fc"]]);
+const Fi = /* @__PURE__ */ k(Vi, [["render", Ri], ["__scopeId", "data-v-58137523"]]);
 const Ti = {
   name: "XImageUploader",
   props: {
     modelValue: Array | String,
-    multiple: Boolean
+    multiple: Boolean,
+    baseURL: String
   },
   emits: ["update:modelValue"],
   data() {
-    return {
-      action: `${this.$api.API_BASE_URL}/upload_file`
-    };
+    return {};
   },
   computed: {
+    action() {
+      return (this.baseURL || this.API_BASE_URL) + "/upload_file";
+    },
     image() {
       const e = this.modelValue;
       return Array.isArray(e) ? e[0] : e;
@@ -4556,7 +4560,7 @@ const Ti = {
       this.$emit("update:modelValue", o);
     }
   }
-}, Di = (e) => (pe("data-v-c8f36d63"), e = e(), me(), e), Bi = { class: "mask" }, Ii = /* @__PURE__ */ Di(() => /* @__PURE__ */ O("div", { class: "el-upload__text" }, [
+}, Di = (e) => (pe("data-v-eda3fedf"), e = e(), me(), e), Bi = { class: "mask" }, Ii = /* @__PURE__ */ Di(() => /* @__PURE__ */ O("div", { class: "el-upload__text" }, [
   /* @__PURE__ */ $(" 将图片拖到此处，或"),
   /* @__PURE__ */ O("em", null, "点击上传")
 ], -1));
@@ -4565,7 +4569,7 @@ function Ni(e, t, s, o, n, i) {
   return c(), p(r, {
     drag: "",
     "show-file-list": !1,
-    action: n.action,
+    action: i.action,
     accept: "image/*",
     multiple: s.multiple,
     "on-success": i.onSuccess,
@@ -4586,7 +4590,7 @@ function Ni(e, t, s, o, n, i) {
     _: 1
   }, 8, ["action", "multiple", "on-success"]);
 }
-const Pi = /* @__PURE__ */ k(Ti, [["render", Ni], ["__scopeId", "data-v-c8f36d63"]]), ce = {
+const Pi = /* @__PURE__ */ k(Ti, [["render", Ni], ["__scopeId", "data-v-eda3fedf"]]), ce = {
   xactionsheet: $t,
   xautorows: At,
   mobilexbutton: Mt,
@@ -4658,7 +4662,7 @@ const Ui = (e) => ({
   for (let s in he)
     e.component(s, he[s]);
 }, Li = {
-  version: "1.0.15",
+  version: "1.0.16",
   ...he,
   ...Xe,
   ...wt,
