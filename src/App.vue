@@ -25,6 +25,10 @@ const form = reactive({
   ].map(e => ({ span: 8, ...e }))
 })
 
+const others = reactive({
+  files: []
+})
+
 const controller = {
   handleSearch () {
 
@@ -61,5 +65,6 @@ const controller = {
         this is 插槽
       </template>
     </pc-x-form>
+    <x-image-uploader v-model="others.files" need-upload />
   </div>
 </template>

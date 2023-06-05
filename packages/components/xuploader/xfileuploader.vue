@@ -5,17 +5,20 @@ export default {
     modelValue: Array | String,
     multiple: Boolean,
     accept: String,
-    baseURL: String
+    baseURL: String,
+    needUpload: Boolean,
+    action: String
   },
   emits: ['update:modelValue'],
   data () {
     return {
-
+      disabled: false,
+      fileList: []
     }
   },
   computed: {
-    action () {
-      return (this.baseURL || this.API_BASE_URL) + '/upload_file'
+    actionUrl () {
+      return this.action || (this.baseURL || this.service?.API_BASE_URL) + '/common/upload_file'
     },
     filepath () {
       const model = this.modelValue
@@ -24,8 +27,27 @@ export default {
   },
   methods: {
     onSuccess (res, file, fileList) {
-      const path = this.API_BASE_URL + '/' + res.filename
+      const path = this.service?.API_BASE_URL + '/' + res.filename
       this.$emit('update:modelValue', path)
+    },
+    async handleUploadAll () {
+      this.disabled = true
+      const formData = new FormData()
+      this.fileList.forEach(f => formData.append('file', f.raw))
+      try {
+        const data = await this.service.request(this.actionUrl, {
+          method: 'POST',
+          headers: this.$attrs.headers ?? {},
+          data: formData
+        })
+        let filename = data.data.filename
+        filename = Array.isArray(filename) ? filename : [filename]
+        const base = (this.baseURL || this.service.API_BASE_URL) + '/'
+        filename = filename.map(f => base + f)
+        this.$emit('update:modelValue', filename)
+      } catch (err) {
+        return this.$message.error(err.toString())
+      }
     }
   }
 }
@@ -33,18 +55,30 @@ export default {
 
 <template>
   <el-upload
+    v-model:file-list="fileList"
     drag
-    :show-file-list="false"
-    :action="action"
+    :disabled="disabled"
+    :action="actionUrl"
     :accept="accept"
     :multiple="multiple"
     :on-success="onSuccess"
+    :auto-upload="false"
     class="x-file-uploader"
+    v-bind="$attrs"
   >
     <div class="mask">
-      <x-icon name="upload-filled" />
-      <div class="el-upload__text">
+      <pc-x-icon name="upload-filled" />
+      <div v-if="!disabled" class="el-upload__text">
         将文件拖到此处，或<em>点击上传</em>
+        <br>
+        <br>
+        <el-button
+          v-if="needUpload && !disabled && fileList.length"
+          type="success"
+          @click.stop="handleUploadAll"
+        >
+          选择完毕，全部上传到服务器
+        </el-button>
       </div>
     </div>
     <div v-if="filepath" class="path">
@@ -64,6 +98,9 @@ export default {
   }
   .el-image {
     height: 100%;
+  }
+  :deep(.el-upload-dragger) {
+    height: 200px;
   }
   .mask {
     position: absolute;
