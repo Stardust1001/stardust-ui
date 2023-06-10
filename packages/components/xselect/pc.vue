@@ -80,7 +80,13 @@ export default {
       :label="option[text]"
       :value="option[value]"
     >
-      <slot v-if="$slots.default" />
+      <slot
+        v-if="$slots.custom"
+        name="custom"
+        :option="option"
+        :text="text"
+        :value="value"
+      />
       <span v-else>
         <span class="main">{{ calcMainLabel(option) }}</span>
         <span class="remark">{{ calcRemarkLabel(option) }}</span>
