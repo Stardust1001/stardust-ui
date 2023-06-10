@@ -11,14 +11,22 @@ export const OPS = {
   like: { text: '模糊匹配', value: 'like' },
   notIn: { text: '不包含', value: 'notIn' },
   notLike: { text: '模糊不匹配', value: 'notLike' },
-  between: { text: '介于', value: 'between' }
+  between: { text: '介于', value: 'between' },
+  special: { text: '特殊值', value: 'special' }
 }
 
+export const SPECIAL_OPTIONS = [
+  { text: 'NULL', value: 'NULL' },
+  { text: '空文本', value: 'BLANK' },
+  { text: '非NULL', value: 'NOT_NULL' },
+  { text: '非空文本', value: 'NOT_BLANK' },
+]
+
 export const COMPONENT_OPS = {
-  'XSelect': ['eq', 'ne', 'in', 'notIn'],
-  'ElDatePicker': ['eq', 'gt', 'gte', 'lt', 'lte', 'between'],
-  'ElInputNumber': ['eq', 'ne', 'gt', 'gte', 'lt', 'lte', 'between'],
-  'ElInput': ['eq', 'ne', 'like', 'notLike', 'between']
+  'XSelect': ['eq', 'ne', 'in', 'notIn', 'special'],
+  'ElDatePicker': ['eq', 'gt', 'gte', 'lt', 'lte', 'between', 'special'],
+  'ElInputNumber': ['eq', 'ne', 'gt', 'gte', 'lt', 'lte', 'between', 'special'],
+  'ElInput': ['eq', 'ne', 'like', 'notLike', 'between', 'special']
 }
 COMPONENT_OPS['x-select'] = COMPONENT_OPS['XSelect']
 COMPONENT_OPS['el-date-picker'] = COMPONENT_OPS['ElDatePicker']
@@ -99,7 +107,7 @@ export default function () {
 function calcConditionValueComponent (vm, condition) {
   const component = (options) => {
     return h(
-      resolveComponent(condition.component),
+      resolveComponent(options?.component || condition.component),
       Object.assign({
           modelValue: condition.value,
           'onUpdate:modelValue': (value) => condition.value = value
@@ -131,6 +139,12 @@ function calcConditionValueComponent (vm, condition) {
   } else if (['in', 'notIn'].includes(condition.op)) {
     options.multiple = true
     return component(options)
+  } else if (condition.op === 'special') {
+    return component({
+      ...options,
+      component: 'XSelect',
+      options: SPECIAL_OPTIONS
+    })
   }
   return component()
 }

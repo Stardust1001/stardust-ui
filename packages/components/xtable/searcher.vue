@@ -149,6 +149,19 @@ export default {
     parseCondition (condition) {
       let { prop, op, value } = condition
       const where = {}
+      if (op === 'special') {
+        const isNot = value.startsWith('NOT_')
+        if (value.includes('NULL')) {
+          value = null
+        } else if (value.includes('BLANK')) {
+          value = ''
+        }
+        if (isNot) {
+          value = { '[Op.not]': value }
+        }
+        where[prop] = value
+        return where
+      }
       if (op === 'like' || op === 'notLike') {
         value = '%' + value + '%'
       }
@@ -203,7 +216,10 @@ export default {
       } else if (['in', 'notIn'].includes(value)) {
         condition.value = []
       }
-      if (!['between', 'in', 'notIn'].includes(value) && Array.isArray(value)) {
+      if (
+        value === 'special'
+        || !['between', 'in', 'notIn'].includes(value) && Array.isArray(value)
+      ) {
         condition.value = ''
       }
     }
