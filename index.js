@@ -3252,6 +3252,7 @@ function Fo(e, t) {
   })]) : ["in", "notIn"].includes(t.op) ? (o.multiple = !0, s(o)) : t.op === "special" ? s({
     ...o,
     component: "XSelect",
+    placeholder: "请选择特殊值",
     options: Mo
   }) : s();
 }
@@ -4771,7 +4772,7 @@ const Ji = (e) => ({
   for (let s in he)
     e.component(s, he[s]);
 }, Gi = {
-  version: "1.0.19",
+  version: "1.0.20",
   ...he,
   ...qe,
   ...kt,

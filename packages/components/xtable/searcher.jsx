@@ -143,6 +143,7 @@ function calcConditionValueComponent (vm, condition) {
     return component({
       ...options,
       component: 'XSelect',
+      placeholder: '请选择特殊值',
       options: SPECIAL_OPTIONS
     })
   }
