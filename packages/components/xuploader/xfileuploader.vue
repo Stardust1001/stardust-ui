@@ -18,7 +18,7 @@ export default {
   },
   computed: {
     actionUrl () {
-      return this.action || (this.baseURL || this.service?.API_BASE_URL) + '/common/upload_file'
+      return this.action || (this.baseURL || this.service?.API_BASE_URL) + '/common/upload_files'
     },
     filepath () {
       const model = this.modelValue

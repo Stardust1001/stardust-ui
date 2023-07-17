@@ -4528,7 +4528,7 @@ const ji = {
   computed: {
     actionUrl() {
       var e;
-      return this.action || (this.baseURL || ((e = this.service) == null ? void 0 : e.API_BASE_URL)) + "/common/upload_file";
+      return this.action || (this.baseURL || ((e = this.service) == null ? void 0 : e.API_BASE_URL)) + "/common/upload_files";
     },
     filepath() {
       const e = this.modelValue;
@@ -4559,7 +4559,7 @@ const ji = {
       }
     }
   }
-}, ye = (e) => (pe("data-v-78f8cae4"), e = e(), me(), e), Ri = { class: "mask" }, Mi = {
+}, ye = (e) => (pe("data-v-fe069681"), e = e(), me(), e), Ri = { class: "mask" }, Mi = {
   key: 0,
   class: "el-upload__text"
 }, Ti = /* @__PURE__ */ ye(() => /* @__PURE__ */ O("em", null, "点击上传", -1)), Fi = /* @__PURE__ */ ye(() => /* @__PURE__ */ O("br", null, null, -1)), Bi = /* @__PURE__ */ ye(() => /* @__PURE__ */ O("br", null, null, -1)), Ni = {
@@ -4605,7 +4605,7 @@ function Di(e, t, s, o, n, i) {
     _: 1
   }, 16, ["file-list", "disabled", "action", "accept", "multiple", "on-success"]);
 }
-const Ii = /* @__PURE__ */ k(ji, [["render", Di], ["__scopeId", "data-v-78f8cae4"]]);
+const Ii = /* @__PURE__ */ k(ji, [["render", Di], ["__scopeId", "data-v-fe069681"]]);
 const Ui = {
   name: "XImageUploader",
   props: {
@@ -4625,7 +4625,7 @@ const Ui = {
   computed: {
     actionUrl() {
       var e;
-      return this.action || (this.baseURL || ((e = this.service) == null ? void 0 : e.API_BASE_URL)) + "/common/upload_file";
+      return this.action || (this.baseURL || ((e = this.service) == null ? void 0 : e.API_BASE_URL)) + "/common/upload_files";
     },
     image() {
       const e = this.modelValue;
@@ -4655,7 +4655,7 @@ const Ui = {
       }
     }
   }
-}, ve = (e) => (pe("data-v-93388086"), e = e(), me(), e), Pi = { class: "mask" }, Li = { class: "el-upload__text" }, Xi = /* @__PURE__ */ ve(() => /* @__PURE__ */ O("em", null, "点击上传", -1)), qi = /* @__PURE__ */ ve(() => /* @__PURE__ */ O("br", null, null, -1)), zi = /* @__PURE__ */ ve(() => /* @__PURE__ */ O("br", null, null, -1));
+}, ve = (e) => (pe("data-v-c1111863"), e = e(), me(), e), Pi = { class: "mask" }, Li = { class: "el-upload__text" }, Xi = /* @__PURE__ */ ve(() => /* @__PURE__ */ O("em", null, "点击上传", -1)), qi = /* @__PURE__ */ ve(() => /* @__PURE__ */ O("br", null, null, -1)), zi = /* @__PURE__ */ ve(() => /* @__PURE__ */ O("br", null, null, -1));
 function Wi(e, t, s, o, n, i) {
   const l = u("x-icon"), a = u("el-button"), r = u("el-image"), h = u("el-upload");
   return c(), p(h, _({
@@ -4700,7 +4700,7 @@ function Wi(e, t, s, o, n, i) {
     _: 1
   }, 16, ["file-list", "disabled", "action", "multiple", "on-success"]);
 }
-const Hi = /* @__PURE__ */ k(Ui, [["render", Wi], ["__scopeId", "data-v-93388086"]]), ce = {
+const Hi = /* @__PURE__ */ k(Ui, [["render", Wi], ["__scopeId", "data-v-c1111863"]]), ce = {
   xactionsheet: xt,
   xautorows: jt,
   mobilexbutton: Tt,
