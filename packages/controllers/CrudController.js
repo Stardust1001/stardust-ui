@@ -78,7 +78,7 @@ class CrudController extends BaseController {
       '_defaultFormatList',
       '_fillRelatedField',
       'formatList',
-      'processExportingHeader',
+      'processExportingColumns',
       'processExportingData',
       'processImportingData',
       '_resetForm',
@@ -201,7 +201,9 @@ class CrudController extends BaseController {
     if (data.length) {
       const keys = Object.keys(data[0])
     }
-    const header = this.processExportingHeader(ref._visibleColumns, 'current').map(col => col.label)
+    const cols = this.processExportingColumns(ref._visibleColumns, 'current')
+    const props = cols.map(col => col.prop)
+    const header = cols.map(col => col.label)
     data = data.map(row => props.map(prop => row[prop]))
     let func = null
     if (type === 'csv') {
@@ -223,7 +225,7 @@ class CrudController extends BaseController {
       return
     }
     this._isExporting = true
-    const cols = this.processExportingHeader(this.table.ref._visibleColumns, 'search')
+    const cols = this.processExportingColumns(this.table.ref._visibleColumns, 'search')
     const props = cols.map(col => col.prop)
     const header = cols.map(col => col.label)
     const res = await this.dbTable.search(this.getSearchExportParams())
@@ -464,7 +466,7 @@ class CrudController extends BaseController {
     return Object.assign({}, this.getSearchParams(), {
       page: 1,
       limit: - 1,
-      attributes: this.processExportingHeader(this.table.ref._visibleColumns, 'search').map(col => col.prop)
+      attributes: this.processExportingColumns(this.table.ref._visibleColumns, 'search').map(col => col.prop)
     })
   }
 
@@ -547,7 +549,7 @@ class CrudController extends BaseController {
     return list
   }
 
-  processExportingHeader (columns, mode = 'current') {
+  processExportingColumns (columns, mode = 'current') {
     return columns.filter(col => {
       return !['index', 'selection', 'expand', 'radio', '_index'].includes(col.type)
     }).filter(col => !col._virtual)
