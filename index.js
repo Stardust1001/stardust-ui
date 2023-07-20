@@ -469,10 +469,10 @@ class We extends ze {
     const { list: i, selection: n, ref: o } = this.table;
     let l = n.length > 0 ? n : i;
     l = oe.deepCopy(l), l = this.processExportingData(l), l.length && Object.keys(l[0]);
-    const a = this._getExportingColumns(o._visibleColumns).map((m) => m.prop), r = this.processExportingHeader(o._visibleColumns, "current");
-    l = l.map((m) => a.map((S) => m[S]));
-    let h = null;
-    t === "csv" ? h = Z.export2Csv : h = Z.export2Excel, h({ header: r, data: l, filename: s }), this._isExporting = !1;
+    const a = this.processExportingHeader(o._visibleColumns, "current").map((h) => h.label);
+    l = l.map((h) => props.map((m) => h[m]));
+    let r = null;
+    t === "csv" ? r = Z.export2Csv : r = Z.export2Excel, r({ header: a, data: l, filename: s }), this._isExporting = !1;
   }
   async handleSearchExport(t = this.exportType, s = "查询导出数据") {
     if (this._isExporting)
@@ -482,11 +482,11 @@ class We extends ze {
       return;
     }
     this._isExporting = !0;
-    const i = this.processExportingHeader(this.table.ref._visibleColumns, "search");
-    let o = (await this.dbTable.search(this.getSearchExportParams())).data.map((a) => Object.values(a));
-    o = oe.deepCopy(o), o = this.processExportingData(o, "search");
-    let l = null;
-    t === "csv" ? l = Z.export2Csv : l = Z.export2Excel, l({ header: i, data: o, filename: s }), this._isExporting = !1;
+    const i = this.processExportingHeader(this.table.ref._visibleColumns, "search"), n = i.map((h) => h.prop), o = i.map((h) => h.label);
+    let a = (await this.dbTable.search(this.getSearchExportParams())).data.map((h) => n.map((m) => h[m]));
+    a = oe.deepCopy(a), a = this.processExportingData(a, "search");
+    let r = null;
+    t === "csv" ? r = Z.export2Csv : r = Z.export2Excel, r({ header: o, data: a, filename: s }), this._isExporting = !1;
   }
   async handleImport() {
     const t = await Se.select(".xls,.xlsx,.csv"), s = t.name.toLowerCase().endsWith(".csv"), i = await Se.toType(t, s ? "text" : "arraybuffer");
@@ -632,7 +632,7 @@ class We extends ze {
     return Object.assign({}, this.getSearchParams(), {
       page: 1,
       limit: -1,
-      attributes: this._getExportingColumns(this.table.ref._visibleColumns).map((t) => t.prop)
+      attributes: this.processExportingHeader(this.table.ref._visibleColumns, "search").map((t) => t.prop)
     });
   }
   afterSearch(t, s, i) {
@@ -693,11 +693,8 @@ class We extends ze {
   formatList(t, s) {
     return t;
   }
-  _getExportingColumns(t, s) {
-    return t.filter((i) => !["index", "selection", "expand", "radio", "_index"].includes(i.type)).filter((i) => !i._virtual);
-  }
   processExportingHeader(t, s = "current") {
-    return this._getExportingColumns(t, s).map((i) => i.label);
+    return t.filter((i) => !["index", "selection", "expand", "radio", "_index"].includes(i.type)).filter((i) => !i._virtual);
   }
   processExportingData(t, s = "current") {
     if (!t.length)
@@ -4771,7 +4768,7 @@ const Jo = (e) => ({
   for (let s in he)
     e.component(s, he[s]);
 }, Go = {
-  version: "1.0.22",
+  version: "1.0.23",
   ...he,
   ...qe,
   ...kt,
