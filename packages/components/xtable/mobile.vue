@@ -69,6 +69,10 @@ export default {
     this.initSettings()
   },
   mounted () {
+    if (this.table) {
+      this.table.tableRef = this
+      this.table.ref = this
+    }
     this.$emit('update:tref', this)
   },
   methods: {

@@ -37,6 +37,7 @@ export default {
   mounted () {
     if (this.table) {
       this.table.tableRef = this.$refs.tableRef
+      this.table.ref = this
     }
     this.$emit('update:tref', this.$refs.tableRef)
   },

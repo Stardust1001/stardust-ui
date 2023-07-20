@@ -194,18 +194,15 @@ class CrudController extends BaseController {
       return
     }
     this._isExporting = true
-    const { list, selection, columns } = this.table
-    let cols = columns
-    cols = cols.filter(col => col.type !== 'selection')
+    const { list, selection, ref } = this.table
     let data = selection.length > 0 ? selection : list
     data = funcs.deepCopy(data)
     data = this.processExportingData(data)
     if (data.length) {
       const keys = Object.keys(data[0])
-      cols = cols.filter(col => keys.includes(col.prop))
     }
-    const props = cols.map(col => col.prop)
-    const header = this.processExportingHeader(cols.map(col => col.label))
+    const props = this._getExportingColumns(ref._visibleColumns).map(col => col.prop)
+    const header = this.processExportingHeader(ref._visibleColumns, 'current')
     data = data.map(row => props.map(prop => row[prop]))
     let func = null
     if (type === 'csv') {
@@ -227,8 +224,8 @@ class CrudController extends BaseController {
       return
     }
     this._isExporting = true
+    const header = this.processExportingHeader(this.table.ref._visibleColumns, 'search')
     const res = await this.dbTable.search(this.getSearchExportParams())
-    const header = this.processExportingHeader(res.data.length && Object.keys(res.data[0]) || [], 'search')
     let data = res.data.map(ele => Object.values(ele))
     data = funcs.deepCopy(data)
     data = this.processExportingData(data, 'search')
@@ -463,7 +460,11 @@ class CrudController extends BaseController {
   }
 
   getSearchExportParams () {
-    return Object.assign({}, this.getSearchParams(), { page: 1, limit: - 1})
+    return Object.assign({}, this.getSearchParams(), {
+      page: 1,
+      limit: - 1,
+      attributes: this._getExportingColumns(this.table.ref._visibleColumns).map(col => col.prop)
+    })
   }
 
   afterSearch (list, params, data) {
@@ -545,14 +546,14 @@ class CrudController extends BaseController {
     return list
   }
 
-  processExportingHeader (header, mode = 'current') {
-    if (mode === 'search') {
-      return header.map(prop => {
-        const column = this.table.columns.find(col => col.prop === prop)
-        return column ? column.label : prop
-      })
-    }
-    return header
+  _getExportingColumns (columns, mode) {
+    return columns.filter(col => {
+      return !['index', 'selection', 'expand', 'radio', '_index'].includes(col.type)
+    }).filter(col => !col._virtual)
+  }
+
+  processExportingHeader (columns, mode = 'current') {
+    return this._getExportingColumns(columns, mode).map(col => col.label)
   }
 
   processExportingData (data, mode = 'current') {
