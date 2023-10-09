@@ -1,6 +1,6 @@
 {
   "name": "@stardust-js/ui",
-  "version": "1.0.26",
+  "version": "1.0.27",
   "description": "Everything I want to publish here",
   "type": "module",
   "main": "index.js",
@@ -20,7 +20,7 @@
   },
   "keywords": [
     "stardust",
-    "stardust-browser"
+    "stardust-ui"
   ],
   "author": "Stardust",
   "license": "MIT",
@@ -35,10 +35,10 @@
   "dependencies": {
     "@stardust-js/browser": "latest",
     "@stardust-js/js": "latest",
-    "@vant/area-data": "^1.4.0",
-    "element-plus": "^2.2.32",
-    "vant": "^4.0.11",
-    "vue": "^3.2.47"
+    "@vant/area-data": "^1.5.0",
+    "element-plus": "^2.3.14",
+    "vant": "^4.7.1",
+    "vue": "^3.3.4"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.1",
@@ -49,9 +49,9 @@
     "@vue/compiler-sfc": "^3.2.47",
     "consola": "^3.1.0",
     "rollup-plugin-external-globals": "^0.7.1",
-    "sass": "^1.58.3",
+    "sass": "^1.69.0",
     "terser": "^5.16.4",
-    "vite": "^4.1.2",
+    "vite": "^4.4.11",
     "vite-plugin-style-import": "^2.0.0"
   }
 }

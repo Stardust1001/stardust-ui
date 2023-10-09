@@ -2,32 +2,38 @@
 import { reactive } from 'vue'
 import { areaList } from '@vant/area-data'
 
-const table = reactive({
-  list: [
-    { name: '卡卡', gender: '男', age: 27 },
-    { name: '娜娜', gender: '女', age: 25 },
-  ],
-  columns: [
-    { label: '姓名', prop: 'name' },
-    { label: '性别', prop: 'gender', comp: 'XSelect', options: ['男', '女'] },
-    { label: '年龄', prop: 'age' },
-    {
-      label: '出生日期',
-      prop: 'birthday',
-      formAttrs: { comp: 'ElDatePicker' }
-    },
-  ]
-})
+import { baseTable, baseForm } from '../packages/utils/model.js'
 
-const form = reactive({
-  district: '',
-  form: {},
-  formItems: [
-    { label: '姓名', prop: 'name' },
-    { label: '性别', prop: 'gender', comp: 'XSelect', options: ['男', '女'] },
-    { label: '年龄', prop: 'age', comp: 'ElInputNumber' },
-    { label: '插槽', prop: 'slot', slot: 'slot' }
-  ].map(e => ({ span: 8, ...e }))
+const model = reactive({
+  table: {
+    ...baseTable(),
+    list: [
+      { name: '卡卡', gender: '男', age: 27 },
+      { name: '娜娜', gender: '女', age: 25 },
+    ],
+    columns: [
+      { label: '姓名', prop: 'name', minWidth: 100 },
+      { label: '性别', prop: 'gender', comp: 'XSelect', options: ['男', '女'], minWidth: 100 },
+      { label: '年龄', prop: 'age', minWidth: 100 },
+      {
+        label: '出生日期',
+        prop: 'birthday',
+        minWidth: 100,
+        formAttrs: { comp: 'ElDatePicker' },
+      },
+    ]
+  },
+  form: {
+    ...baseForm(),
+    district: '',
+    form: {},
+    formItems: [
+      { label: '姓名', prop: 'name' },
+      { label: '性别', prop: 'gender', comp: 'XSelect', options: ['男', '女'] },
+      { label: '年龄', prop: 'age', comp: 'ElInputNumber' },
+      { label: '插槽', prop: 'slot', slot: 'slot' }
+    ].map(e => ({ span: 8, ...e }))
+  }
 })
 
 const others = reactive({
@@ -57,15 +63,15 @@ const controller = {
     </x-row>
     <br>
     <br>
-    <x-district-select v-model="form.district" :area-list="areaList" />
+    <x-district-select v-model="model.form.district" :area-list="areaList" />
     <br>
-    <pc-x-table
-      :table="table"
+    <x-table
+      :table="model.table"
       :controller="controller"
       listen="search,add,edit,export,search-export"
-    ></pc-x-table>
+    ></x-table>
     <br>
-    <pc-x-form label-width="40px" :form="form">
+    <pc-x-form label-width="40px" :form="model.form">
       <template #slot>
         this is 插槽
       </template>
