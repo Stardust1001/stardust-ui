@@ -616,8 +616,8 @@ class We extends ze {
   getAddParams(t) {
     const s = Object.keys(this.dialog.initialForm), o = {};
     return s.length ? s.forEach((n) => o[n] = t[n]) : Object.assign(o, t), this.dialog.formItems.forEach((n) => {
-      let i = o[n.model];
-      n.type === "number" ? i = this.uiUtils.formatPrecision(i, n.precision || 3) * 1 : n.comp === "ElDatePicker" && (n.type === "datetime" ? i = le.format(i) : (!n.type || n.type === "date") && (i = le.format(i, "", !1))), o[n.model] = i;
+      let i = o[n.model || n.prop];
+      n.type === "number" ? i = this.uiUtils.formatPrecision(i, n.precision || 3) * 1 : n.comp === "ElDatePicker" && (n.type === "datetime" ? i = le.format(i) : (!n.type || n.type === "date") && (i = le.format(i, "", !1))), o[n.model || n.prop] = i;
     }), o;
   }
   getUpdateParams(t) {
@@ -4768,7 +4768,7 @@ const Ji = (e) => ({
   for (let s in he)
     e.component(s, he[s]);
 }, Gi = {
-  version: "1.0.25",
+  version: "1.0.26",
   ...he,
   ...qe,
   ...kt,

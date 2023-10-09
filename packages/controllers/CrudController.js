@@ -437,7 +437,7 @@ class CrudController extends BaseController {
       fields.forEach(field => data[field] = params[field])
     }
     this.dialog.formItems.forEach(item => {
-      let value = data[item.model]
+      let value = data[item.model || item.prop]
       if (item.type === 'number') {
         value = this.uiUtils.formatPrecision(value, item.precision || 3) * 1
       } else if (item.comp === 'ElDatePicker') {
@@ -447,7 +447,7 @@ class CrudController extends BaseController {
           value = dates.format(value, '', false)
         }
       }
-      data[item.model] = value
+      data[item.model || item.prop] = value
     })
     return data
   }
