@@ -51,8 +51,8 @@ export const Confirm = options => {
       options.title || '',
       {
         draggable: true,
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
+        confirmButtonText: options.confirmButtonText || '确定',
+        cancelButtonText: options.cancelButtonText || '取消',
         type: options.type || 'info'
       }
     )
