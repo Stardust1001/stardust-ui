@@ -120,9 +120,10 @@ const st = (e) => {
     e.title || "",
     {
       draggable: !0,
+      ...e,
+      type: e.type || "info",
       confirmButtonText: e.confirmButtonText || "确定",
-      cancelButtonText: e.cancelButtonText || "取消",
-      type: e.type || "info"
+      cancelButtonText: e.cancelButtonText || "取消"
     }
   ), t.then(() => !0).catch(() => !1);
 }, mt = (e, t) => {
@@ -4768,7 +4769,7 @@ const Ji = (e) => ({
   for (let s in he)
     e.component(s, he[s]);
 }, Gi = {
-  version: "1.0.28",
+  version: "1.0.29",
   ...he,
   ...qe,
   ...kt,
