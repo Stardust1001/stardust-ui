@@ -58,7 +58,11 @@ export const Confirm = options => {
       }
     )
   }
-  return promise.then(() => true).catch(() => false)
+  return promise.then(() => {
+    return options.distinguishCancelAndClose ? 'confirm' : true
+  }).catch(action => {
+    return options.distinguishCancelAndClose ? action : false
+  })
 }
 
 export default {

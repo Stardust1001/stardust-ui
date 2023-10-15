@@ -125,7 +125,7 @@ const st = (e) => {
       confirmButtonText: e.confirmButtonText || "确定",
       cancelButtonText: e.cancelButtonText || "取消"
     }
-  ), t.then(() => !0).catch(() => !1);
+  ), t.then(() => e.distinguishCancelAndClose ? "confirm" : !0).catch((o) => e.distinguishCancelAndClose ? o : !1);
 }, mt = (e, t) => {
   e.beforeEach((s, o, n) => {
     s.matched.length ? n() : n("/404");
@@ -4769,7 +4769,7 @@ const Ji = (e) => ({
   for (let s in he)
     e.component(s, he[s]);
 }, Gi = {
-  version: "1.0.29",
+  version: "1.0.30",
   ...he,
   ...qe,
   ...kt,
