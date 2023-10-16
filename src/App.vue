@@ -37,7 +37,10 @@ const model = reactive({
 })
 
 const others = reactive({
-  files: []
+  files: [
+    { name: '1', url: 'https://www.baidu.com/favicon.ico' },
+    { name: '2', url: 'https://www.apple.com.cn/favicon.ico' }
+  ]
 })
 
 const controller = {
@@ -76,6 +79,6 @@ const controller = {
         this is 插槽
       </template>
     </pc-x-form>
-    <x-image-uploader v-model="others.files" need-upload />
+    <x-image-uploader v-model="others.files" multiple />
   </div>
 </template>
