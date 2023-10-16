@@ -1,4 +1,6 @@
 <script>
+import { Message } from '../../utils/message.js'
+
 export default {
   name: 'XImageUploader',
   props: {
@@ -9,7 +11,9 @@ export default {
   emits: ['update:modelValue'],
   data () {
     return {
-      disabled: false
+      disabled: false,
+      previewingImage: {},
+      dialogVisible: false
     }
   },
   computed: {
@@ -18,10 +22,19 @@ export default {
     },
     limit () {
       return this.$attrs.limit || (this.multiple ? 1e9 : 1)
+    },
+    images () {
+      return this.modelValue.map(m => m.url)
     }
   },
   methods: {
-
+    handlePreview (img) {
+      this.previewingImage = img
+      this.dialogVisible = true
+    },
+    handleExceed (files, uploadFiles) {
+      Message({ type: 'warning', message: '超出图片限制数量' })
+    }
   }
 }
 </script>
@@ -37,13 +50,30 @@ export default {
     :multiple="multiple"
     :limit="limit"
     class="x-image-uploader"
+    :on-preview="handlePreview"
+    :on-exceed="handleExceed"
     v-bind="$attrs"
     :auto-upload="$attrs.autoUpload || false"
   >
+    <template #default>
+      <el-icon><Plus /></el-icon>
+    </template>
   </el-upload>
+  <el-dialog
+    v-model="dialogVisible"
+    :title="'预览图片' + previewingImage.name"
+  >
+    <img :src="previewingImage.url" alt="previewing-image">
+  </el-dialog>
 </template>
 
 <style lang="scss" scoped>
 .x-image-uploader {
+}
+.el-dialog img {
+  display: block;
+  width: 100%;
+  margin: auto;
+  padding-bottom: 15px;
 }
 </style>

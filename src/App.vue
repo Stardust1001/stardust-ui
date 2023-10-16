@@ -79,6 +79,6 @@ const controller = {
         this is 插槽
       </template>
     </pc-x-form>
-    <x-image-uploader v-model="others.files" multiple />
+    <x-image-uploader v-model="others.files" />
   </div>
 </template>
