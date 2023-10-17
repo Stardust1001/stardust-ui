@@ -2065,9 +2065,7 @@ function an() {
   return this.table.searcherConfig ?? this.$attrs["searcher-config"] ?? {};
 }
 function rn() {
-  if (!this._uid)
-    return;
-  const e = We.getJson(`Settings[${this._uid}]`, {}) || {};
+  const e = this._uid && We.getJson(`Settings[${this._uid}]`, {}) || {};
   e.columns = e.columns || this._columns.filter((t) => !t.type || !be.includes(t.type)).map((t) => {
     const { prop: s, label: i, show: n, hide: o, width: l } = t;
     return { prop: s, label: i, show: n, hide: o, width: l };
@@ -4756,7 +4754,7 @@ const Xo = (e) => ({
   for (let s in he)
     e.component(s, he[s]);
 }, Wo = {
-  version: "1.0.33",
+  version: "1.0.35",
   ...he,
   ...Xe,
   ...St,
