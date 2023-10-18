@@ -248,7 +248,7 @@ export function searcherConfig () {
 export function initSettings () {
   const settings = this._uid && local.getJson(`Settings[${this._uid}]`, {}) || {}
   if (!settings.columns) {
-    settings.columns = this._columns.map(col => {
+    settings.columns = this._columns.filter(col => col.label && col.prop).map(col => {
       const { prop, label, show, hide, width } = col
       return { prop, label, show, hide, width }
     })
