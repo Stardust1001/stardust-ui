@@ -32,7 +32,15 @@ export default {
     settings: 'saveSettings'
   },
   created () {
-    this.initSettings()
+
+  },
+  watch: {
+    _uid: 'initSettings',
+    _columns: {
+      deep: true,
+      immediate: true,
+      handler: 'initSettings'
+    }
   },
   mounted () {
     if (this.table) {
