@@ -215,7 +215,7 @@ export default {
         </el-table>
 
         <x-pagination
-          v-if="!!_query && !!_total && !!(onSearch || _listen['search'])"
+          v-if="!!_query && !!_total"
           :query="_query"
           :total="_total"
           @search="_emit('search', params)"

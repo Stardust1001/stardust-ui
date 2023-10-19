@@ -3752,7 +3752,7 @@ function zi(e, t, s, i, n, o) {
             }, 16, ["onHeaderDragend", "onSelectionChange", "onSortChange"])), [
               [M, e._loading]
             ]),
-            e._query && e._total && (e.onSearch || e._listen.search) ? (d(), m(E, {
+            e._query && e._total ? (d(), m(E, {
               key: 1,
               query: e._query,
               total: e._total,
@@ -4761,7 +4761,7 @@ const Xo = (e) => ({
   for (let s in he)
     e.component(s, he[s]);
 }, Wo = {
-  version: "1.0.37",
+  version: "1.0.39",
   ...he,
   ...Le,
   ...St,
