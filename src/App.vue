@@ -7,6 +7,13 @@ import { baseTable, baseForm } from '../packages/utils/model.js'
 const model = reactive({
   table: {
     ...baseTable(),
+    searcherConfig: {
+      conditions: [
+        { no: 1, prop: 'name', op: 'like', value: '' },
+        { no: 2, prop: 'gender', op: 'eq', value: '' },
+      ],
+      expression: '1 2'
+    },
     list: [
       { name: '卡卡', gender: '男', age: 27 },
       { name: '娜娜', gender: '女', age: 25 },

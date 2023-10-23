@@ -3275,7 +3275,8 @@ const { storage: ae } = StardustBrowser, Fi = {
     }
   },
   created() {
-    this.uid && this.restoreCache();
+    const e = this.uid && ae.local.getJson(this.key, this.config) || this.config;
+    this.initConfig(e);
   },
   render: Mi,
   methods: {
@@ -3295,9 +3296,8 @@ const { storage: ae } = StardustBrowser, Fi = {
         expression: this.expression
       });
     },
-    restoreCache() {
+    initConfig(e) {
       var t, s;
-      const e = ae.local.getJson(this.key, this.config);
       (t = e.conditions) == null || t.forEach((i) => {
         const { prop: n, op: o, value: l } = i;
         i.item = this.columns.find((a) => a.prop === n), this.handleSelectField(i, n), this.handleSelectOp(i, o), i.ops = U[i.component].map((a) => xe[a]), i.value = l;
@@ -3405,7 +3405,7 @@ const { storage: ae } = StardustBrowser, Fi = {
       e.op = t, t === "between" ? e.value = ["", ""] : ["in", "notIn"].includes(t) && (e.value = []), (t === "special" || !["between", "in", "notIn"].includes(t) && Array.isArray(t)) && (e.value = "");
     }
   }
-}, Je = /* @__PURE__ */ k(Fi, [["__scopeId", "data-v-c77ebd79"]]);
+}, Je = /* @__PURE__ */ k(Fi, [["__scopeId", "data-v-28cb9e8f"]]);
 const Ti = {
   name: "Settings",
   props: {
@@ -4761,7 +4761,7 @@ const Xo = (e) => ({
   for (let s in he)
     e.component(s, he[s]);
 }, Wo = {
-  version: "1.0.39",
+  version: "1.0.40",
   ...he,
   ...Le,
   ...St,

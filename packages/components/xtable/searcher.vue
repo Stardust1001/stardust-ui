@@ -26,7 +26,8 @@ export default {
     }
   },
   created () {
-    this.uid && this.restoreCache()
+    const config = this.uid && storage.local.getJson(this.key, this.config) || this.config
+    this.initConfig(config)
   },
   render,
   methods: {
@@ -46,8 +47,7 @@ export default {
         expression: this.expression
       })
     },
-    restoreCache () {
-      const config = storage.local.getJson(this.key, this.config)
+    initConfig (config) {
       config.conditions?.forEach(con => {
         const { prop, op, value } = con
         con.item = this.columns.find(col => col.prop === prop)
