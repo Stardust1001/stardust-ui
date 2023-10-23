@@ -19,14 +19,15 @@ const model = reactive({
       { name: '娜娜', gender: '女', age: 25 },
     ],
     columns: [
-      { label: '姓名', prop: 'name', minWidth: 100 },
-      { label: '性别', prop: 'gender', comp: 'XSelect', options: ['男', '女'], minWidth: 100 },
-      { label: '年龄', prop: 'age', minWidth: 100 },
+      { label: '姓名', prop: 'name', minWidth: 100, block: 'base' },
+      { label: '性别', prop: 'gender', comp: 'XSelect', options: ['男', '女'], minWidth: 100, block: 'base' },
+      { label: '年龄', prop: 'age', minWidth: 100, block: 'base' },
       {
         label: '出生日期',
         prop: 'birthday',
         minWidth: 100,
         formAttrs: { comp: 'ElDatePicker' },
+        block: 'others'
       },
     ]
   },
@@ -87,5 +88,6 @@ const controller = {
       </template>
     </pc-x-form>
     <x-image-uploader v-model="others.files" />
+    <x-info :data="model.form" :fields="model.table.columns"></x-info>
   </div>
 </template>

@@ -4761,7 +4761,7 @@ const Xo = (e) => ({
   for (let s in he)
     e.component(s, he[s]);
 }, Wo = {
-  version: "1.0.40",
+  version: "1.0.41",
   ...he,
   ...Le,
   ...St,

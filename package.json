@@ -1,6 +1,6 @@
 {
   "name": "@stardust-js/ui",
-  "version": "1.0.40",
+  "version": "1.0.41",
   "description": "Everything I want to publish here",
   "type": "module",
   "main": "index.js",
@@ -36,7 +36,7 @@
     "@stardust-js/browser": "latest",
     "@stardust-js/js": "latest",
     "@vant/area-data": "^1.5.0",
-    "element-plus": "^2.3.14",
+    "element-plus": "^2.4.1",
     "vant": "^4.7.1",
     "vue": "^3.3.4"
   },
