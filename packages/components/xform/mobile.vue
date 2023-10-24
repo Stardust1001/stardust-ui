@@ -5,7 +5,11 @@ export default {
   name: 'MobileXForm',
   inheritAttrs: false,
   props: {
-    ...utils.props()
+    ...utils.props(),
+    hideLabels: {
+      type: Boolean,
+      default: false
+    }
   },
   emits: ['update:fref'],
   computed: {
@@ -25,7 +29,7 @@ export default {
 <template>
   <van-form
     ref="formRef"
-    class="mobile-x-form"
+    :class="['mobile-x-form', { 'hide-labels': hideLabels }]"
   >
     <slot v-if="$slots.pre" name="pre" />
 

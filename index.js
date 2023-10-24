@@ -1,11 +1,11 @@
-import { toRaw as Qe, watch as Ee, nextTick as ee, resolveComponent as u, openBlock as d, createBlock as m, mergeProps as b, createElementBlock as y, Fragment as O, renderList as F, withCtx as c, renderSlot as w, toDisplayString as A, useCssVars as Ve, createTextVNode as $, createSlots as H, resolveDynamicComponent as G, createCommentVNode as g, createVNode as f, normalizeProps as se, guardReactiveProps as Ae, normalizeClass as J, h as X, isVNode as Oe, createElementVNode as j, withModifiers as K, pushScopeId as je, popScopeId as Me, resolveDirective as ne, withDirectives as T, normalizeStyle as Ze } from "vue";
+import { toRaw as Qe, watch as Ee, nextTick as ee, resolveComponent as u, openBlock as d, createBlock as m, mergeProps as b, createElementBlock as y, Fragment as O, renderList as F, withCtx as c, renderSlot as w, toDisplayString as A, useCssVars as Ve, createTextVNode as $, createSlots as J, resolveDynamicComponent as G, createCommentVNode as g, createVNode as f, normalizeClass as X, normalizeProps as se, guardReactiveProps as Ae, h as q, isVNode as Oe, createElementVNode as j, withModifiers as K, pushScopeId as je, popScopeId as Me, resolveDirective as ne, withDirectives as T, normalizeStyle as Ze } from "vue";
 const et = (e) => {
   const { width: t, height: s } = e.getBoundingClientRect();
   e.width = t, e.height = s;
   const i = e.getContext("2d");
   class n {
-    constructor(q, z, L, Q, Ke, Ye, Ge) {
-      this.x = q, this.y = z, this.radius = L, this.color = Q, this.vx = Ke, this.vy = Ye, this.ctx = Ge;
+    constructor(z, W, L, Q, Ke, Ye, Ge) {
+      this.x = z, this.y = W, this.radius = L, this.color = Q, this.vx = Ke, this.vy = Ye, this.ctx = Ge;
     }
     update() {
       this.x += this.vx, this.y += this.vy, this.ctx.beginPath(), this.ctx.fillStyle = this.color, this.ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2), this.ctx.fill(), this.detectWall();
@@ -21,12 +21,12 @@ const et = (e) => {
     h ? h-- : (a += r, a <= 0 && (a = 0, r = -r, h = x * 30), a >= 1 && (a = 1, r = -r, h = x * 30)), E.addColorStop(0, "rgba(250, 220, 20, 0.5)"), E.addColorStop(a, "rgba(20, 20, 20, 0.5)"), i.fillStyle = E, i.fillRect(0, 0, t, s);
   }, S = Math.floor(t / 100), v = Math.floor(s / 100), x = 20, R = Math.round(1e3 / x), I = Array.from({ length: 52 }).map(() => {
     const E = Math.floor(l(S + v) * 1.5 + l(5));
-    let q = l(t), z = l(s);
-    q = Math.min(Math.max(E, q), t - E), z = Math.min(Math.max(E, z), s - E);
+    let z = l(t), W = l(s);
+    z = Math.min(Math.max(E, z), t - E), W = Math.min(Math.max(E, W), s - E);
     let L = l(2) ? (l(2) + 2) * S : (l(-1) - 2) * S, Q = l(2) ? (l(2) + 2) * v : (l(-1) - 2) * v;
     return L = Math.floor(L / x), Q = Math.floor(Q / x), new n(
-      q,
       z,
+      W,
       E,
       `rgba(${l(256)}, ${l(256)}, ${l(256)}, ${(l(5) + 5) / 10})`,
       L,
@@ -42,9 +42,9 @@ const et = (e) => {
       M = E.pageX, _ = E.pageY;
       return;
     }
-    const q = E.pageX - M, z = E.pageY - _;
+    const z = E.pageX - M, W = E.pageY - _;
     I.forEach((L) => {
-      L.x += q / x, L.y += z / x;
+      L.x += z / x, L.y += W / x;
     }), M = E.pageX, _ = E.pageY;
   });
   let V = Date.now(), C = null;
@@ -1133,7 +1133,7 @@ function Zt(e, t, s, i, n, o) {
     "show-cancel-button": !!e.$attrs.onCancel || !!e.$parent.$attrs.onCancel,
     onConfirm: t[1] || (t[1] = (a) => e.$emit("submit")),
     onCancel: t[2] || (t[2] = (a) => e.$emit("cancel"))
-  }), H({ _: 2 }, [
+  }), J({ _: 2 }, [
     e.$slots.title ? {
       name: "title",
       fn: c(() => [
@@ -1263,7 +1263,7 @@ function ns(e, t, s, i, n, o) {
     _: 3
   }, 16, ["draggable", "modelValue", "fullscreen", "size", "class"]);
 }
-const is = /* @__PURE__ */ k(ts, [["render", ns]]), D = {}, W = {
+const is = /* @__PURE__ */ k(ts, [["render", ns]]), D = {}, H = {
   provinces: [],
   cities: [],
   counties: []
@@ -1284,7 +1284,7 @@ const is = /* @__PURE__ */ k(ts, [["render", ns]]), D = {}, W = {
       province: "",
       city: "",
       county: "",
-      provinces: Object.freeze(W.provinces),
+      provinces: Object.freeze(H.provinces),
       cities: [],
       counties: []
     };
@@ -1308,7 +1308,7 @@ const is = /* @__PURE__ */ k(ts, [["render", ns]]), D = {}, W = {
         return;
       }
       const t = e.slice(0, 2);
-      this.cities = Object.freeze(W.cities.filter((s) => s.value.slice(0, 2) === t));
+      this.cities = Object.freeze(H.cities.filter((s) => s.value.slice(0, 2) === t));
     },
     city(e) {
       if (this.county || this.update(), this.county = "", !e) {
@@ -1316,7 +1316,7 @@ const is = /* @__PURE__ */ k(ts, [["render", ns]]), D = {}, W = {
         return;
       }
       const t = e.slice(0, 4);
-      this.counties = Object.freeze(W.counties.filter((s) => s.value.slice(0, 4) === t));
+      this.counties = Object.freeze(H.counties.filter((s) => s.value.slice(0, 4) === t));
     },
     county() {
       this.update();
@@ -1328,7 +1328,7 @@ const is = /* @__PURE__ */ k(ts, [["render", ns]]), D = {}, W = {
   },
   methods: {
     initAreas() {
-      Object.assign(D, this.areaList), W.provinces = Object.entries(D.province_list).map((e) => ({ value: e[0], text: e[1] })), W.cities = Object.entries(D.city_list).map((e) => ({ value: e[0], text: e[1] })), W.counties = Object.entries(D.county_list).map((e) => ({ value: e[0], text: e[1] })), this.provinces = Object.freeze(W.provinces);
+      Object.assign(D, this.areaList), H.provinces = Object.entries(D.province_list).map((e) => ({ value: e[0], text: e[1] })), H.cities = Object.entries(D.city_list).map((e) => ({ value: e[0], text: e[1] })), H.counties = Object.entries(D.county_list).map((e) => ({ value: e[0], text: e[1] })), this.provinces = Object.freeze(H.provinces);
     },
     async init() {
       this.inited = !1;
@@ -1475,7 +1475,11 @@ const Y = {
   name: "MobileXForm",
   inheritAttrs: !1,
   props: {
-    ...Y.props()
+    ...Y.props(),
+    hideLabels: {
+      type: Boolean,
+      default: !1
+    }
   },
   emits: ["update:fref"],
   computed: {
@@ -1493,7 +1497,7 @@ function bs(e, t, s, i, n, o) {
   const l = u("mobile-x-form-item"), a = u("van-cell-group"), r = u("van-form");
   return d(), m(r, {
     ref: "formRef",
-    class: "mobile-x-form"
+    class: X(["mobile-x-form", { "hide-labels": s.hideLabels }])
   }, {
     default: c(() => [
       e.$slots.pre ? w(e.$slots, "pre", { key: 0 }) : g("", !0),
@@ -1517,7 +1521,7 @@ function bs(e, t, s, i, n, o) {
       e.$slots.default ? w(e.$slots, "default", { key: 1 }) : g("", !0)
     ]),
     _: 3
-  }, 512);
+  }, 8, ["class"]);
 }
 const _s = /* @__PURE__ */ k(fs, [["render", bs]]), gs = {
   name: "PcXForm",
@@ -1563,7 +1567,7 @@ function vs(e, t, s, i, n, o) {
   return d(), m(h, {
     modelValue: n.activeNames,
     "onUpdate:modelValue": t[0] || (t[0] = (p) => n.activeNames = p),
-    class: J((s.useCollapse ? "use" : "no") + "-collapse")
+    class: X((s.useCollapse ? "use" : "no") + "-collapse")
   }, {
     default: c(() => [
       f(r, {
@@ -1631,7 +1635,7 @@ const ue = (e) => {
     ...i,
     "onUpdate:modelValue": (S) => n("update:modelValue", S)
   }, p = [];
-  return l === "html" ? h.class = "comp-html" : o = u(o), a && (h.innerHTML = a), r && p.push(r), X(o, h, {
+  return l === "html" ? h.class = "comp-html" : o = u(o), a && (h.innerHTML = a), r && p.push(r), q(o, h, {
     default: () => p
   });
 }, ks = (e) => {
@@ -1662,12 +1666,12 @@ const ue = (e) => {
     });
   } else
     h = ue(e);
-  return X(u("el-form-item"), {
+  return q(u("el-form-item"), {
     ...t,
     ...s
   }, {
     default: () => [h],
-    label: () => X("span", {
+    label: () => q("span", {
       title: s.label,
       class: "overflow-text",
       style: {
@@ -1698,9 +1702,9 @@ const ue = (e) => {
     modelValue: l,
     "onUpdate:modelValue": (S) => n("update:modelValue", S)
   };
-  return a && s.label || r ? X(u("van-field"), p, {
+  return a && s.label || r ? q(u("van-field"), p, {
     input: () => a && s.label ? o.default() : ue(e)
-  }) : (Object.assign(p, i), X(u("van-field"), p));
+  }) : (Object.assign(p, i), q(u("van-field"), p));
 }, Cs = {
   name: "MobileXFormItem",
   props: {
@@ -2280,7 +2284,7 @@ function jn(e, t, s, i, n, o) {
   return d(), m(h, {
     modelValue: n.activeNames,
     "onUpdate:modelValue": t[0] || (t[0] = (p) => n.activeNames = p),
-    class: J(["x-info", { "hide-header": o.hideHeader }])
+    class: X(["x-info", { "hide-header": o.hideHeader }])
   }, {
     default: c(() => [
       (d(!0), y(O, null, F(o.blocks, (p, S) => (d(), m(r, {
@@ -2296,7 +2300,7 @@ function jn(e, t, s, i, n, o) {
             default: c(() => [
               (d(!0), y(O, null, F(p, (v) => (d(), m(l, b({
                 key: v.prop
-              }, v), H({
+              }, v), J({
                 default: c(() => [
                   v.slot ? (d(), y("span", An, [
                     w(e.$slots, v.slot, se(Ae({ data: s.data, field: v, value: o.calcValue(s.data, v) })), void 0, !0)
@@ -2456,7 +2460,7 @@ function qn(e, t, s, i, n, o) {
   return d(), y(O, null, [
     j("span", {
       onClick: t[0] || (t[0] = (r) => e.$emit("show")),
-      class: J(`x-picker__${s.modelValue ? "value" : "placeholder"}`)
+      class: X(`x-picker__${s.modelValue ? "value" : "placeholder"}`)
     }, A(s.modelValue || s.placeholder), 3),
     f(a, b({
       class: "x-picker",
@@ -2906,7 +2910,7 @@ function Ai(e, t, s, i, n, o) {
       onSearchExport: e._onSearchExport,
       onImport: e._onImport,
       onMultiDelete: e._onMultiDelete
-    }), H({ _: 2 }, [
+    }), J({ _: 2 }, [
       e.$slots["tools-prefix"] ? {
         name: "tools-prefix",
         fn: c(() => [
@@ -3241,7 +3245,7 @@ function Mi() {
   });
 }
 function Ri(e, t) {
-  const s = (n) => X(u((n == null ? void 0 : n.component) || t.component), Object.assign({}, t.item, t.item.formAttrs, n, {
+  const s = (n) => q(u((n == null ? void 0 : n.component) || t.component), Object.assign({}, t.item, t.item.formAttrs, n, {
     modelValue: t.value,
     "onUpdate:modelValue": (o) => t.value = o
   })), i = {
@@ -3601,7 +3605,7 @@ const Pi = {
 function zi(e, t, s, i, n, o) {
   const l = u("searcher"), a = u("pc-x-icon"), r = u("settings"), h = u("pc-x-table-tools"), p = u("el-table-column"), S = u("el-button"), v = u("el-table"), x = u("x-pagination"), R = u("el-collapse-item"), I = u("el-collapse"), M = ne("loading");
   return d(), y("div", {
-    class: J(["pc-x-table", { fullscreen: n.isFullscreen, "hide-header": e.hideHeader }])
+    class: X(["pc-x-table", { fullscreen: n.isFullscreen, "hide-header": e.hideHeader }])
   }, [
     f(l, {
       ref: "searcher",
@@ -3613,7 +3617,7 @@ function zi(e, t, s, i, n, o) {
     f(I, {
       modelValue: n.activeNames,
       "onUpdate:modelValue": t[3] || (t[3] = (_) => n.activeNames = _),
-      class: J((e.useCollapse ? "use" : "no") + "-collapse")
+      class: X((e.useCollapse ? "use" : "no") + "-collapse")
     }, {
       default: c(() => [
         f(R, {
@@ -3632,7 +3636,7 @@ function zi(e, t, s, i, n, o) {
               onImport: e._onImport,
               onMultiEdit: e._onMultiEdit,
               onMultiDelete: e._onMultiDelete
-            }), H({
+            }), J({
               "tools-end": c(() => [
                 f(a, {
                   name: "FullScreen",
@@ -3676,7 +3680,7 @@ function zi(e, t, s, i, n, o) {
                   align: _.align || e._attrs.tableAlign || "center",
                   resizable: _.resizable || !0,
                   "show-overflow-tooltip": e.calcOverflowTooltip(_)
-                }), H({ _: 2 }, [
+                }), J({ _: 2 }, [
                   ["selection", "index"].includes(_.type) ? void 0 : {
                     name: "default",
                     fn: c((C) => [
@@ -4107,7 +4111,7 @@ const oo = (e) => {
       const p = (v) => {
         l[a.prop] = v;
       }, S = a.comp || "ElInput";
-      return X(u(S), {
+      return q(u(S), {
         ...a,
         ...a.formAttrs,
         modelValue: l[a.prop],
@@ -4205,7 +4209,7 @@ const _o = {
 function yo(e, t, s, i, n, o) {
   const l = u("Searcher"), a = u("x-icon"), r = u("Settings"), h = u("x-table-tools"), p = u("el-table-v2"), S = u("el-auto-resizer"), v = u("x-pagination"), x = u("el-collapse-item"), R = u("el-collapse"), I = ne("loading");
   return d(), y("div", {
-    class: J(["pc-x-table-v2", { fullscreen: n.isFullscreen }])
+    class: X(["pc-x-table-v2", { fullscreen: n.isFullscreen }])
   }, [
     f(l, {
       ref: "searcher",
@@ -4217,7 +4221,7 @@ function yo(e, t, s, i, n, o) {
     f(R, {
       modelValue: n.activeNames,
       "onUpdate:modelValue": t[3] || (t[3] = (M) => n.activeNames = M),
-      class: J((e.useCollapse ? "use" : "no") + "-collapse")
+      class: X((e.useCollapse ? "use" : "no") + "-collapse")
     }, {
       default: c(() => [
         f(x, {
@@ -4236,7 +4240,7 @@ function yo(e, t, s, i, n, o) {
               onImport: e._onImport,
               onMultiEdit: e._onMultiEdit,
               onMultiDelete: e._onMultiDelete
-            }), H({
+            }), J({
               "tools-end": c(() => [
                 f(a, {
                   name: "FullScreen",
@@ -4282,7 +4286,7 @@ function yo(e, t, s, i, n, o) {
                   fixed: s.fixed,
                   width: M,
                   height: _
-                }), H({ _: 2 }, [
+                }), J({ _: 2 }, [
                   e.$slots.footer ? {
                     name: "footer",
                     fn: c(() => [
@@ -4757,7 +4761,7 @@ const Xo = (e) => ({
     this.name = (this.platform.toLowerCase() === "pc" ? "Pc" : "Mobile") + e;
   },
   render() {
-    return X(u(this.name), {
+    return q(u(this.name), {
       platform: this.platform,
       ...this.$attrs
     }, this.$slots);
@@ -4773,7 +4777,7 @@ const Xo = (e) => ({
   for (let s in he)
     e.component(s, he[s]);
 }, Wo = {
-  version: "1.0.46",
+  version: "1.0.49",
   ...he,
   ...Pe,
   ...wt,

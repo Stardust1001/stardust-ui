@@ -56,6 +56,14 @@ body {
   }
 }
 
+.van-form {
+  &.hide-labels {
+    .van-cell__title {
+      display: none;
+    }
+  }
+}
+
 .el-collapse {
   &.use-collapse {
     .el-collapse-item__header {
