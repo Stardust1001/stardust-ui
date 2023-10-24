@@ -82,6 +82,7 @@ class CrudController extends BaseController {
       'processExportingData',
       'processImportingData',
       '_resetForm',
+      '_clearValidate',
       '_trimForm',
       '_validateForm',
       '_checkAllNone',
@@ -112,11 +113,7 @@ class CrudController extends BaseController {
     })
     await nextTick()
     await funcs.sleep(50)
-
-    const ref = this.dialog.formRef
-    if (ref) {
-      this._isMobile ? ref.resetValidation() : ref.clearValidate()
-    }
+    this.clearValidate()
   }
 
   async handleEdit ({ $index, row }) {
@@ -586,8 +583,8 @@ class CrudController extends BaseController {
     return data
   }
 
-  _resetForm () {
-    this.dialog.form = JSON.parse(JSON.stringify(this.dialog.initialForm))
+  _resetForm (host = this.dialog) {
+    host.form = JSON.parse(JSON.stringify(host.initialForm))
   }
 
   _trimForm () {
@@ -615,6 +612,12 @@ class CrudController extends BaseController {
       })
     }
     return true
+  }
+
+  _clearValidate (ref = this.dialog.formRef) {
+    if (ref) {
+      this._isMobile ? ref.resetValidation() : ref.clearValidate()
+    }
   }
 
   async _checkAllNone (data) {
