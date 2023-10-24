@@ -3240,10 +3240,10 @@ function Mi() {
   });
 }
 function Ri(e, t) {
-  const s = (n) => X(u((n == null ? void 0 : n.component) || t.component), Object.assign({
+  const s = (n) => X(u((n == null ? void 0 : n.component) || t.component), Object.assign({}, t.item, t.item.formAttrs, n, {
     modelValue: t.value,
     "onUpdate:modelValue": (o) => t.value = o
-  }, t.item, t.item.formAttrs, n)), i = {
+  })), i = {
     multiple: !1,
     "collapse-tags": !0
   };
@@ -4772,7 +4772,7 @@ const Xo = (e) => ({
   for (let s in he)
     e.component(s, he[s]);
 }, Wo = {
-  version: "1.0.43",
+  version: "1.0.45",
   ...he,
   ...Pe,
   ...wt,

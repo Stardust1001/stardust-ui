@@ -108,13 +108,15 @@ function calcConditionValueComponent (vm, condition) {
   const component = (options) => {
     return h(
       resolveComponent(options?.component || condition.component),
-      Object.assign({
-          modelValue: condition.value,
-          'onUpdate:modelValue': (value) => condition.value = value
-        },
+      Object.assign(
+        {},
         condition.item,
         condition.item.formAttrs,
-        options
+        options,
+        {
+          modelValue: condition.value,
+          'onUpdate:modelValue': (value) => condition.value = value
+        }
       )
     )
   }
