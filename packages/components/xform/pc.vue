@@ -66,15 +66,15 @@ export default {
 
         <pc-x-form-item
           v-for="(item, index) in _items"
+          :label-width="labelWidth"
+          :show-tooltip="$attrs.showTooltip || false"
           v-bind="item"
           :key="index"
           v-model="_model[item.prop]"
-          :label-width="labelWidth"
           :prop="item.prop || item.model"
           :clearable="item.clearable !== false"
           :placeholder="calcPlaceholder(item)"
           :style="calcStyle(item)"
-          :show-tooltip="$attrs.showTooltip || false"
           @update:modelValue="item.onChange || null"
         >
           <slot v-if="item.slot" :name="item.slot" />

@@ -44,11 +44,17 @@ export const PcItem = (vm) => {
   } else {
     inner = compRender(vm)
   }
-  return (
-    <el-form-item>
-      { inner }
-    </el-form-item>
-  )
+  return h(resolveComponent('el-form-item'), {
+    ...$props,
+    ...$attrs
+  }, {
+    default: () => [inner],
+    label: () => h('div', {
+      title: $attrs.label,
+      class: 'overflow-text',
+      style: { width: vm.width }
+    }, [$attrs.label])
+  })
 }
 
 export const MobileItem = (vm) => {
