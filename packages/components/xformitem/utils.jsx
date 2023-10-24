@@ -49,10 +49,13 @@ export const PcItem = (vm) => {
     ...$attrs
   }, {
     default: () => [inner],
-    label: () => h('div', {
+    label: () => h('span', {
       title: $attrs.label,
       class: 'overflow-text',
-      style: { width: vm.width }
+      style: {
+        width: ($props.required ? (parseInt($props.labelWidth) - 13 + 'px') : $props.labelWidth),
+        display: 'inline-block'
+      }
     }, [$attrs.label])
   })
 }
