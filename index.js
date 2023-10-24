@@ -619,7 +619,7 @@ class Xe extends Le {
       let o = i[n.model || n.prop];
       n.type === "number" ? o = this.uiUtils.formatPrecision(o, n.precision || 3) * 1 : n.comp === "ElDatePicker" && (n.type === "datetime" ? o = le.format(o) : (!n.type || n.type === "date") && (o = le.format(o, "", !1))), i[n.model || n.prop] = o;
     }), this.table.columns.forEach((n) => {
-      n.prop && !i.hasOwnProperty(n.prop) && (i[n.prop] = this.dialog.form[n.prop]);
+      n.submit && n.prop && !i.hasOwnProperty(n.prop) && (i[n.prop] = this.dialog.form[n.prop]);
     }), i;
   }
   getUpdateParams(t) {
@@ -4781,7 +4781,7 @@ const Xo = (e) => ({
   for (let s in he)
     e.component(s, he[s]);
 }, Wo = {
-  version: "1.0.51",
+  version: "1.0.52",
   ...he,
   ...Ue,
   ...wt,

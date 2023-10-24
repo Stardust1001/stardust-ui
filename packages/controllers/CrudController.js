@@ -447,7 +447,7 @@ class CrudController extends BaseController {
       data[item.model || item.prop] = value
     })
     this.table.columns.forEach(col => {
-      if (col.prop && !data.hasOwnProperty(col.prop)) {
+      if (col.submit && col.prop && !data.hasOwnProperty(col.prop)) {
         data[col.prop] = this.dialog.form[col.prop]
       }
     })
