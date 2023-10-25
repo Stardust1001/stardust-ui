@@ -72,7 +72,13 @@ class CrudController extends BaseController {
       'getUpdateParams',
       'getDeleteParams',
       'getSearchExportParams',
+      'beforeSearch',
+      'beforeAdd',
+      'beforeEdit',
+      'beforeDelete',
       'afterSearch',
+      'afterAdd',
+      'afterEdit',
       'afterDelete',
       'afterSubmit',
       '_defaultFormatList',
@@ -80,6 +86,7 @@ class CrudController extends BaseController {
       'formatList',
       'processExportingColumns',
       'processExportingData',
+      'processExporting',
       'processImportingData',
       '_resetForm',
       '_clearValidate',
@@ -90,7 +97,12 @@ class CrudController extends BaseController {
     ]
   }
 
+  onInit () {
+    this.handleSearch()
+  }
+
   async handleSearch (params) {
+    if (!await this.beforeSearch(params)) return
     params = this.getSearchParams(params)
     this.table.loading = true
     const data = await this.search(params)
@@ -106,6 +118,7 @@ class CrudController extends BaseController {
   }
 
   async handleAdd () {
+    if (!await this.beforeAdd()) return
     this._resetForm()
     Object.assign(this.dialog, {
       visible: true,
@@ -114,9 +127,11 @@ class CrudController extends BaseController {
     await nextTick()
     await funcs.sleep(50)
     this._clearValidate()
+    this.afterAdd()
   }
 
   async handleEdit ({ $index, row }) {
+    if (!await this.beforeEdit({ $index, row })) return
     if (this.table.isRowEdit) {
       row.originData = JSON.stringify(row)
       row.isEditing = true
@@ -135,9 +150,11 @@ class CrudController extends BaseController {
       await nextTick()
       this.dialog.formRef?.validate().catch(Function())
     }
+    this.afterEdit({ $index, row })
   }
 
-  async handleDelete ({ row }) {
+  async handleDelete ({ $index, row }) {
+    if (!await this.beforeDelete({ $index, row })) return
     const ok = await this.uiUtils.Confirm({
       message: '确定要删除吗？',
       title: '警告',
@@ -182,9 +199,7 @@ class CrudController extends BaseController {
   }
 
   async handleExport (type = this.exportType, filename = '导出数据') {
-    if (this._isExporting) {
-      return
-    }
+    if (this._isExporting) return
     type = type || this.config.exportType || 'csv'
     if (!['csv', 'excel'].includes(type)) {
       this.uiUtils.Message({ type: 'error', message: '不支持的导出类型' })
@@ -208,14 +223,14 @@ class CrudController extends BaseController {
     } else {
       func = excel.export2Excel
     }
-    func({ header, data, filename })
+    let options = { header, data, filename }
+    options = await this.processExporting(options)
+    func(options)
     this._isExporting = false
   }
 
   async handleSearchExport (type = this.exportType, filename = '查询导出数据') {
-    if (this._isExporting) {
-      return
-    }
+    if (this._isExporting) return
     type = type || this.config.exportType || 'csv'
     if (!['csv', 'excel'].includes(type)) {
       this.uiUtils.Message({ type: 'error', message: '不支持的导出类型' })
@@ -235,12 +250,14 @@ class CrudController extends BaseController {
     } else {
       func = excel.export2Excel
     }
-    func({ header, data, filename })
+    let options = { header, data, filename }
+    options = await this.processExporting(options)
+    func(options)
     this._isExporting = false
   }
 
   async handleImport () {
-    const f = await file.select('.xls,.xlsx,.csv')
+    const f = await file.select('.xlsx,.csv')
     const isCsv = f.name.toLowerCase().endsWith('.csv')
     const content = await file.toType(f, isCsv ? 'text' : 'arraybuffer')
     let data = []
@@ -307,13 +324,9 @@ class CrudController extends BaseController {
 
   async handleSave (form) {
     form = form instanceof Event ? (this.model.form || this.model.dialog.form) : form
-    if (this._isSubmitting) {
-      return
-    }
+    if (this._isSubmitting) return
     const formRef = this.model.formRef || this.model.dialog.formRef
-    if (!(await this._validateForm(formRef))) {
-      return
-    }
+    if (!(await this._validateForm(formRef))) return
     this._isSubmitting = true
     const params = this.getAddParams(form)
     if (!(await this._checkAllNone(params))) {
@@ -467,6 +480,14 @@ class CrudController extends BaseController {
     })
   }
 
+  beforeSearch (params) { return true }
+
+  beforeAdd () { return true }
+
+  beforeEdit ({ $index, row }) { return true }
+
+  beforeDelete ({ $index, row }) { return true }
+
   afterSearch (list, params, data) {
     const stringify = JSON.stringify(params)
     if (this.table.query.count === false && this.table.needCount) {
@@ -478,13 +499,13 @@ class CrudController extends BaseController {
     return list
   }
 
-  afterDelete (data) {
-    return data
-  }
+  afterAdd () { }
 
-  afterSubmit (data) {
-    return data
-  }
+  afterEdit ({ $index, row }) { }
+
+  afterDelete (data) { }
+
+  afterSubmit (data) { }
 
   _defaultFormatList (list, res) {
     const { columns, query } = this.table
@@ -574,6 +595,8 @@ class CrudController extends BaseController {
     })
     return data
   }
+
+  processExporting (options) { return options }
 
   processImportingData (data) {
     data.forEach(ele => {
