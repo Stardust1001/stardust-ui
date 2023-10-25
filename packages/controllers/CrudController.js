@@ -113,7 +113,7 @@ class CrudController extends BaseController {
     })
     await nextTick()
     await funcs.sleep(50)
-    this.clearValidate()
+    this._clearValidate()
   }
 
   async handleEdit ({ $index, row }) {

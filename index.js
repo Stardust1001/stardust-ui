@@ -413,7 +413,7 @@ class Xe extends Le {
     this._resetForm(), Object.assign(this.dialog, {
       visible: !0,
       isEditing: !1
-    }), await ee(), await le.sleep(50), this.clearValidate();
+    }), await ee(), await le.sleep(50), this._clearValidate();
   }
   async handleEdit({ $index: t, row: s }) {
     var i;
@@ -4779,7 +4779,7 @@ const Ll = (e) => ({
   for (let s in he)
     e.component(s, he[s]);
 }, zl = {
-  version: "1.0.55",
+  version: "1.0.56",
   ...he,
   ...Pe,
   ...wt,
