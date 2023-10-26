@@ -33,6 +33,12 @@ export default {
       this.dialogVisible = true
     },
     handleExceed (files, uploadFiles) {
+      this.exceed()
+    },
+    handleClickAdder () {
+      if (this.images.length >= this.limit) this.exceed()
+    },
+    exceed () {
       Message({ type: 'warning', message: '超出图片限制数量' })
     }
   }
@@ -43,7 +49,7 @@ export default {
   <el-upload
     :file-list="modelValue"
     @update:file-list="value => $emit('update:modelValue', value)"
-    :disabled="disabled"
+    :disabled="disabled || images.length >= limit"
     :action="action"
     list-type="picture-card"
     accept="image/*"
@@ -56,7 +62,12 @@ export default {
     :auto-upload="$attrs.autoUpload || false"
   >
     <template #default>
-      <el-icon><Plus /></el-icon>
+      <div class="adder flex-center" @click="handleClickAdder">
+        <el-icon>
+          <Plus v-if="images.length < limit" />
+          <Loading v-else />
+        </el-icon>
+      </div>
     </template>
   </el-upload>
   <el-dialog
@@ -69,6 +80,9 @@ export default {
 
 <style lang="scss" scoped>
 .x-image-uploader {
+  .adder {
+    font-size: 30px;
+  }
 }
 .el-dialog img {
   display: block;
