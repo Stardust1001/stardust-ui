@@ -132,6 +132,12 @@ export default {
                 :checked="scope.$index === checked"
                 @change="handleCheckedChange"
               >
+              <el-tag
+                v-else-if="column.slot === '$tag'"
+                :type="calcTagType(scope, column)"
+              >
+                {{ calcTagValue(scope, column) }}
+              </el-tag>
               <slot
                 v-else-if="column.slot"
                 :name="column.slot"

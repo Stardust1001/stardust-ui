@@ -20,7 +20,22 @@ const model = reactive({
     ],
     columns: [
       { label: '姓名', prop: 'name', minWidth: 100, block: 'base' },
-      { label: '性别', prop: 'gender', comp: 'XSelect', options: ['男', '女'], minWidth: 100, block: 'base' },
+      {
+        label: '性别',
+        prop: 'gender',
+        comp: 'x-select',
+        options: ['男', '女'],
+        minWidth: 100,
+        block: 'base',
+        slot: '$tag',
+        tagType: {
+          '男': 'success',
+          '女': 'danger'
+        },
+        tagValue (v) {
+          return v === '男' ? 'Boy' : 'Girl'
+        }
+      },
       { label: '年龄', prop: 'age', minWidth: 100, block: 'base' },
       {
         label: '出生日期',

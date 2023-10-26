@@ -381,6 +381,32 @@ export function cellStyle (props) {
   return Object.keys(style) ? style : null
 }
 
+export function calcTagType (scope, column) {
+  const { tagType, prop } = column
+  const value = scope.row[prop]
+  if (tagType) {
+    if (typeof tagType === 'function') {
+      return tagType(value, scope, column)
+    } else if (typeof tagType === 'object') {
+      return tagType[value]
+    }
+  }
+  return value ? 'primary' : 'danger'
+}
+
+export function calcTagValue (scope, column) {
+  const { tagValue, prop } = column
+  const value = scope.row[prop]
+  if (tagValue) {
+    if (typeof tagValue === 'function') {
+      return tagValue(value, scope, column)
+    } else if (typeof tagValue === 'object') {
+      return tagValue[value]
+    }
+  }
+  return value
+}
+
 export function canEdit (row) {
   return !!(this.onEdit || this._listen['edit']) && (row.editable !== false) && !row.isEditing
 }
@@ -462,6 +488,8 @@ export default {
     handleToggleFullscreen,
     cellClassName,
     cellStyle,
+    calcTagType,
+    calcTagValue,
     canEdit,
     canSave,
     canRowEdit,
