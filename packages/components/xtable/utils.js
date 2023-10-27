@@ -24,6 +24,10 @@ export function props () {
       type: Boolean,
       default: false
     },
+    hideSearcher: {
+      type: Boolean,
+      default: false
+    },
     hideTools: {
       type: Boolean,
       default: false
@@ -162,6 +166,9 @@ export function _selection () {
 }
 
 export function _onSearch () {
+  if (this.hideSearcher) {
+    return (this.onSearch || this._listen['search']) ? () => this._emit('search') : null
+  }
   if (this.onSearch || this._listen['search']) {
     return (params) => {
       if (params) {
@@ -233,8 +240,7 @@ export function _uid () {
 }
 
 export function hideOperates () {
-  return this.table.hideOperates ||
-    (this.$attrs['hide-operates'] !== undefined && this.$attrs['hide-operates'] !== false)
+  return this.table.hideOperates || (this.$attrs['hide-operates'] !== undefined && this.$attrs['hide-operates'] !== false)
 }
 
 export function searcherColumns () {

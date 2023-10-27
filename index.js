@@ -1984,6 +1984,10 @@ function Ds() {
       type: Boolean,
       default: !1
     },
+    hideSearcher: {
+      type: Boolean,
+      default: !1
+    },
     hideTools: {
       type: Boolean,
       default: !1
@@ -2090,7 +2094,7 @@ function Hs() {
   return t || (e == null ? void 0 : e.selection);
 }
 function Js() {
-  return this.onSearch || this._listen.search ? (e) => {
+  return this.hideSearcher ? this.onSearch || this._listen.search ? () => this._emit("search") : null : this.onSearch || this._listen.search ? (e) => {
     e ? this._emit("search") : this.$refs.searcher.open();
   } : null;
 }
@@ -4885,7 +4889,7 @@ const zo = (e) => ({
   for (let s in he)
     e.component(s, he[s]);
 }, Jo = {
-  version: "1.0.59",
+  version: "1.0.60",
   ...he,
   ...Pe,
   ...wt,
