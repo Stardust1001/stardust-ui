@@ -98,7 +98,7 @@ class CrudController extends BaseController {
   }
 
   onInit () {
-    this.handleSearch()
+    this.table && this.handleSearch()
   }
 
   async handleSearch (params) {

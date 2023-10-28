@@ -437,7 +437,7 @@ class Xe extends Le {
     ];
   }
   onInit() {
-    this.handleSearch();
+    this.table && this.handleSearch();
   }
   async handleSearch(t) {
     if (!await this.beforeSearch(t))
@@ -4889,7 +4889,7 @@ const zo = (e) => ({
   for (let s in he)
     e.component(s, he[s]);
 }, Jo = {
-  version: "1.0.60",
+  version: "1.0.61",
   ...he,
   ...Pe,
   ...wt,
