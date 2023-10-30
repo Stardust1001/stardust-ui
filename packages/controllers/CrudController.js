@@ -236,7 +236,7 @@ class CrudController extends BaseController {
     this._isExporting = true
     const res = await this.dbTable.search(this.getSearchExportParams())
     let data = res.data
-    data = this.formatList(data)
+    data = this.formatList(data, res)
     data = this.processExportingData(data, 'search')
     const cols = this.processExportingColumns(this.table.ref._visibleColumns, 'search')
     const props = cols.map(col => col.prop)

@@ -539,8 +539,9 @@ class qe extends Xe {
       return;
     }
     this._isExporting = !0;
-    let n = (await this.dbTable.search(this.getSearchExportParams())).data;
-    n = this.formatList(n), n = this.processExportingData(n, "search");
+    const i = await this.dbTable.search(this.getSearchExportParams());
+    let n = i.data;
+    n = this.formatList(n, i), n = this.processExportingData(n, "search");
     const o = this.processExportingColumns(this.table.ref._visibleColumns, "search");
     o.map((h) => h.prop);
     const l = o.map((h) => h.label);
@@ -4929,7 +4930,7 @@ const Ho = (e) => ({
   for (let s in ue)
     e.component(s, ue[s]);
 }, Yo = {
-  version: "1.0.68",
+  version: "1.0.69",
   ...ue,
   ...Le,
   ...St,
