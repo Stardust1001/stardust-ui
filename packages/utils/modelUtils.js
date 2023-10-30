@@ -132,6 +132,25 @@ export const initDefaultForm = (form, formItems, number0 = true) => {
   return form
 }
 
+export const isWhenMatched = (when, form) => {
+  if (!when) return true
+  const reg = /[\^\*\$\~\!]?=/
+  let [field, values] = when.split(reg)
+  values = values.split('|')
+  let v = form[field]
+  if (typeof v === 'number') v += ''
+  else if (typeof v === 'string') v = v.trim()
+  const type = when.match(reg)[0]
+  return values.some(ele => {
+    if (type === '^=') return v.startsWith(ele)
+    else if (type === '*=') return v.includes(ele)
+    else if (type === '$=') return v.endsWith(ele)
+    else if (type === '~=') return !v.includes(ele)
+    else if (type === '!=') return v !== ele
+    return ele === v
+  })
+}
+
 export const triggers = {
   mobile: {
     blur: 'onBlur',
@@ -150,5 +169,6 @@ export default {
   initForm,
   initFormRules,
   initDefaultForm,
+  isWhenMatched,
   triggers
 }

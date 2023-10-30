@@ -27,6 +27,7 @@ import {
   initForm,
   initFormRules,
   initDefaultForm,
+  isWhenMatched,
   triggers
 } from './modelUtils.js'
 
@@ -47,6 +48,7 @@ export {
   initForm,
   initFormRules,
   initDefaultForm,
+  isWhenMatched,
   triggers
 }
 
@@ -68,5 +70,6 @@ export default {
   initForm,
   initFormRules,
   initDefaultForm,
+  isWhenMatched,
   triggers
 }

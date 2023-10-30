@@ -1,3 +1,4 @@
+import { isWhenMatched } from '../../utils/index.js'
 
 export function props () {
   return {
@@ -42,6 +43,11 @@ export function _items () {
   })
 }
 
+export function _visibleItems () {
+  if (!this.useWhen) return this._items
+  return this._items.filter(it => isWhenMatched(it.when || it.formAttrs?.when, this.$props.form))
+}
+
 export function _rules () {
   const { dialog, form, rules } = this.$props
   return rules || (dialog || form).formRules
@@ -82,6 +88,7 @@ export default {
   computed: {
     _model,
     _items,
+    _visibleItems,
     _rules
   },
   methods: {

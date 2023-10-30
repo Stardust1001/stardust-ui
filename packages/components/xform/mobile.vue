@@ -9,6 +9,10 @@ export default {
     hideLabels: {
       type: Boolean,
       default: false
+    },
+    useWhen: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['update:fref'],

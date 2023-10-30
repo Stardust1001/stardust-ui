@@ -21,6 +21,10 @@ export default {
     useCollapse: {
       type: Boolean,
       default: false
+    },
+    useWhen: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['update:fref'],
