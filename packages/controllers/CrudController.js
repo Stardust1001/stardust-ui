@@ -241,6 +241,7 @@ class CrudController extends BaseController {
     const cols = this.processExportingColumns(this.table.ref._visibleColumns, 'search')
     const props = cols.map(col => col.prop)
     const header = cols.map(col => col.label)
+    data = data.map(row => props.map(prop => row[prop]))
     let func = null
     if (type === 'csv') {
       func = excel.export2Csv
