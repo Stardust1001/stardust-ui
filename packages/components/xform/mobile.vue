@@ -39,7 +39,7 @@ export default {
 
     <van-cell-group v-bind="$attrs">
       <mobile-x-form-item
-        v-for="(item, index) in _items"
+        v-for="(item, index) in _visibleItems"
         v-bind="item"
         :rules="_rules[item.prop] || item.rules"
         :key="index"

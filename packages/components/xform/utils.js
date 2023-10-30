@@ -45,7 +45,7 @@ export function _items () {
 
 export function _visibleItems () {
   if (!this.useWhen) return this._items
-  return this._items.filter(it => isWhenMatched(it.when || it.formAttrs?.when, this.$props.form))
+  return this._items.filter(it => isWhenMatched(it.when || it.formAttrs?.when, this._model))
 }
 
 export function _rules () {

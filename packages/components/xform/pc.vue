@@ -69,7 +69,7 @@ export default {
         <slot v-if="$slots.pre" name="pre" />
 
         <pc-x-form-item
-          v-for="(item, index) in _items"
+          v-for="(item, index) in _visibleItems"
           :label-width="labelWidth"
           :show-tooltip="$attrs.showTooltip || false"
           v-bind="item"
