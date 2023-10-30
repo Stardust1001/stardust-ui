@@ -210,9 +210,6 @@ class CrudController extends BaseController {
     let data = selection.length > 0 ? selection : list
     data = funcs.deepCopy(data)
     data = this.processExportingData(data)
-    if (data.length) {
-      const keys = Object.keys(data[0])
-    }
     const cols = this.processExportingColumns(ref._visibleColumns, 'current')
     const props = cols.map(col => col.prop)
     const header = cols.map(col => col.label)
@@ -237,13 +234,12 @@ class CrudController extends BaseController {
       return
     }
     this._isExporting = true
+    const res = await this.dbTable.search(this.getSearchExportParams())
+    let data = res.data
+    data = this.processExportingData(data, 'search')
     const cols = this.processExportingColumns(this.table.ref._visibleColumns, 'search')
     const props = cols.map(col => col.prop)
     const header = cols.map(col => col.label)
-    const res = await this.dbTable.search(this.getSearchExportParams())
-    let data = res.data.map(ele => props.map(p => ele[p]))
-    data = funcs.deepCopy(data)
-    data = this.processExportingData(data, 'search')
     let func = null
     if (type === 'csv') {
       func = excel.export2Csv
@@ -577,10 +573,19 @@ class CrudController extends BaseController {
     if (!data.length) {
       return data
     }
+    const dict = {}
+    this.table.ref._visibleColumns.forEach(it => {
+      let { formatter = it.formatter, tagValue = it.tagValue } = it.tableAttrs || {}
+      if (!formatter && typeof tagValue === 'function') formatter = tagValue
+      dict[it.prop] = { formatter, tagValue }
+    })
     const keys = Object.keys(data[0])
     data.forEach(ele => {
       keys.forEach(key => {
         const value = ele[key]
+        if (ele.hasOwnProperty('_formatted_' + key)) return ele[key] = ele['_formatted_' + key]
+        if (dict[key]?.formatter) return ele[key] = dict[key].formatter(value)
+        if (dict[key]?.tagValue) return ele[key] = dict[key].tagValue[value]
         if (typeof value === 'boolean') {
           ele[key] = value && 1 || 0
         } else if (value instanceof Date) {
