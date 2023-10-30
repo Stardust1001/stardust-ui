@@ -397,7 +397,7 @@ export function calcTagType (scope, column) {
       return tagType[value]
     }
   }
-  return value ? 'primary' : 'danger'
+  return value ? 'success' : 'danger'
 }
 
 export function calcTagValue (scope, column) {

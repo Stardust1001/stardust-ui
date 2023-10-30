@@ -2235,7 +2235,7 @@ function wn(e, t) {
     if (typeof s == "object")
       return s[n];
   }
-  return n ? "primary" : "danger";
+  return n ? "success" : "danger";
 }
 function Sn(e, t) {
   const { tagValue: s, prop: i } = t, n = e.row[i];
@@ -4889,7 +4889,7 @@ const zo = (e) => ({
   for (let s in he)
     e.component(s, he[s]);
 }, Jo = {
-  version: "1.0.62",
+  version: "1.0.63",
   ...he,
   ...Pe,
   ...wt,
