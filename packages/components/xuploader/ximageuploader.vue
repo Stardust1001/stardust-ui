@@ -32,12 +32,6 @@ export default {
       this.dialogVisible = true
     },
     handleExceed (files, uploadFiles) {
-      this.exceed()
-    },
-    handleClickAdder () {
-      if (this.images.length >= this.limit) this.exceed()
-    },
-    exceed () {
       Message({ type: 'warning', message: '超出图片限制数量' })
     }
   }
@@ -54,18 +48,14 @@ export default {
     :multiple="multiple"
     :limit="limit"
     class="x-image-uploader"
+    :class="{ disabled: $attrs.disabled || images.length >= limit }"
     :on-preview="handlePreview"
     :on-exceed="handleExceed"
     v-bind="$attrs"
     :auto-upload="$attrs.autoUpload || false"
   >
     <template #default>
-      <div class="adder flex-center" @click="handleClickAdder">
-        <el-icon>
-          <Plus v-if="images.length < limit" />
-          <Loading v-else />
-        </el-icon>
-      </div>
+      <el-icon><Plus /></el-icon>
     </template>
   </el-upload>
   <el-dialog
@@ -78,10 +68,10 @@ export default {
 
 <style lang="scss" scoped>
 .x-image-uploader {
-  .adder {
-    width: 100%;
-    height: 100%;
-    font-size: 30px;
+  &.disabled {
+    :deep(.el-upload) {
+      display: none;
+    }
   }
 }
 .el-dialog img {
