@@ -11,7 +11,6 @@ export default {
   emits: ['update:modelValue'],
   data () {
     return {
-      disabled: false,
       previewingImage: {},
       dialogVisible: false
     }
@@ -49,7 +48,6 @@ export default {
   <el-upload
     :file-list="modelValue"
     @update:file-list="value => $emit('update:modelValue', value)"
-    :disabled="disabled || images.length >= limit"
     :action="action"
     list-type="picture-card"
     accept="image/*"
@@ -81,6 +79,8 @@ export default {
 <style lang="scss" scoped>
 .x-image-uploader {
   .adder {
+    width: 100%;
+    height: 100%;
     font-size: 30px;
   }
 }
