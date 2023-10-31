@@ -132,6 +132,13 @@ export default {
                 :checked="scope.$index === checked"
                 @change="handleCheckedChange"
               >
+              <el-image
+                v-else-if="column.slot === '$image'"
+                :src="scope.row[column.prop]"
+                :preview-src-list="column.previewSrcList?.(scope) || [scope.row[column.prop]]"
+                preview-teleported
+                v-bind="column.imageAttrs"
+              />
               <el-tag
                 v-else-if="column.slot === '$tag'"
                 :type="calcTagType(scope, column)"

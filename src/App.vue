@@ -15,10 +15,17 @@ const model = reactive({
       expression: '1 2'
     },
     list: [
-      { name: '卡卡', gender: '男', age: 27 },
-      { name: '娜娜', gender: '女', age: 25 },
+      { name: '卡卡', gender: '男', age: 27, avatar: 'https://www.baidu.com/favicon.ico' },
+      { name: '娜娜', gender: '女', age: 25, avatar: 'https://im.qq.com/favicon.ico' },
     ],
     columns: [
+      {
+        label: '头像',
+        prop: 'avatar',
+        minWidth: 100,
+        block: 'base',
+        tableAttrs: { slot: '$image' }
+      },
       { label: '姓名', prop: 'name', minWidth: 100, block: 'base' },
       {
         label: '性别',
