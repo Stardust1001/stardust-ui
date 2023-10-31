@@ -433,6 +433,17 @@ export function canDelete (row) {
   return !!(this.onDelete || this._listen['delete']) && row.deletable !== false
 }
 
+export function _imageSrc (scope, column) {
+  const value = scope.row[column.prop]
+  return Array.isArray(value) ? value[0] : value
+}
+
+export function _imagePreviewSrcList (scope, column) {
+  const value = scope.row[column.prop]
+  if (Array.isArray(value)) return value
+  return column.previewSrcList?.() || [value]
+}
+
 export function _emit (event, payload) {
   const funcName = 'on' + event.split('-').map(p => p[0].toUpperCase() + p.slice(1)).join('')
   if (this[funcName]) {
@@ -501,6 +512,8 @@ export default {
     canRowEdit,
     canCancelEdit,
     canDelete,
+    _imageSrc,
+    _imagePreviewSrcList,
     _emit
   }
 }

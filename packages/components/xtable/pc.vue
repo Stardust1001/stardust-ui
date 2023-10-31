@@ -134,8 +134,8 @@ export default {
               >
               <el-image
                 v-else-if="column.slot === '$image'"
-                :src="scope.row[column.prop]"
-                :preview-src-list="column.previewSrcList?.(scope) || [scope.row[column.prop]]"
+                :src="_imageSrc(scope, column)"
+                :preview-src-list="_imagePreviewSrcList(scope, column)"
                 preview-teleported
                 v-bind="column.imageAttrs"
               />
