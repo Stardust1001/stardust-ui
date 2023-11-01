@@ -94,7 +94,7 @@ export default function () {
       <el-input
         type="textarea"
         autosize={{ minRows: 3, maxRows: 10 }}
-        placeholder="分组条件表达式"
+        placeholder="分组条件表达式, 使用 () and or 组合上述条件, 示例: 1, 1 and 2, (1 or 2) and 3"
         {...{
           modelValue: expression,
           'onUpdate:modelValue': value => this.expression = value
