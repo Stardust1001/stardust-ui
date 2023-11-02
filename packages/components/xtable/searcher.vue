@@ -51,10 +51,10 @@ export default {
       config.conditions?.forEach(con => {
         const { prop, op, value } = con
         con.item = this.columns.find(col => col.prop === prop)
+        con.value = value
         this.handleSelectField(con, prop)
         this.handleSelectOp(con, op)
         con.ops = COMPONENT_OPS[con.component].map(key => OPS[key])
-        con.value = value
       })
       if (!config.conditionNo && config.conditions?.length) {
         config.conditionNo = Math.max.apply(null, config.conditions.map(con => con.no)) + 1
@@ -198,15 +198,25 @@ export default {
       condition.prop = value
       condition.item = this.columns.find(col => col.prop === condition.prop)
       const { options, type, formAttrs = {} } = condition.item
-      condition.component = formAttrs.comp ||
+      const config = { ...condition.item, ...formAttrs }
+      const {
+        comp,
+        visible, canAdd, canEdit, required, slot, span,
+        tableAttrs, formAttrs: fa, tagTypes, tagValues, width, minWidth,
+        disabled, readonly,
+        ...others
+      } = config
+      others.clearable ??= true
+      Object.assign(condition, others)
+      condition.component = comp ||
         options && 'XSelect' ||
         type === 'number' && 'ElInputNumber' ||
         'ElInput'
       condition.ops = COMPONENT_OPS[condition.component].map(key => OPS[key])
       condition.op = condition.ops[0].value
-      if (formAttrs.comp === 'ElDatePicker') {
+      if (condition.component === 'ElDatePicker') {
         condition.component = 'ElInput'
-        condition.item.formAttrs.type = 'date'
+        condition.type = 'date'
       }
     },
     handleSelectOp (condition, value) {
