@@ -776,8 +776,8 @@ class qe extends Xe {
       return t;
     const i = {};
     this.table.ref._visibleColumns.forEach((o) => {
-      let { formatter: l = o.formatter, tagValue: a = o.tagValue } = o.tableAttrs || {};
-      !l && typeof a == "function" && (l = a), i[o.prop] = { formatter: l, tagValue: a };
+      let { formatter: l = o.formatter, tagValues: a = o.tagValues } = o.tableAttrs || {};
+      !l && typeof a == "function" && (l = a), i[o.prop] = { formatter: l, tagValues: a };
     });
     const n = Object.keys(t[0]);
     return t.forEach((o) => {
@@ -788,8 +788,8 @@ class qe extends Xe {
           return o[l] = o["_formatted_" + l];
         if ((r = i[l]) != null && r.formatter)
           return o[l] = i[l].formatter(a);
-        if ((h = i[l]) != null && h.tagValue)
-          return o[l] = i[l].tagValue[a];
+        if ((h = i[l]) != null && h.tagValues)
+          return o[l] = i[l].tagValues[a];
         typeof a == "boolean" ? o[l] = a && 1 || 0 : a instanceof Date ? (o[l] = oe.format(a), o[l].endsWith(" 00:00:00") && (o[l] = o[l].slice(0, -9))) : typeof a == "object" && (o[l] = JSON.stringify(a));
       });
     }), t;
@@ -2268,7 +2268,7 @@ function Sn(e) {
   return Object.keys(t) ? t : null;
 }
 function $n(e, t) {
-  const { tagType: s, prop: i } = t, n = e.row[i];
+  const { tagTypes: s, prop: i } = t, n = e.row[i];
   if (s) {
     if (typeof s == "function")
       return s(n, e, t);
@@ -2278,7 +2278,7 @@ function $n(e, t) {
   return n ? "success" : "danger";
 }
 function kn(e, t) {
-  const { tagValue: s, prop: i } = t, n = e.row[i];
+  const { tagValues: s, prop: i } = t, n = e.row[i];
   if (s) {
     if (typeof s == "function")
       return s(n, e, t);
@@ -4932,7 +4932,7 @@ const Ko = (e) => ({
   for (let s in ue)
     e.component(s, ue[s]);
 }, Qo = {
-  version: "1.0.77",
+  version: "1.0.78",
   ...ue,
   ...Le,
   ...St,

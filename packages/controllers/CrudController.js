@@ -577,9 +577,9 @@ class CrudController extends BaseController {
     }
     const dict = {}
     this.table.ref._visibleColumns.forEach(it => {
-      let { formatter = it.formatter, tagValue = it.tagValue } = it.tableAttrs || {}
-      if (!formatter && typeof tagValue === 'function') formatter = tagValue
-      dict[it.prop] = { formatter, tagValue }
+      let { formatter = it.formatter, tagValues = it.tagValues } = it.tableAttrs || {}
+      if (!formatter && typeof tagValues === 'function') formatter = tagValues
+      dict[it.prop] = { formatter, tagValues }
     })
     const keys = Object.keys(data[0])
     data.forEach(ele => {
@@ -587,7 +587,7 @@ class CrudController extends BaseController {
         const value = ele[key]
         if (ele.hasOwnProperty('_formatted_' + key)) return ele[key] = ele['_formatted_' + key]
         if (dict[key]?.formatter) return ele[key] = dict[key].formatter(value)
-        if (dict[key]?.tagValue) return ele[key] = dict[key].tagValue[value]
+        if (dict[key]?.tagValues) return ele[key] = dict[key].tagValues[value]
         if (typeof value === 'boolean') {
           ele[key] = value && 1 || 0
         } else if (value instanceof Date) {

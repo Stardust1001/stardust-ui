@@ -35,11 +35,11 @@ const model = reactive({
         minWidth: 100,
         block: 'base',
         slot: '$tag',
-        tagType: {
+        tagTypes: {
           '男': 'success',
           '女': 'danger'
         },
-        tagValue (v) {
+        tagValues (v) {
           return v === '男' ? 'Boy' : 'Girl'
         }
       },
