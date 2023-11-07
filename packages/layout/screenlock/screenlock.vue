@@ -14,10 +14,14 @@
           v-for="(c, index) in pin"
           :key="index"
           v-model="pin[index]"
-          type="number"
-          maxlength="1"
+          type="tel"
           ref="inputs"
           :readonly="!!c"
+          spellcheck="false"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="off"
+          @compositionstart.stop.prevent="handleCompositionstart(index, $event)"
           @keydown.stop.prevent="handlePinInput(index, $event)"
         />
       </div>
@@ -150,6 +154,11 @@ export default {
         }
         this.pin = new Array(6).fill('')
       }
+    },
+    async handleCompositionstart (index, event) {
+      event.target.blur()
+      await StardustJs.funcs.sleep(10)
+      event.target.focus()
     },
     async toggleScreenLock (isLocked) {
       this.$store.app.screenLock.isLocked = isLocked
