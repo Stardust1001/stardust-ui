@@ -14,6 +14,7 @@
           v-for="(c, index) in pin"
           :key="index"
           v-model="pin[index]"
+          type="number"
           maxlength="1"
           ref="inputs"
           :readonly="!!c"
@@ -121,7 +122,7 @@ export default {
     },
     async handlePinInput (index, event) {
       const char = event.key
-      if (/^[0-9A-Za-z]$/.test(char)) {
+      if (/[0-9]/.test(char)) {
         this.pin[index] = char
       } else {
         if (char.toLowerCase() === 'backspace' && index > 0) {
@@ -172,6 +173,11 @@ export default {
       color: #409eff;
       text-align: center;
       padding-bottom: 3px;
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none !important;
+      }
+      -moz-appearance: textfield;
     }
   }
   .verify {
