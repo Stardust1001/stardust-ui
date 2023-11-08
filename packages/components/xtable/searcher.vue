@@ -207,7 +207,7 @@ export default {
         ...others
       } = config
       others.clearable ??= true
-      Object.assign(condition, others)
+      condition.config = others
       condition.component = comp ||
         options && 'XSelect' ||
         type === 'number' && 'ElInputNumber' ||
@@ -216,7 +216,7 @@ export default {
       condition.op = condition.ops[0].value
       if (condition.component === 'ElDatePicker') {
         condition.component = 'ElInput'
-        condition.type = 'date'
+        others.type = 'date'
       }
     },
     handleSelectOp (condition, value) {

@@ -110,7 +110,7 @@ function calcConditionValueComponent (vm, condition) {
       resolveComponent(options?.component || condition.component),
       Object.assign(
         {},
-        condition,
+        condition.config,
         {
           modelValue: condition.value,
           'onUpdate:modelValue': (value) => condition.value = value
