@@ -1,4 +1,4 @@
-import { toRaw as tt, watch as Ae, nextTick as te, resolveComponent as u, openBlock as d, createBlock as m, mergeProps as g, createElementBlock as v, Fragment as A, renderList as M, withCtx as c, renderSlot as S, toDisplayString as x, useCssVars as Oe, createTextVNode as C, createSlots as J, resolveDynamicComponent as Q, createCommentVNode as y, createVNode as f, normalizeClass as q, normalizeProps as oe, guardReactiveProps as je, h as z, isVNode as Te, createElementVNode as j, withModifiers as K, pushScopeId as Fe, popScopeId as Me, resolveDirective as le, withDirectives as R, normalizeStyle as st } from "vue";
+import { toRaw as tt, watch as Ae, nextTick as se, resolveComponent as u, openBlock as d, createBlock as m, mergeProps as g, createElementBlock as v, Fragment as A, renderList as M, withCtx as c, renderSlot as S, toDisplayString as x, useCssVars as Oe, createTextVNode as C, createSlots as J, resolveDynamicComponent as Q, createCommentVNode as y, createVNode as f, normalizeClass as q, normalizeProps as oe, guardReactiveProps as je, h as z, isVNode as Te, createElementVNode as j, withModifiers as K, pushScopeId as Fe, popScopeId as Me, resolveDirective as le, withDirectives as R, normalizeStyle as st } from "vue";
 const nt = (e) => {
   const { width: t, height: s } = e.getBoundingClientRect();
   e.width = t, e.height = s;
@@ -101,7 +101,7 @@ const nt = (e) => {
     grouping: !0,
     ...t
   });
-}, se = (e) => {
+}, ne = (e) => {
   let t = typeof e != "string" ? e : { message: e };
   t = {
     type: "error",
@@ -113,7 +113,7 @@ const nt = (e) => {
     showClose: !0,
     ...t
   });
-}, ne = (e) => {
+}, ie = (e) => {
   let t = null;
   const { isMobile: s = window.isMobile } = e;
   return s ? t = ht(e) : t = dt.confirm(
@@ -129,7 +129,7 @@ const nt = (e) => {
   ), t.then(() => e.distinguishCancelAndClose ? "confirm" : !0).catch((i) => e.distinguishCancelAndClose ? i : !1);
 };
 for (let e of ["success", "warning", "info", "error", "primary", "loading", "fail", "html"])
-  Y[e] = Y[e[0]] = (t) => Y({ type: e, ...t }), se[e] = se[e[0]] = (t) => se({ type: e, ...t }), ne[e] = ne[e[0]] = (t) => ne({ type: e, ...t });
+  Y[e] = Y[e[0]] = (t) => Y({ type: e, ...t }), ne[e] = ne[e[0]] = (t) => ne({ type: e, ...t }), ie[e] = ie[e[0]] = (t) => ie({ type: e, ...t });
 const pt = (e, t) => {
   e.beforeEach((s, i, n) => {
     s.matched.length ? n() : n("/404");
@@ -255,8 +255,8 @@ const pt = (e, t) => {
   formatPrecision: lt,
   formatOptions: L,
   Message: Y,
-  Notify: se,
-  Confirm: ne,
+  Notify: ne,
+  Confirm: ie,
   middlewares: bt,
   baseForm: Re,
   baseTable: Be,
@@ -280,7 +280,7 @@ class ze {
         vm: { get: () => i }
       }), this._initLifeCycles();
     }
-    te(this.onInit);
+    se(this.onInit);
   }
   onInit() {
   }
@@ -383,12 +383,12 @@ class ze {
     ];
   }
 }
-const { funcs: ye, highdict: ve, dates: re } = StardustJs, { file: we, excel: ee } = StardustBrowser;
+const { funcs: ye, highdict: ve, dates: re } = StardustJs, { file: we, excel: te } = StardustBrowser;
 class We extends ze {
   constructor(t) {
     super(t);
     const { model: s, table: i, dialog: n, dbModelName: o = "", idField: l = "id", listProp: a = "data" } = t;
-    this.table = i || (s == null ? void 0 : s.table) || null, this.dialog = n || (s == null ? void 0 : s.dialog) || null, this.dbModelName = o, this.idField = l, this.listProp = a, this._isSubmitting = !1, this._isExporting = !1, this._lastSearchParams = null, this._dbTable = null, this._unwatchs = [], te(() => {
+    this.table = i || (s == null ? void 0 : s.table) || null, this.dialog = n || (s == null ? void 0 : s.dialog) || null, this.dbModelName = o, this.idField = l, this.listProp = a, this._isSubmitting = !1, this._isExporting = !1, this._lastSearchParams = null, this._dbTable = null, this._unwatchs = [], se(() => {
       this.router.afterEach(() => {
         this._unwatchs.forEach((r) => r());
       });
@@ -470,7 +470,7 @@ class We extends ze {
     await this.beforeAdd() && (this._resetForm(), Object.assign(this.dialog, {
       visible: !0,
       isEditing: !1
-    }), await te(), await ye.sleep(50), this._clearValidate(), this.afterAdd());
+    }), await se(), await ye.sleep(50), this._clearValidate(), this.afterAdd());
   }
   async handleEdit({ $index: t, row: s }) {
     var i;
@@ -483,7 +483,7 @@ class We extends ze {
         ...this.dialog.form,
         ...s
       }
-    }), await te(), (i = this.dialog.formRef) == null || i.validate().catch(Function())), this.afterEdit({ $index: t, row: s }));
+    }), await se(), (i = this.dialog.formRef) == null || i.validate().catch(Function())), this.afterEdit({ $index: t, row: s }));
   }
   async handleDelete({ $index: t, row: s }) {
     if (!await this.beforeDelete({ $index: t, row: s }))
@@ -531,7 +531,7 @@ class We extends ze {
     const a = this.processExportingColumns(o._visibleColumns, "current"), r = a.map((_) => _.prop), h = a.map((_) => _.label);
     l = l.map((_) => r.map((E) => _[E]));
     let p = null;
-    t === "csv" ? p = ee.export2Csv : p = ee.export2Excel;
+    t === "csv" ? p = te.export2Csv : p = te.export2Excel;
     let $ = { header: h, data: l, filename: s };
     $ = await this.processExporting($), p($), this._isExporting = !1;
   }
@@ -549,7 +549,7 @@ class We extends ze {
     const o = this.processExportingColumns(this.table.ref._visibleColumns, "search"), l = o.map((p) => p.prop), a = o.map((p) => p.label);
     n = n.map((p) => l.map(($) => p[$]));
     let r = null;
-    t === "csv" ? r = ee.export2Csv : r = ee.export2Excel;
+    t === "csv" ? r = te.export2Csv : r = te.export2Excel;
     let h = { header: a, data: n, filename: s };
     h = await this.processExporting(h), r(h), this._isExporting = !1;
   }
@@ -4920,10 +4920,11 @@ const Jo = /* @__PURE__ */ k(zo, [["render", Ho], ["__scopeId", "data-v-821cec65
   xtinymce: Ro,
   xfileuploader: qo,
   ximageuploader: Jo
-}, ie = {};
+}, ee = {};
 for (let e in ue)
-  ie[ue[e].name] = ue[e];
+  ee[ue[e].name] = ue[e];
 const Ko = (e) => ({
+  name: e,
   props: {
     platform: {
       type: String,
@@ -4937,23 +4938,23 @@ const Ko = (e) => ({
     this.name = (this.platform.toLowerCase() === "pc" ? "Pc" : "Mobile") + e;
   },
   render() {
-    return z(u(this.name), {
+    return z(ee[this.name], {
       platform: this.platform,
       ...this.$attrs
     }, this.$slots);
   }
 }), me = (() => {
-  const e = Object.keys(ie), t = [...new Set(e.map((i) => i.replace(/(pc|mobile)/i, "")))], s = {};
+  const e = Object.keys(ee), t = [...new Set(e.map((i) => i.replace(/(pc|mobile)/i, "")))], s = {};
   for (const i of e)
-    /(pc|mobile)/i.test(i) && (s[i] = ie[i]);
+    /(pc|mobile)/i.test(i) && (s[i] = ee[i]);
   for (const i of t)
-    e.find((n) => /(pc|mobile)/i.test(n) && n.toLowerCase().includes(i.toLowerCase())) ? s[i] = Ko(i) : s[i] = ie[i];
+    e.find((n) => /(pc|mobile)/i.test(n) && n.toLowerCase().includes(i.toLowerCase())) ? s[i] = Ko(i) : s[i] = ee[i];
   return s;
 })(), Yo = (e, t) => {
   for (let s in me)
     e.component(s, me[s]);
 }, Qo = {
-  version: "1.0.83",
+  version: "1.0.85",
   ...me,
   ...qe,
   ...St,
@@ -4961,10 +4962,10 @@ const Ko = (e) => ({
 };
 export {
   ze as BaseController,
-  ne as Confirm,
+  ie as Confirm,
   We as CrudController,
   Y as Message,
-  se as Notify,
+  ne as Notify,
   wt as TempCrudController,
   Ie as baseDialog,
   Re as baseForm,

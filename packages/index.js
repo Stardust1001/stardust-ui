@@ -1,4 +1,4 @@
-import { h, resolveComponent } from 'vue'
+import { h } from 'vue'
 
 import './index.scss'
 
@@ -8,6 +8,7 @@ import all from './comps'
 
 const makePlatformComp = (name) => {
   return {
+    name,
     props: {
       platform: {
         type: String,
@@ -21,7 +22,7 @@ const makePlatformComp = (name) => {
       this.name = (this.platform.toLowerCase() === 'pc' ? 'Pc' : 'Mobile') + name
     },
     render () {
-      return h(resolveComponent(this.name), {
+      return h(all[this.name], {
         platform: this.platform,
         ...this.$attrs
       }, this.$slots)
@@ -56,7 +57,7 @@ const install = (app, options) => {
 }
 
 const StardustUI = {
-  version: '1.0.83',
+  version: '1.0.85',
   ...components,
   ...utils,
   ...controllers,
