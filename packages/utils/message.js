@@ -1,4 +1,3 @@
-
 const { ElMessage, ElNotification, ElMessageBox } = window.ElementPlus || {}
 const { showToast, showNotify, showConfirmDialog } = window.vant || {}
 
@@ -16,6 +15,7 @@ export const Message = options => {
   } else {
     ElMessage({
       showClose: true,
+      grouping: true,
       ...opts
     })
   }
@@ -63,6 +63,12 @@ export const Confirm = options => {
   }).catch(action => {
     return options.distinguishCancelAndClose ? action : false
   })
+}
+
+for (let type of ['success', 'warning', 'info', 'error', 'primary', 'loading', 'fail', 'html']) {
+  Message[type] = Message[type[0]] = options => Message({ type, ...options })
+  Notify[type] = Notify[type[0]] = options => Notify({ type, ...options })
+  Confirm[type] = Confirm[type[0]] = options => Confirm({ type, ...options })
 }
 
 export default {

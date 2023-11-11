@@ -1,11 +1,11 @@
-import { toRaw as Ze, watch as xe, nextTick as ee, resolveComponent as u, openBlock as d, createBlock as m, mergeProps as g, createElementBlock as v, Fragment as A, renderList as M, withCtx as c, renderSlot as S, toDisplayString as x, useCssVars as Ve, createTextVNode as C, createSlots as J, resolveDynamicComponent as G, createCommentVNode as y, createVNode as f, normalizeClass as q, normalizeProps as se, guardReactiveProps as Ae, h as z, isVNode as Oe, createElementVNode as j, withModifiers as K, pushScopeId as je, popScopeId as Te, resolveDirective as ne, withDirectives as R, normalizeStyle as et } from "vue";
-const tt = (e) => {
+import { toRaw as tt, watch as Ae, nextTick as te, resolveComponent as u, openBlock as d, createBlock as m, mergeProps as g, createElementBlock as v, Fragment as A, renderList as M, withCtx as c, renderSlot as S, toDisplayString as x, useCssVars as Oe, createTextVNode as C, createSlots as J, resolveDynamicComponent as Q, createCommentVNode as y, createVNode as f, normalizeClass as q, normalizeProps as oe, guardReactiveProps as je, h as z, isVNode as Te, createElementVNode as j, withModifiers as K, pushScopeId as Fe, popScopeId as Me, resolveDirective as le, withDirectives as R, normalizeStyle as st } from "vue";
+const nt = (e) => {
   const { width: t, height: s } = e.getBoundingClientRect();
   e.width = t, e.height = s;
   const i = e.getContext("2d");
   class n {
-    constructor(B, W, X, Q, Ye, Ge, Qe) {
-      this.x = B, this.y = W, this.radius = X, this.color = Q, this.vx = Ye, this.vy = Ge, this.ctx = Qe;
+    constructor(B, W, X, Z, Qe, Ze, et) {
+      this.x = B, this.y = W, this.radius = X, this.color = Z, this.vx = Qe, this.vy = Ze, this.ctx = et;
     }
     update() {
       this.x += this.vx, this.y += this.vy, this.ctx.beginPath(), this.ctx.fillStyle = this.color, this.ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2), this.ctx.fill(), this.detectWall();
@@ -23,14 +23,14 @@ const tt = (e) => {
     const w = Math.floor(l($ + _) * 1.5 + l(5));
     let B = l(t), W = l(s);
     B = Math.min(Math.max(w, B), t - w), W = Math.min(Math.max(w, W), s - w);
-    let X = l(2) ? (l(2) + 2) * $ : (l(-1) - 2) * $, Q = l(2) ? (l(2) + 2) * _ : (l(-1) - 2) * _;
-    return X = Math.floor(X / E), Q = Math.floor(Q / E), new n(
+    let X = l(2) ? (l(2) + 2) * $ : (l(-1) - 2) * $, Z = l(2) ? (l(2) + 2) * _ : (l(-1) - 2) * _;
+    return X = Math.floor(X / E), Z = Math.floor(Z / E), new n(
       B,
       W,
       w,
       `rgba(${l(256)}, ${l(256)}, ${l(256)}, ${(l(5) + 5) / 10})`,
       X,
-      Q,
+      Z,
       i
     );
   });
@@ -52,7 +52,7 @@ const tt = (e) => {
     Date.now() - V >= T && (o(), p(), N.forEach((w) => w.update()), V = Date.now()), b = requestAnimationFrame(D);
   };
   return b = requestAnimationFrame(D), () => cancelAnimationFrame(b);
-}, st = ({
+}, it = ({
   text: e,
   gap: t,
   fontSize: s,
@@ -70,10 +70,10 @@ const tt = (e) => {
     for (let E = t / 2; E < n; E += p)
       r[l + "Text"](e, E, _);
   return a;
-}, nt = {
-  pop: tt,
-  createWatermark: st
-}, it = (e, t) => {
+}, ot = {
+  pop: nt,
+  createWatermark: it
+}, lt = (e, t) => {
   if (typeof e != "number") {
     const s = parseFloat(e) || null;
     if (typeof s != "number")
@@ -82,13 +82,13 @@ const tt = (e) => {
   }
   return e.toFixed(t) * 1;
 }, L = (e, t) => {
-  const s = e.__v_isRef ? e.value : Ze(e);
+  const s = e.__v_isRef ? e.value : tt(e);
   let i = s;
   if (typeof s[0] != "object" && (i = s.map((o) => ({ text: o, value: o }))), !t.sort)
     return i;
   const n = typeof t.sort == "string" ? t.sort : t.text || "text";
   return i.sort((o, l) => o[n].localeCompare(l[n]));
-}, { ElMessage: ot, ElNotification: lt, ElMessageBox: at } = window.ElementPlus || {}, { showToast: rt, showNotify: dt, showConfirmDialog: ct } = window.vant || {}, he = (e) => {
+}, { ElMessage: at, ElNotification: rt, ElMessageBox: dt } = window.ElementPlus || {}, { showToast: ct, showNotify: ut, showConfirmDialog: ht } = window.vant || {}, Y = (e) => {
   let t = typeof e != "string" ? e : { message: e };
   t = {
     type: "error",
@@ -96,11 +96,12 @@ const tt = (e) => {
     ...t
   };
   const { isMobile: s = window.isMobile, type: i } = t;
-  s ? ((i === "error" || i === "warning") && (t.type = "fail"), rt(t)) : ot({
+  s ? ((i === "error" || i === "warning") && (t.type = "fail"), ct(t)) : at({
     showClose: !0,
+    grouping: !0,
     ...t
   });
-}, ut = (e) => {
+}, se = (e) => {
   let t = typeof e != "string" ? e : { message: e };
   t = {
     type: "error",
@@ -108,14 +109,14 @@ const tt = (e) => {
     ...t
   };
   const { isMobile: s = window.isMobile, type: i } = t;
-  s ? (i === "error" && (t.type = "danger"), dt(t)) : lt({
+  s ? (i === "error" && (t.type = "danger"), ut(t)) : rt({
     showClose: !0,
     ...t
   });
-}, ht = (e) => {
+}, ne = (e) => {
   let t = null;
   const { isMobile: s = window.isMobile } = e;
-  return s ? t = ct(e) : t = at.confirm(
+  return s ? t = ht(e) : t = dt.confirm(
     e.message || "",
     e.title || "",
     {
@@ -126,7 +127,10 @@ const tt = (e) => {
       cancelButtonText: e.cancelButtonText || "取消"
     }
   ), t.then(() => e.distinguishCancelAndClose ? "confirm" : !0).catch((i) => e.distinguishCancelAndClose ? i : !1);
-}, pt = (e, t) => {
+};
+for (let e of ["success", "warning", "info", "error", "primary", "loading", "fail", "html"])
+  Y[e] = Y[e[0]] = (t) => Y({ type: e, ...t }), se[e] = se[e[0]] = (t) => se({ type: e, ...t }), ne[e] = ne[e[0]] = (t) => ne({ type: e, ...t });
+const pt = (e, t) => {
   e.beforeEach((s, i, n) => {
     s.matched.length ? n() : n("/404");
   });
@@ -148,7 +152,7 @@ const tt = (e) => {
   setTitle: mt,
   checkRolesPages: ft,
   redirectTo: gt
-}, Fe = () => ({
+}, Re = () => ({
   form: {},
   initialForm: {},
   formItems: [],
@@ -156,7 +160,7 @@ const tt = (e) => {
   formRules: {},
   initialFormRules: {},
   _isBaseForm: !0
-}), Me = (e = {}) => ({
+}), Be = (e = {}) => ({
   loading: !1,
   query: {
     page: 1,
@@ -171,30 +175,30 @@ const tt = (e) => {
   selection: [],
   checked: null,
   _isBaseTable: !0
-}), Re = () => ({
-  ...Fe(),
+}), Ie = () => ({
+  ...Re(),
   visible: !1,
   isEditing: !1,
   editingIndex: "",
   editingRow: {},
   _isBaseDialog: !0
 }), _t = () => ({
-  table: Me(),
-  dialog: Re()
-}), { funcs: de } = StardustJs, yt = (e, t) => {
+  table: Be(),
+  dialog: Ie()
+}), { funcs: he } = StardustJs, yt = (e, t) => {
   for (let s in e) {
     const i = e[s];
-    !i || typeof i != "object" || (s === "table" && e[s]._isBaseTable && Be(i, t), s === "dialog" && e[s]._isBaseDialog && Ie(i, t), s === "form" && e[s]._isBaseForm && pe(i, t));
+    !i || typeof i != "object" || (s === "table" && e[s]._isBaseTable && De(i, t), s === "dialog" && e[s]._isBaseDialog && Ne(i, t), s === "form" && e[s]._isBaseForm && fe(i, t));
   }
   return e;
-}, Be = (e, t) => (e.columns.push(...t.filter((s) => s.visible === !1 ? s.canView : s.canView !== !1)), e), Ie = (e, t) => (e.formItems = t.filter((s) => s.visible === !1 ? s.canAdd || s.canEdit : s.canAdd !== !1 || s.canEdit !== !1), pe(e, t), e), pe = (e, t) => (e._isBaseForm && !e._isBaseDialog && (e.formItems = t.filter((i) => i.visible !== !1)), Ne(e.form, e.formItems), e.initialForm = de.deepCopy(e.form), e.initialFormRules = de.deepCopy(e.formRules), xe(() => e.formItems, () => {
-  De(e);
-}, { immediate: !0, deep: !0 }), e), De = (e) => {
+}, De = (e, t) => (e.columns.push(...t.filter((s) => s.visible === !1 ? s.canView : s.canView !== !1)), e), Ne = (e, t) => (e.formItems = t.filter((s) => s.visible === !1 ? s.canAdd || s.canEdit : s.canAdd !== !1 || s.canEdit !== !1), fe(e, t), e), fe = (e, t) => (e._isBaseForm && !e._isBaseDialog && (e.formItems = t.filter((i) => i.visible !== !1)), Ue(e.form, e.formItems), e.initialForm = he.deepCopy(e.form), e.initialFormRules = he.deepCopy(e.formRules), Ae(() => e.formItems, () => {
+  Pe(e);
+}, { immediate: !0, deep: !0 }), e), Pe = (e) => {
   const { formItems: t, initialFormRules: s } = e, i = t.filter((o) => {
     let { formAttrs: l = {}, required: a = !1 } = o;
     return a = "required" in l ? l.required : a, !o.hasOwnProperty("rules") && !e.initialFormRules.hasOwnProperty(o.prop) && a !== !1;
   }).map((o) => o.prop);
-  if (Object.assign(e.formRules, de.deepCopy(s)), Object.keys(e.formRules).forEach((o) => {
+  if (Object.assign(e.formRules, he.deepCopy(s)), Object.keys(e.formRules).forEach((o) => {
     o in s || delete e.formRules[o];
   }), !i.length)
     return;
@@ -202,10 +206,10 @@ const tt = (e) => {
   return i.forEach((o) => {
     if (e.formRules[o])
       return;
-    const l = t.find((E) => E.prop === o), a = l.platform || e.platform || (window.isMobile ? "mobile" : "pc"), r = Ue[a], h = [], _ = { required: !0, message: `请${"options" in l ? "选择" : "输入"}${(l == null ? void 0 : l.label) || o}` };
+    const l = t.find((E) => E.prop === o), a = l.platform || e.platform || (window.isMobile ? "mobile" : "pc"), r = Xe[a], h = [], _ = { required: !0, message: `请${"options" in l ? "选择" : "输入"}${(l == null ? void 0 : l.label) || o}` };
     l.validator && (_.validator = l.validator), l.asyncValidator && (_.asyncValidator = l.asyncValidator), l.comp ? h.push({ ..._, trigger: r.change }) : h.push({ ..._, trigger: r.blur }), l.comp === "ElInputNumber" && h.push({ ..._, trigger: r.blur }), n[o] = h;
   }), Object.assign(e.formRules, n), e.formRules;
-}, Ne = (e, t, s = !0) => {
+}, Ue = (e, t, s = !0) => {
   const i = {};
   return t.forEach((n) => {
     var h;
@@ -227,7 +231,7 @@ const tt = (e) => {
     }
     i[n.prop] = o;
   }), Object.assign(e, { ...i, ...e }), e;
-}, Pe = (e, t) => {
+}, Le = (e, t) => {
   if (!e)
     return !0;
   const s = /[\^\*\$\~\!]?=/;
@@ -237,7 +241,7 @@ const tt = (e) => {
   typeof o == "number" ? o += "" : typeof o == "string" && (o = o.trim());
   const l = e.match(s)[0];
   return n.some((a) => l === "^=" ? o.startsWith(a) : l === "*=" ? o.includes(a) : l === "$=" ? o.endsWith(a) : l === "~=" ? !o.includes(a) : l === "!=" ? o !== a : a === o);
-}, Ue = {
+}, Xe = {
   mobile: {
     blur: "onBlur",
     change: "onChange"
@@ -246,28 +250,28 @@ const tt = (e) => {
     blur: "blur",
     change: "change"
   }
-}, Le = {
-  effects: nt,
-  formatPrecision: it,
+}, qe = {
+  effects: ot,
+  formatPrecision: lt,
   formatOptions: L,
-  Message: he,
-  Notify: ut,
-  Confirm: ht,
+  Message: Y,
+  Notify: se,
+  Confirm: ne,
   middlewares: bt,
-  baseForm: Fe,
-  baseTable: Me,
-  baseDialog: Re,
+  baseForm: Re,
+  baseTable: Be,
+  baseDialog: Ie,
   baseModel: _t,
   initModel: yt,
-  initTable: Be,
-  initDialog: Ie,
-  initForm: pe,
-  initFormRules: De,
-  initDefaultForm: Ne,
-  isWhenMatched: Pe,
-  triggers: Ue
+  initTable: De,
+  initDialog: Ne,
+  initForm: fe,
+  initFormRules: Pe,
+  initDefaultForm: Ue,
+  isWhenMatched: Le,
+  triggers: Xe
 };
-class Xe {
+class ze {
   constructor({ model: t, vue: s }) {
     if (this.model = t, this._bindMethods(), s) {
       const i = s.getCurrentInstance();
@@ -276,7 +280,7 @@ class Xe {
         vm: { get: () => i }
       }), this._initLifeCycles();
     }
-    ee(this.onInit);
+    te(this.onInit);
   }
   onInit() {
   }
@@ -296,7 +300,7 @@ class Xe {
     throw "请自行注入 store";
   }
   get uiUtils() {
-    return Le;
+    return qe;
   }
   get service() {
     throw "请自行注入 service";
@@ -379,12 +383,12 @@ class Xe {
     ];
   }
 }
-const { funcs: be, highdict: _e, dates: oe } = StardustJs, { file: ye, excel: Z } = StardustBrowser;
-class qe extends Xe {
+const { funcs: ye, highdict: ve, dates: re } = StardustJs, { file: we, excel: ee } = StardustBrowser;
+class We extends ze {
   constructor(t) {
     super(t);
     const { model: s, table: i, dialog: n, dbModelName: o = "", idField: l = "id", listProp: a = "data" } = t;
-    this.table = i || (s == null ? void 0 : s.table) || null, this.dialog = n || (s == null ? void 0 : s.dialog) || null, this.dbModelName = o, this.idField = l, this.listProp = a, this._isSubmitting = !1, this._isExporting = !1, this._lastSearchParams = null, this._dbTable = null, this._unwatchs = [], ee(() => {
+    this.table = i || (s == null ? void 0 : s.table) || null, this.dialog = n || (s == null ? void 0 : s.dialog) || null, this.dbModelName = o, this.idField = l, this.listProp = a, this._isSubmitting = !1, this._isExporting = !1, this._lastSearchParams = null, this._dbTable = null, this._unwatchs = [], te(() => {
       this.router.afterEach(() => {
         this._unwatchs.forEach((r) => r());
       });
@@ -455,7 +459,7 @@ class qe extends Xe {
       return;
     t = this.getSearchParams(t), this.table.loading = !0;
     const s = await this.search(t);
-    let i = _e.get(s, this.listProp);
+    let i = ve.get(s, this.listProp);
     return i = this.formatList(this._defaultFormatList(i, s), s), Object.assign(this.table, {
       list: i,
       total: s.total,
@@ -466,7 +470,7 @@ class qe extends Xe {
     await this.beforeAdd() && (this._resetForm(), Object.assign(this.dialog, {
       visible: !0,
       isEditing: !1
-    }), await ee(), await be.sleep(50), this._clearValidate(), this.afterAdd());
+    }), await te(), await ye.sleep(50), this._clearValidate(), this.afterAdd());
   }
   async handleEdit({ $index: t, row: s }) {
     var i;
@@ -479,7 +483,7 @@ class qe extends Xe {
         ...this.dialog.form,
         ...s
       }
-    }), await ee(), (i = this.dialog.formRef) == null || i.validate().catch(Function())), this.afterEdit({ $index: t, row: s }));
+    }), await te(), (i = this.dialog.formRef) == null || i.validate().catch(Function())), this.afterEdit({ $index: t, row: s }));
   }
   async handleDelete({ $index: t, row: s }) {
     if (!await this.beforeDelete({ $index: t, row: s }))
@@ -523,11 +527,11 @@ class qe extends Xe {
     this._isExporting = !0;
     const { list: i, selection: n, ref: o } = this.table;
     let l = n.length > 0 ? n : i;
-    l = be.deepCopy(l), l = this.processExportingData(l);
+    l = ye.deepCopy(l), l = this.processExportingData(l);
     const a = this.processExportingColumns(o._visibleColumns, "current"), r = a.map((_) => _.prop), h = a.map((_) => _.label);
     l = l.map((_) => r.map((E) => _[E]));
     let p = null;
-    t === "csv" ? p = Z.export2Csv : p = Z.export2Excel;
+    t === "csv" ? p = ee.export2Csv : p = ee.export2Excel;
     let $ = { header: h, data: l, filename: s };
     $ = await this.processExporting($), p($), this._isExporting = !1;
   }
@@ -545,12 +549,12 @@ class qe extends Xe {
     const o = this.processExportingColumns(this.table.ref._visibleColumns, "search"), l = o.map((p) => p.prop), a = o.map((p) => p.label);
     n = n.map((p) => l.map(($) => p[$]));
     let r = null;
-    t === "csv" ? r = Z.export2Csv : r = Z.export2Excel;
+    t === "csv" ? r = ee.export2Csv : r = ee.export2Excel;
     let h = { header: a, data: n, filename: s };
     h = await this.processExporting(h), r(h), this._isExporting = !1;
   }
   async handleImport() {
-    const t = await ye.select(".xlsx,.csv"), s = t.name.toLowerCase().endsWith(".csv"), i = await ye.toType(t, s ? "text" : "arraybuffer");
+    const t = await we.select(".xlsx,.csv"), s = t.name.toLowerCase().endsWith(".csv"), i = await we.toType(t, s ? "text" : "arraybuffer");
     let n = [];
     if (s)
       n = window.Papa.parse(i, { header: !0 }).data;
@@ -678,7 +682,7 @@ class qe extends Xe {
     const s = Object.keys(this.dialog.initialForm), i = {};
     return s.length ? s.forEach((n) => i[n] = t[n]) : Object.assign(i, t), this.dialog.formItems.forEach((n) => {
       let o = i[n.model || n.prop];
-      n.type === "number" ? o = this.uiUtils.formatPrecision(o, n.precision || 3) * 1 : n.comp === "ElDatePicker" && (n.type === "datetime" ? o = oe.format(o) : (!n.type || n.type === "date") && (o = oe.format(o, "", !1))), i[n.model || n.prop] = o;
+      n.type === "number" ? o = this.uiUtils.formatPrecision(o, n.precision || 3) * 1 : n.comp === "ElDatePicker" && (n.type === "datetime" ? o = re.format(o) : (!n.type || n.type === "date") && (o = re.format(o, "", !1))), i[n.model || n.prop] = o;
     }), i;
   }
   getUpdateParams(t) {
@@ -734,7 +738,7 @@ class qe extends Xe {
       if (E && _)
         t.forEach((T) => T[`_formatted_${r}`] = ""), this._fillRelatedField(t, a);
       else if (Array.isArray(h) && p !== !1) {
-        const N = xe(() => a.options, (F, O) => {
+        const N = Ae(() => a.options, (F, O) => {
           const V = O ? this.table.list : t, b = vt(a);
           V.forEach((D) => {
             const w = D[r];
@@ -760,7 +764,7 @@ class qe extends Xe {
     });
     if (!a.data.length)
       return;
-    const r = _e.mapField(a.data, l, o);
+    const r = ve.mapField(a.data, l, o);
     this.table.list.forEach((h) => {
       h[`_formatted_${s.prop}`] = r[h[s.prop]];
     });
@@ -790,7 +794,7 @@ class qe extends Xe {
           return o[l] = i[l].formatter(a);
         if ((h = i[l]) != null && h.tagValues)
           return o[l] = i[l].tagValues[a];
-        typeof a == "boolean" ? o[l] = a && 1 || 0 : a instanceof Date ? (o[l] = oe.format(a), o[l].endsWith(" 00:00:00") && (o[l] = o[l].slice(0, -9))) : typeof a == "object" && (o[l] = JSON.stringify(a));
+        typeof a == "boolean" ? o[l] = a && 1 || 0 : a instanceof Date ? (o[l] = re.format(a), o[l].endsWith(" 00:00:00") && (o[l] = o[l].slice(0, -9))) : typeof a == "object" && (o[l] = JSON.stringify(a));
       });
     }), t;
   }
@@ -846,7 +850,7 @@ const vt = (e) => {
     o[l[n]] = l[i];
   }), o;
 };
-class wt extends qe {
+class wt extends We {
   handleAdd() {
     const t = this.table.list.length, s = {
       _index: t + 1,
@@ -869,8 +873,8 @@ class wt extends qe {
   }
 }
 const St = {
-  BaseController: Xe,
-  CrudController: qe,
+  BaseController: ze,
+  CrudController: We,
   TempCrudController: wt
 }, k = (e, t) => {
   const s = e.__vccOpts || e;
@@ -964,7 +968,7 @@ function Rt(e, t, s, i, n, o) {
   });
 }
 const Bt = /* @__PURE__ */ k(Mt, [["render", Rt]]);
-const { funcs: It } = StardustBrowser, me = {
+const { funcs: It } = StardustBrowser, ge = {
   name: "XChart",
   props: {
     height: {
@@ -1029,13 +1033,13 @@ const { funcs: It } = StardustBrowser, me = {
       }, !0);
     }
   }
-}, ve = () => {
-  Ve((e) => ({
+}, Se = () => {
+  Oe((e) => ({
     "127c024a": e.zoomedHeight,
     "137ee0b8": e.zoom
   }));
-}, we = me.setup;
-me.setup = we ? (e, t) => (ve(), we(e, t)) : ve;
+}, $e = ge.setup;
+ge.setup = $e ? (e, t) => (Se(), $e(e, t)) : Se;
 const Dt = {
   class: "x-chart",
   ref: "el"
@@ -1043,7 +1047,7 @@ const Dt = {
 function Nt(e, t, s, i, n, o) {
   return d(), v("div", Dt, null, 512);
 }
-const Pt = /* @__PURE__ */ k(me, [["render", Nt], ["__scopeId", "data-v-0c2da986"]]), Ut = {
+const Pt = /* @__PURE__ */ k(ge, [["render", Nt], ["__scopeId", "data-v-0c2da986"]]), Ut = {
   name: "MobileXCheckboxs",
   inheritAttrs: !1,
   props: {
@@ -1308,7 +1312,7 @@ const ts = /* @__PURE__ */ k(Zt, [["render", es]]), ss = {
 };
 function is(e, t, s, i, n, o) {
   const l = u("x-icon"), a = u("el-button");
-  return d(), m(G(s.drawer ? "ElDrawer" : "ElDialog"), g({ draggable: s.draggable }, e.$attrs, {
+  return d(), m(Q(s.drawer ? "ElDrawer" : "ElDialog"), g({ draggable: s.draggable }, e.$attrs, {
     modelValue: o.visible,
     "onUpdate:modelValue": t[2] || (t[2] = (r) => o.visible = r),
     fullscreen: n.fullscreen,
@@ -1538,7 +1542,7 @@ function us() {
 function hs() {
   return this.useWhen ? this._items.filter((e) => {
     var t;
-    return Pe(e.when || ((t = e.formAttrs) == null ? void 0 : t.when), this._model);
+    return Le(e.when || ((t = e.formAttrs) == null ? void 0 : t.when), this._model);
   }) : this._items;
 }
 function ps() {
@@ -1557,7 +1561,7 @@ function fs(e) {
 function gs(e) {
   return typeof e == "boolean" ? e.toString() : e;
 }
-const Y = {
+const G = {
   props: ds,
   computed: {
     _model: cs,
@@ -1574,7 +1578,7 @@ const Y = {
   name: "MobileXForm",
   inheritAttrs: !1,
   props: {
-    ...Y.props(),
+    ...G.props(),
     hideLabels: {
       type: Boolean,
       default: !1
@@ -1586,14 +1590,14 @@ const Y = {
   },
   emits: ["update:fref"],
   computed: {
-    ...Y.computed
+    ...G.computed
   },
   mounted() {
     const e = this.dialog ?? this.form;
     e && (e.formRef = this.$refs.formRef), this.$emit("update:fref", this.$refs.formRef);
   },
   methods: {
-    ...Y.methods
+    ...G.methods
   }
 };
 function _s(e, t, s, i, n, o) {
@@ -1604,7 +1608,7 @@ function _s(e, t, s, i, n, o) {
   }, {
     default: c(() => [
       e.$slots.pre ? S(e.$slots, "pre", { key: 0 }) : y("", !0),
-      f(a, se(Ae(e.$attrs)), {
+      f(a, oe(je(e.$attrs)), {
         default: c(() => [
           (d(!0), v(A, null, M(e._visibleItems, (h, p) => (d(), m(l, g(h, {
             rules: e._rules[h.prop] || h.rules,
@@ -1614,7 +1618,7 @@ function _s(e, t, s, i, n, o) {
             placeholder: e.calcPlaceholder(h)
           }), {
             default: c(() => [
-              h.slot ? S(e.$slots, h.slot, se(g({ key: 0 }, h))) : y("", !0)
+              h.slot ? S(e.$slots, h.slot, oe(g({ key: 0 }, h))) : y("", !0)
             ]),
             _: 2
           }, 1040, ["rules", "modelValue", "onUpdate:modelValue", "placeholder"]))), 128))
@@ -1630,7 +1634,7 @@ const ys = /* @__PURE__ */ k(bs, [["render", _s]]), vs = {
   name: "PcXForm",
   inheritAttrs: !1,
   props: {
-    ...Y.props(),
+    ...G.props(),
     title: {
       type: String,
       default: "表单"
@@ -1659,14 +1663,14 @@ const ys = /* @__PURE__ */ k(bs, [["render", _s]]), vs = {
     };
   },
   computed: {
-    ...Y.computed
+    ...G.computed
   },
   mounted() {
     const e = this.dialog ?? this.form;
     e && (e.formRef = this.$refs.formRef), this.$emit("update:fref", this.$refs.formRef);
   },
   methods: {
-    ...Y.methods
+    ...G.methods
   }
 }, ws = { key: 1 };
 function Ss(e, t, s, i, n, o) {
@@ -1723,9 +1727,9 @@ function Ss(e, t, s, i, n, o) {
 }
 const $s = /* @__PURE__ */ k(vs, [["render", Ss]]);
 function ks(e) {
-  return typeof e == "function" || Object.prototype.toString.call(e) === "[object Object]" && !Oe(e);
+  return typeof e == "function" || Object.prototype.toString.call(e) === "[object Object]" && !Te(e);
 }
-const ce = (e) => {
+const pe = (e) => {
   const {
     $props: t,
     $attrs: s,
@@ -1768,11 +1772,11 @@ const ce = (e) => {
       effect: "dark",
       content: r,
       placement: "bottom"
-    }, ks(p = ce(e)) ? p : {
+    }, ks(p = pe(e)) ? p : {
       default: () => [p]
     });
   } else
-    h = ce(e);
+    h = pe(e);
   return z(u("el-form-item"), {
     ...t,
     ...s
@@ -1810,7 +1814,7 @@ const ce = (e) => {
     "onUpdate:modelValue": ($) => n("update:modelValue", $)
   };
   return a && s.label || r ? z(u("van-field"), p, {
-    input: () => a && s.label ? o.default() : ce(e)
+    input: () => a && s.label ? o.default() : pe(e)
   }) : (Object.assign(p, i), z(u("van-field"), p));
 }, xs = {
   name: "MobileXFormItem",
@@ -1869,7 +1873,7 @@ const ce = (e) => {
     return Es(this);
   }
 };
-const fe = {
+const be = {
   name: "PcXFormItem",
   props: {
     modelValue: Boolean | Number | String | Array,
@@ -1931,13 +1935,13 @@ const fe = {
   render() {
     return Cs(this);
   }
-}, Se = () => {
-  Ve((e) => ({
+}, ke = () => {
+  Oe((e) => ({
     ba9709f0: e.width
   }));
-}, $e = fe.setup;
-fe.setup = $e ? (e, t) => (Se(), $e(e, t)) : Se;
-const Vs = /* @__PURE__ */ k(fe, [["__scopeId", "data-v-d2cde1e2"]]), ke = /* @__PURE__ */ Object.assign({}), As = {
+}, Ce = be.setup;
+be.setup = Ce ? (e, t) => (ke(), Ce(e, t)) : ke;
+const Vs = /* @__PURE__ */ k(be, [["__scopeId", "data-v-d2cde1e2"]]), Ee = /* @__PURE__ */ Object.assign({}), As = {
   name: "MobileXIcon",
   props: {
     name: String
@@ -1953,8 +1957,8 @@ const Vs = /* @__PURE__ */ k(fe, [["__scopeId", "data-v-d2cde1e2"]]), ke = /* @_
   methods: {
     async initIcons() {
       const e = {};
-      await Promise.all(Object.keys(ke).map(async (t) => {
-        const s = t.split("/").pop().split(".")[0], i = await ke[t]();
+      await Promise.all(Object.keys(Ee).map(async (t) => {
+        const s = t.split("/").pop().split(".")[0], i = await Ee[t]();
         e[s] = i.default;
       })), this.icons = e;
     }
@@ -1968,7 +1972,7 @@ function js(e, t, s, i, n, o) {
     alt: "icon"
   }, null, 8, Os)) : (d(), m(l, g({ key: 1 }, e.$attrs, { name: s.name }), null, 16, ["name"]));
 }
-const Ts = /* @__PURE__ */ k(As, [["render", js]]), Ce = /* @__PURE__ */ Object.assign({}), Fs = {
+const Ts = /* @__PURE__ */ k(As, [["render", js]]), xe = /* @__PURE__ */ Object.assign({}), Fs = {
   name: "PcXIcon",
   props: {
     name: String
@@ -1984,8 +1988,8 @@ const Ts = /* @__PURE__ */ k(As, [["render", js]]), Ce = /* @__PURE__ */ Object.
   methods: {
     async initIcons() {
       const e = {};
-      await Promise.all(Object.keys(Ce).map(async (t) => {
-        const s = t.split("/").pop().split(".")[0], i = await Ce[t]();
+      await Promise.all(Object.keys(xe).map(async (t) => {
+        const s = t.split("/").pop().split(".")[0], i = await xe[t]();
         e[s] = i.default;
       })), this.icons = e;
     }
@@ -1997,14 +2001,14 @@ function Rs(e, t, s, i, n, o) {
     key: 0,
     src: n.icons[s.name],
     alt: "icon"
-  }, null, 8, Ms)) : (d(), m(l, se(g({ key: 1 }, e.$attrs)), {
+  }, null, 8, Ms)) : (d(), m(l, oe(g({ key: 1 }, e.$attrs)), {
     default: c(() => [
-      (d(), m(G(s.name)))
+      (d(), m(Q(s.name)))
     ]),
     _: 1
   }, 16));
 }
-const Bs = /* @__PURE__ */ k(Fs, [["render", Rs]]), { highdict: Is } = StardustJs, { storage: Ds } = StardustBrowser, { local: ze } = Ds, We = ["index", "selection", "expand", "radio", "_index"];
+const Bs = /* @__PURE__ */ k(Fs, [["render", Rs]]), { highdict: Is } = StardustJs, { storage: Ds } = StardustBrowser, { local: He } = Ds, Je = ["index", "selection", "expand", "radio", "_index"];
 function Ns() {
   return {
     table: Object,
@@ -2168,7 +2172,7 @@ function nn() {
   }), t;
 }
 function on() {
-  const e = this._columns.filter((s) => s.type && We.includes(s.type)), t = this.settings.columns.filter((s) => !s.hide).map((s) => {
+  const e = this._columns.filter((s) => s.type && Je.includes(s.type)), t = this.settings.columns.filter((s) => !s.hide).map((s) => {
     const i = this._columns.find((n) => n.prop === s.prop);
     return {
       sortable: "custom",
@@ -2186,20 +2190,20 @@ function an() {
   return this.table.hideOperates || this.$attrs["hide-operates"] !== void 0 && this.$attrs["hide-operates"] !== !1;
 }
 function rn() {
-  return this._columns.filter((e) => !e.type || !We.includes(e.type));
+  return this._columns.filter((e) => !e.type || !Je.includes(e.type));
 }
 function dn() {
   return this.table.searcherConfig ?? this.$attrs["searcher-config"] ?? {};
 }
 function cn() {
-  const e = this._uid && ze.getJson(`Settings[${this._uid}]`, {}) || {};
+  const e = this._uid && He.getJson(`Settings[${this._uid}]`, {}) || {};
   e.columns || (e.columns = this._columns.filter((t) => t.label && t.prop).map((t) => {
     const { prop: s, label: i, show: n, hide: o, width: l } = t;
     return { prop: s, label: i, show: n, hide: o, width: l };
   })), this.settings = e;
 }
 function un(e) {
-  ze.setJson(`Settings[${this._uid}]`, e);
+  He.setJson(`Settings[${this._uid}]`, e);
 }
 function hn(e, t) {
   const { prop: s } = t;
@@ -2447,7 +2451,7 @@ function In(e, t, s, i, n, o) {
               }, _), J({
                 default: c(() => [
                   _.slot ? (d(), v("span", Rn, [
-                    S(e.$slots, _.slot, se(Ae({ data: s.data, field: _, value: o.calcValue(s.data, _) })), void 0, !0)
+                    S(e.$slots, _.slot, oe(je({ data: s.data, field: _, value: o.calcValue(s.data, _) })), void 0, !0)
                   ])) : (d(), v("span", Bn, x(o.calcValue(s.data, _)), 1))
                 ]),
                 _: 2
@@ -2481,7 +2485,7 @@ const Dn = /* @__PURE__ */ k(Mn, [["render", In], ["__scopeId", "data-v-0c3b67a5
 }, Pn = { key: 1 };
 function Un(e, t, s, i, n, o) {
   return d(), v("div", null, [
-    (d(!0), v(A, null, M(s.items, (l, a) => (d(), m(G(s.compName), g({ key: a }, l), {
+    (d(!0), v(A, null, M(s.items, (l, a) => (d(), m(Q(s.compName), g({ key: a }, l), {
       default: c(() => [
         l.slot || e.$attrs.slot ? S(e.$slots, "default", {
           key: 0,
@@ -2709,7 +2713,7 @@ function si(e, t, s, i, n, o) {
     "onUpdate:modelValue": t[0] || (t[0] = (a) => e.$emit("update:modelValue", a))
   }), {
     default: c(() => [
-      (d(!0), v(A, null, M(o.formatOptions(s.options, this), (a) => (d(), m(G(s.button ? "el-radio-button" : "el-radio"), g(o.attrs, {
+      (d(!0), v(A, null, M(o.formatOptions(s.options, this), (a) => (d(), m(Q(s.button ? "el-radio-button" : "el-radio"), g(o.attrs, {
         key: a[s.text],
         label: a[s.value]
       }), {
@@ -2776,7 +2780,7 @@ function ci(e, t, s, i, n, o) {
     _: 3
   });
 }
-const ui = /* @__PURE__ */ k(ri, [["render", ci]]), He = async (e, t, s) => {
+const ui = /* @__PURE__ */ k(ri, [["render", ci]]), Ke = async (e, t, s) => {
   s.loading = !0;
   const i = t == null ? void 0 : t.trim(), { text: n = "text", value: o = "value", labelTexts: l, params: a = {} } = s;
   a.attributes = [...new Set(a.attributes || [...l || [], n, o])], a.limit = a.limit || 20, i && (a.where = a.where || {}, a.where[n] = a.where[n] || {}, a.where[n]["[Op.like]"] = `%${i}%`);
@@ -2833,7 +2837,7 @@ const ui = /* @__PURE__ */ k(ri, [["render", ci]]), He = async (e, t, s) => {
     remoteSearch(e) {
       if (!this.modelName)
         return this._options;
-      He(this.service.restful, e, this);
+      Ke(this.service.restful, e, this);
     },
     onClick(e) {
       e.target.classList.contains("van-overlay") || (this.visible = !0);
@@ -2906,7 +2910,7 @@ const bi = {
     remoteSearch(e) {
       if (!this.remote && !this.modelName)
         return this._options;
-      He(this.service.restful, e, this);
+      Ke(this.service.restful, e, this);
     },
     calcMainLabel(e) {
       return hi(e, this);
@@ -3243,7 +3247,7 @@ function Ri(e, t, s, i, n, o) {
     }, 8, ["show"])
   ]);
 }
-const Bi = /* @__PURE__ */ k($i, [["render", Ri], ["__scopeId", "data-v-97a0d027"]]), Ee = {
+const Bi = /* @__PURE__ */ k($i, [["render", Ri], ["__scopeId", "data-v-97a0d027"]]), Ve = {
   eq: {
     text: "等于",
     value: "eq"
@@ -3413,7 +3417,7 @@ function Ni(e, t) {
     options: Ii
   }) : s();
 }
-const { storage: le } = StardustBrowser, Pi = {
+const { storage: de } = StardustBrowser, Pi = {
   name: "Searcher",
   props: {
     uid: String,
@@ -3435,7 +3439,7 @@ const { storage: le } = StardustBrowser, Pi = {
     }
   },
   created() {
-    const e = this.uid && le.local.getJson(this.key, this.config) || this.config;
+    const e = this.uid && de.local.getJson(this.key, this.config) || this.config;
     this.initConfig(e);
   },
   render: Di,
@@ -3447,7 +3451,7 @@ const { storage: le } = StardustBrowser, Pi = {
       this.visible = !1;
     },
     saveCache() {
-      le.local.setJson(this.key, {
+      de.local.setJson(this.key, {
         conditionNo: this.conditionNo,
         conditions: this.conditions.map((e) => {
           const { item: t, ops: s, component: i, ...n } = e;
@@ -3460,7 +3464,7 @@ const { storage: le } = StardustBrowser, Pi = {
       var t, s;
       (t = e.conditions) == null || t.forEach((i) => {
         const { prop: n, op: o, value: l } = i;
-        i.item = this.columns.find((a) => a.prop === n), i.value = l, this.handleSelectField(i, n), this.handleSelectOp(i, o), i.ops = U[i.component].map((a) => Ee[a]);
+        i.item = this.columns.find((a) => a.prop === n), i.value = l, this.handleSelectField(i, n), this.handleSelectOp(i, o), i.ops = U[i.component].map((a) => Ve[a]);
       }), !e.conditionNo && ((s = e.conditions) != null && s.length) && (e.conditionNo = Math.max.apply(null, e.conditions.map((i) => i.no)) + 1), Object.assign(this, e);
     },
     handleSearch() {
@@ -3468,13 +3472,13 @@ const { storage: le } = StardustBrowser, Pi = {
       try {
         e = this.calcParams();
       } catch (t) {
-        he({ type: "warning", message: t.toString() });
+        Y({ type: "warning", message: t.toString() });
         return;
       }
       this.uid && e && this.saveCache(), e = e || { where: {} }, this.$emit("search", e), this.visible = !1;
     },
     handleReset() {
-      le.local.remove(this.key), Object.assign(this, {
+      de.local.remove(this.key), Object.assign(this, {
         visible: !1,
         conditionNo: 1,
         conditions: [],
@@ -3576,13 +3580,13 @@ const { storage: le } = StardustBrowser, Pi = {
         readonly: D,
         ...w
       } = o;
-      w.clearable ?? (w.clearable = !0), e.config = w, e.component = l || s && "XSelect" || i === "number" && "ElInputNumber" || "ElInput", e.ops = U[e.component].map((B) => Ee[B]), e.op = e.ops[0].value, e.component === "ElDatePicker" && (e.component = "ElInput", w.type = "date");
+      w.clearable ?? (w.clearable = !0), e.config = w, e.component = l || s && "XSelect" || i === "number" && "ElInputNumber" || "ElInput", e.ops = U[e.component].map((B) => Ve[B]), e.op = e.ops[0].value, e.component === "ElDatePicker" && (e.component = "ElInput", w.type = "date");
     },
     handleSelectOp(e, t) {
       e.op = t, t === "between" ? e.value = ["", ""] : ["in", "notIn"].includes(t) && (e.value = []), (t === "special" || !["between", "in", "notIn"].includes(t) && Array.isArray(t)) && (e.value = "");
     }
   }
-}, Je = /* @__PURE__ */ k(Pi, [["__scopeId", "data-v-229298c7"]]);
+}, Ye = /* @__PURE__ */ k(Pi, [["__scopeId", "data-v-229298c7"]]);
 const Ui = {
   name: "Settings",
   props: {
@@ -3632,7 +3636,7 @@ const Ui = {
       });
     }
   }
-}, Li = (e) => (je("data-v-c81e4a2f"), e = e(), Te(), e), Xi = { class: "table" }, qi = ["title", "onClick"], zi = /* @__PURE__ */ Li(() => /* @__PURE__ */ j("span", { class: "unit" }, "px", -1));
+}, Li = (e) => (Fe("data-v-c81e4a2f"), e = e(), Me(), e), Xi = { class: "table" }, qi = ["title", "onClick"], zi = /* @__PURE__ */ Li(() => /* @__PURE__ */ j("span", { class: "unit" }, "px", -1));
 function Wi(e, t, s, i, n, o) {
   const l = u("el-button"), a = u("ElCheckbox"), r = u("el-input-number"), h = u("el-tab-pane"), p = u("el-tabs"), $ = u("el-popover");
   return s.visible ? (d(), m($, g({
@@ -3717,7 +3721,7 @@ function Wi(e, t, s, i, n, o) {
     _: 1
   }, 16)) : y("", !0);
 }
-const Ke = /* @__PURE__ */ k(Ui, [["render", Wi], ["__scopeId", "data-v-c81e4a2f"]]);
+const Ge = /* @__PURE__ */ k(Ui, [["render", Wi], ["__scopeId", "data-v-c81e4a2f"]]);
 const Hi = {
   name: "PcXTable",
   inheritAttrs: !1,
@@ -3727,7 +3731,7 @@ const Hi = {
   emits: [
     ...I.emits()
   ],
-  components: { Searcher: Je, Settings: Ke },
+  components: { Searcher: Ye, Settings: Ge },
   data() {
     return {
       searcher: null,
@@ -3764,7 +3768,7 @@ const Hi = {
   }
 }, Ji = { key: 1 }, Ki = ["value", "checked"], Yi = { key: 1 };
 function Gi(e, t, s, i, n, o) {
-  const l = u("searcher"), a = u("pc-x-icon"), r = u("settings"), h = u("pc-x-table-tools"), p = u("el-image"), $ = u("el-tag"), _ = u("el-table-column"), E = u("el-button"), T = u("el-table"), N = u("x-pagination"), F = u("el-collapse-item"), O = u("el-collapse"), V = ne("loading");
+  const l = u("searcher"), a = u("pc-x-icon"), r = u("settings"), h = u("pc-x-table-tools"), p = u("el-image"), $ = u("el-tag"), _ = u("el-table-column"), E = u("el-button"), T = u("el-table"), N = u("x-pagination"), F = u("el-collapse-item"), O = u("el-collapse"), V = le("loading");
   return d(), v("div", {
     class: q(["pc-x-table", { fullscreen: n.isFullscreen, "hide-header": e.hideHeader }])
   }, [
@@ -3875,7 +3879,7 @@ function Gi(e, t, s, i, n, o) {
                         column: b,
                         value: w.row[b.prop]
                       }) : (d(), v(A, { key: 5 }, [
-                        b.comp === "ElSwitch" || e.table.isRowEdit && w.row.isEditing && (b.visible !== !1 || b.canEdit) ? (d(), m(G(b.comp || "ElInput"), g({ key: 0 }, { ...b, ...b.formAttrs }, {
+                        b.comp === "ElSwitch" || e.table.isRowEdit && w.row.isEditing && (b.visible !== !1 || b.canEdit) ? (d(), m(Q(b.comp || "ElInput"), g({ key: 0 }, { ...b, ...b.formAttrs }, {
                           modelValue: w.row[b.prop],
                           "onUpdate:modelValue": (B) => w.row[b.prop] = B,
                           disabled: !w.row.editable || !w.row.isEditing
@@ -3971,7 +3975,7 @@ const Zi = {
   }
 }, eo = { class: "mobile-x-table-tools" }, to = { class: "tools" }, so = { class: "tools-end" };
 function no(e, t, s, i, n, o) {
-  const l = u("mobile-x-icon"), a = u("van-button"), r = ne("domid");
+  const l = u("mobile-x-icon"), a = u("van-button"), r = le("domid");
   return d(), v("div", eo, [
     j("div", to, [
       S(e.$slots, "tools-prefix", {}, void 0, !0),
@@ -4074,7 +4078,7 @@ const oo = {
   }
 }, lo = { class: "tools" }, ao = { class: "tools-end flex-center" };
 function ro(e, t, s, i, n, o) {
-  const l = u("pc-x-icon"), a = u("el-button"), r = u("el-card"), h = ne("domid");
+  const l = u("pc-x-icon"), a = u("el-button"), r = u("el-card"), h = le("domid");
   return d(), m(r, {
     shadow: "hover",
     "body-style": { padding: "10px" },
@@ -4171,7 +4175,7 @@ function ro(e, t, s, i, n, o) {
 }
 const co = /* @__PURE__ */ k(oo, [["render", ro], ["__scopeId", "data-v-02d70f98"]]);
 function uo(e) {
-  return typeof e == "function" || Object.prototype.toString.call(e) === "[object Object]" && !Oe(e);
+  return typeof e == "function" || Object.prototype.toString.call(e) === "[object Object]" && !Te(e);
 }
 const ho = (e) => {
   const t = e._data.length > 0 && e.selected.size === e._data.length, s = !t && e.selected.size > 0, i = (n) => {
@@ -4213,7 +4217,7 @@ const ho = (e) => {
     checked: s === t.checked,
     onChange: t.handleCheckedChange
   }, null);
-}, ie = ([e, t, s, i, n, o]) => {
+}, ae = ([e, t, s, i, n, o]) => {
   const {
     rowIndex: l,
     rowData: a
@@ -4234,16 +4238,16 @@ const ho = (e) => {
   });
 }, go = (e, t) => {
   if (t.canEdit(e.rowData))
-    return ie([e, t, "edit", "warning", "edit", "编辑"]);
+    return ae([e, t, "edit", "warning", "edit", "编辑"]);
 }, bo = (e, t) => {
   if (t.canRowEdit(e.rowData))
-    return ie([e, t, "row-edit", "success", "collection", "保存"]);
+    return ae([e, t, "row-edit", "success", "collection", "保存"]);
 }, _o = (e, t) => {
   if (t.canCancelEdit(e.rowData))
-    return ie([e, t, "cancel-edit", "warning", "refresh-left", "取消编辑"]);
+    return ae([e, t, "cancel-edit", "warning", "refresh-left", "取消编辑"]);
 }, yo = (e, t) => {
   if (t.canDelete(e.rowData))
-    return ie([e, t, "delete", "danger", "DeleteFilled", "删除"]);
+    return ae([e, t, "delete", "danger", "DeleteFilled", "删除"]);
 }, vo = (e, t) => {
   const {
     _attrs: s,
@@ -4351,7 +4355,7 @@ const $o = {
   emits: [
     ...I.emits()
   ],
-  components: { Searcher: Je, Settings: Ke },
+  components: { Searcher: Ye, Settings: Ge },
   data() {
     return {
       isFullscreen: !1,
@@ -4381,7 +4385,7 @@ const $o = {
   }
 }, ko = { key: 1 };
 function Co(e, t, s, i, n, o) {
-  const l = u("Searcher"), a = u("x-icon"), r = u("Settings"), h = u("x-table-tools"), p = u("el-table-v2"), $ = u("el-auto-resizer"), _ = u("x-pagination"), E = u("el-collapse-item"), T = u("el-collapse"), N = ne("loading");
+  const l = u("Searcher"), a = u("x-icon"), r = u("Settings"), h = u("x-table-tools"), p = u("el-table-v2"), $ = u("el-auto-resizer"), _ = u("x-pagination"), E = u("el-collapse-item"), T = u("el-collapse"), N = le("loading");
   return d(), v("div", {
     class: q(["pc-x-table-v2", { fullscreen: n.isFullscreen }])
   }, [
@@ -4447,7 +4451,7 @@ function Co(e, t, s, i, n, o) {
               } : void 0
             ]), 1040, ["domids", "onAdd", "onSearch", "onExport", "onSearchExport", "onImport", "onMultiEdit", "onMultiDelete"])) : y("", !0),
             f($, {
-              style: et({ height: s.height })
+              style: st({ height: s.height })
             }, {
               default: c(({ width: F, height: O }) => [
                 R((d(), m(p, g({
@@ -4503,7 +4507,7 @@ function Co(e, t, s, i, n, o) {
   ], 2);
 }
 const Eo = /* @__PURE__ */ k($o, [["render", Co]]);
-const ae = ["selection", "radio"], xo = {
+const ce = ["selection", "radio"], xo = {
   name: "XTableViewer",
   inheritAttrs: !1,
   props: {
@@ -4557,17 +4561,17 @@ const ae = ["selection", "radio"], xo = {
   methods: {
     init() {
       const { table: e, selectMode: t } = this;
-      ae.includes(t) && (e.columns.find((s) => s.type === "_index") || e.columns.unshift({ type: "_index" }), e.columns.find((s) => s.type === t) || e.columns.unshift({
+      ce.includes(t) && (e.columns.find((s) => s.type === "_index") || e.columns.unshift({ type: "_index" }), e.columns.find((s) => s.type === t) || e.columns.unshift({
         prop: "_index",
         type: t,
         fixed: "left",
         width: 55,
         label: t === "selection" ? "" : "单选"
-      })), e.columns = e.columns.filter((s) => this.selectMode === s.type || !ae.includes(s.type));
+      })), e.columns = e.columns.filter((s) => this.selectMode === s.type || !ce.includes(s.type));
     },
     handleSubmit() {
       const { table: e, selectMode: t } = this;
-      if (ae.includes(t)) {
+      if (ce.includes(t)) {
         let s = null;
         if (t === "selection" ? s = e.selection : t === "radio" && (s = e.checked), t === "selection" && !s.length || !s) {
           this.$message({ type: "warning", message: "未选择数据" }), this.handleCancel();
@@ -4605,7 +4609,7 @@ function Ao(e, t, s, i, n, o) {
       onCancel: o.handleCancel
     }), {
       default: c(() => [
-        (d(), m(G(s.useTableV2 ? "x-table-v2" : "x-table"), g({
+        (d(), m(Q(s.useTableV2 ? "x-table-v2" : "x-table"), g({
           tref: o.table.tableRef,
           "onUpdate:tref": t[0] || (t[0] = (a) => o.table.tableRef = a),
           table: o.table
@@ -4753,10 +4757,10 @@ const Bo = {
       }
     }
   }
-}, ge = (e) => (je("data-v-fe069681"), e = e(), Te(), e), Io = { class: "mask" }, Do = {
+}, _e = (e) => (Fe("data-v-fe069681"), e = e(), Me(), e), Io = { class: "mask" }, Do = {
   key: 0,
   class: "el-upload__text"
-}, No = /* @__PURE__ */ ge(() => /* @__PURE__ */ j("em", null, "点击上传", -1)), Po = /* @__PURE__ */ ge(() => /* @__PURE__ */ j("br", null, null, -1)), Uo = /* @__PURE__ */ ge(() => /* @__PURE__ */ j("br", null, null, -1)), Lo = {
+}, No = /* @__PURE__ */ _e(() => /* @__PURE__ */ j("em", null, "点击上传", -1)), Po = /* @__PURE__ */ _e(() => /* @__PURE__ */ j("br", null, null, -1)), Uo = /* @__PURE__ */ _e(() => /* @__PURE__ */ j("br", null, null, -1)), Lo = {
   key: 0,
   class: "path"
 };
@@ -4831,7 +4835,7 @@ const zo = {
       this.previewingImage = e, this.dialogVisible = !0;
     },
     handleExceed(e, t) {
-      he({ type: "warning", message: "超出图片限制数量" });
+      Y({ type: "warning", message: "超出图片限制数量" });
     }
   }
 }, Wo = ["src"];
@@ -4877,7 +4881,7 @@ function Ho(e, t, s, i, n, o) {
     }, 8, ["modelValue", "title"])
   ], 64);
 }
-const Jo = /* @__PURE__ */ k(zo, [["render", Ho], ["__scopeId", "data-v-821cec65"]]), re = {
+const Jo = /* @__PURE__ */ k(zo, [["render", Ho], ["__scopeId", "data-v-821cec65"]]), ue = {
   xactionsheet: Ct,
   xautorows: Ot,
   mobilexbutton: Ft,
@@ -4916,9 +4920,9 @@ const Jo = /* @__PURE__ */ k(zo, [["render", Ho], ["__scopeId", "data-v-821cec65
   xtinymce: Ro,
   xfileuploader: qo,
   ximageuploader: Jo
-}, te = {};
-for (let e in re)
-  te[re[e].name] = re[e];
+}, ie = {};
+for (let e in ue)
+  ie[ue[e].name] = ue[e];
 const Ko = (e) => ({
   props: {
     platform: {
@@ -4938,46 +4942,46 @@ const Ko = (e) => ({
       ...this.$attrs
     }, this.$slots);
   }
-}), ue = (() => {
-  const e = Object.keys(te), t = [...new Set(e.map((i) => i.replace(/(pc|mobile)/i, "")))], s = {};
+}), me = (() => {
+  const e = Object.keys(ie), t = [...new Set(e.map((i) => i.replace(/(pc|mobile)/i, "")))], s = {};
   for (const i of e)
-    /(pc|mobile)/i.test(i) && (s[i] = te[i]);
+    /(pc|mobile)/i.test(i) && (s[i] = ie[i]);
   for (const i of t)
-    e.find((n) => /(pc|mobile)/i.test(n) && n.toLowerCase().includes(i.toLowerCase())) ? s[i] = Ko(i) : s[i] = te[i];
+    e.find((n) => /(pc|mobile)/i.test(n) && n.toLowerCase().includes(i.toLowerCase())) ? s[i] = Ko(i) : s[i] = ie[i];
   return s;
 })(), Yo = (e, t) => {
-  for (let s in ue)
-    e.component(s, ue[s]);
+  for (let s in me)
+    e.component(s, me[s]);
 }, Qo = {
-  version: "1.0.82",
-  ...ue,
-  ...Le,
+  version: "1.0.83",
+  ...me,
+  ...qe,
   ...St,
   install: Yo
 };
 export {
-  Xe as BaseController,
-  ht as Confirm,
-  qe as CrudController,
-  he as Message,
-  ut as Notify,
+  ze as BaseController,
+  ne as Confirm,
+  We as CrudController,
+  Y as Message,
+  se as Notify,
   wt as TempCrudController,
-  Re as baseDialog,
-  Fe as baseForm,
+  Ie as baseDialog,
+  Re as baseForm,
   _t as baseModel,
-  Me as baseTable,
+  Be as baseTable,
   St as controllers,
   Qo as default,
-  nt as effects,
+  ot as effects,
   L as formatOptions,
-  it as formatPrecision,
-  Ne as initDefaultForm,
-  Ie as initDialog,
-  pe as initForm,
-  De as initFormRules,
+  lt as formatPrecision,
+  Ue as initDefaultForm,
+  Ne as initDialog,
+  fe as initForm,
+  Pe as initFormRules,
   yt as initModel,
-  Be as initTable,
-  Pe as isWhenMatched,
-  Ue as triggers,
-  Le as utils
+  De as initTable,
+  Le as isWhenMatched,
+  Xe as triggers,
+  qe as utils
 };
