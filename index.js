@@ -4655,6 +4655,7 @@ const Oo = /* @__PURE__ */ k(xo, [["render", Ao], ["__scopeId", "data-v-f5d31400
   methods: {
     async initEditor() {
       const e = await window.tinymce.init({
+        language: "zh_CN",
         selector: "textarea#" + this.id,
         height: 500,
         plugins: [
@@ -4954,7 +4955,7 @@ const Ko = (e) => ({
   for (let s in me)
     e.component(s, me[s]);
 }, Qo = {
-  version: "1.0.85",
+  version: "1.0.86",
   ...me,
   ...qe,
   ...St,

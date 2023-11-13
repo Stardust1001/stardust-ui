@@ -37,6 +37,7 @@ export default {
   methods: {
     async initEditor () {
       const instance = await window.tinymce.init({
+        language: 'zh_CN',
         selector: 'textarea#' + this.id,
         height: 500,
         plugins: [
