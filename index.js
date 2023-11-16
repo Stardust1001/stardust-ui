@@ -129,7 +129,7 @@ const nt = (e) => {
   ), t.then(() => e.distinguishCancelAndClose ? "confirm" : !0).catch((i) => e.distinguishCancelAndClose ? i : !1);
 };
 for (let e of ["success", "warning", "info", "error", "primary", "loading", "fail", "html"])
-  Y[e] = Y[e[0]] = (t) => Y({ type: e, ...t }), ne[e] = ne[e[0]] = (t) => ne({ type: e, ...t }), ie[e] = ie[e[0]] = (t) => ie({ type: e, ...t });
+  Y[e] = Y[e[0]] = (t) => Y({ type: e, ...typeof t != "string" ? t : { message: t } }), ne[e] = ne[e[0]] = (t) => ne({ type: e, ...typeof t != "string" ? t : { message: t } }), ie[e] = ie[e[0]] = (t) => ie({ type: e, ...t });
 const pt = (e, t) => {
   e.beforeEach((s, i, n) => {
     s.matched.length ? n() : n("/404");
@@ -4955,7 +4955,7 @@ const Ko = (e) => ({
   for (let s in me)
     e.component(s, me[s]);
 }, Qo = {
-  version: "1.0.87",
+  version: "1.0.88",
   ...me,
   ...qe,
   ...St,

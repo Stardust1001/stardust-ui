@@ -66,8 +66,14 @@ export const Confirm = options => {
 }
 
 for (let type of ['success', 'warning', 'info', 'error', 'primary', 'loading', 'fail', 'html']) {
-  Message[type] = Message[type[0]] = options => Message({ type, ...options })
-  Notify[type] = Notify[type[0]] = options => Notify({ type, ...options })
+  Message[type] = Message[type[0]] = options => {
+    const opts = typeof options !== 'string' ? options : { message: options }
+    return Message({ type, ...opts })
+  }
+  Notify[type] = Notify[type[0]] = options => {
+    const opts = typeof options !== 'string' ? options : { message: options }
+    return Notify({ type, ...opts })
+  }
   Confirm[type] = Confirm[type[0]] = options => Confirm({ type, ...options })
 }
 
