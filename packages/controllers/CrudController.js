@@ -524,9 +524,9 @@ class CrudController extends BaseController {
           const update = (newVal, oldVal) => {
             const rows = oldVal ? this.table.list : list
             const kvMap = makeOptionsKvMap(col)
-            rows.forEach(ele => {
+            rows.forEach((ele, index) => {
               const value = ele[prop]
-              ele[`_formatted_${prop}`] = kvMap[value] || formatter?.(value) || value
+              ele[`_formatted_${prop}`] = kvMap[value] || formatter?.(value, ele, index) || value
             })
           }
           const un = watch(() => col.options, update, { immediate: true, deep: true })
