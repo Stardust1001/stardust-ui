@@ -1,4 +1,4 @@
-import { nextTick } from 'vue'
+import { watch, nextTick } from 'vue'
 import { Message } from './message.js'
 
 export const check404 = (router, store) => {
