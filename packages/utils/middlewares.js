@@ -18,14 +18,27 @@ export const setTitle = (router, store) => {
 
 export const checkRolesPages = (router, store) => {
   router.beforeEach((to, from, next) => {
-    const canView = !to.meta.roles || to.meta.roles.some(role => {
-      return store.getters.userRoles.includes(role)
-    })
-    if (canView) {
-      next()
-    } else {
-      next('/')
+    if (to.meta?.isInWhiteList) return next()
+    if (!store.acl.paths.includes(to.path)) {
+      Message.e('无权访问页面: ' + to.path)
+      return next('/404')
     }
+    return next()
+  })
+  nextTick(() => {
+    watch(() => store.acl.menus, menus => {
+      const paths = store.acl.paths
+      const routes = router.getRoutes()
+      const update = (route, parent) => {
+        const path = (parent?.path ? (parent.path + '/') : '') + route.path
+        if (!paths.includes(path)) {
+          route.meta ||= {}
+          route.meta.hidden = true
+        }
+        route.children?.forEach(sub => update(sub, route))
+      }
+      routes.forEach(update)
+    }, { immediate: true })
   })
 }
 
