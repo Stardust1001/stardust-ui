@@ -20,7 +20,7 @@ export const setTitle = (router, store) => {
 
 export const checkRolesPages = (router, store) => {
   router.beforeEach((to, from, next) => {
-    if (to.meta?.isInWhiteList) return next()
+    if (to.meta?.visitable) return next()
     if (!store.acl.paths.includes(to.path)) {
       Message.e('无权访问页面: ' + to.path)
       return next('/404')
@@ -33,7 +33,7 @@ export const checkRolesPages = (router, store) => {
       const routes = router.getRoutes()
       const update = (route, parent) => {
         const path = (parent?.path ? (parent.path + '/') : '') + route.path
-        if (!paths.includes(path)) {
+        if (route.meta.hidden !== false && !paths.includes(path)) {
           route.meta ||= {}
           route.meta.hidden = true
         }

@@ -1,6 +1,7 @@
 import effects from './effects.js'
 
 import {
+  validateForm,
   formatPrecision,
   formatOptions
 } from './funcs.js'
@@ -33,6 +34,7 @@ import {
 
 export {
   effects,
+  validateForm,
   formatPrecision,
   formatOptions,
   Message,
@@ -54,6 +56,7 @@ export {
 
 export default {
   effects,
+  validateForm,
   formatPrecision,
   formatOptions,
   Message,
