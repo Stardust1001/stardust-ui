@@ -18,7 +18,7 @@ export const setTitle = (router, store) => {
   })
 }
 
-export const checkRolesPages = (router, store) => {
+export const checkRolesPages = (router, store, routes) => {
   router.beforeEach((to, from, next) => {
     if (to.meta?.visitable) return next()
     if (!store.acl.paths.includes(to.path)) {
@@ -30,7 +30,6 @@ export const checkRolesPages = (router, store) => {
   nextTick(() => {
     watch(() => store.acl.menus, menus => {
       const paths = store.acl.paths
-      const routes = router.getRoutes()
       const update = (route, parent) => {
         const path = (parent?.path ? (parent.path + '/') : '') + route.path
         route.meta ||= {}
