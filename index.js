@@ -155,7 +155,7 @@ const mt = (e, t) => {
       const i = t.acl.paths, n = e.getRoutes(), o = (l, a) => {
         var h, p, S, _, C;
         const r = (a != null && a.path ? a.path + "/" : "") + l.path;
-        l.meta || (l.meta = {}), a && (!l.meta.hasOwnProperty("hidden") || !l.meta.hasOwnProperty("visitable")) && ((p = l.meta).hidden ?? (p.hidden = (h = a.meta) == null ? void 0 : h.hidden), (_ = l.meta).visitable ?? (_.visitable = (S = a.meta) == null ? void 0 : S.visitable), l.meta = { ...l.meta }), l.meta.hidden !== !1 && !i.includes(r) && (l.meta.hidden = !0), (C = l.children) == null || C.forEach((A) => o(A, l));
+        l.meta || (l.meta = {}), a && (l.meta.hidden == null || l.meta.visitable == null) && ((p = l.meta).hidden ?? (p.hidden = (h = a.meta) == null ? void 0 : h.hidden), (_ = l.meta).visitable ?? (_.visitable = (S = a.meta) == null ? void 0 : S.visitable), l.meta = { ...l.meta }), l.meta.hidden !== !1 && !i.includes(r) && (l.meta.hidden = !0), (C = l.children) == null || C.forEach((A) => o(A, l));
       };
       n.forEach(o);
     }, { immediate: !0 });
@@ -4973,7 +4973,7 @@ const Yo = (e) => ({
   for (let s in me)
     e.component(s, me[s]);
 }, Zo = {
-  version: "1.0.98",
+  version: "1.0.99",
   ...me,
   ...ze,
   ...$t,

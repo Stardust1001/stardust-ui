@@ -35,7 +35,7 @@ export const checkRolesPages = (router, store) => {
         const path = (parent?.path ? (parent.path + '/') : '') + route.path
         route.meta ||= {}
         if (parent) {
-          if (!route.meta.hasOwnProperty('hidden') || !route.meta.hasOwnProperty('visitable')) {
+          if (route.meta.hidden == null || route.meta.visitable == null) {
             route.meta.hidden ??= parent.meta?.hidden
             route.meta.visitable ??= parent.meta?.visitable
             route.meta = { ...route.meta }
