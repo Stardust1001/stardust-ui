@@ -223,7 +223,7 @@ const mt = (e, t) => {
   return i.forEach((o) => {
     if (e.formRules[o])
       return;
-    const l = t.find((E) => E.prop === o), a = l.platform || e.platform || (window.isMobile ? "mobile" : "pc"), r = Xe[a], h = [], b = { required: !0, message: `请${"options" in l ? "选择" : "输入"}${l.validator || l.asyncValidator ? "合法的" : ""}${(l == null ? void 0 : l.label) || o}` };
+    const l = t.find((E) => E.prop === o), a = l.platform || e.platform || (window.isMobile ? "mobile" : "pc"), r = Xe[a], h = [], p = "options" in l, b = { required: !0, message: `请${l.validator || l.asyncValidator ? "正确" : ""}${p ? "选择" : "输入"}${(l == null ? void 0 : l.label) || o}` };
     l.validator && (b.validator = l.validator), l.asyncValidator && (b.asyncValidator = l.asyncValidator), l.comp ? h.push({ ...b, trigger: r.change }) : h.push({ ...b, trigger: r.blur }), l.comp === "ElInputNumber" && h.push({ ...b, trigger: r.blur }), n[o] = h;
   }), Object.assign(e.formRules, n), e.formRules;
 }, Le = (e, t, s = !0) => {
@@ -4973,7 +4973,7 @@ const Yo = (e) => ({
   for (let s in me)
     e.component(s, me[s]);
 }, Zo = {
-  version: "1.0.94",
+  version: "1.0.95",
   ...me,
   ...ze,
   ...$t,
