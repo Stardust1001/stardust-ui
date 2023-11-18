@@ -2,7 +2,9 @@ import { toRaw } from 'vue'
 
 export const validateForm = async (model) => {
   const ok = await model.formRef?.validate().then(() => true).catch(() => false)
-  const oks = await Promise.all(model.formItems?.filter(it => it.comp?.endsWith('XForm')).map(it => this.validateForm(it.form)))
+  const oks = await Promise.all(model.formItems?.filter(it => {
+    return it.comp?.endsWith('XForm') || it.comp?.endsWith('x-form')
+  }).map(it => validateForm(it.form)))
   return ok && oks.every(ok => ok)
 }
 

@@ -1,11 +1,11 @@
-import { toRaw as tt, nextTick as ee, watch as fe, resolveComponent as u, openBlock as d, createBlock as m, mergeProps as g, createElementBlock as v, Fragment as A, renderList as R, withCtx as c, renderSlot as w, toDisplayString as x, useCssVars as Oe, createTextVNode as C, createSlots as K, resolveDynamicComponent as Q, createCommentVNode as y, createVNode as f, normalizeClass as q, normalizeProps as oe, guardReactiveProps as je, h as z, isVNode as Fe, createElementVNode as j, withModifiers as Y, pushScopeId as Te, popScopeId as Me, resolveDirective as le, withDirectives as B, normalizeStyle as st } from "vue";
-const nt = (e) => {
+import { toRaw as st, nextTick as ee, watch as fe, resolveComponent as u, openBlock as d, createBlock as m, mergeProps as g, createElementBlock as v, Fragment as A, renderList as R, withCtx as c, renderSlot as w, toDisplayString as x, useCssVars as Oe, createTextVNode as C, createSlots as K, resolveDynamicComponent as Q, createCommentVNode as y, createVNode as f, normalizeClass as q, normalizeProps as oe, guardReactiveProps as je, h as z, isVNode as Fe, createElementVNode as j, withModifiers as Y, pushScopeId as Te, popScopeId as Me, resolveDirective as le, withDirectives as B, normalizeStyle as nt } from "vue";
+const it = (e) => {
   const { width: t, height: s } = e.getBoundingClientRect();
   e.width = t, e.height = s;
   const i = e.getContext("2d");
   class n {
-    constructor(M, W, X, Z, Qe, Ze, et) {
-      this.x = M, this.y = W, this.radius = X, this.color = Z, this.vx = Qe, this.vy = Ze, this.ctx = et;
+    constructor(M, W, X, Z, Ze, et, tt) {
+      this.x = M, this.y = W, this.radius = X, this.color = Z, this.vx = Ze, this.vy = et, this.ctx = tt;
     }
     update() {
       this.x += this.vx, this.y += this.vy, this.ctx.beginPath(), this.ctx.fillStyle = this.color, this.ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2), this.ctx.fill(), this.detectWall();
@@ -52,7 +52,7 @@ const nt = (e) => {
     Date.now() - V >= F && (o(), p(), N.forEach((S) => S.update()), V = Date.now()), b = requestAnimationFrame(I);
   };
   return b = requestAnimationFrame(I), () => cancelAnimationFrame(b);
-}, it = ({
+}, ot = ({
   text: e,
   gap: t,
   fontSize: s,
@@ -70,15 +70,15 @@ const nt = (e) => {
     for (let E = t / 2; E < n; E += p)
       r[l + "Text"](e, E, _);
   return a;
-}, ot = {
-  pop: nt,
-  createWatermark: it
-}, lt = async (e) => {
+}, lt = {
+  pop: it,
+  createWatermark: ot
+}, Re = async (e) => {
   var i, n;
   const t = await ((i = e.formRef) == null ? void 0 : i.validate().then(() => !0).catch(() => !1)), s = await Promise.all((n = e.formItems) == null ? void 0 : n.filter((o) => {
-    var l;
-    return (l = o.comp) == null ? void 0 : l.endsWith("XForm");
-  }).map((o) => globalThis.validateForm(o.form)));
+    var l, a;
+    return ((l = o.comp) == null ? void 0 : l.endsWith("XForm")) || ((a = o.comp) == null ? void 0 : a.endsWith("x-form"));
+  }).map((o) => Re(o.form)));
   return t && s.every((o) => o);
 }, at = (e, t) => {
   if (typeof e != "number") {
@@ -89,7 +89,7 @@ const nt = (e) => {
   }
   return e.toFixed(t) * 1;
 }, L = (e, t) => {
-  const s = e.__v_isRef ? e.value : tt(e);
+  const s = e.__v_isRef ? e.value : st(e);
   let i = s;
   if (typeof s[0] != "object" && (i = s.map((o) => ({ text: o, value: o }))), !t.sort)
     return i;
@@ -169,7 +169,7 @@ const mt = (e, t) => {
   setTitle: ft,
   checkRolesPages: gt,
   redirectTo: bt
-}, Re = () => ({
+}, Be = () => ({
   form: {},
   initialForm: {},
   formItems: [],
@@ -177,7 +177,7 @@ const mt = (e, t) => {
   formRules: {},
   initialFormRules: {},
   _isBaseForm: !0
-}), Be = (e = {}) => ({
+}), Ie = (e = {}) => ({
   loading: !1,
   query: {
     page: 1,
@@ -192,25 +192,25 @@ const mt = (e, t) => {
   selection: [],
   checked: null,
   _isBaseTable: !0
-}), Ie = () => ({
-  ...Re(),
+}), De = () => ({
+  ...Be(),
   visible: !1,
   isEditing: !1,
   editingIndex: "",
   editingRow: {},
   _isBaseDialog: !0
 }), yt = () => ({
-  table: Be(),
-  dialog: Ie()
+  table: Ie(),
+  dialog: De()
 }), { funcs: he } = StardustJs, vt = (e, t) => {
   for (let s in e) {
     const i = e[s];
-    !i || typeof i != "object" || (s === "table" && e[s]._isBaseTable && De(i, t), s === "dialog" && e[s]._isBaseDialog && Ne(i, t), s === "form" && e[s]._isBaseForm && ge(i, t));
+    !i || typeof i != "object" || (s === "table" && e[s]._isBaseTable && Ne(i, t), s === "dialog" && e[s]._isBaseDialog && Pe(i, t), s === "form" && e[s]._isBaseForm && ge(i, t));
   }
   return e;
-}, De = (e, t) => (e.columns.push(...t.filter((s) => s.visible === !1 ? s.canView : s.canView !== !1)), e), Ne = (e, t) => (e.formItems = t.filter((s) => s.visible === !1 ? s.canAdd || s.canEdit : s.canAdd !== !1 || s.canEdit !== !1), ge(e, t), e), ge = (e, t) => (e._isBaseForm && !e._isBaseDialog && (e.formItems = t.filter((i) => i.visible !== !1)), Ue(e.form, e.formItems), e.initialForm = he.deepCopy(e.form), e.initialFormRules = he.deepCopy(e.formRules), fe(() => e.formItems, () => {
-  Pe(e);
-}, { immediate: !0, deep: !0 }), e), Pe = (e) => {
+}, Ne = (e, t) => (e.columns.push(...t.filter((s) => s.visible === !1 ? s.canView : s.canView !== !1)), e), Pe = (e, t) => (e.formItems = t.filter((s) => s.visible === !1 ? s.canAdd || s.canEdit : s.canAdd !== !1 || s.canEdit !== !1), ge(e, t), e), ge = (e, t) => (e._isBaseForm && !e._isBaseDialog && (e.formItems = t.filter((i) => i.visible !== !1)), Le(e.form, e.formItems), e.initialForm = he.deepCopy(e.form), e.initialFormRules = he.deepCopy(e.formRules), fe(() => e.formItems, () => {
+  Ue(e);
+}, { immediate: !0, deep: !0 }), e), Ue = (e) => {
   const { formItems: t, initialFormRules: s } = e, i = t.filter((o) => {
     let { formAttrs: l = {}, required: a = !1 } = o;
     return a = "required" in l ? l.required : a, !o.hasOwnProperty("rules") && !e.initialFormRules.hasOwnProperty(o.prop) && a !== !1;
@@ -223,10 +223,10 @@ const mt = (e, t) => {
   return i.forEach((o) => {
     if (e.formRules[o])
       return;
-    const l = t.find((E) => E.prop === o), a = l.platform || e.platform || (window.isMobile ? "mobile" : "pc"), r = Xe[a], h = [], _ = { required: !0, message: `请${"options" in l ? "选择" : "输入"}${(l == null ? void 0 : l.label) || o}` };
+    const l = t.find((E) => E.prop === o), a = l.platform || e.platform || (window.isMobile ? "mobile" : "pc"), r = qe[a], h = [], _ = { required: !0, message: `请${"options" in l ? "选择" : "输入"}${(l == null ? void 0 : l.label) || o}` };
     l.validator && (_.validator = l.validator), l.asyncValidator && (_.asyncValidator = l.asyncValidator), l.comp ? h.push({ ..._, trigger: r.change }) : h.push({ ..._, trigger: r.blur }), l.comp === "ElInputNumber" && h.push({ ..._, trigger: r.blur }), n[o] = h;
   }), Object.assign(e.formRules, n), e.formRules;
-}, Ue = (e, t, s = !0) => {
+}, Le = (e, t, s = !0) => {
   const i = {};
   return t.forEach((n) => {
     var h;
@@ -248,7 +248,7 @@ const mt = (e, t) => {
     }
     i[n.prop] = o;
   }), Object.assign(e, { ...i, ...e }), e;
-}, Le = (e, t) => {
+}, Xe = (e, t) => {
   if (!e)
     return !0;
   const s = /[\^\*\$\~\!]?=/;
@@ -258,7 +258,7 @@ const mt = (e, t) => {
   typeof o == "number" ? o += "" : typeof o == "string" && (o = o.trim());
   const l = e.match(s)[0];
   return n.some((a) => l === "^=" ? o.startsWith(a) : l === "*=" ? o.includes(a) : l === "$=" ? o.endsWith(a) : l === "~=" ? !o.includes(a) : l === "!=" ? o !== a : a === o);
-}, Xe = {
+}, qe = {
   mobile: {
     blur: "onBlur",
     change: "onChange"
@@ -267,29 +267,29 @@ const mt = (e, t) => {
     blur: "blur",
     change: "change"
   }
-}, qe = {
-  effects: ot,
-  validateForm: lt,
+}, ze = {
+  effects: lt,
+  validateForm: Re,
   formatPrecision: at,
   formatOptions: L,
   Message: J,
   Notify: ne,
   Confirm: ie,
   middlewares: _t,
-  baseForm: Re,
-  baseTable: Be,
-  baseDialog: Ie,
+  baseForm: Be,
+  baseTable: Ie,
+  baseDialog: De,
   baseModel: yt,
   initModel: vt,
-  initTable: De,
-  initDialog: Ne,
+  initTable: Ne,
+  initDialog: Pe,
   initForm: ge,
-  initFormRules: Pe,
-  initDefaultForm: Ue,
-  isWhenMatched: Le,
-  triggers: Xe
+  initFormRules: Ue,
+  initDefaultForm: Le,
+  isWhenMatched: Xe,
+  triggers: qe
 };
-class ze {
+class We {
   constructor({ model: t, vue: s }) {
     if (this.model = t, this._bindMethods(), s) {
       const i = s.getCurrentInstance();
@@ -318,7 +318,7 @@ class ze {
     throw "请自行注入 store";
   }
   get uiUtils() {
-    return qe;
+    return ze;
   }
   get service() {
     throw "请自行注入 service";
@@ -402,7 +402,7 @@ class ze {
   }
 }
 const { funcs: ve, highdict: we, dates: re } = StardustJs, { file: Se, excel: se } = StardustBrowser;
-class We extends ze {
+class He extends We {
   constructor(t) {
     super(t);
     const { model: s, table: i, dialog: n, dbModelName: o = "", idField: l = "id", listProp: a = "data" } = t;
@@ -868,7 +868,7 @@ const wt = (e) => {
     o[l[n]] = l[i];
   }), o;
 };
-class St extends We {
+class St extends He {
   handleAdd() {
     const t = this.table.list.length, s = {
       _index: t + 1,
@@ -891,8 +891,8 @@ class St extends We {
   }
 }
 const $t = {
-  BaseController: ze,
-  CrudController: We,
+  BaseController: We,
+  CrudController: He,
   TempCrudController: St
 }, k = (e, t) => {
   const s = e.__vccOpts || e;
@@ -1560,7 +1560,7 @@ function hs() {
 function ps() {
   return this.useWhen ? this._items.filter((e) => {
     var t;
-    return Le(e.when || ((t = e.formAttrs) == null ? void 0 : t.when), this._model);
+    return Xe(e.when || ((t = e.formAttrs) == null ? void 0 : t.when), this._model);
   }) : this._items;
 }
 function ms() {
@@ -2026,7 +2026,7 @@ function Bs(e, t, s, i, n, o) {
     _: 1
   }, 16));
 }
-const Is = /* @__PURE__ */ k(Ms, [["render", Bs]]), { highdict: Ds } = StardustJs, { storage: Ns } = StardustBrowser, { local: He } = Ns, Je = ["index", "selection", "expand", "radio", "_index"];
+const Is = /* @__PURE__ */ k(Ms, [["render", Bs]]), { highdict: Ds } = StardustJs, { storage: Ns } = StardustBrowser, { local: Je } = Ns, Ke = ["index", "selection", "expand", "radio", "_index"];
 function Ps() {
   return {
     table: Object,
@@ -2190,7 +2190,7 @@ function on() {
   }), t;
 }
 function ln() {
-  const e = this._columns.filter((s) => s.type && Je.includes(s.type)), t = this.settings.columns.filter((s) => !s.hide).map((s) => {
+  const e = this._columns.filter((s) => s.type && Ke.includes(s.type)), t = this.settings.columns.filter((s) => !s.hide).map((s) => {
     const i = this._columns.find((n) => n.prop === s.prop);
     return {
       sortable: "custom",
@@ -2208,20 +2208,20 @@ function rn() {
   return this.table.hideOperates || this.$attrs["hide-operates"] !== void 0 && this.$attrs["hide-operates"] !== !1;
 }
 function dn() {
-  return this._columns.filter((e) => !e.type || !Je.includes(e.type));
+  return this._columns.filter((e) => !e.type || !Ke.includes(e.type));
 }
 function cn() {
   return this.table.searcherConfig ?? this.$attrs["searcher-config"] ?? {};
 }
 function un() {
-  const e = this._uid && He.getJson(`Settings[${this._uid}]`, {}) || {};
+  const e = this._uid && Je.getJson(`Settings[${this._uid}]`, {}) || {};
   e.columns || (e.columns = this._columns.filter((t) => t.label && t.prop).map((t) => {
     const { prop: s, label: i, show: n, hide: o, width: l } = t;
     return { prop: s, label: i, show: n, hide: o, width: l };
   })), this.settings = e;
 }
 function hn(e) {
-  He.setJson(`Settings[${this._uid}]`, e);
+  Je.setJson(`Settings[${this._uid}]`, e);
 }
 function pn(e, t) {
   const { prop: s } = t;
@@ -2798,7 +2798,7 @@ function ui(e, t, s, i, n, o) {
     _: 3
   });
 }
-const hi = /* @__PURE__ */ k(di, [["render", ui]]), Ke = async (e, t, s) => {
+const hi = /* @__PURE__ */ k(di, [["render", ui]]), Ye = async (e, t, s) => {
   s.loading = !0;
   const i = t == null ? void 0 : t.trim(), { text: n = "text", value: o = "value", labelTexts: l, params: a = {} } = s;
   a.attributes = [...new Set(a.attributes || [...l || [], n, o])], a.limit = a.limit || 20, i && (a.where = a.where || {}, a.where[n] = a.where[n] || {}, a.where[n]["[Op.like]"] = `%${i}%`);
@@ -2855,7 +2855,7 @@ const hi = /* @__PURE__ */ k(di, [["render", ui]]), Ke = async (e, t, s) => {
     remoteSearch(e) {
       if (!this.modelName)
         return this._options;
-      Ke(this.service.restful, e, this);
+      Ye(this.service.restful, e, this);
     },
     onClick(e) {
       e.target.classList.contains("van-overlay") || (this.visible = !0);
@@ -2928,7 +2928,7 @@ const _i = {
     remoteSearch(e) {
       if (!this.remote && !this.modelName)
         return this._options;
-      Ke(this.service.restful, e, this);
+      Ye(this.service.restful, e, this);
     },
     calcMainLabel(e) {
       return pi(e, this);
@@ -3604,7 +3604,7 @@ const { storage: de } = StardustBrowser, Ui = {
       e.op = t, t === "between" ? e.value = ["", ""] : ["in", "notIn"].includes(t) && (e.value = []), (t === "special" || !["between", "in", "notIn"].includes(t) && Array.isArray(t)) && (e.value = "");
     }
   }
-}, Ye = /* @__PURE__ */ k(Ui, [["__scopeId", "data-v-229298c7"]]);
+}, Ge = /* @__PURE__ */ k(Ui, [["__scopeId", "data-v-229298c7"]]);
 const Li = {
   name: "Settings",
   props: {
@@ -3739,7 +3739,7 @@ function Hi(e, t, s, i, n, o) {
     _: 1
   }, 16)) : y("", !0);
 }
-const Ge = /* @__PURE__ */ k(Li, [["render", Hi], ["__scopeId", "data-v-c81e4a2f"]]);
+const Qe = /* @__PURE__ */ k(Li, [["render", Hi], ["__scopeId", "data-v-c81e4a2f"]]);
 const Ji = {
   name: "PcXTable",
   inheritAttrs: !1,
@@ -3749,7 +3749,7 @@ const Ji = {
   emits: [
     ...D.emits()
   ],
-  components: { Searcher: Ye, Settings: Ge },
+  components: { Searcher: Ge, Settings: Qe },
   data() {
     return {
       searcher: null,
@@ -4373,7 +4373,7 @@ const ko = {
   emits: [
     ...D.emits()
   ],
-  components: { Searcher: Ye, Settings: Ge },
+  components: { Searcher: Ge, Settings: Qe },
   data() {
     return {
       isFullscreen: !1,
@@ -4469,7 +4469,7 @@ function Eo(e, t, s, i, n, o) {
               } : void 0
             ]), 1040, ["domids", "onAdd", "onSearch", "onExport", "onSearchExport", "onImport", "onMultiEdit", "onMultiDelete"])) : y("", !0),
             f($, {
-              style: st({ height: s.height })
+              style: nt({ height: s.height })
             }, {
               default: c(({ width: T, height: O }) => [
                 B((d(), m(p, g({
@@ -4973,36 +4973,36 @@ const Yo = (e) => ({
   for (let s in me)
     e.component(s, me[s]);
 }, Zo = {
-  version: "1.0.92",
+  version: "1.0.93",
   ...me,
-  ...qe,
+  ...ze,
   ...$t,
   install: Go
 };
 export {
-  ze as BaseController,
+  We as BaseController,
   ie as Confirm,
-  We as CrudController,
+  He as CrudController,
   J as Message,
   ne as Notify,
   St as TempCrudController,
-  Ie as baseDialog,
-  Re as baseForm,
+  De as baseDialog,
+  Be as baseForm,
   yt as baseModel,
-  Be as baseTable,
+  Ie as baseTable,
   $t as controllers,
   Zo as default,
-  ot as effects,
+  lt as effects,
   L as formatOptions,
   at as formatPrecision,
-  Ue as initDefaultForm,
-  Ne as initDialog,
+  Le as initDefaultForm,
+  Pe as initDialog,
   ge as initForm,
-  Pe as initFormRules,
+  Ue as initFormRules,
   vt as initModel,
-  De as initTable,
-  Le as isWhenMatched,
-  Xe as triggers,
-  qe as utils,
-  lt as validateForm
+  Ne as initTable,
+  Xe as isWhenMatched,
+  qe as triggers,
+  ze as utils,
+  Re as validateForm
 };
