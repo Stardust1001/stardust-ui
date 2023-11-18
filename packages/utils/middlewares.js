@@ -1,7 +1,7 @@
 import { watch, nextTick } from 'vue'
 import { Message } from './message.js'
 
-export const check404 = (router, store) => {
+export const check404 = (router, store, routes) => {
   router.beforeEach((to, from, next) => {
     if (to.matched.length) {
       next()
@@ -11,7 +11,7 @@ export const check404 = (router, store) => {
   })
 }
 
-export const setTitle = (router, store) => {
+export const setTitle = (router, store, routes) => {
   router.afterEach((to, from) => {
     const titles = to.matched.map(r => r.meta.title)
     document.title = [store.app.sitename, ...titles].filter(t => t).reverse().join('-')
@@ -50,7 +50,7 @@ export const checkRolesPages = (router, store, routes) => {
   })
 }
 
-export const redirectTo = (router, store) => {
+export const redirectTo = (router, store, routes) => {
   router.beforeEach((to, from, next) => {
     if (to.name === 'Login' && store.getters.logined && to.query.redirectTo) {
       next(to.query.redirectTo)
