@@ -16,9 +16,6 @@ export default {
   computed: {
     collapse () {
       return this.$store.getters.collapse
-    },
-    userRoles () {
-      return this.$store.getters.userRoles
     }
   },
   watch: {
@@ -49,8 +46,7 @@ export default {
       if (!this.hover && this.collapse && data.path[0] !== '/') {
         return false
       }
-      const { hidden, roles } = data.meta || {}
-      return !hidden && (!roles || roles.some(r => this.userRoles.includes(r)))
+      return !data.meta?.hidden
     },
     checkIsRoot (data) {
       return this.checkIsBranch(data) && data.path.split('/').length === 2
