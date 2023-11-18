@@ -169,8 +169,8 @@ export default {
                 name="operates-prefix"
                 :scope="scope"
               />
-              <XRow v-if="!hideOperates" :gutter="10">
-                <XCol :span="12">
+              <x-row v-if="!hideOperates" :gutter="10">
+                <x-col :span="12">
                   <van-button
                     v-if="canEdit(scope)"
                     v-bind="{ type: 'warning', ..._attrs['edit-btn'] }"
@@ -178,8 +178,8 @@ export default {
                   >
                     编辑
                   </van-button>
-                </XCol>
-                <XCol :span="12">
+                </x-col>
+                <x-col :span="12">
                   <van-button
                     v-if="canDelete(scope)"
                     v-bind="{ type: 'danger', ..._attrs['delete-btn'] }"
@@ -187,8 +187,8 @@ export default {
                   >
                     删除
                   </van-button>
-                </XCol>
-              </XRow>
+                </x-col>
+              </x-row>
               <slot
                 name="operates-suffix"
                 :scope="scope"
@@ -243,7 +243,7 @@ export default {
       position="bottom"
       :style="{ height: '70%' }"
     >
-      <XInfo
+      <x-info
         :data="scope.row"
         :fields="infoFields"
         value-align="right"
@@ -253,8 +253,8 @@ export default {
           name="operates-prefix"
           :scope="scope"
         />
-        <XRow v-if="!hideOperates" :gutter="10">
-          <XCol :span="12">
+        <x-row v-if="!hideOperates" :gutter="10">
+          <x-col :span="12">
             <van-button
               v-if="canEdit(scope)"
               v-bind="{ type: 'warning', ..._attrs['edit-btn'], block: true }"
@@ -262,8 +262,8 @@ export default {
             >
               编辑
             </van-button>
-          </XCol>
-          <XCol :span="12">
+          </x-col>
+          <x-col :span="12">
             <van-button
               v-if="canDelete(scope)"
               v-bind="{ type: 'danger', ..._attrs['delete-btn'], block: true }"
@@ -271,8 +271,8 @@ export default {
             >
               删除
             </van-button>
-          </XCol>
-        </XRow>
+          </x-col>
+        </x-row>
         <slot
           name="operates-suffix"
           :scope="scope"

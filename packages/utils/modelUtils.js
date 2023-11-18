@@ -82,7 +82,7 @@ export const initFormRules = (container) => {
     const trigger = triggers[platform]
     const itemRules = []
     const isSelects = 'options' in item
-    const message = `请${isSelects ? '选择' : '输入'}${item?.label || field}`
+    const message = `请${isSelects ? '选择' : '输入'}${item.validator || item.asyncValidator ? '合法的' : ''}${item?.label || field}`
     const baseRule = { required: true, message }
     if (item.validator) baseRule.validator = item.validator
     if (item.asyncValidator) baseRule.asyncValidator = item.asyncValidator
@@ -110,7 +110,7 @@ export const initDefaultForm = (form, formItems, number0 = true) => {
       value = 0
     } else if (item.comp === 'ElSwitch') {
       value = false
-    } else if (options && (item.comp?.endsWith('XCheckboxs') || multiple)) {
+    } else if (options && (item.comp?.endsWith('XCheckboxs') || item.comp?.endsWith('x-checkboxs') || multiple)) {
       value = []
     } else if (item.comp === 'ElDatePicker' && ['datetimerange', 'daterange', 'monthrange'].includes(item.type)) {
       const placeholer = ({

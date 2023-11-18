@@ -12,7 +12,7 @@ export default {
 
 <template>
   <van-row class="mobile-x-row">
-    <MobileXCol
+    <mobile-x-col
       v-for="(col, index) in cols"
       v-bind="col"
       :key="index"
@@ -23,7 +23,7 @@ export default {
         :col="col"
       />
       <span v-else>{{ col.text }}</span>
-    </MobileXCol>
+    </mobile-x-col>
 
     <slot v-if="cols.length === 0" />
   </van-row>

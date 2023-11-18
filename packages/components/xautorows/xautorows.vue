@@ -34,13 +34,13 @@ export default {
 
 <template>
   <div class="x-auto-rows">
-    <XRow
+    <x-row
       v-for="(row, i) in rows"
       :key="i"
       v-bind="$attrs"
       :platform="$attrs.platform"
     >
-      <XCol
+      <x-col
         v-for="(col, j) in row"
         v-bind="col"
         :span="col.span || span"
@@ -53,7 +53,7 @@ export default {
           :col="col"
         />
         <span v-else>{{ col.text }}</span>
-      </XCol>
-    </XRow>
+      </x-col>
+    </x-row>
   </div>
 </template>

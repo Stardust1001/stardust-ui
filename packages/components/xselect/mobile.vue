@@ -72,7 +72,7 @@ export default {
     @click.native="onClick"
     class="mobile-x-select"
   >
-    <XPicker
+    <x-picker
       v-bind="$attrs"
       :modelValue="formattedModelValue"
       @update:modelValue="e => $emit('update:modelValue', e.selectedValues[0])"
