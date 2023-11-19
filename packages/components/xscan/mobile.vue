@@ -3,6 +3,10 @@ export default {
   name: 'MobileXScan',
   props: {
     modelValue: String,
+    _label: {
+      type: String,
+      default: '扫码'
+    },
     readonly: {
       type: Boolean,
       default: false
@@ -23,10 +27,10 @@ export default {
 
 <template>
   <van-field 
-    label="扫码"
     placeholder="点此扫码"
     right-icon="scan"
     v-bind="$attrs"
+    :label="_label"
     :modelValue="modelValue"
     :readonly="readonly"
     @update:modelValue="v => $emit('update:modelValue', v)"

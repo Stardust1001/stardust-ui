@@ -2802,6 +2802,10 @@ const hi = /* @__PURE__ */ k(di, [["render", ui]]), pi = {
   name: "MobileXScan",
   props: {
     modelValue: String,
+    _label: {
+      type: String,
+      default: "扫码"
+    },
     readonly: {
       type: Boolean,
       default: !1
@@ -2821,15 +2825,15 @@ const hi = /* @__PURE__ */ k(di, [["render", ui]]), pi = {
 function mi(e, t, s, i, n, l) {
   const o = u("van-field");
   return d(), m(o, g({
-    label: "扫码",
     placeholder: "点此扫码",
     "right-icon": "scan"
   }, e.$attrs, {
+    label: s._label,
     modelValue: s.modelValue,
     readonly: s.readonly,
     "onUpdate:modelValue": t[0] || (t[0] = (a) => e.$emit("update:modelValue", a)),
     onClick: l.handleClick
-  }), null, 16, ["modelValue", "readonly", "onClick"]);
+  }), null, 16, ["label", "modelValue", "readonly", "onClick"]);
 }
 const fi = /* @__PURE__ */ k(pi, [["render", mi]]), gi = {
   name: "PcXScan",
@@ -5045,7 +5049,7 @@ const to = (e) => ({
   for (let s in me)
     e.component(s, me[s]);
 }, io = {
-  version: "1.0.102",
+  version: "1.0.103",
   ...me,
   ...We,
   ...$t,
