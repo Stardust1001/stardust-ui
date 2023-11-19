@@ -2831,6 +2831,7 @@ function mi(e, t, s, i, n, l) {
     label: s._label,
     modelValue: s.modelValue,
     readonly: s.readonly,
+    style: { padding: "0" },
     "onUpdate:modelValue": t[0] || (t[0] = (a) => e.$emit("update:modelValue", a)),
     onClick: l.handleClick
   }), null, 16, ["label", "modelValue", "readonly", "onClick"]);
@@ -5049,7 +5050,7 @@ const to = (e) => ({
   for (let s in me)
     e.component(s, me[s]);
 }, io = {
-  version: "1.0.103",
+  version: "1.0.105",
   ...me,
   ...We,
   ...$t,

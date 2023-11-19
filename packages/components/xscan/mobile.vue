@@ -33,6 +33,7 @@ export default {
     :label="_label"
     :modelValue="modelValue"
     :readonly="readonly"
+    style="padding: 0;"
     @update:modelValue="v => $emit('update:modelValue', v)"
     @click.native="handleClick"
   />
