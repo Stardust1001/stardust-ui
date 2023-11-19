@@ -28,7 +28,6 @@ export default {
 <template>
   <van-field 
     placeholder="点此扫码"
-    right-icon="scan"
     v-bind="$attrs"
     :label="_label"
     :modelValue="modelValue"
@@ -36,5 +35,9 @@ export default {
     style="padding: 0;"
     @update:modelValue="v => $emit('update:modelValue', v)"
     @click.native="handleClick"
-  />
+  >
+    <template #right-icon>
+      <van-icon name="scan" @click.native="handleScan" />
+    </template>
+  </van-field>
 </template>

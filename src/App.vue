@@ -89,7 +89,7 @@ const controller = {
 <template>
   <div style="padding: 10px;">
     <el-button type="warning">haha</el-button>
-    <x-scan v-model="model.form.scan" readonly label></x-scan>
+    <x-scan v-model="model.form.scan"></x-scan>
     <x-row :gutter="20">
       <x-col :span="8">1</x-col>
       <x-col :span="8">2</x-col>
