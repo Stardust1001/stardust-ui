@@ -25,6 +25,8 @@ import mobilexradios from './components/xradios/mobile.vue'
 import pcxradios from './components/xradios/pc.vue'
 import mobilexrow from './components/xrow/mobile.vue'
 import pcxrow from './components/xrow/pc.vue'
+import mobilexscan from './components/xscan/mobile.vue'
+import pcxscan from './components/xscan/pc.vue'
 import mobilexselect from './components/xselect/mobile.vue'
 import pcxselect from './components/xselect/pc.vue'
 import mobilextable from './components/xtable/mobile.vue'
@@ -65,6 +67,8 @@ const modules = {
   pcxradios,
   mobilexrow,
   pcxrow,
+  mobilexscan,
+  pcxscan,
   mobilexselect,
   pcxselect,
   mobilextable,
