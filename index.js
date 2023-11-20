@@ -155,7 +155,7 @@ const mt = (e, t, s) => {
       const n = t.acl.paths, l = (o, a) => {
         var h, p, S, b, C;
         const r = (a != null && a.path ? a.path + "/" : "") + o.path;
-        o.meta || (o.meta = {}), a && (o.meta.hidden == null || o.meta.visitable == null) && ((p = o.meta).hidden ?? (p.hidden = (h = a.meta) == null ? void 0 : h.hidden), (b = o.meta).visitable ?? (b.visitable = (S = a.meta) == null ? void 0 : S.visitable), o.meta = { ...o.meta }), o.meta.hidden !== !1 && !n.includes(r) && (o.meta.hidden = !0), (C = o.children) == null || C.forEach((A) => l(A, o));
+        o.meta || (o.meta = {}), a && (o.meta.hidden == null && ((p = o.meta).hidden ?? (p.hidden = (h = a.meta) == null ? void 0 : h.hidden), o.meta = { ...o.meta }), o.meta.visitable == null && ((b = o.meta).visitable ?? (b.visitable = (S = a.meta) == null ? void 0 : S.visitable), o.meta = { ...o.meta })), o.meta.hidden !== !1 && (o.meta.hidden = !n.includes(r)), (C = o.children) == null || C.forEach((A) => l(A, o));
       };
       s.forEach(l);
     }, { immediate: !0 });
@@ -5055,7 +5055,7 @@ const to = (e) => ({
   for (let s in me)
     e.component(s, me[s]);
 }, io = {
-  version: "1.0.106",
+  version: "1.0.107",
   ...me,
   ...We,
   ...$t,

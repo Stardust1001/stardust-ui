@@ -34,14 +34,17 @@ export const checkRolesPages = (router, store, routes) => {
         const path = (parent?.path ? (parent.path + '/') : '') + route.path
         route.meta ||= {}
         if (parent) {
-          if (route.meta.hidden == null || route.meta.visitable == null) {
+          if (route.meta.hidden == null) {
             route.meta.hidden ??= parent.meta?.hidden
+            route.meta = { ...route.meta }
+          }
+          if (route.meta.visitable == null) {
             route.meta.visitable ??= parent.meta?.visitable
             route.meta = { ...route.meta }
           }
         }
-        if (route.meta.hidden !== false && !paths.includes(path)) {
-          route.meta.hidden = true
+        if (route.meta.hidden !== false) {
+          route.meta.hidden = !paths.includes(path)
         }
         route.children?.forEach(sub => update(sub, route))
       }
