@@ -39,7 +39,7 @@ export default function () {
     handleSearch, handleReset, handleAdd, handleDelete, handleSelectField, handleSelectOp
   } = this
   return (
-    <pc-x-dialog
+    <x-dialog
       append-to-body
       drawer
       width="700px"
@@ -54,7 +54,7 @@ export default function () {
         onSubmit: handleSearch
       }}
     >
-      <el-button type="primary" icon="plus" onClick={handleAdd}>新增条件</el-button>
+      <x-button type="primary" size="small" icon="plus" onClick={handleAdd}>新增条件</x-button>
       <div class="conditions">
         {
           conditions.map((condition, index) => {
@@ -100,7 +100,7 @@ export default function () {
           'onUpdate:modelValue': value => this.expression = value
         }}
       ></el-input>
-    </pc-x-dialog>
+    </x-dialog>
   )
 }
 

@@ -1,5 +1,6 @@
 <script>
 import utils from './utils.js'
+import Searcher from './searcher.vue'
 
 export default {
   name: 'MobileXTable',
@@ -15,6 +16,7 @@ export default {
   emits: [
     ...utils.emits()
   ],
+  components: { Searcher },
   data () {
     return {
       popupVisible: false,
@@ -112,6 +114,14 @@ export default {
 
 <template>
   <div class="mobile-x-table">
+    <searcher
+      ref="searcher"
+      :uid="_uid"
+      :columns="searcherColumns"
+      :config="searcherConfig"
+      @search="handleSearch"
+    />
+
     <x-table-tools
       v-if="hideTools !== '' && hideTools !== true"
       v-bind="_attrs"
@@ -319,9 +329,6 @@ export default {
   :deep(.van-cell__value) {
     text-align: left;
   }
-}
-:deep(.tools) {
-  text-align: center;
 }
 .van-popup {
   position: relative;

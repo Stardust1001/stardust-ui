@@ -14,7 +14,7 @@ const handleToggleSidebar = () => sidebarVisible.value = !sidebarVisible.value
 </script>
 
 <template>
-  <div class="mobile-menu-layout">
+  <div class="mobile-menu-layout" :class="{ 'hide-nav-bar': route.meta.hideNavBar }">
     <van-nav-bar
       v-show="!route.meta.hideNavBar"
       left-text="返回"
@@ -69,5 +69,8 @@ main {
       right: 0.15rem;
     }
   }
+}
+.hide-nav-bar main {
+  height: 100%;
 }
 </style>

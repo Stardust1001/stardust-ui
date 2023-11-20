@@ -94,14 +94,14 @@ export default {
 
 <style lang="scss" scoped>
 .mobile-x-table-tools {
-  margin-bottom: 5px;
+  margin: 5px;
   .tools {
     position: relative;
     min-height: 32px;
-    padding: 0 5px;
     .van-button {
+      width: calc(33.33% - 6px);
       height: 30px;
-      margin: 0 5px;
+      margin: 3px;
     }
   }
   .tools-end {
