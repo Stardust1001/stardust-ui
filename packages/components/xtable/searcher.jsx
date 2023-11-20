@@ -34,6 +34,7 @@ COMPONENT_OPS['el-input-number'] = COMPONENT_OPS['ElInputNumber']
 COMPONENT_OPS['el-input'] = COMPONENT_OPS['ElInput']
 
 export default function () {
+  const size = window.isMobile ? 'small' : ''
   const {
     columns, visible, conditions, expression,
     handleSearch, handleReset, handleAdd, handleDelete, handleSelectField, handleSelectOp
@@ -54,7 +55,7 @@ export default function () {
         onSubmit: handleSearch
       }}
     >
-      <x-button type="primary" size="small" icon="plus" onClick={handleAdd}>新增条件</x-button>
+      <x-button type="primary" size={size} icon="plus" onClick={handleAdd}>新增条件</x-button>
       <div class="conditions">
         {
           conditions.map((condition, index) => {
@@ -62,7 +63,7 @@ export default function () {
               <div class="condition flex-center" key={condition.no}>
                 <el-button
                   type="danger"
-                  size="small"
+                  size={size}
                   plain
                   onClick={() => handleDelete(index)}
                 >

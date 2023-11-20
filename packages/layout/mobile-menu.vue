@@ -17,8 +17,8 @@ const handleToggleSidebar = () => sidebarVisible.value = !sidebarVisible.value
   <div class="mobile-menu-layout" :class="{ 'hide-nav-bar': route.meta.hideNavBar }">
     <van-nav-bar
       v-show="!route.meta.hideNavBar"
-      left-text="返回"
-      left-arrow
+      :left-text="route.meta.canBack !== false ? '返回' : ''"
+      :left-arrow="route.meta.canBack !== false"
       :title="route.meta.title"
       @click-left="$router.go(-1)"
     >
