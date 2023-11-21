@@ -12,7 +12,9 @@ const model = reactive({
         { no: 1, prop: 'name', op: 'like', value: '' },
         { no: 2, prop: 'gender', op: 'eq', value: '' },
       ],
-      expression: '1 2'
+      expression: '1 2',
+      ignoreUnfilled: true,
+      traditional: true
     },
     list: [
       { name: '卡卡', gender: '男', age: 27, avatar: ['https://www.baidu.com/favicon.ico'] },

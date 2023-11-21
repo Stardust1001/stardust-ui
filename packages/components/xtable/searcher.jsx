@@ -36,7 +36,7 @@ COMPONENT_OPS['el-input'] = COMPONENT_OPS['ElInput']
 export default function () {
   const size = window.isMobile ? 'small' : ''
   const {
-    columns, visible, conditions, expression,
+    config, columns, visible, conditions, expression,
     handleSearch, handleReset, handleAdd, handleDelete, handleSelectField, handleSelectOp
   } = this
   return (
@@ -55,21 +55,33 @@ export default function () {
         onSubmit: handleSearch
       }}
     >
-      <x-button type="primary" size={size} icon="plus" onClick={handleAdd}>新增条件</x-button>
+      {
+        config.traditional
+        ? null
+        : <x-button type="primary" size={size} icon="plus" onClick={handleAdd}>新增条件</x-button>
+      }
       <div class="conditions">
         {
           conditions.map((condition, index) => {
             return (
               <div class="condition flex-center" key={condition.no}>
-                <el-button
-                  type="danger"
-                  size={size}
-                  plain
-                  onClick={() => handleDelete(index)}
-                >
-                  X
-                </el-button>
-                <span class="title">{condition.no}</span>
+                {
+                  config.traditional
+                  ? null
+                  : <el-button
+                    type="danger"
+                    size={size}
+                    plain
+                    onClick={() => handleDelete(index)}
+                  >
+                    X
+                  </el-button>
+                }
+                {
+                  config.traditional
+                  ? null
+                  : <span class="title">{condition.no}</span>
+                }
                 <div class="expression">
                   <pc-x-select
                     modelValue={condition.prop}
@@ -92,15 +104,17 @@ export default function () {
           })
         }
       </div>
-      <el-input
-        type="textarea"
-        autosize={{ minRows: 3, maxRows: 10 }}
-        placeholder="分组条件表达式, 使用 () and or 组合上述条件, 示例: 1, 1 and 2, (1 or 2) and 3"
-        {...{
-          modelValue: expression,
-          'onUpdate:modelValue': value => this.expression = value
-        }}
-      ></el-input>
+      {
+        config.traditional ? null : <el-input
+          type="textarea"
+          autosize={{ minRows: 3, maxRows: 10 }}
+          placeholder="分组条件表达式, 使用 () and or 组合上述条件, 示例: 1, 1 and 2, (1 or 2) and 3"
+          {...{
+            modelValue: expression,
+            'onUpdate:modelValue': value => this.expression = value
+          }}
+        ></el-input>
+      }
     </x-dialog>
   )
 }

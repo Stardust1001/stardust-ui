@@ -90,7 +90,8 @@ export default {
       if (!tree) return
       const parse = (tree, where) => {
         const branch = []
-        where['[Op.' + tree.type + ']'] = branch
+        const type = '[Op.' + tree.type + ']'
+        where[type] = branch
         for (let item of tree.items) {
           if (typeof item === 'string') {
             const condition = this.conditions.find(con => con.no === item * 1)
@@ -98,6 +99,7 @@ export default {
               throw '条件不存在: ' + item
             } else {
               if (!this.checkFilled(condition)) {
+                if (this.config.ignoreUnfilled) continue
                 throw '条件不完整: ' + item
               }
             }
@@ -108,6 +110,7 @@ export default {
             parse(item, sub)
           }
         }
+        if (!branch.length) delete where[type]
       }
       const where = {}
       parse(tree, where)
