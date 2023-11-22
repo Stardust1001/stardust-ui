@@ -16,6 +16,19 @@ export default {
 
 <template>
   <div class="mobile-x-table-tools">
+    <div
+      v-if="!!$attrs.onAdd"
+      v-domid="domids['add']"
+    >
+      <van-floating-bubble
+        axis="xy"
+        magnetic="x"
+        icon="plus"
+        class="flex-center"
+        style="position: fixed; top: 0; font-size: 22px; width: 40px; height: 40px; background-color: #1989fa; border-radius: 50%; color: white;"
+        @click="$emit('add')"
+      />
+    </div>
     <div class="tools">
       <slot name="tools-prefix" />
 
@@ -27,15 +40,6 @@ export default {
       >
         <mobile-x-icon name="search" />
         查询
-      </van-button>
-      <van-button
-        v-if="!!$attrs.onAdd"
-        v-bind="{ type: 'primary', ...addBtn }"
-        v-domid="domids['add']"
-        @click="$emit('add')"
-      >
-        <mobile-x-icon name="circle-plus-filled" />
-        新增
       </van-button>
       <van-button
         v-if="!!$attrs.onMultiEdit"

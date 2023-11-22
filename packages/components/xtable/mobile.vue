@@ -59,12 +59,16 @@ export default {
       })
     },
     actions () {
+      const path = this.$route.path.slice(1).replaceAll('/', ':')
+      const doms = this.$store.acl.buttons.map(b => b.perms).filter(p => p.startsWith(path)).map(p => p.split(':').pop())
       return [
         { name: '操作', disabled: true },
         { name: '详情' },
         { name: '编辑', color: '#07c160', domid: 'edit' },
         { name: '删除', color: '#eb6f6f', domid: 'delete' },
-      ]
+      ].filter(ele => {
+        return !ele.domid || doms.includes(this.domids[ele.domid])
+      })
     }
   },
   watch: {
@@ -172,13 +176,20 @@ export default {
         class="row"
         @click="handleClickCard(index)"
       >
-        <van-checkbox
-          v-if="hasSelection"
-          v-model="selected[index]"
-          shape="square"
-          class="selection"
-          @click.stop
-        />
+        <div class="row-header flex-center">
+          <van-checkbox
+            v-if="hasSelection"
+            v-model="selected[index]"
+            shape="square"
+            class="selection"
+            @click.stop
+          />
+          <x-icon
+            name="ellipsis"
+            class="more"
+            @click.stop="handleShowActionSheet(row, index)"
+          />
+        </div>
         <input
           v-if="hasRadio"
           type="radio"
@@ -196,11 +207,6 @@ export default {
           <span class="label">{{ col.label }}:</span>
           <span class="value">{{ calcValue(row, col) }}</span>
         </div>
-        <x-icon
-          name="ellipsis"
-          class="more"
-          @click="handleShowActionSheet(row, index)"
-        />
       </div>
     </div>
 
@@ -263,22 +269,6 @@ export default {
       @select="handleSelectAction"
       @cancel="actionSheetVisible = false"
     >
-      <template #action="{ action, index }">
-        <template v-if="action.domid">
-          <span
-            v-domid="domids[action.domid]"
-            :style="{ color: action.color }"
-          >
-            {{ action.name }}
-          </span>
-        </template>
-        <span
-          v-else
-          :style="{ color: action.color }"
-        >
-          {{ action.name }}
-        </span>
-      </template>
     </van-action-sheet>
   </div>
 </template>
@@ -299,25 +289,23 @@ export default {
     height: 18px;
   }
   .row {
-    position: relative;
+    border-radius: 8px;
     margin: var(--x-medium-padding);
     padding: var(--x-medium-padding);
     background-color: white;
+    .row-header {
+      justify-content: space-between;
+    }
     .field {
-      display: inline-block;
-      min-width: 50%;
-      margin: 3px 0;
+      margin: 5px 0;
     }
     .label {
-      color: var(--x-label-color);
+      display: inline-block;
+      color: #b1b7b7;
       margin-right: 15px;
     }
     .more {
-      position: absolute;
       background-color: white;
-      padding: 5px 10px;
-      right: 0;
-      top: 0;
       font-size: 18px;
       font-weight: 900;
     }
