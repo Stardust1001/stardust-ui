@@ -3202,7 +3202,7 @@ function ji() {
   });
 }
 function Fi(e, t) {
-  const s = (n) => z(u((n == null ? void 0 : n.component) || t.component), Object.assign(t.config, {
+  const s = (n) => z(u((n == null ? void 0 : n.component) || t.component), Object.assign({}, t.config, {
     modelValue: t.value,
     "onUpdate:modelValue": (l) => t.value = l
   }, n)), i = {
@@ -5072,7 +5072,7 @@ const to = (e) => ({
   for (let s in me)
     e.component(s, me[s]);
 }, io = {
-  version: "1.0.115",
+  version: "1.0.116",
   ...me,
   ...He,
   ...$t,
