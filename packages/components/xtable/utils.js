@@ -403,7 +403,7 @@ export function cellStyle (props) {
 }
 
 export function calcTagType (scope, column) {
-  const { tagTypes, prop } = column
+  const { tagTypes, prop, options } = column
   const value = scope.row[prop]
   if (tagTypes) {
     if (typeof tagTypes === 'function') {
@@ -411,12 +411,15 @@ export function calcTagType (scope, column) {
     } else if (typeof tagTypes === 'object') {
       return tagTypes[value]
     }
+  } else if (options) {
+    const op = options.find(o => o[column.value || 'value'] === value)
+    if (op?.tagType) return op.tagType
   }
   return value ? 'success' : 'danger'
 }
 
 export function calcTagValue (scope, column) {
-  const { tagValues, prop } = column
+  const { tagValues, prop, options } = column
   const value = scope.row[prop]
   if (tagValues) {
     if (typeof tagValues === 'function') {
@@ -424,6 +427,9 @@ export function calcTagValue (scope, column) {
     } else if (typeof tagValues === 'object') {
       return tagValues[value]
     }
+  } else if (options) {
+    const op = options.find(o => o[column.value || 'value'] === value)
+    if (op) return op[column.text || 'text']
   }
   return value
 }
