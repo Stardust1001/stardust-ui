@@ -7,7 +7,10 @@ export default {
   inheritAttrs: false,
   props: {
     ...utils.props(),
-    mode: String,
+    mode: {
+      type: String,
+      default: 'card'
+    },
     platform: String,
     'max-height': String,
     height: String,
@@ -23,7 +26,8 @@ export default {
       scope: {},
       selected: [],
       settings: {},
-      checked: null
+      checked: null,
+      actionSheetVisible: false
     }
   },
   computed: {
@@ -53,6 +57,14 @@ export default {
           }
         }
       })
+    },
+    actions () {
+      return [
+        { name: '操作', disabled: true },
+        { name: '详情' },
+        { name: '编辑', color: '#07c160', domid: 'edit' },
+        { name: '删除', color: '#eb6f6f', domid: 'delete' },
+      ]
     }
   },
   watch: {
@@ -68,6 +80,7 @@ export default {
     }
   },
   created () {
+    window.v = this
     this.initSettings()
   },
   mounted () {
@@ -90,11 +103,9 @@ export default {
       return row[this.cols[0].prop]
     },
     handleEdit () {
-      this.popupVisible = false
       this._emit('edit', this.scope)
     },
     handleDelete () {
-      this.popupVisible = false
       this._emit('delete', this.scope)
     },
     handleClickCard (index) {
@@ -102,6 +113,19 @@ export default {
         this.selected[index] = !this.selected[index]
       } else if (this.hasRadio) {
         this.handleCheckedChange({ target: { value: index } })
+      }
+    },
+    handleShowActionSheet (row, $index) {
+      this.scope = { row, $index }
+      this.actionSheetVisible = true
+    },
+    handleSelectAction (action, index) {
+      if (action.name === '详情') {
+        this.handleShowDetail(this.scope.row, this.scope.$index)
+      } else if (action.name === '编辑') {
+        this.handleEdit()
+      } else if (action.name === '删除') {
+        this.handleDelete()
       }
     },
     clearSelection () {
@@ -141,79 +165,48 @@ export default {
       </template>
     </x-table-tools>
 
-    <div v-if="(mode || _attrs.mode) === 'card'" class="mobile-x-table card">
+    <div v-if="(mode || _attrs.mode) === 'card'" class="card">
       <div
         v-for="(row, index) in _data"
         :key="index"
         class="row"
         @click="handleClickCard(index)"
       >
-        <van-swipe-cell @open="scope = { row, $index: index }">
-          <van-checkbox
-            v-if="hasSelection"
-            v-model="selected[index]"
-            shape="square"
-            class="selection"
-            @click.stop
-          />
-          <input
-            v-if="hasRadio"
-            type="radio"
-            :value="index"
-            :checked="index === checked"
-            class="radio"
-            @click.stop
-            @change="handleCheckedChange"
-          >
-          <div
-            v-for="(col, index) in cols"
-            :key="index"
-            class="field"
-          >
-            <span class="label">{{ col.label }}:</span>
-            <span class="value">{{ calcValue(row, col) }}</span>
-          </div>
-          <template #right>
-            <div class="operates">
-              <slot
-                name="operates-prefix"
-                :scope="scope"
-              />
-              <x-row v-if="!hideOperates" :gutter="10">
-                <x-col :span="12">
-                  <van-button
-                    v-if="canEdit(scope)"
-                    v-bind="{ type: 'warning', ..._attrs['edit-btn'] }"
-                    v-domid="domids['edit']"
-                    @click="handleEdit"
-                  >
-                    编辑
-                  </van-button>
-                </x-col>
-                <x-col :span="12">
-                  <van-button
-                    v-if="canDelete(scope)"
-                    v-bind="{ type: 'danger', ..._attrs['delete-btn'] }"
-                    v-domid="domids['delete']"
-                    @click="handleDelete"
-                  >
-                    删除
-                  </van-button>
-                </x-col>
-              </x-row>
-              <slot
-                name="operates-suffix"
-                :scope="scope"
-              />
-            </div>
-          </template>
-        </van-swipe-cell>
+        <van-checkbox
+          v-if="hasSelection"
+          v-model="selected[index]"
+          shape="square"
+          class="selection"
+          @click.stop
+        />
+        <input
+          v-if="hasRadio"
+          type="radio"
+          :value="index"
+          :checked="index === checked"
+          class="radio"
+          @click.stop
+          @change="handleCheckedChange"
+        >
+        <div
+          v-for="(col, index) in cols"
+          :key="index"
+          class="field"
+        >
+          <span class="label">{{ col.label }}:</span>
+          <span class="value">{{ calcValue(row, col) }}</span>
+        </div>
+        <x-icon
+          name="ellipsis"
+          class="more"
+          @click="handleShowActionSheet(row, index)"
+        />
       </div>
     </div>
 
     <van-list
       v-else-if="(mode || _attrs.mode) === 'list'"
-      class="mobile-x-table list"
+      class="list"
       v-bind="_attrs"
       @load="$emit('search')"
     >
@@ -260,42 +253,42 @@ export default {
         :fields="infoFields"
         value-align="right"
       />
-      <div class="operates">
-        <slot
-          name="operates-prefix"
-          :scope="scope"
-        />
-        <x-row v-if="!hideOperates" :gutter="10">
-          <x-col :span="12">
-            <van-button
-              v-if="canEdit(scope)"
-              v-bind="{ type: 'warning', ..._attrs['edit-btn'], block: true }"
-              @click="handleEdit"
-            >
-              编辑
-            </van-button>
-          </x-col>
-          <x-col :span="12">
-            <van-button
-              v-if="canDelete(scope)"
-              v-bind="{ type: 'danger', ..._attrs['delete-btn'], block: true }"
-              @click="handleDelete"
-            >
-              删除
-            </van-button>
-          </x-col>
-        </x-row>
-        <slot
-          name="operates-suffix"
-          :scope="scope"
-        />
-      </div>
     </van-popup>
+
+    <van-action-sheet
+      v-model:show="actionSheetVisible"
+      :actions="actions"
+      cancel-text="取消"
+      close-on-click-action
+      @select="handleSelectAction"
+      @cancel="actionSheetVisible = false"
+    >
+      <template #action="{ action, index }">
+        <template v-if="action.domid">
+          <span
+            v-domid="domids[action.domid]"
+            :style="{ color: action.color }"
+          >
+            {{ action.name }}
+          </span>
+        </template>
+        <span
+          v-else
+          :style="{ color: action.color }"
+        >
+          {{ action.name }}
+        </span>
+      </template>
+    </van-action-sheet>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .mobile-x-table {
+  font-size: 14px;
+  padding: 1px 0;
+  color: #303333;
+  background-color: var(--x-bg-color);
   .selection, .radio {
     display: inline-block;
     vertical-align: middle;
@@ -306,9 +299,10 @@ export default {
     height: 18px;
   }
   .row {
+    position: relative;
     margin: var(--x-medium-padding);
     padding: var(--x-medium-padding);
-    background-color: var(--x-bg-color);
+    background-color: white;
     .field {
       display: inline-block;
       min-width: 50%;
@@ -317,6 +311,15 @@ export default {
     .label {
       color: var(--x-label-color);
       margin-right: 15px;
+    }
+    .more {
+      position: absolute;
+      background-color: white;
+      padding: 5px 10px;
+      right: 0;
+      top: 0;
+      font-size: 18px;
+      font-weight: 900;
     }
   }
   .index {
