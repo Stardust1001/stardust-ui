@@ -128,7 +128,6 @@ function calcConditionValueComponent (vm, condition) {
     return h(
       resolveComponent(options?.component || condition.component),
       Object.assign(
-        {},
         condition.config,
         {
           modelValue: condition.value,
