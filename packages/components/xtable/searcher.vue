@@ -154,6 +154,7 @@ export default {
       const where = {}
       if (op === 'special') {
         const isNot = value.startsWith('NOT_')
+        const isNe = value.startsWith('NE_')
         if (value.includes('NULL')) {
           value = null
         } else if (value.includes('BLANK')) {
@@ -161,6 +162,8 @@ export default {
         }
         if (isNot) {
           value = { '[Op.not]': value }
+        } else if (isNe) {
+          value = { '[Op.ne]': value }
         }
         where[prop] = value
         return where

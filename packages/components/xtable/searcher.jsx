@@ -19,7 +19,7 @@ export const SPECIAL_OPTIONS = [
   { text: 'NULL', value: 'NULL' },
   { text: '空文本', value: 'BLANK' },
   { text: '非NULL', value: 'NOT_NULL' },
-  { text: '非空文本', value: 'NOT_BLANK' },
+  { text: '非空文本', value: 'NE_BLANK' },
 ]
 
 export const COMPONENT_OPS = {
