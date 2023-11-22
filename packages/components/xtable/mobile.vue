@@ -184,6 +184,7 @@ export default {
                   <van-button
                     v-if="canEdit(scope)"
                     v-bind="{ type: 'warning', ..._attrs['edit-btn'] }"
+                    v-domid="domids['edit']"
                     @click="handleEdit"
                   >
                     编辑
@@ -193,6 +194,7 @@ export default {
                   <van-button
                     v-if="canDelete(scope)"
                     v-bind="{ type: 'danger', ..._attrs['delete-btn'] }"
+                    v-domid="domids['delete']"
                     @click="handleDelete"
                   >
                     删除

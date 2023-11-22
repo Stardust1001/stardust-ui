@@ -188,6 +188,7 @@ export default {
               <el-button
                 v-if="canEdit(scope.row)"
                 v-bind="{ type: 'warning', ..._attrs['edit-btn'] }"
+                v-domid="domids['edit']"
                 @click="_emit('edit', scope)"
               >
                 <pc-x-icon name="edit" />
@@ -198,6 +199,7 @@ export default {
                 v-bind="{ type: 'success', ..._attrs['row-edit-btn'] }"
                 v-loading="scope.row._loading"
                 :disabled="scope.row._loading"
+                v-domid="domids['row-edit']"
                 @click="_emit('row-edit', scope)"
               >
                 <pc-x-icon name="collection" />
@@ -206,6 +208,7 @@ export default {
               <el-button
                 v-if="canCancelEdit(scope.row)"
                 v-bind="{ type: 'warning', ..._attrs['cancel-edit-btn'] }"
+                v-domid="domids['cancel-edit']"
                 @click="_emit('cancel-edit', scope)"
               >
                 <pc-x-icon name="refresh-left" />
@@ -214,6 +217,7 @@ export default {
               <el-button
                 v-if="canDelete(scope.row)"
                 v-bind="{ type: 'danger', ..._attrs['delete-btn'] }"
+                v-domid="domids['delete']"
                 @click="_emit('delete', scope)"
               >
                 <pc-x-icon name="DeleteFilled" />

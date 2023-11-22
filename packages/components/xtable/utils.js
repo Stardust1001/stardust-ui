@@ -97,7 +97,20 @@ export function _attrs () {
 
 export function domids () {
   const domids = {}
-  const keys = ['search', 'add', 'multi-edit', 'multi-delete', 'export', 'search-export', 'import']
+  const keys = [
+    'search',
+    'add',
+    'multi-edit',
+    'multi-delete',
+    'export',
+    'search-export',
+    'import',
+
+    'edit',
+    'row-edit',
+    'cancel-edit',
+    'delete'
+  ]
   keys.forEach(key => domids[key] = key)
   return { ...domids, ...this.$attrs.domids }
 }
