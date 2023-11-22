@@ -3178,7 +3178,8 @@ function ji() {
       onChange: (A) => p(_, A),
       options: s,
       text: "label",
-      value: "prop"
+      value: "prop",
+      readonly: !!t.traditional
     }, null), f(u("pc-x-select"), {
       modelValue: _.op,
       onChange: (A) => w(_, A),
@@ -3303,7 +3304,7 @@ const { storage: de } = StardustBrowser, Ti = {
             const r = this.conditions.find((h) => h.no === a * 1);
             if (r) {
               if (!this.checkFilled(r)) {
-                if (this.config.ignoreUnfilled)
+                if (this.config.traditional || this.config.ignoreUnfilled)
                   continue;
                 throw "条件不完整: " + a;
               }
@@ -3396,7 +3397,7 @@ const { storage: de } = StardustBrowser, Ti = {
       e.op = t, t === "between" ? e.value = ["", ""] : ["in", "notIn"].includes(t) && (e.value = []), (t === "special" || !["between", "in", "notIn"].includes(t) && Array.isArray(t)) && (e.value = "");
     }
   }
-}, ve = /* @__PURE__ */ k(Ti, [["__scopeId", "data-v-fb214849"]]);
+}, ve = /* @__PURE__ */ k(Ti, [["__scopeId", "data-v-047f64c5"]]);
 const Mi = {
   name: "MobileXTable",
   inheritAttrs: !1,
@@ -5069,7 +5070,7 @@ const to = (e) => ({
   for (let s in me)
     e.component(s, me[s]);
 }, io = {
-  version: "1.0.110",
+  version: "1.0.111",
   ...me,
   ...He,
   ...$t,

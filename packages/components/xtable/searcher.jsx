@@ -89,6 +89,7 @@ export default function () {
                     options={columns}
                     text="label"
                     value="prop"
+                    readonly={!!config.traditional}
                   ></pc-x-select>
                   <pc-x-select
                     modelValue={condition.op}

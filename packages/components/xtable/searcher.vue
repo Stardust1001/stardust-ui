@@ -99,7 +99,7 @@ export default {
               throw '条件不存在: ' + item
             } else {
               if (!this.checkFilled(condition)) {
-                if (this.config.ignoreUnfilled) continue
+                if (this.config.traditional || this.config.ignoreUnfilled) continue
                 throw '条件不完整: ' + item
               }
             }
