@@ -83,14 +83,17 @@ export default function () {
                   : <span class="title">{condition.no}</span>
                 }
                 <div class="expression">
-                  <pc-x-select
-                    modelValue={condition.prop}
-                    onChange={value => handleSelectField(condition, value)}
-                    options={columns}
-                    text="label"
-                    value="prop"
-                    readonly={!!config.traditional}
-                  ></pc-x-select>
+                  {
+                    config.traditional
+                    ? <el-input modelValue={condition.item.label} readonly />
+                    : <pc-x-select
+                      modelValue={condition.prop}
+                      onChange={value => handleSelectField(condition, value)}
+                      options={columns}
+                      text="label"
+                      value="prop"
+                    ></pc-x-select>
+                  }
                   <pc-x-select
                     modelValue={condition.op}
                     onChange={value => handleSelectOp(condition, value)}
