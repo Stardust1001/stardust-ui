@@ -651,7 +651,7 @@ class Ke extends Je {
     this._isSubmitting = !0;
     const s = t || this.dialog.form;
     if (!t && ((this.dialog.shouldTrim || !0) && this._trimForm(), !await this._validateForm()))
-      return this._isSubmitting = !1, !1;
+      return this._isSubmitting = !1, this.dialog.visible = !0, !1;
     let o = null;
     try {
       if (this.dialog.isEditing) {
@@ -3679,7 +3679,7 @@ function zi(e, t, s, o, n, i) {
     }, null, 8, ["show", "actions", "onSelect"])
   ]);
 }
-const Wi = /* @__PURE__ */ $(Mi, [["render", zi], ["__scopeId", "data-v-ea854172"]]);
+const Wi = /* @__PURE__ */ $(Mi, [["render", zi], ["__scopeId", "data-v-5d189b00"]]);
 const Hi = {
   name: "Settings",
   props: {
@@ -5058,7 +5058,7 @@ const sl = (e) => ({
   for (let s in pe)
     e.component(s, pe[s]);
 }, ol = {
-  version: "1.0.120",
+  version: "1.0.121",
   ...pe,
   ...He,
   ...$t,

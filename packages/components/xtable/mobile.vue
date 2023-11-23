@@ -304,6 +304,9 @@ export default {
       color: #b1b7b7;
       margin-right: 15px;
     }
+    .value {
+      word-break: break-all;
+    }
     .more {
       background-color: white;
       font-size: 18px;
