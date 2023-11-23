@@ -21,6 +21,16 @@ export default {
         this.$emit('update:modelValue', value)
       }
     }
+  },
+  methods: {
+    handleCancel () {
+      this.visible = true
+      this.$emit('cancel')
+    },
+    handleConfirm () {
+      this.visible = true
+      this.$emit('submit')
+    }
   }
 }
 </script>
@@ -33,8 +43,8 @@ export default {
     class="mobile-x-dialog"
     :show-confirm-button="!!$attrs.onSubmit || !!$parent.$attrs.onSubmit"
     :show-cancel-button="!!$attrs.onCancel || !!$parent.$attrs.onCancel"
-    @confirm="$emit('submit')"
-    @cancel="$emit('cancel')"
+    @confirm="handleConfirm"
+    @cancel="handleCancel"
   >
     <template v-if="$slots.title" #title>
       <slot name="title" />

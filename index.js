@@ -1,4 +1,4 @@
-import { toRaw as st, nextTick as ee, watch as ge, resolveComponent as c, openBlock as d, createBlock as f, mergeProps as _, createElementBlock as b, Fragment as T, renderList as R, withCtx as h, renderSlot as S, toDisplayString as A, useCssVars as Fe, createTextVNode as E, createSlots as Y, resolveDynamicComponent as Q, createCommentVNode as w, createVNode as p, normalizeClass as z, normalizeProps as oe, guardReactiveProps as Te, h as W, isVNode as Me, createElementVNode as M, withModifiers as J, pushScopeId as Be, popScopeId as Re, resolveDirective as se, withDirectives as B, normalizeStyle as nt } from "vue";
+import { toRaw as st, nextTick as ee, watch as fe, resolveComponent as c, openBlock as d, createBlock as f, mergeProps as _, createElementBlock as b, Fragment as T, renderList as R, withCtx as h, renderSlot as S, toDisplayString as A, useCssVars as Fe, createTextVNode as E, createSlots as Y, resolveDynamicComponent as Q, createCommentVNode as w, createVNode as p, normalizeClass as z, normalizeProps as oe, guardReactiveProps as Te, h as W, isVNode as Me, createElementVNode as M, withModifiers as J, pushScopeId as Be, popScopeId as Re, resolveDirective as se, withDirectives as B, normalizeStyle as nt } from "vue";
 const it = (e) => {
   const { width: t, height: s } = e.getBoundingClientRect();
   e.width = t, e.height = s;
@@ -151,7 +151,7 @@ const pt = (e, t, s) => {
     var o;
     return (o = l.meta) != null && o.visitable || t.acl.paths.includes(l.path) ? i() : (K.e("无权访问页面: " + l.path), i("/404"));
   }), ee(() => {
-    ge(() => t.acl.menus, (l) => {
+    fe(() => t.acl.menus, (l) => {
       const n = t.acl.paths, i = (o, a) => {
         var u, m, v, g, k;
         const r = (a != null && a.path ? a.path + "/" : "") + o.path;
@@ -202,20 +202,20 @@ const pt = (e, t, s) => {
 }), yt = () => ({
   table: De(),
   dialog: Ue()
-}), { funcs: me } = StardustJs, vt = (e, t) => {
+}), { funcs: he } = StardustJs, vt = (e, t) => {
   for (let s in e) {
     const l = e[s];
-    !l || typeof l != "object" || (s === "table" && e[s]._isBaseTable && Pe(l, t), s === "dialog" && e[s]._isBaseDialog && Le(l, t), s === "form" && e[s]._isBaseForm && _e(l, t));
+    !l || typeof l != "object" || (s === "table" && e[s]._isBaseTable && Pe(l, t), s === "dialog" && e[s]._isBaseDialog && Le(l, t), s === "form" && e[s]._isBaseForm && ge(l, t));
   }
   return e;
-}, Pe = (e, t) => (e.columns.push(...t.filter((s) => s.visible === !1 ? s.canView : s.canView !== !1)), e), Le = (e, t) => (e.formItems = t.filter((s) => s.visible === !1 ? s.canAdd || s.canEdit : s.canAdd !== !1 || s.canEdit !== !1), _e(e, t), e), _e = (e, t) => (e._isBaseForm && !e._isBaseDialog && (e.formItems = t.filter((l) => l.visible !== !1)), Xe(e.form, e.formItems), e.initialForm = me.deepCopy(e.form), e.initialFormRules = me.deepCopy(e.formRules), ge(() => e.formItems, () => {
+}, Pe = (e, t) => (e.columns.push(...t.filter((s) => s.visible === !1 ? s.canView : s.canView !== !1)), e), Le = (e, t) => (e.formItems = t.filter((s) => s.visible === !1 ? s.canAdd || s.canEdit : s.canAdd !== !1 || s.canEdit !== !1), ge(e, t), e), ge = (e, t) => (e._isBaseForm && !e._isBaseDialog && (e.formItems = t.filter((l) => l.visible !== !1)), Xe(e.form, e.formItems), e.initialForm = he.deepCopy(e.form), e.initialFormRules = he.deepCopy(e.formRules), fe(() => e.formItems, () => {
   qe(e);
 }, { immediate: !0, deep: !0 }), e), qe = (e) => {
   const { formItems: t, initialFormRules: s } = e, l = t.filter((i) => {
     let { formAttrs: o = {}, required: a = !1 } = i;
     return a = "required" in o ? o.required : a, !i.hasOwnProperty("rules") && !e.initialFormRules.hasOwnProperty(i.prop) && a !== !1;
   }).map((i) => i.prop);
-  if (Object.assign(e.formRules, me.deepCopy(s)), Object.keys(e.formRules).forEach((i) => {
+  if (Object.assign(e.formRules, he.deepCopy(s)), Object.keys(e.formRules).forEach((i) => {
     i in s || delete e.formRules[i];
   }), !l.length)
     return;
@@ -283,7 +283,7 @@ const pt = (e, t, s) => {
   initModel: vt,
   initTable: Pe,
   initDialog: Le,
-  initForm: _e,
+  initForm: ge,
   initFormRules: qe,
   initDefaultForm: Xe,
   isWhenMatched: ze,
@@ -401,7 +401,7 @@ class Je {
     ];
   }
 }
-const { funcs: re, highdict: $e, dates: de } = StardustJs, { file: ke, excel: ne } = StardustBrowser;
+const { funcs: Se, highdict: $e, dates: re } = StardustJs, { file: ke, excel: ne } = StardustBrowser;
 class Ke extends Je {
   constructor(t) {
     super(t);
@@ -488,7 +488,7 @@ class Ke extends Je {
     await this.beforeAdd() && (this._resetForm(), Object.assign(this.dialog, {
       visible: !0,
       isEditing: !1
-    }), await ee(), await re.sleep(50), this._clearValidate(), this.afterAdd());
+    }), await ee(), await Se.sleep(50), this._clearValidate(), this.afterAdd());
   }
   async handleEdit({ $index: t, row: s }) {
     var l;
@@ -545,7 +545,7 @@ class Ke extends Je {
     this._isExporting = !0;
     const { list: l, selection: n, ref: i } = this.table;
     let o = n.length > 0 ? n : l;
-    o = re.deepCopy(o), o = this.processExportingData(o);
+    o = Se.deepCopy(o), o = this.processExportingData(o);
     const a = this.processExportingColumns(i._visibleColumns, "current"), r = a.map((g) => g.prop), u = a.map((g) => g.label);
     o = o.map((g) => r.map((k) => g[k]));
     let m = null;
@@ -651,9 +651,7 @@ class Ke extends Je {
     this._isSubmitting = !0;
     const s = t || this.dialog.form;
     if (!t && ((this.dialog.shouldTrim || !0) && this._trimForm(), !await this._validateForm()))
-      return this._isSubmitting = !1, this.dialog.visible = !0, re.sleep(100).then(() => {
-        this.dialog.visible = !0;
-      }), !1;
+      return this._isSubmitting = !1, !1;
     let l = null;
     try {
       if (this.dialog.isEditing) {
@@ -702,7 +700,7 @@ class Ke extends Je {
     const s = Object.keys(this.dialog.initialForm), l = {};
     return s.length ? s.forEach((n) => l[n] = t[n]) : Object.assign(l, t), this.dialog.formItems.forEach((n) => {
       let i = l[n.model || n.prop];
-      n.type === "number" ? i = this.uiUtils.formatPrecision(i, n.precision || 3) * 1 : n.comp === "ElDatePicker" && (n.type === "datetime" ? i = de.format(i) : (!n.type || n.type === "date") && (i = de.format(i, "", !1))), l[n.model || n.prop] = i;
+      n.type === "number" ? i = this.uiUtils.formatPrecision(i, n.precision || 3) * 1 : n.comp === "ElDatePicker" && (n.type === "datetime" ? i = re.format(i) : (!n.type || n.type === "date") && (i = re.format(i, "", !1))), l[n.model || n.prop] = i;
     }), l;
   }
   getUpdateParams(t) {
@@ -758,7 +756,7 @@ class Ke extends Je {
       if (k && g)
         t.forEach((j) => j[`_formatted_${r}`] = ""), this._fillRelatedField(t, a);
       else if (Array.isArray(u) && m !== !1) {
-        const I = ge(() => a.options, (V, O) => {
+        const I = fe(() => a.options, (V, O) => {
           const F = O ? this.table.list : t, D = wt(a);
           F.forEach((y, C) => {
             const x = y[r];
@@ -814,7 +812,7 @@ class Ke extends Je {
           return i[o] = l[o].formatter(a);
         if ((u = l[o]) != null && u.tagValues)
           return i[o] = l[o].tagValues[a];
-        typeof a == "boolean" ? i[o] = a && 1 || 0 : a instanceof Date ? (i[o] = de.format(a), i[o].endsWith(" 00:00:00") && (i[o] = i[o].slice(0, -9))) : typeof a == "object" && (i[o] = JSON.stringify(a));
+        typeof a == "boolean" ? i[o] = a && 1 || 0 : a instanceof Date ? (i[o] = re.format(a), i[o].endsWith(" 00:00:00") && (i[o] = i[o].slice(0, -9))) : typeof a == "object" && (i[o] = JSON.stringify(a));
       });
     }), t;
   }
@@ -988,7 +986,7 @@ function Rt(e, t, s, l, n, i) {
   });
 }
 const Nt = /* @__PURE__ */ $(Bt, [["render", Rt]]);
-const { funcs: It } = StardustBrowser, be = {
+const { funcs: It } = StardustBrowser, _e = {
   name: "XChart",
   props: {
     height: {
@@ -1058,8 +1056,8 @@ const { funcs: It } = StardustBrowser, be = {
     "127c024a": e.zoomedHeight,
     "137ee0b8": e.zoom
   }));
-}, xe = be.setup;
-be.setup = xe ? (e, t) => (Ce(), xe(e, t)) : Ce;
+}, xe = _e.setup;
+_e.setup = xe ? (e, t) => (Ce(), xe(e, t)) : Ce;
 const Dt = {
   class: "x-chart",
   ref: "el"
@@ -1067,7 +1065,7 @@ const Dt = {
 function Ut(e, t, s, l, n, i) {
   return d(), b("div", Dt, null, 512);
 }
-const Pt = /* @__PURE__ */ $(be, [["render", Ut], ["__scopeId", "data-v-0c2da986"]]), Lt = {
+const Pt = /* @__PURE__ */ $(_e, [["render", Ut], ["__scopeId", "data-v-0c2da986"]]), Lt = {
   name: "MobileXCheckboxs",
   inheritAttrs: !1,
   props: {
@@ -1237,6 +1235,14 @@ const Zt = /* @__PURE__ */ $(Gt, [["render", Qt]]), es = {
         this.$emit("update:modelValue", e);
       }
     }
+  },
+  methods: {
+    handleCancel() {
+      this.visible = !0, this.$emit("cancel");
+    },
+    handleConfirm() {
+      this.visible = !0, this.$emit("submit");
+    }
   }
 };
 function ts(e, t, s, l, n, i) {
@@ -1247,8 +1253,8 @@ function ts(e, t, s, l, n, i) {
     class: "mobile-x-dialog",
     "show-confirm-button": !!e.$attrs.onSubmit || !!e.$parent.$attrs.onSubmit,
     "show-cancel-button": !!e.$attrs.onCancel || !!e.$parent.$attrs.onCancel,
-    onConfirm: t[1] || (t[1] = (a) => e.$emit("submit")),
-    onCancel: t[2] || (t[2] = (a) => e.$emit("cancel"))
+    onConfirm: i.handleConfirm,
+    onCancel: i.handleCancel
   }), Y({ _: 2 }, [
     e.$slots.title ? {
       name: "title",
@@ -1271,7 +1277,7 @@ function ts(e, t, s, l, n, i) {
       ]),
       key: "2"
     } : void 0
-  ]), 1040, ["show", "show-confirm-button", "show-cancel-button"]);
+  ]), 1040, ["show", "show-confirm-button", "show-cancel-button", "onConfirm", "onCancel"]);
 }
 const ss = /* @__PURE__ */ $(es, [["render", ts]]), ns = {
   name: "PcXDialog",
@@ -1749,7 +1755,7 @@ const ks = /* @__PURE__ */ $(ws, [["render", $s]]);
 function Cs(e) {
   return typeof e == "function" || Object.prototype.toString.call(e) === "[object Object]" && !Me(e);
 }
-const pe = (e) => {
+const me = (e) => {
   const {
     $props: t,
     $attrs: s,
@@ -1792,11 +1798,11 @@ const pe = (e) => {
       effect: "dark",
       content: r,
       placement: "bottom"
-    }, Cs(m = pe(e)) ? m : {
+    }, Cs(m = me(e)) ? m : {
       default: () => [m]
     });
   } else
-    u = pe(e);
+    u = me(e);
   return W(c("el-form-item"), {
     ...t,
     ...s
@@ -1834,7 +1840,7 @@ const pe = (e) => {
     "onUpdate:modelValue": (v) => n("update:modelValue", v)
   };
   return a && s.label || r ? W(c("van-field"), m, {
-    input: () => a && s.label ? i.default() : pe(e)
+    input: () => a && s.label ? i.default() : me(e)
   }) : (Object.assign(m, l), W(c("van-field"), m));
 }, Vs = {
   name: "MobileXFormItem",
@@ -1893,7 +1899,7 @@ const pe = (e) => {
     return Es(this);
   }
 };
-const ye = {
+const be = {
   name: "PcXFormItem",
   props: {
     modelValue: Boolean | Number | String | Array,
@@ -1959,9 +1965,9 @@ const ye = {
   Fe((e) => ({
     ba9709f0: e.width
   }));
-}, Ve = ye.setup;
-ye.setup = Ve ? (e, t) => (Ee(), Ve(e, t)) : Ee;
-const As = /* @__PURE__ */ $(ye, [["__scopeId", "data-v-d2cde1e2"]]), Ae = /* @__PURE__ */ Object.assign({}), Os = {
+}, Ve = be.setup;
+be.setup = Ve ? (e, t) => (Ee(), Ve(e, t)) : Ee;
+const As = /* @__PURE__ */ $(be, [["__scopeId", "data-v-d2cde1e2"]]), Ae = /* @__PURE__ */ Object.assign({}), Os = {
   name: "MobileXIcon",
   props: {
     name: String
@@ -2028,7 +2034,7 @@ function Rs(e, t, s, l, n, i) {
     _: 1
   }, 16));
 }
-const Ns = /* @__PURE__ */ $(Ms, [["render", Rs]]), { highdict: Is } = StardustJs, { storage: Ds } = StardustBrowser, { local: Ye } = Ds, ve = ["index", "selection", "expand", "radio", "_index"];
+const Ns = /* @__PURE__ */ $(Ms, [["render", Rs]]), { highdict: Is } = StardustJs, { storage: Ds } = StardustBrowser, { local: Ye } = Ds, ye = ["index", "selection", "expand", "radio", "_index"];
 function Us() {
   return {
     table: Object,
@@ -2204,7 +2210,7 @@ function ln() {
   }), t;
 }
 function on() {
-  const e = this._columns.filter((s) => s.type && ve.includes(s.type)), t = this.settings.columns.filter((s) => !s.hide).map((s) => {
+  const e = this._columns.filter((s) => s.type && ye.includes(s.type)), t = this.settings.columns.filter((s) => !s.hide).map((s) => {
     const l = this._columns.find((n) => n.prop === s.prop);
     return {
       sortable: "custom",
@@ -2222,14 +2228,14 @@ function rn() {
   return this.table.hideOperates || this.$attrs["hide-operates"] !== void 0 && this.$attrs["hide-operates"] !== !1;
 }
 function dn() {
-  return this._columns.filter((e) => !e.type || !ve.includes(e.type));
+  return this._columns.filter((e) => !e.type || !ye.includes(e.type));
 }
 function cn() {
   return this.table.searcherConfig ?? this.$attrs["searcher-config"] ?? {};
 }
 function un() {
   const e = this._uid && Ye.getJson(`Settings[${this._uid}]`, {}) || {};
-  e.columns || (e.columns = this._columns.filter((t) => t.label && t.prop && !(t.type && ve.includes(t.type))).map((t) => {
+  e.columns || (e.columns = this._columns.filter((t) => t.label && t.prop && !(t.type && ye.includes(t.type))).map((t) => {
     const { prop: s, label: l, show: n, hide: i, width: o } = t;
     return { prop: s, label: l, show: n, hide: i, width: o };
   })), this.settings = e;
@@ -3272,7 +3278,7 @@ function Fi(e, t) {
     options: Oi
   }) : s();
 }
-const { storage: ce } = StardustBrowser, Ti = {
+const { storage: de } = StardustBrowser, Ti = {
   name: "Searcher",
   props: {
     uid: String,
@@ -3294,7 +3300,7 @@ const { storage: ce } = StardustBrowser, Ti = {
     }
   },
   created() {
-    const e = this.uid && ce.local.getJson(this.key, this.config) || this.config;
+    const e = this.uid && de.local.getJson(this.key, this.config) || this.config;
     this.initConfig(e);
   },
   render: ji,
@@ -3306,7 +3312,7 @@ const { storage: ce } = StardustBrowser, Ti = {
       this.visible = !1;
     },
     saveCache() {
-      ce.local.setJson(this.key, {
+      de.local.setJson(this.key, {
         conditionNo: this.conditionNo,
         conditions: this.conditions.map((e) => {
           const { item: t, ops: s, component: l, ...n } = e;
@@ -3333,7 +3339,7 @@ const { storage: ce } = StardustBrowser, Ti = {
       this.uid && e && this.saveCache(), e = e || { where: {} }, this.$emit("search", e), this.visible = !1;
     },
     handleReset() {
-      ce.local.remove(this.key), Object.assign(this, {
+      de.local.remove(this.key), Object.assign(this, {
         visible: !1,
         conditionNo: 1,
         conditions: [],
@@ -3445,7 +3451,7 @@ const { storage: ce } = StardustBrowser, Ti = {
       e.op = t, t === "between" ? e.value = ["", ""] : ["in", "notIn"].includes(t) && (e.value = []), (t === "special" || !["between", "in", "notIn"].includes(t) && Array.isArray(t)) && (e.value = "");
     }
   }
-}, we = /* @__PURE__ */ $(Ti, [["__scopeId", "data-v-0dd718f3"]]);
+}, ve = /* @__PURE__ */ $(Ti, [["__scopeId", "data-v-0dd718f3"]]);
 const Mi = {
   name: "MobileXTable",
   inheritAttrs: !1,
@@ -3463,7 +3469,7 @@ const Mi = {
   emits: [
     ...N.emits()
   ],
-  components: { Searcher: we },
+  components: { Searcher: ve },
   data() {
     return {
       popupVisible: !1,
@@ -3850,7 +3856,7 @@ const Zi = {
   emits: [
     ...N.emits()
   ],
-  components: { Searcher: we, Settings: Qe },
+  components: { Searcher: ve, Settings: Qe },
   data() {
     return {
       searcher: null,
@@ -4482,7 +4488,7 @@ const Al = {
   emits: [
     ...N.emits()
   ],
-  components: { Searcher: we, Settings: Qe },
+  components: { Searcher: ve, Settings: Qe },
   data() {
     return {
       isFullscreen: !1,
@@ -4634,7 +4640,7 @@ function jl(e, t, s, l, n, i) {
   ], 2);
 }
 const Fl = /* @__PURE__ */ $(Al, [["render", jl]]);
-const ue = ["selection", "radio"], Tl = {
+const ce = ["selection", "radio"], Tl = {
   name: "XTableViewer",
   inheritAttrs: !1,
   props: {
@@ -4688,17 +4694,17 @@ const ue = ["selection", "radio"], Tl = {
   methods: {
     init() {
       const { table: e, selectMode: t } = this;
-      ue.includes(t) && (e.columns.find((s) => s.type === "_index") || e.columns.unshift({ type: "_index" }), e.columns.find((s) => s.type === t) || e.columns.unshift({
+      ce.includes(t) && (e.columns.find((s) => s.type === "_index") || e.columns.unshift({ type: "_index" }), e.columns.find((s) => s.type === t) || e.columns.unshift({
         prop: "_index",
         type: t,
         fixed: "left",
         width: 55,
         label: t === "selection" ? "" : "单选"
-      })), e.columns = e.columns.filter((s) => this.selectMode === s.type || !ue.includes(s.type));
+      })), e.columns = e.columns.filter((s) => this.selectMode === s.type || !ce.includes(s.type));
     },
     handleSubmit() {
       const { table: e, selectMode: t } = this;
-      if (ue.includes(t)) {
+      if (ce.includes(t)) {
         let s = null;
         if (t === "selection" ? s = e.selection : t === "radio" && (s = e.checked), t === "selection" && !s.length || !s) {
           this.$message({ type: "warning", message: "未选择数据" }), this.handleCancel();
@@ -4885,10 +4891,10 @@ const Ll = {
       }
     }
   }
-}, Se = (e) => (Be("data-v-fe069681"), e = e(), Re(), e), ql = { class: "mask" }, Xl = {
+}, we = (e) => (Be("data-v-fe069681"), e = e(), Re(), e), ql = { class: "mask" }, Xl = {
   key: 0,
   class: "el-upload__text"
-}, zl = /* @__PURE__ */ Se(() => /* @__PURE__ */ M("em", null, "点击上传", -1)), Wl = /* @__PURE__ */ Se(() => /* @__PURE__ */ M("br", null, null, -1)), Hl = /* @__PURE__ */ Se(() => /* @__PURE__ */ M("br", null, null, -1)), Jl = {
+}, zl = /* @__PURE__ */ we(() => /* @__PURE__ */ M("em", null, "点击上传", -1)), Wl = /* @__PURE__ */ we(() => /* @__PURE__ */ M("br", null, null, -1)), Hl = /* @__PURE__ */ we(() => /* @__PURE__ */ M("br", null, null, -1)), Jl = {
   key: 0,
   class: "path"
 };
@@ -5009,7 +5015,7 @@ function Zl(e, t, s, l, n, i) {
     }, 8, ["modelValue", "title"])
   ], 64);
 }
-const eo = /* @__PURE__ */ $(Gl, [["render", Zl], ["__scopeId", "data-v-821cec65"]]), he = {
+const eo = /* @__PURE__ */ $(Gl, [["render", Zl], ["__scopeId", "data-v-821cec65"]]), ue = {
   xactionsheet: xt,
   xautorows: jt,
   mobilexbutton: Mt,
@@ -5051,8 +5057,8 @@ const eo = /* @__PURE__ */ $(Gl, [["render", Zl], ["__scopeId", "data-v-821cec65
   xfileuploader: Yl,
   ximageuploader: eo
 }, te = {};
-for (let e in he)
-  te[he[e].name] = he[e];
+for (let e in ue)
+  te[ue[e].name] = ue[e];
 const to = (e) => ({
   name: e,
   props: {
@@ -5073,7 +5079,7 @@ const to = (e) => ({
       ...this.$attrs
     }, this.$slots);
   }
-}), fe = (() => {
+}), pe = (() => {
   const e = Object.keys(te), t = [...new Set(e.map((l) => l.replace(/(pc|mobile)/i, "")))], s = {};
   for (const l of e)
     /(pc|mobile)/i.test(l) && (s[l] = te[l]);
@@ -5081,11 +5087,11 @@ const to = (e) => ({
     e.find((n) => /(pc|mobile)/i.test(n) && n.toLowerCase().includes(l.toLowerCase())) ? s[l] = to(l) : s[l] = te[l];
   return s;
 })(), so = (e, t) => {
-  for (let s in fe)
-    e.component(s, fe[s]);
+  for (let s in pe)
+    e.component(s, pe[s]);
 }, io = {
-  version: "1.0.127",
-  ...fe,
+  version: "1.0.128",
+  ...pe,
   ...He,
   ...$t,
   install: so
@@ -5108,7 +5114,7 @@ export {
   at as formatPrecision,
   Xe as initDefaultForm,
   Le as initDialog,
-  _e as initForm,
+  ge as initForm,
   qe as initFormRules,
   vt as initModel,
   Pe as initTable,
