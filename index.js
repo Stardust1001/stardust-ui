@@ -5082,7 +5082,7 @@ const sl = (e) => ({
   for (let s in pe)
     e.component(s, pe[s]);
 }, ol = {
-  version: "1.0.123",
+  version: "1.0.125",
   ...pe,
   ...He,
   ...$t,
