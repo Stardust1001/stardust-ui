@@ -149,7 +149,7 @@ const pt = (e, t, s) => {
 }, gt = (e, t, s) => {
   e.beforeEach((l, n, i) => {
     var o;
-    return (o = l.meta) != null && o.visitable || t.acl.paths.includes(l.path) ? i() : (K.e("无权访问页面: " + l.path), i("/404"));
+    return (o = l.meta) != null && o.visitable || t.acl.paths.includes(l.path) ? i() : (K.e("无权访问页面: " + l.path), i(t.acl.paths[0] || "/404"));
   }), ee(() => {
     fe(() => t.acl.menus, (l) => {
       const n = t.acl.paths, i = (o, a) => {
@@ -5090,7 +5090,7 @@ const to = (e) => ({
   for (let s in pe)
     e.component(s, pe[s]);
 }, io = {
-  version: "1.0.130",
+  version: "1.0.131",
   ...pe,
   ...He,
   ...$t,

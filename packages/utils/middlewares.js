@@ -23,7 +23,7 @@ export const checkRolesPages = (router, store, routes) => {
     if (to.meta?.visitable) return next()
     if (!store.acl.paths.includes(to.path)) {
       Message.e('无权访问页面: ' + to.path)
-      return next('/404')
+      return next(store.acl.paths[0] || '/404')
     }
     return next()
   })
