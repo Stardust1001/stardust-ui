@@ -251,8 +251,5 @@ export default {
   &.hide-header .el-table__header {
     display: none;
   }
-  :deep(.el-image) {
-    height: 40px;
-  }
 }
 </style>

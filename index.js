@@ -5090,7 +5090,7 @@ const to = (e) => ({
   for (let s in pe)
     e.component(s, pe[s]);
 }, io = {
-  version: "1.0.129",
+  version: "1.0.130",
   ...pe,
   ...He,
   ...$t,
