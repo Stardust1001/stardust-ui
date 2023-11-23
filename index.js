@@ -155,7 +155,7 @@ const pt = (e, t, s) => {
       const n = t.acl.paths, i = (l, a) => {
         var u, m, v, g, k;
         const r = (a != null && a.path ? a.path + "/" : "") + l.path;
-        l.meta || (l.meta = {}), a && (l.meta.hidden == null && ((m = l.meta).hidden ?? (m.hidden = (u = a.meta) == null ? void 0 : u.hidden), l.meta = { ...l.meta }), l.meta.visitable == null && ((g = l.meta).visitable ?? (g.visitable = (v = a.meta) == null ? void 0 : v.visitable), l.meta = { ...l.meta })), l.meta.hidden !== !1 && (l.meta.hidden = !n.includes(r)), (k = l.children) == null || k.forEach((j) => i(j, l));
+        l.meta || (l.meta = {}), l.meta._hidden = l.meta.hidden, a && (l.meta.hidden == null && ((m = l.meta).hidden ?? (m.hidden = (u = a.meta) == null ? void 0 : u.hidden), l.meta = { ...l.meta }), l.meta.visitable == null && ((g = l.meta).visitable ?? (g.visitable = (v = a.meta) == null ? void 0 : v.visitable), l.meta = { ...l.meta })), l.meta.hidden !== !1 && l.meta._hidden == null && (l.meta.hidden = !n.includes(r)), (k = l.children) == null || k.forEach((j) => i(j, l));
       };
       s.forEach(i);
     }, { immediate: !0 });
@@ -5082,7 +5082,7 @@ const sl = (e) => ({
   for (let s in pe)
     e.component(s, pe[s]);
 }, ol = {
-  version: "1.0.125",
+  version: "1.0.126",
   ...pe,
   ...He,
   ...$t,

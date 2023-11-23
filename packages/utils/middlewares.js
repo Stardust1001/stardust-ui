@@ -33,6 +33,7 @@ export const checkRolesPages = (router, store, routes) => {
       const update = (route, parent) => {
         const path = (parent?.path ? (parent.path + '/') : '') + route.path
         route.meta ||= {}
+        route.meta._hidden = route.meta.hidden
         if (parent) {
           if (route.meta.hidden == null) {
             route.meta.hidden ??= parent.meta?.hidden
@@ -43,7 +44,7 @@ export const checkRolesPages = (router, store, routes) => {
             route.meta = { ...route.meta }
           }
         }
-        if (route.meta.hidden !== false) {
+        if (route.meta.hidden !== false && route.meta._hidden == null) {
           route.meta.hidden = !paths.includes(path)
         }
         route.children?.forEach(sub => update(sub, route))
