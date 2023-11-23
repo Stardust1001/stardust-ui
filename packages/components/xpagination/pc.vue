@@ -31,5 +31,6 @@ export default {
     v-model:page-size="query.limit"
     :page-count="pageCount"
     :total="total"
+    class="pc-x-pagination"
   />
 </template>

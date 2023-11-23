@@ -293,4 +293,10 @@ export default {
 :deep(.col-2) > * {
   width: 100% !important;
 }
+.mobile-x-dialog .expression {
+  display: block;
+  & > * {
+    margin: 3px 0;
+  }
+}
 </style>

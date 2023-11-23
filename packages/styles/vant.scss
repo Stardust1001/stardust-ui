@@ -12,6 +12,8 @@
   }
   .van-dialog__content {
     padding: 5px;
+    max-height: 80vh;
+    overflow-y: auto;
   }
 }
 
@@ -34,6 +36,10 @@
   width: 100%;
   height: 20px;
   line-height: 20px;
+}
+
+.mobile-x-pagination {
+  padding: 0 10px;
 }
 
 .x-picker {
