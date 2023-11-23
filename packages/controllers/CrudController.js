@@ -366,6 +366,9 @@ class CrudController extends BaseController {
       if (!(await this._validateForm())) {
         this._isSubmitting = false
         this.dialog.visible = true
+        funcs.sleep(100).then(() => {
+          this.dialog.visible = true
+        })
         return false
       }
     }
