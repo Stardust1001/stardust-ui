@@ -23,12 +23,16 @@ export default {
     }
   },
   methods: {
-    handleCancel () {
+    async handleCancel () {
+      await this.$nextTick()
       this.visible = true
+      await this.$nextTick()
       this.$emit('cancel')
     },
-    handleConfirm () {
+    async handleConfirm () {
+      await this.$nextTick()
       this.visible = true
+      await this.$nextTick()
       this.$emit('submit')
     }
   }
