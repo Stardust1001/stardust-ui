@@ -19,7 +19,7 @@ const it = (e) => {
   const m = () => {
     const C = l.createLinearGradient(0, 0, t * 1.5, s * 1.5);
     u ? u-- : (a += r, a <= 0 && (a = 0, r = -r, u = k * 30), a >= 1 && (a = 1, r = -r, u = k * 30)), C.addColorStop(0, "rgba(250, 220, 20, 0.5)"), C.addColorStop(a, "rgba(20, 20, 20, 0.5)"), l.fillStyle = C, l.fillRect(0, 0, t, s);
-  }, v = Math.floor(t / 100), g = Math.floor(s / 100), k = 20, j = Math.round(1e3 / k), I = Array.from({ length: 52 }).map(() => {
+  }, v = Math.floor(t / 100), g = Math.floor(s / 100), k = 20, O = Math.round(1e3 / k), N = Array.from({ length: 52 }).map(() => {
     const C = Math.floor(o(v + g) * 1.5 + o(5));
     let x = o(t), U = o(s);
     x = Math.min(Math.max(C, x), t - C), U = Math.min(Math.max(C, U), s - C);
@@ -34,22 +34,22 @@ const it = (e) => {
       l
     );
   });
-  let V, O;
+  let V, j;
   e.addEventListener("mouseover", (C) => {
-    V = C.pageX, O = C.pageY;
+    V = C.pageX, j = C.pageY;
   }), e.addEventListener("mousemove", (C) => {
     if (V === void 0) {
-      V = C.pageX, O = C.pageY;
+      V = C.pageX, j = C.pageY;
       return;
     }
-    const x = C.pageX - V, U = C.pageY - O;
-    I.forEach((X) => {
+    const x = C.pageX - V, U = C.pageY - j;
+    N.forEach((X) => {
       X.x += x / k, X.y += U / k;
-    }), V = C.pageX, O = C.pageY;
+    }), V = C.pageX, j = C.pageY;
   });
   let T = Date.now(), D = null;
   const y = () => {
-    Date.now() - T >= j && (i(), m(), I.forEach((C) => C.update()), T = Date.now()), D = requestAnimationFrame(y);
+    Date.now() - T >= O && (i(), m(), N.forEach((C) => C.update()), T = Date.now()), D = requestAnimationFrame(y);
   };
   return D = requestAnimationFrame(y), () => cancelAnimationFrame(D);
 }, lt = ({
@@ -153,9 +153,9 @@ const pt = (e, t, s) => {
   }), ee(() => {
     fe(() => t.acl.menus, (l) => {
       const n = t.acl.paths, i = (o, a) => {
-        var u, m, v, g, k;
+        var u, m, v, g, k, O;
         const r = (a != null && a.path ? a.path + "/" : "") + o.path;
-        o.meta || (o.meta = {}), o.meta._hidden = o.meta.hidden, a && (o.meta.hidden == null && ((m = o.meta).hidden ?? (m.hidden = (u = a.meta) == null ? void 0 : u.hidden), o.meta = { ...o.meta }), o.meta.visitable == null && ((g = o.meta).visitable ?? (g.visitable = (v = a.meta) == null ? void 0 : v.visitable), o.meta = { ...o.meta })), o.meta.hidden !== !1 && o.meta._hidden == null && (o.meta.hidden = !n.includes(r)), (k = o.children) == null || k.forEach((j) => i(j, o));
+        o.meta || (o.meta = {}), o.meta._hidden = o.meta.hidden, a && (o.meta.hidden == null && ((m = o.meta).hidden ?? (m.hidden = (u = a.meta) == null ? void 0 : u.hidden), o.meta = { ...o.meta }), o.meta.visitable == null && ((g = o.meta).visitable ?? (g.visitable = (v = a.meta) == null ? void 0 : v.visitable), o.meta = { ...o.meta })), (k = o.children) == null || k.forEach((N) => i(N, o)), o.meta.hidden !== !1 && o.meta._hidden == null && (o.meta.hidden = !n.includes(r), (O = o.children) != null && O.some((N) => N.meta.hidden === !1) && (o.meta.hidden = !1));
       };
       s.forEach(i);
     }, { immediate: !0 });
@@ -754,16 +754,16 @@ class Ke extends Je {
       let { prop: r, options: u } = a;
       const { format: m, formatter: v, autoFill: g } = a.tableAttrs || {}, { modelName: k } = a.formAttrs || {};
       if (k && g)
-        t.forEach((j) => j[`_formatted_${r}`] = ""), this._fillRelatedField(t, a);
+        t.forEach((O) => O[`_formatted_${r}`] = ""), this._fillRelatedField(t, a);
       else if (Array.isArray(u) && m !== !1) {
-        const I = fe(() => a.options, (V, O) => {
-          const T = O ? this.table.list : t, D = wt(a);
+        const N = fe(() => a.options, (V, j) => {
+          const T = j ? this.table.list : t, D = wt(a);
           T.forEach((y, C) => {
             const x = y[r];
             y[`_formatted_${r}`] = D[x] || (v == null ? void 0 : v(x, y, C)) || x;
           });
         }, { immediate: !0, deep: !0 });
-        this._unwatchs.push(I);
+        this._unwatchs.push(N);
       }
     }), t;
   }
@@ -1950,9 +1950,9 @@ const be = {
         style: v,
         html: g,
         class: k,
-        ...j
+        ...O
       } = { ...this.$props, ...this.$attrs };
-      return j;
+      return O;
     },
     width() {
       return this.$attrs.label ? this.labelWidth : "0px";
@@ -2368,7 +2368,7 @@ function Fn(e, t) {
 function Mn() {
   this.zoom !== 1 && (document.documentElement.style.zoom = this.zoom);
 }
-const N = {
+const I = {
   props: Us,
   emits: Ps,
   computed: {
@@ -2470,7 +2470,7 @@ const Bn = {
     this.activeNames = Object.keys(this.blocks);
   },
   methods: {
-    calcValue: N.methods.calcValue
+    calcValue: I.methods.calcValue
   }
 }, Rn = { key: 0 }, Nn = { key: 1 };
 function In(e, t, s, l, n, i) {
@@ -3230,13 +3230,13 @@ function ji() {
       readonly: !0
     }, null) : p(c("pc-x-select"), {
       modelValue: g.prop,
-      onChange: (j) => m(g, j),
+      onChange: (O) => m(g, O),
       options: s,
       text: "label",
       value: "prop"
     }, null), p(c("pc-x-select"), {
       modelValue: g.op,
-      onChange: (j) => v(g, j),
+      onChange: (O) => v(g, O),
       options: g.ops
     }, null), p("div", {
       class: "value-container"
@@ -3436,10 +3436,10 @@ const { storage: de } = StardustBrowser, Fi = {
         slot: v,
         span: g,
         tableAttrs: k,
-        formAttrs: j,
-        tagTypes: I,
+        formAttrs: O,
+        tagTypes: N,
         tagValues: V,
-        width: O,
+        width: j,
         minWidth: T,
         disabled: D,
         readonly: y,
@@ -3456,7 +3456,7 @@ const Mi = {
   name: "MobileXTable",
   inheritAttrs: !1,
   props: {
-    ...N.props(),
+    ...I.props(),
     mode: {
       type: String,
       default: "card"
@@ -3467,7 +3467,7 @@ const Mi = {
     slotRenderers: Object
   },
   emits: [
-    ...N.emits()
+    ...I.emits()
   ],
   components: { Searcher: ve },
   data() {
@@ -3481,7 +3481,7 @@ const Mi = {
     };
   },
   computed: {
-    ...N.computed,
+    ...I.computed,
     hasIndex() {
       return this._visibleColumns.some((e) => e.type === "index" || e.type === "_index");
     },
@@ -3532,7 +3532,7 @@ const Mi = {
     this.table && (this.table.tableRef = this, this.table.ref = this), this.$emit("update:tref", this);
   },
   methods: {
-    ...N.methods,
+    ...I.methods,
     handleShowDetail(e, t) {
       this.scope = { row: e, $index: t }, this.popupVisible = !0;
     },
@@ -3566,7 +3566,7 @@ const Mi = {
   class: "index"
 }, Xi = { class: "title" };
 function zi(e, t, s, l, n, i) {
-  const o = c("searcher"), a = c("x-table-tools"), r = c("van-checkbox"), u = c("x-icon"), m = c("van-cell"), v = c("van-list"), g = c("x-pagination"), k = c("x-info"), j = c("van-popup"), I = c("van-action-sheet");
+  const o = c("searcher"), a = c("x-table-tools"), r = c("van-checkbox"), u = c("x-icon"), m = c("van-cell"), v = c("van-list"), g = c("x-pagination"), k = c("x-info"), O = c("van-popup"), N = c("van-action-sheet");
   return d(), b("div", Bi, [
     p(o, {
       ref: "searcher",
@@ -3600,16 +3600,16 @@ function zi(e, t, s, l, n, i) {
       } : void 0
     ]), 1040, ["domids", "onAdd", "onSearch", "onExport", "onSearchExport", "onImport", "onMultiDelete"])) : w("", !0),
     (s.mode || e._attrs.mode) === "card" ? (d(), b("div", Ri, [
-      (d(!0), b(F, null, R(e._data, (V, O) => (d(), b("div", {
-        key: O,
+      (d(!0), b(F, null, R(e._data, (V, j) => (d(), b("div", {
+        key: j,
         class: "row",
-        onClick: (T) => i.handleClickCard(O)
+        onClick: (T) => i.handleClickCard(j)
       }, [
         M("div", Ii, [
           i.hasSelection ? (d(), f(r, {
             key: 0,
-            modelValue: n.selected[O],
-            "onUpdate:modelValue": (T) => n.selected[O] = T,
+            modelValue: n.selected[j],
+            "onUpdate:modelValue": (T) => n.selected[j] = T,
             shape: "square",
             class: "selection",
             onClick: t[0] || (t[0] = J(() => {
@@ -3618,14 +3618,14 @@ function zi(e, t, s, l, n, i) {
           p(u, {
             name: "ellipsis",
             class: "more",
-            onClick: J((T) => i.handleShowActionSheet(V, O), ["stop"])
+            onClick: J((T) => i.handleShowActionSheet(V, j), ["stop"])
           }, null, 8, ["onClick"])
         ]),
         i.hasRadio ? (d(), b("input", {
           key: 0,
           type: "radio",
-          value: O,
-          checked: O === n.checked,
+          value: j,
+          checked: j === n.checked,
           class: "radio",
           onClick: t[1] || (t[1] = J(() => {
           }, ["stop"])),
@@ -3646,16 +3646,16 @@ function zi(e, t, s, l, n, i) {
       onLoad: t[6] || (t[6] = (V) => e.$emit("search"))
     }), {
       default: h(() => [
-        (d(!0), b(F, null, R(e._data, (V, O) => (d(), f(m, {
-          key: O,
+        (d(!0), b(F, null, R(e._data, (V, j) => (d(), f(m, {
+          key: j,
           "is-link": "",
-          onClick: (T) => i.handleShowDetail(V, O)
+          onClick: (T) => i.handleShowDetail(V, j)
         }, {
           default: h(() => [
             i.hasSelection ? (d(), f(r, {
               key: 0,
-              modelValue: n.selected[O],
-              "onUpdate:modelValue": (T) => n.selected[O] = T,
+              modelValue: n.selected[j],
+              "onUpdate:modelValue": (T) => n.selected[j] = T,
               shape: "square",
               class: "selection",
               onClick: t[3] || (t[3] = J(() => {
@@ -3664,14 +3664,14 @@ function zi(e, t, s, l, n, i) {
             i.hasRadio ? (d(), b("input", {
               key: 1,
               type: "radio",
-              value: O,
-              checked: O === n.checked,
+              value: j,
+              checked: j === n.checked,
               class: "radio",
               onClick: t[4] || (t[4] = J(() => {
               }, ["stop"])),
               onChange: t[5] || (t[5] = (...T) => e.handleCheckedChange && e.handleCheckedChange(...T))
             }, null, 40, Li)) : w("", !0),
-            i.hasIndex ? (d(), b("span", qi, A(O + 1), 1)) : w("", !0),
+            i.hasIndex ? (d(), b("span", qi, A(j + 1), 1)) : w("", !0),
             M("span", Xi, A(i.calcTitle(V)), 1)
           ]),
           _: 2
@@ -3685,7 +3685,7 @@ function zi(e, t, s, l, n, i) {
       total: e._total,
       onSearch: t[7] || (t[7] = (V) => e._emit("search"))
     }, null, 8, ["query", "total"])) : w("", !0),
-    p(j, {
+    p(O, {
       show: n.popupVisible,
       "onUpdate:show": t[8] || (t[8] = (V) => n.popupVisible = V),
       position: "bottom",
@@ -3700,7 +3700,7 @@ function zi(e, t, s, l, n, i) {
       ]),
       _: 1
     }, 8, ["show"]),
-    p(I, {
+    p(N, {
       show: n.actionSheetVisible,
       "onUpdate:show": t[9] || (t[9] = (V) => n.actionSheetVisible = V),
       actions: i.actions,
@@ -3808,7 +3808,7 @@ function Qi(e, t, s, l, n, i) {
                     icon: "arrow-up",
                     type: "primary",
                     class: "move",
-                    onClick: (j) => i.handleMove(g, k, -1)
+                    onClick: (O) => i.handleMove(g, k, -1)
                   }, null, 8, ["disabled", "onClick"]),
                   p(o, {
                     disabled: k === n.columns.length - 1,
@@ -3816,21 +3816,21 @@ function Qi(e, t, s, l, n, i) {
                     icon: "arrow-down",
                     type: "success",
                     class: "move",
-                    onClick: (j) => i.handleMove(g, k, 1)
+                    onClick: (O) => i.handleMove(g, k, 1)
                   }, null, 8, ["disabled", "onClick"]),
                   p(a, {
                     modelValue: g.show,
-                    "onUpdate:modelValue": (j) => g.show = j,
+                    "onUpdate:modelValue": (O) => g.show = O,
                     onChange: i.update
                   }, null, 8, ["modelValue", "onUpdate:modelValue", "onChange"]),
                   M("span", {
                     class: "label overflow-text",
                     title: g.label,
-                    onClick: (j) => i.handleToggle(g)
+                    onClick: (O) => i.handleToggle(g)
                   }, A(g.label), 9, Yi),
                   p(r, {
                     modelValue: g.width,
-                    "onUpdate:modelValue": (j) => g.width = j,
+                    "onUpdate:modelValue": (O) => g.width = O,
                     onChange: i.update
                   }, null, 8, ["modelValue", "onUpdate:modelValue", "onChange"]),
                   Gi
@@ -3851,10 +3851,10 @@ const Zi = {
   name: "PcXTable",
   inheritAttrs: !1,
   props: {
-    ...N.props()
+    ...I.props()
   },
   emits: [
-    ...N.emits()
+    ...I.emits()
   ],
   components: { Searcher: ve, Settings: Qe },
   data() {
@@ -3869,10 +3869,10 @@ const Zi = {
     };
   },
   computed: {
-    ...N.computed
+    ...I.computed
   },
   watch: {
-    ...N.watch,
+    ...I.watch,
     settings: "saveSettings"
   },
   created() {
@@ -3889,11 +3889,11 @@ const Zi = {
     this.table && (this.table.tableRef = this.$refs.tableRef, this.table.ref = this), this.$emit("update:tref", this.$refs.tableRef);
   },
   methods: {
-    ...N.methods
+    ...I.methods
   }
 }, el = { key: 1 }, tl = ["value", "checked"], sl = { key: 1 };
 function nl(e, t, s, l, n, i) {
-  const o = c("searcher"), a = c("pc-x-icon"), r = c("settings"), u = c("pc-x-table-tools"), m = c("el-image"), v = c("el-tag"), g = c("el-table-column"), k = c("el-button"), j = c("el-table"), I = c("x-pagination"), V = c("el-collapse-item"), O = c("el-collapse"), T = se("domid"), D = se("loading");
+  const o = c("searcher"), a = c("pc-x-icon"), r = c("settings"), u = c("pc-x-table-tools"), m = c("el-image"), v = c("el-tag"), g = c("el-table-column"), k = c("el-button"), O = c("el-table"), N = c("x-pagination"), V = c("el-collapse-item"), j = c("el-collapse"), T = se("domid"), D = se("loading");
   return d(), b("div", {
     class: z(["pc-x-table", { fullscreen: n.isFullscreen, "hide-header": e.hideHeader }])
   }, [
@@ -3904,7 +3904,7 @@ function nl(e, t, s, l, n, i) {
       config: e.searcherConfig,
       onSearch: e.handleSearch
     }, null, 8, ["uid", "columns", "config", "onSearch"]),
-    p(O, {
+    p(j, {
       modelValue: n.activeNames,
       "onUpdate:modelValue": t[3] || (t[3] = (y) => n.activeNames = y),
       class: z((e.useCollapse ? "use" : "no") + "-collapse")
@@ -3958,7 +3958,7 @@ function nl(e, t, s, l, n, i) {
                 key: "1"
               } : void 0
             ]), 1040, ["domids", "onAdd", "onSearch", "onExport", "onSearchExport", "onImport", "onMultiEdit", "onMultiDelete"])) : w("", !0),
-            B((d(), f(j, _({ ref: "tableRef" }, e.elTableAttrs, {
+            B((d(), f(O, _({ ref: "tableRef" }, e.elTableAttrs, {
               onHeaderDragend: e.handleHeaderDragend,
               onSelectionChange: e.handleSelectionChange,
               onSortChange: e.handleSortChange
@@ -4078,7 +4078,7 @@ function nl(e, t, s, l, n, i) {
             }, 16, ["onHeaderDragend", "onSelectionChange", "onSortChange"])), [
               [D, e._loading]
             ]),
-            e._query && e._total ? (d(), f(I, {
+            e._query && e._total ? (d(), f(N, {
               key: 1,
               query: e._query,
               total: e._total,
@@ -4475,7 +4475,7 @@ const bl = (e) => {
 const Al = {
   name: "XTableV2",
   props: {
-    ...N.props(),
+    ...I.props(),
     fixed: {
       type: Boolean,
       default: !0
@@ -4486,7 +4486,7 @@ const Al = {
     }
   },
   emits: [
-    ...N.emits()
+    ...I.emits()
   ],
   components: { Searcher: ve, Settings: Qe },
   data() {
@@ -4500,10 +4500,10 @@ const Al = {
     };
   },
   computed: {
-    ...N.computed
+    ...I.computed
   },
   watch: {
-    ...N.watch,
+    ...I.watch,
     settings: "saveSettings"
   },
   created() {
@@ -4513,12 +4513,12 @@ const Al = {
     this.table && (this.table.tableRef = this.$refs.tableRef), this.$emit("update:tref", this.$refs.tableRef);
   },
   methods: {
-    ...N.methods,
+    ...I.methods,
     convertColumnsForTableV2: Vl.convertColumnsForTableV2
   }
 }, Ol = { key: 1 };
 function jl(e, t, s, l, n, i) {
-  const o = c("Searcher"), a = c("x-icon"), r = c("Settings"), u = c("x-table-tools"), m = c("el-table-v2"), v = c("el-auto-resizer"), g = c("x-pagination"), k = c("el-collapse-item"), j = c("el-collapse"), I = se("loading");
+  const o = c("Searcher"), a = c("x-icon"), r = c("Settings"), u = c("x-table-tools"), m = c("el-table-v2"), v = c("el-auto-resizer"), g = c("x-pagination"), k = c("el-collapse-item"), O = c("el-collapse"), N = se("loading");
   return d(), b("div", {
     class: z(["pc-x-table-v2", { fullscreen: n.isFullscreen }])
   }, [
@@ -4529,7 +4529,7 @@ function jl(e, t, s, l, n, i) {
       config: e.searcherConfig,
       onSearch: t[0] || (t[0] = (V) => e._emit("search", V))
     }, null, 8, ["uid", "columns", "config"]),
-    p(j, {
+    p(O, {
       modelValue: n.activeNames,
       "onUpdate:modelValue": t[3] || (t[3] = (V) => n.activeNames = V),
       class: z((e.useCollapse ? "use" : "no") + "-collapse")
@@ -4586,7 +4586,7 @@ function jl(e, t, s, l, n, i) {
             p(v, {
               style: nt({ height: s.height })
             }, {
-              default: h(({ width: V, height: O }) => [
+              default: h(({ width: V, height: j }) => [
                 B((d(), f(m, _({
                   ref: "tableRef",
                   "header-height": 46,
@@ -4596,7 +4596,7 @@ function jl(e, t, s, l, n, i) {
                   columns: i.convertColumnsForTableV2(e._visibleColumns, this),
                   fixed: s.fixed,
                   width: V,
-                  height: O
+                  height: j
                 }), Y({ _: 2 }, [
                   e.$slots.footer ? {
                     name: "footer",
@@ -4620,7 +4620,7 @@ function jl(e, t, s, l, n, i) {
                     key: "2"
                   } : void 0
                 ]), 1040, ["data", "columns", "fixed", "width", "height"])), [
-                  [I, e._loading]
+                  [N, e._loading]
                 ])
               ]),
               _: 3
@@ -5090,7 +5090,7 @@ const to = (e) => ({
   for (let s in pe)
     e.component(s, pe[s]);
 }, io = {
-  version: "1.0.131",
+  version: "1.0.133",
   ...pe,
   ...He,
   ...$t,

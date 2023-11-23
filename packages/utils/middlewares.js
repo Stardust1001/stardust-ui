@@ -44,10 +44,13 @@ export const checkRolesPages = (router, store, routes) => {
             route.meta = { ...route.meta }
           }
         }
+        route.children?.forEach(sub => update(sub, route))
         if (route.meta.hidden !== false && route.meta._hidden == null) {
           route.meta.hidden = !paths.includes(path)
+          if (route.children?.some(sub => sub.meta.hidden === false)) {
+            route.meta.hidden = false
+          }
         }
-        route.children?.forEach(sub => update(sub, route))
       }
       routes.forEach(update)
     }, { immediate: true })
