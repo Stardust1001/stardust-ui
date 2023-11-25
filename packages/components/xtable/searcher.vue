@@ -224,6 +224,7 @@ export default {
         condition.component = 'ElInput'
         others.type = 'date'
       }
+      if (others.type === 'textarea') delete others.type
     },
     handleSelectOp (condition, value) {
       condition.op = value
