@@ -123,7 +123,6 @@ export default {
       background-color: var(--x-sidebar-hover-bg-color) !important;
       .menu-item {
         color: var(--x-sidebar-current-text-color);
-        position: relative;
         animation-name: tick;
         animation-duration: 0.3s;
         @keyframes tick {

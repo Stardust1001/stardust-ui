@@ -20,7 +20,7 @@ export const setTitle = (router, store, routes) => {
 
 export const checkRolesPages = (router, store, routes) => {
   router.beforeEach((to, from, next) => {
-    if (to.meta?.visitable) return next()
+    if (to.meta.acl === false || to.meta?.visitable) return next()
     if (!store.acl.paths.includes(to.path)) {
       Message.e('无权访问页面: ' + to.path)
       return next(store.acl.paths[0] || '/404')
@@ -33,22 +33,30 @@ export const checkRolesPages = (router, store, routes) => {
       const update = (route, parent) => {
         const path = (parent?.path ? (parent.path + '/') : '') + route.path
         route.meta ||= {}
-        route.meta._hidden = route.meta.hidden
-        if (parent) {
-          if (route.meta.hidden == null) {
-            route.meta.hidden ??= parent.meta?.hidden
-            route.meta = { ...route.meta }
+        if (route.meta.acl === false) {
+          route.children?.forEach(sub => {
+            sub.meta ||= {}
+            sub.meta.acl ||= false
+            update(sub, route)
+          })
+        } else {
+          route.meta._hidden = route.meta.hidden
+          if (parent) {
+            if (route.meta.hidden == null) {
+              route.meta.hidden ??= parent.meta?.hidden
+              route.meta = { ...route.meta }
+            }
+            if (route.meta.visitable == null) {
+              route.meta.visitable ??= parent.meta?.visitable
+              route.meta = { ...route.meta }
+            }
           }
-          if (route.meta.visitable == null) {
-            route.meta.visitable ??= parent.meta?.visitable
-            route.meta = { ...route.meta }
-          }
-        }
-        route.children?.forEach(sub => update(sub, route))
-        if (route.meta.hidden !== false && route.meta._hidden == null) {
-          route.meta.hidden = !paths.includes(path)
-          if (route.children?.some(sub => sub.meta.hidden === false)) {
-            route.meta.hidden = false
+          route.children?.forEach(sub => update(sub, route))
+          if (route.meta.hidden !== false && route.meta._hidden == null) {
+            route.meta.hidden = !paths.includes(path)
+            if (route.children?.some(sub => sub.meta.hidden === false)) {
+              route.meta.hidden = false
+            }
           }
         }
       }
