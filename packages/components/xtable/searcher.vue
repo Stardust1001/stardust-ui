@@ -26,11 +26,14 @@ export default {
     }
   },
   created () {
-    const config = this.uid && storage.local.getJson(this.key, this.config) || this.config
-    this.initConfig(config)
+    this.init()
   },
   render,
   methods: {
+    init () {
+      const config = this.uid && storage.local.getJson(this.key, this.config) || this.config
+      this.initConfig(config)
+    },
     open () {
       this.visible = true
     },
@@ -77,13 +80,11 @@ export default {
     handleReset () {
       storage.local.remove(this.key)
       Object.assign(this, {
-        visible: false,
         conditionNo: 1,
         conditions: [],
         expression: ''
       })
-      this.restoreCache()
-      this.$emit('search', { where: {} })
+      this.init()
     },
     calcParams () {
       const tree = this.calcTree()

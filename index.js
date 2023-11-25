@@ -3313,11 +3313,14 @@ const { storage: de } = StardustBrowser, Fi = {
     }
   },
   created() {
-    const e = this.uid && de.local.getJson(this.key, this.config) || this.config;
-    this.initConfig(e);
+    this.init();
   },
   render: ji,
   methods: {
+    init() {
+      const e = this.uid && de.local.getJson(this.key, this.config) || this.config;
+      this.initConfig(e);
+    },
     open() {
       this.visible = !0;
     },
@@ -3353,11 +3356,10 @@ const { storage: de } = StardustBrowser, Fi = {
     },
     handleReset() {
       de.local.remove(this.key), Object.assign(this, {
-        visible: !1,
         conditionNo: 1,
         conditions: [],
         expression: ""
-      }), this.restoreCache(), this.$emit("search", { where: {} });
+      }), this.init();
     },
     calcParams() {
       const e = this.calcTree();
@@ -3464,7 +3466,7 @@ const { storage: de } = StardustBrowser, Fi = {
       e.op = t, t === "between" ? e.value = ["", ""] : ["in", "notIn"].includes(t) && (e.value = []), (t === "special" || !["between", "in", "notIn"].includes(t) && Array.isArray(t)) && (e.value = "");
     }
   }
-}, ve = /* @__PURE__ */ $(Fi, [["__scopeId", "data-v-8f188a9b"]]);
+}, ve = /* @__PURE__ */ $(Fi, [["__scopeId", "data-v-d86a354a"]]);
 const Mi = {
   name: "MobileXTable",
   inheritAttrs: !1,
@@ -5103,7 +5105,7 @@ const to = (e) => ({
   for (let s in pe)
     e.component(s, pe[s]);
 }, io = {
-  version: "1.0.141",
+  version: "1.0.143",
   ...pe,
   ...He,
   ...$t,
