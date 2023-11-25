@@ -24,11 +24,15 @@ export const SPECIAL_OPTIONS = [
 
 export const COMPONENT_OPS = {
   'XSelect': ['eq', 'ne', 'in', 'notIn', 'special'],
+  'XRadios': ['eq', 'ne', 'special'],
+  'XCheckboxs': ['eq', 'ne', 'in', 'notIn', 'special'],
   'ElDatePicker': ['eq', 'gt', 'gte', 'lt', 'lte', 'between', 'special'],
   'ElInputNumber': ['eq', 'ne', 'gt', 'gte', 'lt', 'lte', 'between', 'special'],
   'ElInput': ['eq', 'ne', 'like', 'notLike', 'between', 'special']
 }
 COMPONENT_OPS['x-select'] = COMPONENT_OPS['XSelect']
+COMPONENT_OPS['x-radios'] = COMPONENT_OPS['XRadios']
+COMPONENT_OPS['x-checkboxs'] = COMPONENT_OPS['XCheckboxs']
 COMPONENT_OPS['el-date-picker'] = COMPONENT_OPS['ElDatePicker']
 COMPONENT_OPS['el-input-number'] = COMPONENT_OPS['ElInputNumber']
 COMPONENT_OPS['el-input'] = COMPONENT_OPS['ElInput']
