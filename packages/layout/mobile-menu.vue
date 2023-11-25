@@ -1,6 +1,7 @@
 <script setup>
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
+import store from '@/store'
 
 import Sidebar from './sidebar/sidebar.vue'
 
@@ -10,7 +11,13 @@ const sidebarVisible = ref(false)
 
 watch(route, () => sidebarVisible.value = false)
 
-const handleToggleSidebar = () => sidebarVisible.value = !sidebarVisible.value
+onMounted(() => {
+  store.app.sidebarCollapse = false
+})
+
+const handleToggleSidebar = () => {
+  sidebarVisible.value = !sidebarVisible.value
+}
 </script>
 
 <template>

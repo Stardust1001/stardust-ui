@@ -28,7 +28,12 @@ export const checkRolesPages = (router, store, routes) => {
     return next()
   })
   nextTick(() => {
+    let inited = false
     watch(() => store.acl.menus, menus => {
+      if (!inited) {
+        if (!menus.length) return
+        inited = true
+      }
       const paths = store.acl.paths
       const update = (route, parent) => {
         const path = (parent?.path ? (parent.path + '/') : '') + route.path
