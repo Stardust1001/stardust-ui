@@ -1097,6 +1097,7 @@ const Pt = /* @__PURE__ */ $(_e, [["render", Ut], ["__scopeId", "data-v-0c2da986
     sort: Boolean | String,
     options: Array | Object
   },
+  emits: ["change"],
   computed: {
     attrs() {
       const {
@@ -1116,7 +1117,10 @@ const Pt = /* @__PURE__ */ $(_e, [["render", Ut], ["__scopeId", "data-v-0c2da986
 };
 function qt(e, t, s, l, n, i) {
   const o = c("van-checkbox"), a = c("van-checkbox-group");
-  return d(), f(a, _({ class: "mobile-x-checkboxs" }, i.attrs, { direction: s.direction }), {
+  return d(), f(a, _({ class: "mobile-x-checkboxs" }, i.attrs, {
+    direction: s.direction,
+    onChange: t[0] || (t[0] = (r) => e.$emit("change", r))
+  }), {
     default: h(() => [
       (d(!0), b(F, null, R(i.formatOptions(s.options, this), (r) => (d(), f(o, _(i.attrs, {
         key: r[s.text],
@@ -1148,7 +1152,7 @@ const Xt = /* @__PURE__ */ $(Lt, [["render", qt]]), zt = {
     sort: Boolean | String,
     options: Array | Object
   },
-  emits: ["update:modelValue"],
+  emits: ["update:modelValue", "change"],
   computed: {
     attrs() {
       const {
@@ -1168,7 +1172,8 @@ function Wt(e, t, s, l, n, i) {
   const o = c("el-checkbox"), a = c("el-checkbox-group");
   return d(), f(a, _({ class: "pc-x-checkboxs" }, i.attrs, {
     modelValue: s.modelValue,
-    "onUpdate:modelValue": t[0] || (t[0] = (r) => e.$emit("update:modelValue", r))
+    "onUpdate:modelValue": t[0] || (t[0] = (r) => e.$emit("update:modelValue", r)),
+    onChange: t[1] || (t[1] = (r) => e.$emit("change", r))
   }), {
     default: h(() => [
       (d(!0), b(F, null, R(i.formatOptions(s.options, this), (r) => (d(), f(o, _(i.attrs, {
@@ -2769,7 +2774,7 @@ const ti = /* @__PURE__ */ $(Zn, [["render", ei]]), si = {
     sort: Boolean | String,
     options: Array | Object
   },
-  emits: ["update:modelValue"],
+  emits: ["update:modelValue", "change"],
   computed: {
     attrs() {
       const {
@@ -2789,7 +2794,8 @@ function ni(e, t, s, l, n, i) {
   const o = c("el-radio-group");
   return d(), f(o, _({ class: "pc-x-radios" }, i.attrs, {
     modelValue: s.modelValue,
-    "onUpdate:modelValue": t[0] || (t[0] = (a) => e.$emit("update:modelValue", a))
+    "onUpdate:modelValue": t[0] || (t[0] = (a) => e.$emit("update:modelValue", a)),
+    onChange: t[1] || (t[1] = (a) => e.$emit("change", a))
   }), {
     default: h(() => [
       (d(!0), b(F, null, R(i.formatOptions(s.options, this), (a) => (d(), f(Q(s.button ? "el-radio-button" : "el-radio"), _(i.attrs, {
@@ -5105,7 +5111,7 @@ const to = (e) => ({
   for (let s in pe)
     e.component(s, pe[s]);
 }, io = {
-  version: "1.0.146",
+  version: "1.0.149",
   ...pe,
   ...He,
   ...$t,

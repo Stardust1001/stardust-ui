@@ -21,7 +21,7 @@ export default {
     sort: Boolean | String,
     options: Array | Object,
   },
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'change'],
   computed: {
     attrs () {
       const {
@@ -45,6 +45,7 @@ export default {
     v-bind="attrs"
     :modelValue="modelValue"
     @update:modelValue="value => $emit('update:modelValue', value)"
+    @change="$emit('change', $event)"
   >
     <component
       :is="button ? 'el-radio-button' : 'el-radio'"

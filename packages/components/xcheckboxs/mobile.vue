@@ -24,6 +24,7 @@ export default {
     sort: Boolean | String,
     options: Array | Object
   },
+  emits: ['change'],
   computed: {
     attrs () {
       const {
@@ -48,6 +49,7 @@ export default {
     class="mobile-x-checkboxs"
     v-bind="attrs"
     :direction="direction"
+    @change="$emit('change', $event)"
   >
     <van-checkbox
       v-for="option in formatOptions(options, this)"
