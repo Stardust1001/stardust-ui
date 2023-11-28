@@ -99,6 +99,9 @@
 
 .el-pagination {
   margin: var(--x-medium-padding) 0;
+  .el-select .el-input {
+    width: 105px
+  }
 }
 
 .el-overlay.is-message-box {
