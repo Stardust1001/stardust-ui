@@ -90,6 +90,12 @@ const controller = {
 
 <template>
   <div style="padding: 10px;">
+    <x-chart
+      height="300"
+      :rich="{
+        series: 'name', data: model.table.list
+      }"
+    />
     <el-button type="warning">haha</el-button>
     <x-scan v-model="model.form.scan"></x-scan>
     <x-row :gutter="20">

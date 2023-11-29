@@ -12,7 +12,8 @@ export default {
       type: Object,
       default: () => ({})
     },
-    updator: Object
+    updator: Object,
+    rich: Object
   },
   data () {
     return {
@@ -52,22 +53,74 @@ export default {
     if (this.updator) {
       this.timer = setInterval(this.updator.handler.bind(this), this.updator.interval || 1000)
     }
+    this.rich && this.calcRich()
   },
   beforeUnmount () {
     document.removeEventListener('resize', this.update)
     this.timer && clearInterval(this.timer)
   },
   methods: {
+    calcRich () {
+      const { categories, series: seriesName, data } = this.rich
+      const opts = {}
+      const hasCategories = categories?.length
+      const counts = {}
+      const nameSet = new Set()
+      data.forEach(ele => {
+        const name = ele[seriesName] || '未知'
+        nameSet.add(name)
+        if (hasCategories) {
+          const cate = config.categories.map(c => ele[c]).join('/') || '未知'
+          counts[cate] ||= {}
+          counts[cate][name] ||= 0
+          counts[cate][name]++
+        } else {
+          counts[name] ||= 0
+          counts[name]++
+        }
+      })
+      const cates = Object.keys(counts)
+      const legend = [...nameSet]
+      let series = []
+      if (hasCategories) {
+        series = legend.map(name => {
+          return {
+            name,
+            type: 'bar',
+            data: cates.map(c => ({ name: c, value: counts[c][name] }))
+          }
+        })
+      } else {
+        series = [
+          {
+            name: 'haha',
+            type: 'bar',
+            data: legend.map(name => {
+              return { name, value: counts[name] }
+            })
+          }
+        ]
+      }
+      Object.assign(opts, {
+        legend: { data: legend },
+        xAxis: { type: 'category', data: cates },
+        yAxis: { type: 'value' },
+        series
+      }, this.option)
+      Object.assign(this.option, opts)
+      this.update()
+    },
     update () {
       this.zoom = 1 / (parseFloat(document.documentElement.style.zoom) || 1)
 
       this.chart?.setOption({
         tooltip: {},
+        toolbox: { feature: { saveAsImage: {} } },
         ...this.option,
         grid: {
-          left: 20,
-          top: 10,
-          right: 10,
+          left: 30,
+          top: 20,
+          right: 20,
           bottom: 20,
           ...this.option.grid
         }
