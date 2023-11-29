@@ -12,8 +12,7 @@ export default {
       type: Object,
       default: () => ({})
     },
-    updator: Object,
-    rich: Object
+    updator: Object
   },
   data () {
     return {
@@ -53,15 +52,14 @@ export default {
     if (this.updator) {
       this.timer = setInterval(this.updator.handler.bind(this), this.updator.interval || 1000)
     }
-    this.rich && this.calcRich()
   },
   beforeUnmount () {
     document.removeEventListener('resize', this.update)
     this.timer && clearInterval(this.timer)
   },
   methods: {
-    calcRich () {
-      const { categories, series: seriesName, data } = this.rich
+    setRich (rich) {
+      const { categories, series: seriesName, data } = rich
       const opts = {}
       const hasCategories = categories?.length
       const counts = {}
@@ -70,7 +68,7 @@ export default {
         const name = ele[seriesName] || '未知'
         nameSet.add(name)
         if (hasCategories) {
-          const cate = config.categories.map(c => ele[c]).join('/') || '未知'
+          const cate = categories.map(c => ele[c]).join('/') || '未知'
           counts[cate] ||= {}
           counts[cate][name] ||= 0
           counts[cate][name]++
@@ -107,22 +105,23 @@ export default {
         yAxis: { type: 'value' },
         series
       }, this.option)
-      Object.assign(this.option, opts)
-      this.update()
+      this.update(opts)
     },
-    update () {
+    update (option = {}) {
       this.zoom = 1 / (parseFloat(document.documentElement.style.zoom) || 1)
 
       this.chart?.setOption({
         tooltip: {},
         toolbox: { feature: { saveAsImage: {} } },
         ...this.option,
+        ...option,
         grid: {
           left: 30,
           top: 20,
           right: 20,
           bottom: 20,
-          ...this.option.grid
+          ...this.option.grid,
+          ...option.grid
         }
       }, true)
     }
