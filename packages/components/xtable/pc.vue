@@ -93,6 +93,7 @@ export default {
             <slot name="tools-suffix" />
           </template>
           <template #tools-end>
+            <slot name="tools-end" />
             <pc-x-icon
               name="FullScreen"
               class="full"

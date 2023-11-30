@@ -4000,6 +4000,7 @@ function nl(e, t, s, l, n, i) {
               onMultiDelete: e._onMultiDelete
             }), Y({
               "tools-end": m(() => [
+                k(e.$slots, "tools-end"),
                 p(a, {
                   name: "FullScreen",
                   class: "full",
@@ -5162,7 +5163,7 @@ const to = (e) => ({
   for (let s in pe)
     e.component(s, pe[s]);
 }, io = {
-  version: "1.0.155",
+  version: "1.0.156",
   ...pe,
   ...He,
   ...$t,
