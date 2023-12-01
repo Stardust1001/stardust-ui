@@ -19,7 +19,7 @@ const it = (e) => {
   const u = () => {
     const E = l.createLinearGradient(0, 0, t * 1.5, s * 1.5);
     h ? h-- : (a += r, a <= 0 && (a = 0, r = -r, h = C * 30), a >= 1 && (a = 1, r = -r, h = C * 30)), E.addColorStop(0, "rgba(250, 220, 20, 0.5)"), E.addColorStop(a, "rgba(20, 20, 20, 0.5)"), l.fillStyle = E, l.fillRect(0, 0, t, s);
-  }, w = Math.floor(t / 100), g = Math.floor(s / 100), C = 20, M = Math.round(1e3 / C), I = Array.from({ length: 52 }).map(() => {
+  }, w = Math.floor(t / 100), g = Math.floor(s / 100), C = 20, M = Math.round(1e3 / C), N = Array.from({ length: 52 }).map(() => {
     const E = Math.floor(o(w + g) * 1.5 + o(5));
     let O = o(t), P = o(s);
     O = Math.min(Math.max(E, O), t - E), P = Math.min(Math.max(E, P), s - E);
@@ -43,15 +43,15 @@ const it = (e) => {
       return;
     }
     const O = E.pageX - v, P = E.pageY - S;
-    I.forEach((X) => {
+    N.forEach((X) => {
       X.x += O / C, X.y += P / C;
     }), v = E.pageX, S = E.pageY;
   });
-  let A = Date.now(), N = null;
+  let A = Date.now(), I = null;
   const b = () => {
-    Date.now() - A >= M && (i(), u(), I.forEach((E) => E.update()), A = Date.now()), N = requestAnimationFrame(b);
+    Date.now() - A >= M && (i(), u(), N.forEach((E) => E.update()), A = Date.now()), I = requestAnimationFrame(b);
   };
-  return N = requestAnimationFrame(b), () => cancelAnimationFrame(N);
+  return I = requestAnimationFrame(b), () => cancelAnimationFrame(I);
 }, lt = ({
   text: e,
   gap: t,
@@ -73,12 +73,12 @@ const it = (e) => {
 }, ot = {
   pop: it,
   createWatermark: lt
-}, Ie = async (e) => {
+}, Ne = async (e) => {
   var l, n;
   const t = await ((l = e.formRef) == null ? void 0 : l.validate().then(() => !0).catch(() => !1)), s = await Promise.all((n = e.formItems) == null ? void 0 : n.filter((i) => {
     var o, a;
     return ((o = i.comp) == null ? void 0 : o.endsWith("XForm")) || ((a = i.comp) == null ? void 0 : a.endsWith("x-form"));
-  }).map((i) => Ie(i.form)));
+  }).map((i) => Ne(i.form)));
   return t && s.every((i) => i);
 }, at = (e, t) => {
   if (typeof e != "number") {
@@ -159,12 +159,12 @@ const pt = (e, t, s) => {
         l = !0;
       }
       const i = t.acl.paths, o = (a, r) => {
-        var u, w, g, C, M, I, v;
+        var u, w, g, C, M, N, v;
         const h = (r != null && r.path ? r.path + "/" : "") + a.path;
         a.meta || (a.meta = {}), a.meta.acl === !1 ? (u = a.children) == null || u.forEach((S) => {
           var A;
           S.meta || (S.meta = {}), (A = S.meta).acl || (A.acl = !1), o(S, a);
-        }) : (a.meta._hidden = a.meta.hidden, r && (a.meta.hidden == null && ((g = a.meta).hidden ?? (g.hidden = (w = r.meta) == null ? void 0 : w.hidden), a.meta = { ...a.meta }), a.meta.visitable == null && ((M = a.meta).visitable ?? (M.visitable = (C = r.meta) == null ? void 0 : C.visitable), a.meta = { ...a.meta })), (I = a.children) == null || I.forEach((S) => o(S, a)), a.meta.hidden !== !1 && a.meta._hidden == null && (a.meta.hidden = !i.includes(h), (v = a.children) != null && v.some((S) => S.meta.hidden === !1) && (a.meta.hidden = !1)));
+        }) : (a.meta._hidden = a.meta.hidden, r && (a.meta.hidden == null && ((g = a.meta).hidden ?? (g.hidden = (w = r.meta) == null ? void 0 : w.hidden), a.meta = { ...a.meta }), a.meta.visitable == null && ((M = a.meta).visitable ?? (M.visitable = (C = r.meta) == null ? void 0 : C.visitable), a.meta = { ...a.meta })), (N = a.children) == null || N.forEach((S) => o(S, a)), a.meta.hidden !== !1 && a.meta._hidden == null && (a.meta.hidden = !i.includes(h), (v = a.children) != null && v.some((S) => S.meta.hidden === !1) && (a.meta.hidden = !1)));
       };
       s.forEach(o);
     }, { immediate: !0 });
@@ -178,7 +178,7 @@ const pt = (e, t, s) => {
   setTitle: ft,
   checkRolesPages: gt,
   redirectTo: _t
-}, Ne = () => ({
+}, Ie = () => ({
   form: {},
   initialForm: {},
   formItems: [],
@@ -202,7 +202,7 @@ const pt = (e, t, s) => {
   checked: null,
   _isBaseTable: !0
 }), Ue = () => ({
-  ...Ne(),
+  ...Ie(),
   visible: !1,
   isEditing: !1,
   editingIndex: "",
@@ -278,14 +278,14 @@ const pt = (e, t, s) => {
   }
 }, He = {
   effects: ot,
-  validateForm: Ie,
+  validateForm: Ne,
   formatPrecision: at,
   formatOptions: q,
   Message: K,
   Notify: ie,
   Confirm: le,
   middlewares: bt,
-  baseForm: Ne,
+  baseForm: Ie,
   baseTable: De,
   baseDialog: Ue,
   baseModel: yt,
@@ -765,14 +765,14 @@ class Ke extends Je {
       if (C && g)
         t.forEach((M) => M[`_formatted_${r}`] = ""), this._fillRelatedField(t, a);
       else if (Array.isArray(h) && u !== !1) {
-        const I = fe(() => a.options, (v, S) => {
-          const A = S ? this.table.list : t, N = wt(a);
+        const N = fe(() => a.options, (v, S) => {
+          const A = S ? this.table.list : t, I = wt(a);
           A.forEach((b, E) => {
             const O = b[r];
-            b[`_formatted_${r}`] = N[O] || (w == null ? void 0 : w(O, b, E)) || O;
+            b[`_formatted_${r}`] = I[O] || (w == null ? void 0 : w(O, b, E)) || O;
           });
         }, { immediate: !0, deep: !0 });
-        this._unwatchs.push(I);
+        this._unwatchs.push(N);
       }
     }), t;
   }
@@ -994,8 +994,8 @@ function Rt(e, t, s, l, n, i) {
     _: 3
   });
 }
-const It = /* @__PURE__ */ x(Bt, [["render", Rt]]);
-const { funcs: Nt } = StardustBrowser, _e = {
+const Nt = /* @__PURE__ */ x(Bt, [["render", Rt]]);
+const { funcs: It } = StardustBrowser, _e = {
   name: "XChart",
   props: {
     height: {
@@ -1015,7 +1015,7 @@ const { funcs: Nt } = StardustBrowser, _e = {
   },
   computed: {
     zoomedHeight() {
-      return Nt.calcPixel(this.height) * this.zoom + "px";
+      return It.calcPixel(this.height) * this.zoom + "px";
     },
     sidebarCollapse() {
       return this.$store.app.sidebarCollapse;
@@ -1055,8 +1055,8 @@ const { funcs: Nt } = StardustBrowser, _e = {
         var A;
         const S = v[h] || "未知";
         if (w.add(S), a) {
-          const N = r.map((b) => v[b]).join("/") || "未知";
-          u[N] || (u[N] = {}), (A = u[N])[S] || (A[S] = []), u[N][S].push(v[l]);
+          const I = r.map((b) => v[b]).join("/") || "未知";
+          u[I] || (u[I] = {}), (A = u[I])[S] || (A[S] = []), u[I][S].push(v[l]);
         } else
           u[S] || (u[S] = []), u[S].push(v[l]);
       }), a)
@@ -1070,13 +1070,13 @@ const { funcs: Nt } = StardustBrowser, _e = {
       const g = Object.keys(u), C = [...w];
       let M = C;
       typeof e.series == "object" && e.series.formatter && (M = C.map((v) => e.series.formatter(v)));
-      let I = [];
-      a ? I = C.map((v, S) => ({
+      let N = [];
+      a ? N = C.map((v, S) => ({
         name: M[S],
         type: i,
         label: { show: !0, position: "top" },
         data: g.map((A) => ({ name: A, value: u[A][v] }))
-      })) : I = [
+      })) : N = [
         {
           name: "haha",
           type: i,
@@ -1090,7 +1090,7 @@ const { funcs: Nt } = StardustBrowser, _e = {
           data: Array.isArray(t) || !t.formatter ? g : g.map((v) => t.formatter(v))
         },
         yAxis: { type: "value" },
-        series: I
+        series: N
       }, this.option), this.update(o);
     },
     update(e = {}) {
@@ -2099,7 +2099,7 @@ function Rs(e, t, s, l, n, i) {
     _: 1
   }, 16));
 }
-const Is = /* @__PURE__ */ x(Ts, [["render", Rs]]), { highdict: Ns } = StardustJs, { storage: Ds } = StardustBrowser, { local: Ye } = Ds, ye = ["index", "selection", "expand", "radio", "_index"];
+const Ns = /* @__PURE__ */ x(Ts, [["render", Rs]]), { highdict: Is } = StardustJs, { storage: Ds } = StardustBrowser, { local: Ye } = Ds, ye = ["index", "selection", "expand", "radio", "_index"];
 function Us() {
   return {
     table: Object,
@@ -2320,7 +2320,7 @@ function mn(e, t) {
     if (o in e)
       return e[o];
     if (n)
-      return typeof n == "function" ? n(i, e, t) : Ns.get(e, n);
+      return typeof n == "function" ? n(i, e, t) : Is.get(e, n);
   }
   return i;
 }
@@ -2353,7 +2353,7 @@ function vn(e) {
   this.table && (this.table.checked = t), this.onCheckedChange && this.onCheckedChange(t);
 }
 function wn(e) {
-  e != null && e.length && !this.useCollapse && (this._useCollapse = !1, this.isMinus = !1);
+  e.length && (this.isMinus = !1, this.useCollapse || (this._useCollapse = !1));
 }
 function Sn() {
   this.isMinus = !this.isMinus, this.isMinus ? (this._useCollapse = !0, this.activeNames = []) : (this._useCollapse = this.useCollapse, this.activeNames = ["name"]);
@@ -2497,7 +2497,7 @@ const D = {
     _emit: Bn
   }
 };
-const In = {
+const Nn = {
   name: "XInfo",
   props: {
     data: Object,
@@ -2545,7 +2545,7 @@ const In = {
   methods: {
     calcValue: D.methods.calcValue
   }
-}, Nn = { key: 0 }, Dn = { key: 1 };
+}, In = { key: 0 }, Dn = { key: 1 };
 function Un(e, t, s, l, n, i) {
   const o = c("el-descriptions-item"), a = c("el-descriptions"), r = c("el-collapse-item"), h = c("el-collapse");
   return d(), f(h, {
@@ -2569,7 +2569,7 @@ function Un(e, t, s, l, n, i) {
                 key: g.prop
               }, g), Y({
                 default: m(() => [
-                  g.slot ? (d(), y("span", Nn, [
+                  g.slot ? (d(), y("span", In, [
                     k(e.$slots, g.slot, oe(Fe({ data: s.data, field: g, value: i.calcValue(s.data, g) })), void 0, !0)
                   ])) : (d(), y("span", Dn, j(i.calcValue(s.data, g)), 1))
                 ]),
@@ -2595,7 +2595,7 @@ function Un(e, t, s, l, n, i) {
     _: 3
   }, 8, ["modelValue", "class"]);
 }
-const Pn = /* @__PURE__ */ x(In, [["render", Un], ["__scopeId", "data-v-0c3b67a5"]]), Ln = {
+const Pn = /* @__PURE__ */ x(Nn, [["render", Un], ["__scopeId", "data-v-0c3b67a5"]]), Ln = {
   name: "XLooper",
   props: {
     compName: String,
@@ -3517,11 +3517,11 @@ const { storage: de } = StardustBrowser, Bi = {
         span: g,
         tableAttrs: C,
         formAttrs: M,
-        tagTypes: I,
+        tagTypes: N,
         tagValues: v,
         width: S,
         minWidth: A,
-        disabled: N,
+        disabled: I,
         readonly: b,
         ...E
       } = i;
@@ -3638,7 +3638,7 @@ const Ri = {
       this.selected = [], this.checked = null;
     }
   }
-}, Ii = { class: "mobile-x-table" }, Ni = {
+}, Ni = { class: "mobile-x-table" }, Ii = {
   key: 1,
   class: "card"
 }, Di = ["onClick"], Ui = { class: "row-header flex-center" }, Pi = ["value", "checked"], Li = { class: "label" }, qi = { class: "value" }, Xi = ["value", "checked"], zi = {
@@ -3646,8 +3646,8 @@ const Ri = {
   class: "index"
 }, Wi = { class: "title" };
 function Hi(e, t, s, l, n, i) {
-  const o = c("searcher"), a = c("x-table-tools"), r = c("van-checkbox"), h = c("x-icon"), u = c("van-cell"), w = c("van-list"), g = c("x-pagination"), C = c("x-info"), M = c("van-popup"), I = c("van-action-sheet");
-  return d(), y("div", Ii, [
+  const o = c("searcher"), a = c("x-table-tools"), r = c("van-checkbox"), h = c("x-icon"), u = c("van-cell"), w = c("van-list"), g = c("x-pagination"), C = c("x-info"), M = c("van-popup"), N = c("van-action-sheet");
+  return d(), y("div", Ni, [
     p(o, {
       ref: "searcher",
       uid: e._uid,
@@ -3679,7 +3679,7 @@ function Hi(e, t, s, l, n, i) {
         key: "1"
       } : void 0
     ]), 1040, ["domids", "onAdd", "onSearch", "onExport", "onSearchExport", "onImport", "onMultiDelete"])) : $("", !0),
-    (s.mode || e._attrs.mode) === "card" ? (d(), y("div", Ni, [
+    (s.mode || e._attrs.mode) === "card" ? (d(), y("div", Ii, [
       (d(!0), y(T, null, R(e._data, (v, S) => (d(), y("div", {
         key: S,
         class: "row",
@@ -3711,8 +3711,8 @@ function Hi(e, t, s, l, n, i) {
           }, ["stop"])),
           onChange: t[2] || (t[2] = (...A) => e.handleCheckedChange && e.handleCheckedChange(...A))
         }, null, 40, Pi)) : $("", !0),
-        (d(!0), y(T, null, R(i.cols, (A, N) => (d(), y("div", {
-          key: N,
+        (d(!0), y(T, null, R(i.cols, (A, I) => (d(), y("div", {
+          key: I,
           class: "field"
         }, [
           F("span", Li, j(A.label) + ":", 1),
@@ -3780,7 +3780,7 @@ function Hi(e, t, s, l, n, i) {
       ]),
       _: 1
     }, 8, ["show"]),
-    p(I, {
+    p(N, {
       show: n.actionSheetVisible,
       "onUpdate:show": t[9] || (t[9] = (v) => n.actionSheetVisible = v),
       actions: i.actions,
@@ -3982,7 +3982,7 @@ const tl = {
   class: "collapse-title"
 }, il = /* @__PURE__ */ F("span", null, "-", -1), ll = ["value", "checked"], ol = { key: 1 };
 function al(e, t, s, l, n, i) {
-  const o = c("searcher"), a = c("pc-x-icon"), r = c("settings"), h = c("pc-x-table-tools"), u = c("el-image"), w = c("el-tag"), g = c("el-table-column"), C = c("el-button"), M = c("el-table"), I = c("x-pagination"), v = c("el-collapse-item"), S = c("el-collapse"), A = se("domid"), N = se("loading");
+  const o = c("searcher"), a = c("pc-x-icon"), r = c("settings"), h = c("pc-x-table-tools"), u = c("el-image"), w = c("el-tag"), g = c("el-table-column"), C = c("el-button"), M = c("el-table"), N = c("x-pagination"), v = c("el-collapse-item"), S = c("el-collapse"), A = se("domid"), I = se("loading");
   return d(), y("div", {
     class: z(["pc-x-table", { fullscreen: n.isFullscreen, "hide-header": e.hideHeader }])
   }, [
@@ -4149,7 +4149,7 @@ function al(e, t, s, l, n, i) {
                       ]),
                       _: 2
                     }, 1040, ["disabled", "onClick"])), [
-                      [N, b.row._loading],
+                      [I, b.row._loading],
                       [A, e.domids["row-edit"]]
                     ]) : $("", !0),
                     e.canCancelEdit(b.row) ? B((d(), f(C, _({ key: 2 }, { type: "warning", ...e._attrs["cancel-edit-btn"] }, {
@@ -4181,9 +4181,9 @@ function al(e, t, s, l, n, i) {
               ]),
               _: 3
             }, 16, ["onHeaderDragend", "onSelectionChange", "onSortChange"])), [
-              [N, e._loading]
+              [I, e._loading]
             ]),
-            e._query && e._total ? (d(), f(I, {
+            e._query && e._total ? (d(), f(N, {
               key: 1,
               query: e._query,
               total: e._total,
@@ -4623,7 +4623,7 @@ const Fl = {
   }
 }, Tl = { key: 1 };
 function Bl(e, t, s, l, n, i) {
-  const o = c("Searcher"), a = c("x-icon"), r = c("Settings"), h = c("x-table-tools"), u = c("el-table-v2"), w = c("el-auto-resizer"), g = c("x-pagination"), C = c("el-collapse-item"), M = c("el-collapse"), I = se("loading");
+  const o = c("Searcher"), a = c("x-icon"), r = c("Settings"), h = c("x-table-tools"), u = c("el-table-v2"), w = c("el-auto-resizer"), g = c("x-pagination"), C = c("el-collapse-item"), M = c("el-collapse"), N = se("loading");
   return d(), y("div", {
     class: z(["pc-x-table-v2", { fullscreen: n.isFullscreen }])
   }, [
@@ -4725,7 +4725,7 @@ function Bl(e, t, s, l, n, i) {
                     key: "2"
                   } : void 0
                 ]), 1040, ["data", "columns", "fixed", "width", "height"])), [
-                  [I, e._loading]
+                  [N, e._loading]
                 ])
               ]),
               _: 3
@@ -4745,7 +4745,7 @@ function Bl(e, t, s, l, n, i) {
   ], 2);
 }
 const Rl = /* @__PURE__ */ x(Fl, [["render", Bl]]);
-const ce = ["selection", "radio"], Il = {
+const ce = ["selection", "radio"], Nl = {
   name: "XTableViewer",
   inheritAttrs: !1,
   props: {
@@ -4834,10 +4834,10 @@ const ce = ["selection", "radio"], Il = {
       this.table.selection = [], this.table.checked = null, this.table.tableRef.clearSelection(), this.table.tableRef.$el.querySelectorAll('input[type="radio"]').forEach((t) => t.checked = !1);
     }
   }
-}, Nl = { class: "x-table-viewer" };
+}, Il = { class: "x-table-viewer" };
 function Dl(e, t, s, l, n, i) {
   const o = c("x-dialog");
-  return d(), y("div", Nl, [
+  return d(), y("div", Il, [
     p(o, _(i._dialogAttrs, {
       modelValue: s.visible,
       "onUpdate:modelValue": t[1] || (t[1] = (a) => e.$emit("update:visible", a)),
@@ -4859,7 +4859,7 @@ function Dl(e, t, s, l, n, i) {
     }, 16, ["modelValue", "title", "before-close", "onSubmit", "onCancel"])
   ]);
 }
-const Ul = /* @__PURE__ */ x(Il, [["render", Dl], ["__scopeId", "data-v-f5d31400"]]), Pl = {
+const Ul = /* @__PURE__ */ x(Nl, [["render", Dl], ["__scopeId", "data-v-f5d31400"]]), Pl = {
   name: "XTinymce",
   props: {
     modelValue: {
@@ -5124,7 +5124,7 @@ const io = /* @__PURE__ */ x(to, [["render", no], ["__scopeId", "data-v-821cec65
   xactionsheet: xt,
   xautorows: jt,
   mobilexbutton: Tt,
-  pcxbutton: It,
+  pcxbutton: Nt,
   xchart: Pt,
   mobilexcheckboxs: Xt,
   pcxcheckboxs: Ht,
@@ -5138,7 +5138,7 @@ const io = /* @__PURE__ */ x(to, [["render", no], ["__scopeId", "data-v-821cec65
   mobilexformitem: Vs,
   pcxformitem: As,
   mobilexicon: Fs,
-  pcxicon: Is,
+  pcxicon: Ns,
   xinfo: Pn,
   xlooper: zn,
   mobilexpagination: Jn,
@@ -5195,7 +5195,7 @@ const lo = (e) => ({
   for (let s in pe)
     e.component(s, pe[s]);
 }, ro = {
-  version: "1.0.158",
+  version: "1.0.159",
   ...pe,
   ...He,
   ...$t,
@@ -5209,7 +5209,7 @@ export {
   ie as Notify,
   St as TempCrudController,
   Ue as baseDialog,
-  Ne as baseForm,
+  Ie as baseForm,
   yt as baseModel,
   De as baseTable,
   $t as controllers,
@@ -5226,5 +5226,5 @@ export {
   ze as isWhenMatched,
   We as triggers,
   He as utils,
-  Ie as validateForm
+  Ne as validateForm
 };

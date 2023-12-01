@@ -365,9 +365,11 @@ export function handleCheckedChange (e) {
 }
 
 export function handleCollapseChange (activeNames) {
-  if (activeNames?.length && !this.useCollapse) {
-    this._useCollapse = false
+  if (activeNames.length) {
     this.isMinus = false
+    if (!this.useCollapse) {
+      this._useCollapse = false
+    }
   }
 }
 
