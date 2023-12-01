@@ -58,7 +58,7 @@ export default {
     this.timer && clearInterval(this.timer)
   },
   methods: {
-    calcSummary (values, summary) {
+    calcSummary (values, summary, count) {
       let value
       if (summary === 'sum' || summary === 'average') {
         value = values.reduce((sum, v) => sum + v, 0)
@@ -66,7 +66,7 @@ export default {
       if (summary === 'count') {
         value = values.length
       } else if (summary === 'average') {
-        if (values.length) value = (value / values.length).toFixed(2) * 1
+        if (values.length) value = (value / (count || values.length)).toFixed(2) * 1
         else value = undefined
       } else if (summary === 'first') {
         value = values[0]
@@ -78,30 +78,49 @@ export default {
       return value
     },
     setRich (rich) {
-      const { categories, data, attr, summary, type } = rich
+      const { categories, data, attr, summary, type, filter } = rich
       const opts = {}
-      const hasCategories = !!categories
+      const hasCategories = Array.isArray(categories) && categories.length || categories?.data?.length
       const cateAttrs = hasCategories && (Array.isArray(categories) ? categories : categories.data)
       const seriesName = typeof rich.series === 'string' ? rich.series : rich.series.data
+      const limitCategories = filter?.categories.limit > -1
+      const limitSeries = filter?.series.limit > -1
       const counts = {}
-      const nameSet = new Set()
+      const cates = []
+      const otherCateSet = new Set()
+      const seriesNames = []
       data.forEach(ele => {
-        const name = ele[seriesName] || '未知'
-        nameSet.add(name)
+        let name = ele[seriesName] || '未知'
         if (hasCategories) {
-          const cate = cateAttrs.map(c => ele[c]).join('/') || '未知'
+          let cate = cateAttrs.map(c => ele[c]).join('/') || '未知'
+          if (limitCategories && cates.length >= filter.categories.limit && !cates.includes(cate)) {
+            if (!filter.categories.mergeOthers) return
+            otherCateSet.add(cate)
+            cate = '其他'
+          }
+          if (!counts[cate]) cates.push(cate)
           counts[cate] ||= {}
           counts[cate][name] ||= []
           counts[cate][name].push(ele[attr])
         } else {
+          if (limitSeries && seriesNames.length >= filter.series.limit && !seriesNames.includes(name)) {
+            if (!filter.series.mergeOthers) return
+            name = '其他'
+          }
+          if (!counts[name]) seriesNames.push(name)
           counts[name] ||= []
           counts[name].push(ele[attr])
         }
       })
+      const legend = hasCategories ? [...new Set(data.map(e => e[seriesName]))] : seriesNames
       if (hasCategories) {
         for (let cate in counts) {
           for (let name in counts[cate]) {
-            counts[cate][name] = this.calcSummary(counts[cate][name], summary)
+            counts[cate][name] = this.calcSummary(
+              counts[cate][name],
+              summary,
+              limitCategories && cate === '其他' ? (counts[cate][name].length / otherCateSet.size) : counts[cate][name].length
+            )
           }
         }
       } else {
@@ -109,9 +128,6 @@ export default {
           counts[name] = this.calcSummary(counts[name], summary)
         }
       }
-      console.log(counts)
-      const cates = Object.keys(counts)
-      const legend = [...nameSet]
       let _legend = legend
       if (typeof rich.series === 'object' && rich.series.formatter) {
         _legend = legend.map(l => rich.series.formatter(l))
@@ -127,22 +143,32 @@ export default {
           }
         })
       } else {
-        series = [
-          {
-            name: 'haha',
+        series = legend.map((name, i) => {
+          return {
+            name: _legend[i],
             type,
             label: { show: true, position: 'top' },
-            data: legend.map(name => {
-              return { name, value: counts[name] }
-            })
+            data: legend.map(n => ({ name: n, value: n === name ? counts[name] : undefined }))
           }
-        ]
+        })
+        // series = [
+        //   {
+        //     name: 'haha',
+        //     type,
+        //     label: { show: true, position: 'top' },
+        //     data: legend.map(name => {
+        //       return { name, value: counts[name] }
+        //     })
+        //   }
+        // ]
       }
       Object.assign(opts, {
         legend: { data: _legend },
         xAxis: {
           type: 'category',
-          data: Array.isArray(categories) || !categories.formatter ? cates : cates.map(c => categories.formatter(c))
+          data: hasCategories
+            ? (!categories.formatter ? cates : cates.map(c => categories.formatter(c)))
+            : (!seriesName.formatter ? seriesNames : seriesNames.map(c => seriesName.formatter(c)))
         },
         yAxis: { type: 'value' },
         series
