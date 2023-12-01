@@ -75,6 +75,7 @@ export default {
       <el-collapse-item :name="activeNames[0]">
         <template #title>
           <slot v-if="$slots['collapse-title']" name="collapse-title" />
+          <span v-else-if="activeNames.length" class="collapse-title">{{ title }}</span>
           <span v-else class="collapse-title">
             {{ title }}，当前第
             <span>{{ _query.page }}</span>
