@@ -16,12 +16,14 @@ export default {
   data () {
     return {
       searcher: null,
+      isMinus: false,
       isFullscreen: false,
       zoom: 1,
       checked: null,
       activeNames: ['name'],
       settings: {},
-      params: {}
+      params: {},
+      _useCollapse: false
     }
   },
   computed: {
@@ -32,7 +34,7 @@ export default {
     settings: 'saveSettings'
   },
   created () {
-
+    this._useCollapse = this.useCollapse
   },
   watch: {
     _uid: 'initSettings',
@@ -67,12 +69,21 @@ export default {
 
     <el-collapse
       v-model="activeNames"
-      :class="(useCollapse ? 'use' : 'no') + '-collapse'"
+      :class="(_useCollapse ? 'use' : 'no') + '-collapse'"
+      @change="handleCollapseChange"
     >
       <el-collapse-item :name="activeNames[0]">
         <template #title>
           <slot v-if="$slots['collapse-title']" name="collapse-title" />
-          <span v-else>{{ title }}</span>
+          <span v-else class="collapse-title">
+            {{ title }}，当前第
+            <span>{{ _query.page }}</span>
+            页，展示
+            <span>{{ _data.length }}</span>
+            条数据，
+            共
+            <span>{{ _total || _data.length }}</span> 条数据
+          </span>
         </template>
         <pc-x-table-tools
           v-if="hideTools !== '' && hideTools !== true"
@@ -93,7 +104,10 @@ export default {
             <slot name="tools-suffix" />
           </template>
           <template #tools-end>
-            <slot name="tools-end" />
+            <span class="minus" @click="handleMinus">
+              <pc-x-icon name="FullScreen" />
+              <span>-</span>
+            </span>
             <pc-x-icon
               name="FullScreen"
               class="full"
@@ -251,6 +265,24 @@ export default {
   }
   &.hide-header .el-table__header {
     display: none;
+  }
+  .collapse-title span {
+    color: var(--el-color-danger);
+  }
+}
+.minus {
+  position: relative;
+  cursor: pointer;
+  &:hover {
+    color: var(--el-color-primary);
+  }
+  span {
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    font-weight: 200;
   }
 }
 </style>

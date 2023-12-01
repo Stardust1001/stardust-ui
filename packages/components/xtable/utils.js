@@ -364,6 +364,24 @@ export function handleCheckedChange (e) {
   }
 }
 
+export function handleCollapseChange (activeNames) {
+  if (activeNames?.length && !this.useCollapse) {
+    this._useCollapse = false
+    this.isMinus = false
+  }
+}
+
+export function handleMinus () {
+  this.isMinus = !this.isMinus
+  if (this.isMinus) {
+    this._useCollapse = true
+    this.activeNames = []
+  } else {
+    this._useCollapse = this.useCollapse
+    this.activeNames = ['name']
+  }
+}
+
 export function handleToggleFullscreen () {
   this.isFullscreen = !this.isFullscreen
   if (this.isFullscreen) {
@@ -523,6 +541,8 @@ export default {
     handleSelectionChange,
     handleSortChange,
     handleCheckedChange,
+    handleCollapseChange,
+    handleMinus,
     handleToggleFullscreen,
     cellClassName,
     cellStyle,
