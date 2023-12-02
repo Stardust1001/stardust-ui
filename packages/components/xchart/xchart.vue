@@ -1,4 +1,5 @@
 <script>
+import { baseDialog } from '../../utils/model.js'
 const { funcs } = StardustBrowser
 
 export default {
@@ -12,11 +13,65 @@ export default {
       type: Object,
       default: () => ({})
     },
-    updator: Object
+    updator: Object,
+    datasource: Object
   },
   data () {
     return {
-      zoom: 1
+      zoom: 1,
+      loading: false,
+      filterType: '分类',
+      dialog: {
+        ...baseDialog(),
+        formItems: [
+          {
+            label: '分类', prop: 'categories', comp: 'x-select', multiple: true, 'collapse-tags': true, clearable: false,
+            text: 'label', value: 'prop',
+            options: [],
+          },
+          {
+            label: '系列', prop: 'series', comp: 'x-select', clearable: false, required: true,
+            text: 'label', value: 'prop',
+            options: []
+          },
+          {
+            label: '值', prop: 'attr', comp: 'x-select', clearable: false, required: true,
+            text: 'label', value: 'prop',
+            options: []
+          },
+          {
+            label: '汇总方式', prop: 'summary', comp: 'x-select', clearable: false, required: true,
+            options: [
+              { text: '求和', value: 'sum' },
+              { text: '平均', value: 'average' },
+              { text: '首个', value: 'first' },
+              { text: '最后一个', value: 'last' },
+              { text: '最大值', value: 'max' },
+              { text: '最小值', value: 'min' },
+              { text: '个数', value: 'count' },
+            ]
+          },
+          {
+            label: '图表类型', prop: 'type', comp: 'x-select', clearable: false, required: true,
+            options: [
+              { text: '柱状图', value: 'bar' },
+              { text: '折线图', value: 'line' }
+            ]
+          },
+          { label: '数据筛选', slot: 'filter' }
+        ],
+        form: {
+          categories: [],
+          series: '',
+          attr: '',
+          summary: 'count',
+          type: 'bar',
+          filter: {
+            categories: { isLimit: false, limit: 10, mergeOthers: false },
+            series: { isLimit: false, limit: 10, mergeOthers: false }
+          }
+        }
+      }
     }
   },
   computed: {
@@ -25,6 +80,12 @@ export default {
     },
     sidebarCollapse () {
       return this.$store.app.sidebarCollapse
+    },
+    categories () {
+      return this.dialog.form.filter.categories
+    },
+    series () {
+      return this.dialog.form.filter.series
     }
   },
   watch: {
@@ -52,12 +113,33 @@ export default {
     if (this.updator) {
       this.timer = setInterval(this.updator.handler.bind(this), this.updator.interval || 1000)
     }
+    this.initDatasource()
   },
   beforeUnmount () {
     document.removeEventListener('resize', this.update)
     this.timer && clearInterval(this.timer)
   },
   methods: {
+    initDatasource () {
+      if (!this.datasource) return
+      const { columns } = this.datasource
+      this.dialog.formItems.slice(0, 3).forEach(it => it.options = columns)
+      this.handleMakeChart()
+    },
+    async handleMakeChart () {
+      this.dialog.visible = false
+      this.loading = true
+      const rich = { ...this.dialog.form }
+      if (!rich.filter?.categories.isLimit) rich.filter.categories.mergeOthers = false
+      if (!rich.filter?.series.isLimit) rich.filter.series.mergeOthers = false
+      let list = this.datasource.list
+      if (this.datasource.getList) {
+        list = await this.datasource.getList()
+      }
+      if (this.datasource.list) rich.data = list
+      this.setRich(rich)
+      this.loading = false
+    },
     calcSummary (values, summary, count) {
       let value
       if (summary === 'sum' || summary === 'average') {
@@ -184,10 +266,7 @@ export default {
         ...this.option,
         ...option,
         grid: {
-          left: 30,
-          top: 40,
-          right: 20,
-          bottom: 20,
+          left: 30, top: 40, right: 20, bottom: 20,
           ...this.option.grid,
           ...option.grid
         }
@@ -198,7 +277,41 @@ export default {
 </script>
 
 <template>
-  <div class="x-chart" ref="el" />
+  <div v-loading="loading" class="x-chart">
+    <div class="chart" ref="el" />
+    <div class="settings flex-center">
+      配置
+      <pc-x-icon v-if="!!datasource" name="Setting" @click="dialog.visible = true" />
+    </div>
+    <x-dialog
+      v-model="dialog.visible" title="图表配置" drawer width="360" submit-text="生成图表" cancel-text="关闭"
+      @submit="handleMakeChart"
+      @cancel="dialog.visible = false"
+    >
+      <x-form :dialog="dialog">
+        <template #filter>
+          <el-tabs v-model="filterType">
+            <el-tab-pane label="分类" name="分类">
+              <el-checkbox v-model="categories.isLimit">只使用前有限条记录</el-checkbox>
+              <div v-show="categories.isLimit">
+                记录条数
+                <el-input-number v-model="categories.limit" :min="0" :precision="0" />
+                <el-checkbox v-model="categories.mergeOthers">合并剩余项为其他</el-checkbox>
+              </div>
+            </el-tab-pane>
+            <el-tab-pane label="系列" name="系列">
+              <el-checkbox v-model="series.isLimit">只使用前有限条记录</el-checkbox>
+              <div v-show="series.isLimit">
+                记录条数
+                <el-input-number v-model="series.limit" :min="0" :precision="0" />
+                <el-checkbox v-model="series.mergeOthers">合并剩余项为其他</el-checkbox>
+              </div>
+            </el-tab-pane>
+          </el-tabs>
+        </template>
+      </x-form>
+    </x-dialog>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -206,5 +319,23 @@ export default {
   width: 100%;
   height: v-bind('zoomedHeight');
   zoom: v-bind('zoom');
+  position: relative;
+  .chart {
+    height: 100%;
+  }
+  .settings {
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    font-size: 14px;
+    cursor: pointer;
+    .el-icon {
+      font-size: 18px;
+      margin-left: 5px;
+    }
+    &:hover {
+      color: var(--el-color-primary);
+    }
+  }
 }
 </style>

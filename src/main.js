@@ -28,6 +28,12 @@ Object.assign(app.config.globalProperties, {
   service: {
     request,
     API_BASE_URL
+  },
+  $store: {
+    app: {
+      sidebarCollapse: false,
+      toggleDuration: 0
+    }
   }
 })
 
