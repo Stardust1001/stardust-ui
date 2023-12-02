@@ -279,9 +279,9 @@ export default {
 <template>
   <div v-loading="loading" class="x-chart">
     <div class="chart" ref="el" />
-    <div class="settings flex-center">
+    <div v-if="!!datasource" class="settings flex-center" @click="dialog.visible = true">
       配置
-      <pc-x-icon v-if="!!datasource" name="Setting" @click="dialog.visible = true" />
+      <pc-x-icon name="Setting" />
     </div>
     <x-dialog
       v-model="dialog.visible" title="图表配置" drawer width="360" submit-text="生成图表" cancel-text="关闭"
