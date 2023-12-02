@@ -136,7 +136,7 @@ export default {
       if (this.datasource.getList) {
         list = await this.datasource.getList()
       }
-      if (this.datasource.list) rich.data = list
+      rich.data = list
       this.setRich(rich)
       this.loading = false
     },

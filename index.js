@@ -1141,7 +1141,7 @@ const { funcs: Dt } = StardustBrowser, _e = {
       const e = { ...this.dialog.form };
       (s = e.filter) != null && s.categories.isLimit || (e.filter.categories.mergeOthers = !1), (l = e.filter) != null && l.series.isLimit || (e.filter.series.mergeOthers = !1);
       let t = this.datasource.list;
-      this.datasource.getList && (t = await this.datasource.getList()), this.datasource.list && (e.data = t), this.setRich(e), this.loading = !1;
+      this.datasource.getList && (t = await this.datasource.getList()), e.data = t, this.setRich(e), this.loading = !1;
     },
     calcSummary(e, t, s) {
       let l;
@@ -1225,8 +1225,8 @@ const { funcs: Dt } = StardustBrowser, _e = {
   }
 }, Ve = () => {
   Fe((e) => ({
-    dbc3df86: e.zoomedHeight,
-    "6ec57ed2": e.zoom
+    "42569c72": e.zoomedHeight,
+    "016b0c21": e.zoom
   }));
 }, Ee = _e.setup;
 _e.setup = Ee ? (e, t) => (Ve(), Ee(e, t)) : Ve;
@@ -1352,7 +1352,7 @@ function qt(e, t, s, l, n, i) {
     [y, n.loading]
   ]);
 }
-const Xt = /* @__PURE__ */ O(_e, [["render", qt], ["__scopeId", "data-v-c809c113"]]), zt = {
+const Xt = /* @__PURE__ */ O(_e, [["render", qt], ["__scopeId", "data-v-4da97b38"]]), zt = {
   name: "MobileXCheckboxs",
   inheritAttrs: !1,
   props: {
@@ -5435,7 +5435,7 @@ const ro = (e) => ({
   for (let s in pe)
     e.component(s, pe[s]);
 }, ho = {
-  version: "1.0.161",
+  version: "1.0.162",
   ...pe,
   ...Je,
   ...$t,
