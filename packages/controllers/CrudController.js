@@ -57,7 +57,6 @@ class CrudController extends BaseController {
       'handleExport',
       'handleSearchExport',
       'handleImport',
-      'handleMultiEdit',
       'handleMultiDelete',
       'handleSave',
       'handleSubmit',
@@ -263,7 +262,8 @@ class CrudController extends BaseController {
       data = window.Papa.parse(content, { header: true }).data
     } else {
       const workbook = window.XLSX.read(content, {})
-      data = XLSX.utils.sheet_to_json(workbook.Sheets.SheetJS)
+      const sheets = Object.values(workbook.Sheets)
+      data = XLSX.utils.sheet_to_json(sheets[0])
     }
     if (data.length > 0) {
       const labelPropDict = {}
@@ -279,20 +279,6 @@ class CrudController extends BaseController {
     await this.dbTable.func(['bulkCreate', data])
     this.uiUtils.Message({ type: 'success', message: '导入成功' })
     this.handleSearch()
-  }
-
-  handleMultiEdit () {
-    const { selection, checked } = this.table
-    const first = checked || selection[0]
-    if (!first) {
-      this.uiUtils.Message({ type: 'warning', message: '尚未选择要编辑的数据' })
-      return
-    }
-    if (!checked && selection.length > 1) {
-      this.uiUtils.Message({ type: 'warning', message: '请仅选择一条数据进行编辑' })
-      return
-    }
-    this.handleEdit({ $index: first._idx, row: first })
   }
 
   async handleMultiDelete () {

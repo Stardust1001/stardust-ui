@@ -26,16 +26,27 @@ export default {
       immediate: true
     }
   },
+  mounted () {
+    this.initDraggable()
+  },
   methods: {
+    initDraggable () {
+      const dict = {}
+      this.columns.forEach(col => dict[col.prop] = col)
+
+      this.sortable = new window.Sortable(this.$refs.colsTable, {
+        sort: true,
+        draggable: '.row',
+        onEnd: (e) => {
+          const props = [...e.to.querySelectorAll('.row')].map(e => e.dataset.prop)
+          this.columns = props.map(p => dict[p])
+          this.update()
+        }
+      })
+    },
     handleResetColumns () {
       const { columns, ...others } = this.modelValue
       this.$emit('reset', others)
-    },
-    handleMove (column, index, step) {
-      const newIndex = index + step
-      this.columns.splice(index, 1)
-      this.columns.splice(newIndex, 0, column)
-      this.update()
     },
     handleToggle (column) {
       column.show = !column.show
@@ -61,7 +72,7 @@ export default {
   <el-popover
     v-if="visible"
     placement="bottom"
-    trigger="hover"
+    trigger="click"
     popper-class="table-settings"
     v-bind="$attrs"
   >
@@ -71,25 +82,15 @@ export default {
 
     <el-tabs v-model="activeName">
       <el-tab-pane name="columns" label="展示列">
-        <el-button type="warning" icon="Close" @click="handleResetColumns">重置</el-button>
-        <div class="table">
-          <div v-for="(column, index) in columns" :key="index" class="row flex-center">
-            <el-button
-              :disabled="index === 0"
-              circle
-              icon="arrow-up"
-              type="primary"
-              class="move"
-              @click="handleMove(column, index, -1)"
-            />
-            <el-button
-              :disabled="index === columns.length - 1"
-              circle
-              icon="arrow-down"
-              type="success"
-              class="move"
-              @click="handleMove(column, index, 1)"
-            />
+        <el-button type="warning" plain icon="Close" @click="handleResetColumns">重置</el-button>
+        <div class="table" ref="colsTable">
+          <div
+            v-for="column in columns"
+            :key="column.prop"
+            :data-prop="column.prop"
+            class="row flex-center"
+          >
+            <el-icon><Sort /></el-icon>
             <ElCheckbox v-model="column.show" @change="update" />
             <span class="label overflow-text" :title="column.label" @click="handleToggle(column)">
               {{ column.label }}
@@ -112,35 +113,25 @@ export default {
     }
   }
   .el-checkbox {
-    overflow: hidden;
-    margin-right: 0;
+    margin: 0 5px;
   }
   .table {
     margin-top: 10px;
     border-top: 1px solid #d0dddd;
   }
   .row {
+    justify-content: space-between;
     border: 1px solid #d0dddd;
-    padding: 5px;
+    padding: 5px 10px;
     border-top: 0;
-  }
-  .move {
-    width: 25px;
-    height: 25px;
-    margin-left: 5px;
-  }
-  .el-checkbox {
-    margin-left: 10px;
   }
   .label {
     display: inline-block;
-    width: calc(100% - 240px);
-    margin-left: 10px;
+    width: calc(100% - 200px);
     cursor: pointer;
   }
   .el-input-number {
-    width: 120px;
-    margin-right: 5px;
+    width: 130px;
   }
 }
 .settings-reference {

@@ -53,7 +53,6 @@ export function props () {
     onExport: Function,
     onSearchExport: Function,
     onImport: Function,
-    onMultiEdit: Function,
     onMultiDelete: Function,
 
     controller: Object,
@@ -100,7 +99,6 @@ export function domids () {
   const keys = [
     'search',
     'add',
-    'multi-edit',
     'multi-delete',
     'export',
     'search-export',
@@ -210,10 +208,6 @@ export function _onImport () {
   return (this.onImport || this._listen['import']) ? () => this._emit('import') : null
 }
 
-export function _onMultiEdit () {
-  return (this.onMultiEdit || this._listen['multi-edit']) ? () => this._emit('multi-edit') : null
-}
-
 export function _onMultiDelete () {
   return (this.onMultiDelete || this._listen['multi-delete']) ? () => this._emit('multi-delete') : null
 }
@@ -226,7 +220,7 @@ export function _listen () {
   }
   if (events.includes('*')) {
     events = [...new Set([
-      ...events, 'search', 'add', 'multi-edit', 'multi-delete', 'export', 'search-export', 'import',
+      ...events, 'search', 'add', 'multi-delete', 'export', 'search-export', 'import',
       'edit', 'row-edit', 'cancel-edit', 'delete'
     ])]
   }
@@ -524,7 +518,6 @@ export default {
     _onExport,
     _onSearchExport,
     _onImport,
-    _onMultiEdit,
     _onMultiDelete,
     _listen,
     _visibleColumns,
