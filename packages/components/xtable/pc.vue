@@ -299,6 +299,7 @@ export default {
   </div>
 
   <x-dialog
+    v-if="!hideChart"
     v-model="dialog.visible"
     title="图表"
     width="96%"
