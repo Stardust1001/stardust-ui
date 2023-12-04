@@ -341,12 +341,14 @@ export function handleSelectionChange (rows) {
   }
 }
 
-export function handleSortChange (...props) {
+export function handleSortChange (params) {
   if (this.onSortChange) {
-    this.onSortChange(...props)
+    this.onSortChange(params)
   } else {
-    if (props[0].column.sortable === 'custom') {
-      this.controller?.handleSortChange?.(...props)
+    if (Array.isArray(params)) {
+      this.controller?.handleSortChange?.(params)
+    } else if (params.column.sortable === 'custom') {
+      this.controller?.handleSortChange?.(params)
     }
   }
 }

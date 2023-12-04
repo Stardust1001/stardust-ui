@@ -117,7 +117,9 @@ export default {
               v-model="settings"
               :visible="!hideSettings"
               :width="_attrs['cols-popover-width'] || 500"
+              @sort="$emit('sort', $event)"
               @reset="handleResetSettings"
+              @sort-change="handleSortChange"
             />
           </template>
         </pc-x-table-tools>

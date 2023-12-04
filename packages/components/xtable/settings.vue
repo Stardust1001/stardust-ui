@@ -5,11 +5,16 @@ export default {
     visible: Boolean,
     modelValue: Object
   },
-  emits: ['update:modelValue', 'reset'],
+  emits: ['update:modelValue', 'reset', 'sort-change'],
   data () {
     return {
       activeName: 'columns',
-      columns: []
+      columns: [],
+      sorts: [],
+      sortOptions: [
+        { text: '升序', value: 'asc' },
+        { text: '降序', value: 'desc' }
+      ]
     }
   },
   watch: {
@@ -24,6 +29,12 @@ export default {
         })
       },
       immediate: true
+    },
+    sorts: {
+      handler (value) {
+        this.$emit('sort-change', value.map(v => v.slice(0, 2)))
+      },
+      deep: true
     }
   },
   mounted () {
@@ -33,8 +44,7 @@ export default {
     initDraggable () {
       const dict = {}
       this.columns.forEach(col => dict[col.prop] = col)
-
-      this.sortable = new window.Sortable(this.$refs.colsTable, {
+      new window.Sortable(this.$refs.colsTable, {
         sort: true,
         draggable: '.row',
         onEnd: (e) => {
@@ -43,6 +53,9 @@ export default {
           this.update()
         }
       })
+    },
+    handleAddSort () {
+      this.sorts.push([this.columns[0].prop, 'asc', this.columns[0].label])
     },
     handleResetColumns () {
       const { columns, ...others } = this.modelValue
@@ -100,6 +113,28 @@ export default {
           </div>
         </div>
       </el-tab-pane>
+      <el-tab-pane name="sorts" label="多列排序">
+        <el-button type="primary" plain icon="Plus" @click="handleAddSort">添加排序</el-button>
+        <div class="table" ref="sortsTable">
+          <div
+            v-for="(sort, index) in sorts"
+            :key="sort[0]"
+            :data-prop="sort[0]"
+            class="row flex-center"
+          >
+            <x-select
+              v-model="sort[0]"
+              :options="columns"
+              text="label"
+              value="prop"
+              :teleported="false"
+              :clearable="false"
+            />
+            <x-radios v-model="sort[1]" :options="sortOptions" />
+            <el-button type="danger" plain icon="DeleteFilled" @click="sorts.splice(index, 1)" />
+          </div>
+        </div>
+      </el-tab-pane>
     </el-tabs>
   </el-popover>
 </template>
@@ -118,6 +153,7 @@ export default {
   .table {
     margin-top: 10px;
     border-top: 1px solid #d0dddd;
+    min-height: 200px;
   }
   .row {
     justify-content: space-between;
@@ -132,6 +168,13 @@ export default {
   }
   .el-input-number {
     width: 130px;
+  }
+  .el-select {
+    width: 200px;
+    margin-right: 10px;
+  }
+  .el-radio-group {
+    width: 180px;
   }
 }
 .settings-reference {

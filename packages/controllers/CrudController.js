@@ -390,10 +390,17 @@ class CrudController extends BaseController {
     this.dialog.visible = false
   }
 
-  handleSortChange ({ prop, order }) {
-    this.table.query.order = (!prop || !order) ? [] : [
-      [prop, order.slice(0, -6)]
-    ]
+  handleSortChange (params) {
+    if (!params) {
+      this.table.query.order = []
+    } else if (Array.isArray(params)) {
+      this.table.query.order = params
+    } else {
+      const { prop, order } = params
+      this.table.query.order = (!prop || !order) ? [] : [
+        [prop, order.slice(0, -6)]
+      ]
+    }
     this.handleSearch()
   }
 
