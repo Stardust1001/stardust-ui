@@ -2,6 +2,8 @@
 import { baseDialog } from '../../utils/model.js'
 const { funcs } = StardustBrowser
 
+const TYPES = ['index', 'selection', 'expand', 'radio', '_index']
+
 export default {
   name: 'XChart',
   props: {
@@ -122,7 +124,7 @@ export default {
   methods: {
     initDatasource () {
       if (!this.datasource) return
-      const { columns } = this.datasource
+      const columns = this.datasource.columns.filter(col => !TYPES.includes(col.type))
       this.dialog.formItems.slice(0, 3).forEach(it => it.options = columns)
       this.handleMakeChart()
     },
