@@ -4300,7 +4300,7 @@ const { highdict: rl } = StardustJs, dl = {
       if (s)
         return s();
       if (this.controller[t])
-        return this.controller[t];
+        return this.controller[t]();
       if (e && this.controller.getSearchParams) {
         const l = this.controller.getSearchParams(), n = await this.controller.search(l);
         let i = rl.get(n, this.controller.listProp);
@@ -5557,7 +5557,7 @@ const po = (e) => ({
   for (let s in fe)
     e.component(s, fe[s]);
 }, bo = {
-  version: "1.0.168",
+  version: "1.0.169",
   ...fe,
   ...Je,
   ...$t,

@@ -77,7 +77,7 @@ export default {
       if (search) {
         return search()
       } else if (this.controller[remoteMethod]) {
-        return this.controller[remoteMethod]
+        return this.controller[remoteMethod]()
       } else if (remote && this.controller.getSearchParams) {
         const params = this.controller.getSearchParams()
         const data = await this.controller.search(params)
