@@ -1,7 +1,10 @@
 <script>
 import utils from './utils.js'
+import { baseDialog } from '../../utils/model.js'
 import Searcher from './searcher.vue'
 import Settings from './settings.vue'
+
+const { highdict } = StardustJs
 
 export default {
   name: 'PcXTable',
@@ -23,7 +26,10 @@ export default {
       activeNames: ['name'],
       settings: {},
       params: {},
-      _useCollapse: false
+      _useCollapse: false,
+      dialog: {
+        ...baseDialog()
+      }
     }
   },
   computed: {
@@ -52,7 +58,35 @@ export default {
     this.$emit('update:tref', this.$refs.tableRef)
   },
   methods: {
-    ...utils.methods
+    ...utils.methods,
+    async handleShowPieDialog () {
+      this.dialog.visible = true
+      await this.$nextTick()
+      if (this.table) {
+        this.table.chartRef = this.$refs.chartRef
+      }
+      this.$refs.chartRef.init()
+      this.$refs.chartRef.initDatasource()
+    },
+    async handleChartDialogFullscreen () {
+      await this.$nextTick()
+      this.$refs.chartRef.chart.resize()
+    },
+    async search () {
+      const { remote, remoteMethod, search } = this._chartOption
+      if (search) {
+        return search()
+      } else if (this.controller[remoteMethod]) {
+        return this.controller[remoteMethod]
+      } else if (remote && this.controller.getSearchParams) {
+        const params = this.controller.getSearchParams()
+        const data = await this.controller.search(params)
+        let list = highdict.get(data, this.controller.listProp)
+        list = this.controller.formatList(this.controller._defaultFormatList(list, data), data)
+        return list
+      }
+      return this._data
+    }
   }
 }
 </script>
@@ -104,6 +138,12 @@ export default {
             <slot name="tools-suffix" />
           </template>
           <template #tools-end>
+            <pc-x-icon
+              v-if="!hideChart"
+              name="PieChart"
+              class="chart"
+              @click="handleShowPieDialog"
+            />
             <span class="minus" @click="handleMinus">
               <pc-x-icon name="FullScreen" />
               <span>-</span>
@@ -257,6 +297,20 @@ export default {
       </el-collapse-item>
     </el-collapse>
   </div>
+
+  <x-dialog
+    v-model="dialog.visible"
+    title="图表"
+    width="96%"
+    @fullscreenchange="handleChartDialogFullscreen"
+  >
+    <x-chart
+      ref="chartRef"
+      height="360"
+      :option="_chartOption"
+      :datasource="{ columns: _columns, search }"
+    />
+  </x-dialog>
 </template>
 
 <style lang="scss">

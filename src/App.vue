@@ -53,7 +53,11 @@ const model = reactive({
         formAttrs: { comp: 'ElDatePicker' },
         block: 'others'
       },
-    ]
+    ],
+    chartOption: {
+      remote: true,
+      grid: { left: 30 }
+    }
   },
   form: {
     ...baseForm(),
@@ -90,7 +94,6 @@ const controller = {
 
 <template>
   <div style="padding: 10px;">
-    <x-chart height="360" :datasource="model.table" />
     <el-button type="warning">haha</el-button>
     <x-scan v-model="model.form.scan"></x-scan>
     <x-row :gutter="20">

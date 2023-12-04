@@ -40,11 +40,14 @@ export default {
   mounted () {
     this.initDraggable()
   },
+  beforeUnmount () {
+    this.sortable.destroy()
+  },
   methods: {
     initDraggable () {
       const dict = {}
       this.columns.forEach(col => dict[col.prop] = col)
-      new window.Sortable(this.$refs.colsTable, {
+      this.sortable = new window.Sortable(this.$refs.colsTable, {
         sort: true,
         draggable: '.row',
         onEnd: (e) => {
@@ -85,7 +88,7 @@ export default {
   <el-popover
     v-if="visible"
     placement="bottom"
-    trigger="click"
+    trigger="hover"
     popper-class="table-settings"
     v-bind="$attrs"
   >

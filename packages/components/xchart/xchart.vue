@@ -109,12 +109,7 @@ export default {
     }
   },
   mounted () {
-    this.chart = window.echarts.init(this.$refs.el)
-    this.update()
-    document.addEventListener('resize', this.update)
-    if (this.updator) {
-      this.timer = setInterval(this.updator.handler.bind(this), this.updator.interval || 1000)
-    }
+    this.init()
     this.initDatasource()
   },
   beforeUnmount () {
@@ -122,6 +117,16 @@ export default {
     this.timer && clearInterval(this.timer)
   },
   methods: {
+    init () {
+      if (this.chart) this.$refs.el.removeAttribute('_echarts_instance_')
+      this.chart = window.echarts.init(this.$refs.el)
+      this.update()
+      document.removeEventListener('resize', this.update)
+      document.addEventListener('resize', this.update)
+      if (this.updator) {
+        this.timer = setInterval(this.updator.handler.bind(this), this.updator.interval || 1000)
+      }
+    },
     initDatasource () {
       if (!this.datasource) return
       const columns = this.datasource.columns.filter(col => !TYPES.includes(col.type))
@@ -135,8 +140,8 @@ export default {
       if (!rich.filter?.categories.isLimit) rich.filter.categories.mergeOthers = false
       if (!rich.filter?.series.isLimit) rich.filter.series.mergeOthers = false
       let list = this.datasource.list
-      if (this.datasource.getList) {
-        list = await this.datasource.getList()
+      if (this.datasource.search) {
+        list = await this.datasource.search()
       }
       rich.data = list
       this.setRich(rich)
@@ -327,7 +332,7 @@ export default {
   }
   .settings {
     position: absolute;
-    left: 3px;
+    left: 6px;
     top: 3px;
     font-size: 14px;
     cursor: pointer;

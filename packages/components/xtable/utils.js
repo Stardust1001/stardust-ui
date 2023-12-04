@@ -14,6 +14,7 @@ export function props () {
     query: Object,
     total: Number,
     selection: Array,
+    chartOption: Object,
     tref: Object,
     defaultValue: '',
     slotAll: {
@@ -176,6 +177,11 @@ export function _selection () {
   return selection || table?.selection
 }
 
+export function _chartOption () {
+  const { table, chartOption } = this.$props
+  return chartOption || table?.chartOption || []
+}
+
 export function _onSearch () {
   if (this.hideSearcher) {
     return (this.onSearch || this._listen['search']) ? () => this._emit('search') : null
@@ -252,6 +258,10 @@ export function _uid () {
 
 export function hideOperates () {
   return this.table.hideOperates || (this.$attrs['hide-operates'] !== undefined && this.$attrs['hide-operates'] !== false)
+}
+
+export function hideChart () {
+  return this.table.hideChart || (this.$attrs['hide-chart'] !== undefined && this.$attrs['hide-chart'] !== false)  
 }
 
 export function searcherColumns () {
@@ -515,6 +525,7 @@ export default {
     _query,
     _total,
     _selection,
+    _chartOption,
     _onSearch,
     _onAdd,
     _onExport,
@@ -525,6 +536,7 @@ export default {
     _visibleColumns,
     _uid,
     hideOperates,
+    hideChart,
     searcherColumns,
     searcherConfig
   },
