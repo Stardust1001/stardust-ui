@@ -60,7 +60,8 @@ export default {
               { text: '折线图', value: 'line' }
             ]
           },
-          { label: '数据筛选', slot: 'filter' }
+          { label: '边距', slot: 'grid' },
+          { label: '数据筛选', slot: 'filter' },
         ],
         form: {
           categories: [],
@@ -68,6 +69,12 @@ export default {
           attr: '',
           summary: 'count',
           type: 'bar',
+          grid: {
+            left: 30,
+            top: 40,
+            right: 20,
+            bottom: 30
+          },
           filter: {
             categories: { isLimit: false, limit: 10, mergeOthers: false },
             series: { isLimit: false, limit: 10, mergeOthers: false }
@@ -82,6 +89,9 @@ export default {
     },
     sidebarCollapse () {
       return this.$store.app.sidebarCollapse
+    },
+    grid () {
+      return this.dialog.form.grid
     },
     categories () {
       return this.dialog.form.filter.categories
@@ -167,7 +177,7 @@ export default {
       return value
     },
     setRich (rich) {
-      const { categories, data, attr, summary, type, filter } = rich
+      const { categories, data, attr, summary, type, filter, grid } = rich
       const opts = {}
       const hasCategories = Array.isArray(categories) && categories.length || categories?.data?.length
       const cateAttrs = hasCategories && (Array.isArray(categories) ? categories : categories.data)
@@ -261,7 +271,7 @@ export default {
         },
         yAxis: { type: 'value' },
         series
-      }, this.option)
+      }, this.option, { grid })
       this.update(opts)
     },
     update (option = {}) {
@@ -291,11 +301,31 @@ export default {
       <pc-x-icon name="Setting" />
     </div>
     <x-dialog
-      v-model="dialog.visible" title="图表配置" drawer width="360" submit-text="生成图表" cancel-text="关闭"
+      v-model="dialog.visible" title="图表配置" drawer width="460" submit-text="生成图表" cancel-text="关闭"
       @submit="handleMakeChart"
       @cancel="dialog.visible = false"
     >
       <x-form :dialog="dialog">
+        <template #grid>
+          <el-row :gutter="5" class="grid">
+            <el-col :span="12">
+              <span>左</span>
+              <el-input-number v-model="grid.left" />
+            </el-col>
+            <el-col :span="12">
+              <span>上</span>
+              <el-input-number v-model="grid.top" />
+            </el-col>
+            <el-col :span="12">
+              <span>右</span>
+              <el-input-number v-model="grid.right" />
+            </el-col>
+            <el-col :span="12">
+              <span>下</span>
+              <el-input-number v-model="grid.bottom" />
+            </el-col>
+          </el-row>
+        </template>
         <template #filter>
           <el-tabs v-model="filterType">
             <el-tab-pane label="分类" name="分类">
@@ -329,6 +359,18 @@ export default {
   position: relative;
   .chart {
     height: 100%;
+  }
+  .grid {
+    .el-col {
+      margin-bottom: 5px;
+    }
+    span {
+      display: inline-block;
+      width: 20px;
+    }
+    .el-input-number {
+      width: calc(100% - 20px);
+    }
   }
   .settings {
     position: absolute;
