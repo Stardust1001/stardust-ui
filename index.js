@@ -4975,7 +4975,7 @@ const Ml = (e) => {
       tableAttrs: a = {}
     } = i, r = {
       ...i,
-      key: o,
+      key: i.prop,
       dataKey: i.prop,
       title: i.label,
       width: i.width || a.width || i.minWidth || a.minWidth || i.maxWidth || a.maxWidth,
@@ -5617,7 +5617,7 @@ const yo = (e) => ({
   for (let s in be)
     e.component(s, be[s]);
 }, So = {
-  version: "1.0.170",
+  version: "1.0.171",
   ...be,
   ...Ye,
   ...Ct,

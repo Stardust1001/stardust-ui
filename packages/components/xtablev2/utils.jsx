@@ -169,7 +169,7 @@ export const convertColumnsForTableV2 = (columns, vm) => {
     const { tableAttrs = {} } = column
     const col = {
       ...column,
-      key: index,
+      key: column.prop,
       dataKey: column.prop,
       title: column.label,
       width: column.width || tableAttrs.width ||
