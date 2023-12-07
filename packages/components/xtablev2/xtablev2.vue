@@ -82,7 +82,6 @@ export default {
           @export="_onExport"
           @search-export="_onSearchExport"
           @import="_onImport"
-          @multi-edit="_onMultiEdit"
           @multi-delete="_onMultiDelete"
         >
           <template v-if="$slots['tools-prefix']" #tools-prefix>
