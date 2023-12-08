@@ -4532,10 +4532,10 @@ function vl(e, t, s, l, n, i) {
                     default: u((f) => [
                       C(e.$slots, "operates-prefix", { scope: f }),
                       e.canEdit(f.row) ? D((d(), g(A, y({ key: 0 }, { type: "warning", ...e._attrs["edit-btn"] }, {
+                        icon: "edit",
                         onClick: (T) => e._emit("edit", f)
                       }), {
                         default: u(() => [
-                          m(a, { name: "edit" }),
                           x(" 编辑 ")
                         ]),
                         _: 2
@@ -4544,10 +4544,10 @@ function vl(e, t, s, l, n, i) {
                       ]) : S("", !0),
                       e.canSave(f.row) ? D((d(), g(A, y({ key: 1 }, { type: "success", ...e._attrs["row-edit-btn"] }, {
                         disabled: f.row._loading,
+                        icon: "collection",
                         onClick: (T) => e._emit("row-edit", f)
                       }), {
                         default: u(() => [
-                          m(a, { name: "collection" }),
                           x(" 保存 ")
                         ]),
                         _: 2
@@ -4556,10 +4556,10 @@ function vl(e, t, s, l, n, i) {
                         [U, e.domids["row-edit"]]
                       ]) : S("", !0),
                       e.canCancelEdit(f.row) ? D((d(), g(A, y({ key: 2 }, { type: "warning", ...e._attrs["cancel-edit-btn"] }, {
+                        icon: "refresh-left",
                         onClick: (T) => e._emit("cancel-edit", f)
                       }), {
                         default: u(() => [
-                          m(a, { name: "refresh-left" }),
                           x(" 取消编辑 ")
                         ]),
                         _: 2
@@ -4567,10 +4567,10 @@ function vl(e, t, s, l, n, i) {
                         [U, e.domids["cancel-edit"]]
                       ]) : S("", !0),
                       e.canDelete(f.row) ? D((d(), g(A, y({ key: 3 }, { type: "danger", ...e._attrs["delete-btn"] }, {
+                        icon: "DeleteFilled",
                         onClick: (T) => e._emit("delete", f)
                       }), {
                         default: u(() => [
-                          m(a, { name: "DeleteFilled" }),
                           x(" 删除 ")
                         ]),
                         _: 2
@@ -5616,7 +5616,7 @@ const yo = (e) => ({
   for (let s in be)
     e.component(s, be[s]);
 }, So = {
-  version: "1.0.172",
+  version: "1.0.175",
   ...be,
   ...Ye,
   ...Ct,

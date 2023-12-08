@@ -246,9 +246,9 @@ export default {
                 v-if="canEdit(scope.row)"
                 v-bind="{ type: 'warning', ..._attrs['edit-btn'] }"
                 v-domid="domids['edit']"
+                icon="edit"
                 @click="_emit('edit', scope)"
               >
-                <pc-x-icon name="edit" />
                 编辑
               </el-button>
               <el-button
@@ -257,27 +257,27 @@ export default {
                 v-loading="scope.row._loading"
                 :disabled="scope.row._loading"
                 v-domid="domids['row-edit']"
+                icon="collection"
                 @click="_emit('row-edit', scope)"
               >
-                <pc-x-icon name="collection" />
                 保存
               </el-button>
               <el-button
                 v-if="canCancelEdit(scope.row)"
                 v-bind="{ type: 'warning', ..._attrs['cancel-edit-btn'] }"
                 v-domid="domids['cancel-edit']"
+                icon="refresh-left"
                 @click="_emit('cancel-edit', scope)"
               >
-                <pc-x-icon name="refresh-left" />
                 取消编辑
               </el-button>
               <el-button
                 v-if="canDelete(scope.row)"
                 v-bind="{ type: 'danger', ..._attrs['delete-btn'] }"
                 v-domid="domids['delete']"
+                icon="DeleteFilled"
                 @click="_emit('delete', scope)"
               >
-                <pc-x-icon name="DeleteFilled" />
                 删除
               </el-button>
               <slot
