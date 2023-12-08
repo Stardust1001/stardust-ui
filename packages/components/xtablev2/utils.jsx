@@ -67,9 +67,9 @@ const makeButton = ([props, vm, emit, type, icon, text]) => {
     <el-button
       type={type}
       {...vm._attrs[emit + '-btn']}
+      icon={icon}
       onClick={onClick}
     >
-      <x-icon name={icon} />
       {text}
     </el-button>
   )
