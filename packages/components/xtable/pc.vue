@@ -202,6 +202,9 @@ export default {
               >
                 {{ calcTagValue(scope, column) }}
               </el-tag>
+              <el-icon v-else-if="column.slot === '$icon'" class="cell-icon">
+                <component :is="scope.row[column.prop]" />
+              </el-icon>
               <slot
                 v-else-if="column.slot"
                 :name="column.slot"
@@ -325,6 +328,9 @@ export default {
   }
   .collapse-title span {
     color: var(--el-color-danger);
+  }
+  .cell-icon {
+    font-size: 17px;
   }
 }
 .minus {
