@@ -11,6 +11,7 @@ export default {
   emits: ['update:modelValue'],
   data () {
     return {
+      fileList: [],
       previewingImage: {},
       dialogVisible: false
     }
@@ -23,10 +24,25 @@ export default {
       return this.$attrs.limit || (this.multiple ? 1e9 : 1)
     },
     images () {
-      return this.modelValue.map(m => m.url)
+      return this.fileList.map(m => m.url)
+    }
+  },
+  watch: {
+    modelValue: {
+      handler (value) {
+        this.fileList = Array.isArray(value) ? value : (value ? [{ url: value }] : [])
+      },
+      immediate: true
     }
   },
   methods: {
+    handleSelect () {
+      this.$emit('update:modelValue', this.fileList)
+    },
+    handleRemove (...props) {
+      this.$emit('update:modelValue', this.fileList)
+      this.$attrs['on-remove']?.(...props)
+    },
     handlePreview (img) {
       this.previewingImage = img
       this.dialogVisible = true
@@ -40,8 +56,8 @@ export default {
 
 <template>
   <el-upload
-    :file-list="modelValue"
-    @update:file-list="value => $emit('update:modelValue', value)"
+    v-model:file-list="fileList"
+    @update:file-list="handleSelect"
     :action="action"
     list-type="picture-card"
     accept="image/*"
@@ -53,6 +69,7 @@ export default {
     :on-exceed="handleExceed"
     v-bind="$attrs"
     :auto-upload="$attrs.autoUpload || false"
+    :on-remove="handleRemove"
   >
     <template #default>
       <el-icon><Plus /></el-icon>
