@@ -1,6 +1,6 @@
 {
   "name": "@stardust-js/ui",
-  "version": "1.0.179",
+  "version": "1.0.180",
   "description": "Everything I want to publish here",
   "type": "module",
   "main": "index.js",
@@ -33,8 +33,6 @@
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
-    "@stardust-js/browser": "latest",
-    "@stardust-js/js": "latest",
     "@vant/area-data": "^1.5.0",
     "element-plus": "^2.4.1",
     "vant": "^4.7.1",

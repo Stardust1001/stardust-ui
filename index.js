@@ -5647,7 +5647,7 @@ const yo = (e) => ({
   for (let s in be)
     e.component(s, be[s]);
 }, So = {
-  version: "1.0.179",
+  version: "1.0.180",
   ...be,
   ...Ye,
   ...xt,
