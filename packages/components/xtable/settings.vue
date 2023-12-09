@@ -37,7 +37,8 @@ export default {
       deep: true
     }
   },
-  mounted () {
+  async mounted () {
+    await window.DynamicLibs?.use('Sortable')
     this.initDraggable()
   },
   beforeUnmount () {

@@ -65,7 +65,7 @@ export default {
       if (this.table) {
         this.table.chartRef = this.$refs.chartRef
       }
-      this.$refs.chartRef.init()
+      await this.$refs.chartRef.init()
       this.$refs.chartRef.initDatasource()
     },
     async handleChartDialogFullscreen () {

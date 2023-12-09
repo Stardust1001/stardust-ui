@@ -118,8 +118,8 @@ export default {
       }
     }
   },
-  mounted () {
-    this.init()
+  async mounted () {
+    await this.init()
     this.initDatasource()
   },
   beforeUnmount () {
@@ -127,7 +127,8 @@ export default {
     this.timer && clearInterval(this.timer)
   },
   methods: {
-    init () {
+    async init () {
+      await window.DynamicLibs?.use('echarts')
       if (this.chart) this.$refs.el.removeAttribute('_echarts_instance_')
       this.chart = window.echarts.init(this.$refs.el)
       this.update()

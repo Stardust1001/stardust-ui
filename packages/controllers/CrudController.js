@@ -259,8 +259,10 @@ class CrudController extends BaseController {
     const content = await file.toType(f, isCsv ? 'text' : 'arraybuffer')
     let data = []
     if (isCsv) {
+      await window.DynamicLibs?.use('Papa')
       data = window.Papa.parse(content, { header: true }).data
     } else {
+      await window.DynamicLibs?.use('XLSX')
       const workbook = window.XLSX.read(content, {})
       const sheets = Object.values(workbook.Sheets)
       data = XLSX.utils.sheet_to_json(sheets[0])
