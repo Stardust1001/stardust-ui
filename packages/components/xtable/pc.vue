@@ -245,44 +245,95 @@ export default {
                 name="operates-prefix"
                 :scope="scope"
               />
-              <el-button
-                v-if="canEdit(scope.row)"
-                v-bind="{ type: 'warning', ..._attrs['edit-btn'] }"
-                v-domid="domids['edit']"
-                icon="edit"
-                @click="_emit('edit', scope)"
-              >
-                编辑
-              </el-button>
-              <el-button
-                v-if="canSave(scope.row)"
-                v-bind="{ type: 'success', ..._attrs['row-edit-btn'] }"
-                v-loading="scope.row._loading"
-                :disabled="scope.row._loading"
-                v-domid="domids['row-edit']"
-                icon="collection"
-                @click="_emit('row-edit', scope)"
-              >
-                保存
-              </el-button>
-              <el-button
-                v-if="canCancelEdit(scope.row)"
-                v-bind="{ type: 'warning', ..._attrs['cancel-edit-btn'] }"
-                v-domid="domids['cancel-edit']"
-                icon="refresh-left"
-                @click="_emit('cancel-edit', scope)"
-              >
-                取消编辑
-              </el-button>
-              <el-button
-                v-if="canDelete(scope.row)"
-                v-bind="{ type: 'danger', ..._attrs['delete-btn'] }"
-                v-domid="domids['delete']"
-                icon="DeleteFilled"
-                @click="_emit('delete', scope)"
-              >
-                删除
-              </el-button>
+              <el-dropdown v-if="operatesDropdown">
+                <el-button type="primary" icon="arrow-down">操作</el-button>
+                <template #dropdown>
+                  <el-dropdown-menu>
+                    <el-dropdown-item v-if="canEdit(scope.row)">
+                      <el-button
+                        v-bind="{ type: 'warning', ..._attrs['edit-btn'] }"
+                        v-domid="domids['edit']"
+                        icon="edit"
+                        @click="_emit('edit', scope)"
+                      >
+                        编辑
+                      </el-button>
+                    </el-dropdown-item>
+                    <el-dropdown-item v-if="canSave(scope.row)">
+                      <el-button
+                        v-bind="{ type: 'success', ..._attrs['row-edit-btn'] }"
+                        v-loading="scope.row._loading"
+                        :disabled="scope.row._loading"
+                        v-domid="domids['row-edit']"
+                        icon="collection"
+                        @click="_emit('row-edit', scope)"
+                      >
+                        保存
+                      </el-button>
+                    </el-dropdown-item>
+                    <el-dropdown-item v-if="canCancelEdit(scope.row)">
+                      <el-button
+                        v-bind="{ type: 'warning', ..._attrs['cancel-edit-btn'] }"
+                        v-domid="domids['cancel-edit']"
+                        icon="refresh-left"
+                        @click="_emit('cancel-edit', scope)"
+                      >
+                        取消编辑
+                      </el-button>
+                    </el-dropdown-item>
+                    <el-dropdown-item v-if="canDelete(scope.row)">
+                      <el-button
+                        v-bind="{ type: 'danger', ..._attrs['delete-btn'] }"
+                        v-domid="domids['delete']"
+                        icon="DeleteFilled"
+                        @click="_emit('delete', scope)"
+                      >
+                        删除
+                      </el-button>
+                    </el-dropdown-item>
+                  </el-dropdown-menu>
+                </template>
+              </el-dropdown>
+              <span v-else>
+                <el-button
+                  v-if="canEdit(scope.row)"
+                  v-bind="{ type: 'warning', ..._attrs['edit-btn'] }"
+                  v-domid="domids['edit']"
+                  icon="edit"
+                  @click="_emit('edit', scope)"
+                >
+                  编辑
+                </el-button>
+                <el-button
+                  v-if="canSave(scope.row)"
+                  v-bind="{ type: 'success', ..._attrs['row-edit-btn'] }"
+                  v-loading="scope.row._loading"
+                  :disabled="scope.row._loading"
+                  v-domid="domids['row-edit']"
+                  icon="collection"
+                  @click="_emit('row-edit', scope)"
+                >
+                  保存
+                </el-button>
+                <el-button
+                  v-if="canCancelEdit(scope.row)"
+                  v-bind="{ type: 'warning', ..._attrs['cancel-edit-btn'] }"
+                  v-domid="domids['cancel-edit']"
+                  icon="refresh-left"
+                  @click="_emit('cancel-edit', scope)"
+                >
+                  取消编辑
+                </el-button>
+                <el-button
+                  v-if="canDelete(scope.row)"
+                  v-bind="{ type: 'danger', ..._attrs['delete-btn'] }"
+                  v-domid="domids['delete']"
+                  icon="DeleteFilled"
+                  @click="_emit('delete', scope)"
+                >
+                  删除
+                </el-button>
+              </span>
               <slot
                 name="operates-suffix"
                 :scope="scope"

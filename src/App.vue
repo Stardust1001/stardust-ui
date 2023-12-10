@@ -88,6 +88,9 @@ const controller = {
   },
   handleEdit () {
 
+  },
+  handleDelete () {
+
   }
 }
 </script>
@@ -108,7 +111,9 @@ const controller = {
     <x-table
       :table="model.table"
       :controller="controller"
-      listen="search,add,edit,export,search-export"
+      operates-width="100"
+      operates-dropdown
+      listen="search,add,edit,export,search-export,delete"
     ></x-table>
     <br>
     <pc-x-form label-width="40px" :form="model.form">

@@ -264,6 +264,10 @@ export function hideChart () {
   return this.table.hideChart || (this.$attrs['hide-chart'] !== undefined && this.$attrs['hide-chart'] !== false)  
 }
 
+export function operatesDropdown () {
+  return this.$attrs['operates-dropdown'] !== undefined && this.$attrs['operates-dropdown'] !== false
+}
+
 export function searcherColumns () {
   return this._columns.filter(col => !col.type || !TYPES.includes(col.type))
 }
@@ -537,6 +541,7 @@ export default {
     _uid,
     hideOperates,
     hideChart,
+    operatesDropdown,
     searcherColumns,
     searcherConfig
   },
