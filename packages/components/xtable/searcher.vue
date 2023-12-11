@@ -74,6 +74,7 @@ export default {
       }
       this.uid && params && this.saveCache()
       params = params || { where: {} }
+      params.page = 1
       this.$emit('search', params)
       this.visible = false
     },

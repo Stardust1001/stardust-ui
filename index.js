@@ -3725,7 +3725,7 @@ const { storage: fe } = StardustBrowser, Hi = {
         Z({ type: "warning", message: t.toString() });
         return;
       }
-      this.uid && e && this.saveCache(), e = e || { where: {} }, this.$emit("search", e), this.visible = !1;
+      this.uid && e && this.saveCache(), e = e || { where: {} }, e.page = 1, this.$emit("search", e), this.visible = !1;
     },
     handleReset() {
       fe.local.remove(this.key), Object.assign(this, {
@@ -3839,7 +3839,7 @@ const { storage: fe } = StardustBrowser, Hi = {
       e.op = t, t === "between" ? e.value = ["", ""] : ["in", "notIn"].includes(t) && (e.value = []), (t === "special" || !["between", "in", "notIn"].includes(t) && Array.isArray(t)) && (e.value = "");
     }
   }
-}, Ee = /* @__PURE__ */ E(Hi, [["__scopeId", "data-v-d86a354a"]]);
+}, Ee = /* @__PURE__ */ E(Hi, [["__scopeId", "data-v-c2d6a06d"]]);
 const Ji = {
   name: "MobileXTable",
   inheritAttrs: !1,
@@ -5735,7 +5735,7 @@ const wo = (e) => ({
   for (let s in ve)
     e.component(s, ve[s]);
 }, $o = {
-  version: "1.0.182",
+  version: "1.0.183",
   ...ve,
   ...Ze,
   ...Vt,
