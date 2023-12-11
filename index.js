@@ -700,7 +700,7 @@ class tt extends et {
     return this.dbTable.remove(t[this.idField]);
   }
   getSearchParams(t) {
-    return Object.assign({}, JSON.parse(this._lastSearchParams), t, this.table.query);
+    return t.page && (this.table.query.page = t.page), t.limit && (this.table.query.limit = t.limit), Object.assign({}, JSON.parse(this._lastSearchParams), this.table.query, t);
   }
   getAddParams(t) {
     const s = Object.keys(this.dialog.initialForm), l = {};
@@ -5735,7 +5735,7 @@ const wo = (e) => ({
   for (let s in ve)
     e.component(s, ve[s]);
 }, $o = {
-  version: "1.0.183",
+  version: "1.0.185",
   ...ve,
   ...Ze,
   ...Vt,
