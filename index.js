@@ -4141,7 +4141,8 @@ const al = {
     await ((e = window.DynamicLibs) == null ? void 0 : e.use("Sortable")), this.initDraggable();
   },
   beforeUnmount() {
-    this.sortable.destroy();
+    var e;
+    (e = this.sortable) == null || e.destroy();
   },
   methods: {
     initDraggable() {
@@ -4177,7 +4178,7 @@ const al = {
       });
     }
   }
-}, rl = (e) => (Se("data-v-76d3fdaf"), e = e(), ke(), e), dl = {
+}, rl = (e) => (Se("data-v-038a7bd3"), e = e(), ke(), e), dl = {
   class: "table",
   ref: "colsTable"
 }, cl = ["data-prop"], ul = ["title", "onClick"], hl = /* @__PURE__ */ rl(() => /* @__PURE__ */ j("span", { class: "unit" }, "px", -1)), ml = {
@@ -4307,7 +4308,7 @@ function fl(e, t, s, l, n, i) {
     _: 1
   }, 16)) : S("", !0);
 }
-const it = /* @__PURE__ */ E(al, [["render", fl], ["__scopeId", "data-v-76d3fdaf"]]);
+const it = /* @__PURE__ */ E(al, [["render", fl], ["__scopeId", "data-v-038a7bd3"]]);
 const { highdict: gl } = StardustJs, bl = {
   name: "PcXTable",
   inheritAttrs: !1,
@@ -5735,7 +5736,7 @@ const wo = (e) => ({
   for (let s in ve)
     e.component(s, ve[s]);
 }, $o = {
-  version: "1.0.186",
+  version: "1.0.187",
   ...ve,
   ...Ze,
   ...Vt,

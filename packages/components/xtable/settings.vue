@@ -42,7 +42,7 @@ export default {
     this.initDraggable()
   },
   beforeUnmount () {
-    this.sortable.destroy()
+    this.sortable?.destroy()
   },
   methods: {
     initDraggable () {
