@@ -3714,7 +3714,7 @@ const { storage: fe } = StardustBrowser, Hi = {
       var t, s;
       (t = e.conditions) == null || t.forEach((l) => {
         const { prop: n, op: i, value: o } = l;
-        l.item = this.columns.find((a) => a.prop === n), l.value = o, this.handleSelectField(l, n), this.handleSelectOp(l, i), l.ops = X[l.component].map((a) => Ie[a]);
+        l.item = this.columns.find((a) => a.prop === n), this.handleSelectField(l, n), this.handleSelectOp(l, i), l.value = o, l.ops = X[l.component].map((a) => Ie[a]);
       }), !e.conditionNo && ((s = e.conditions) != null && s.length) && (e.conditionNo = Math.max.apply(null, e.conditions.map((l) => l.no)) + 1), Object.assign(this, e);
     },
     handleSearch() {
@@ -3839,7 +3839,7 @@ const { storage: fe } = StardustBrowser, Hi = {
       e.op = t, t === "between" ? e.value = ["", ""] : ["in", "notIn"].includes(t) && (e.value = []), (t === "special" || !["between", "in", "notIn"].includes(t) && Array.isArray(t)) && (e.value = "");
     }
   }
-}, Ee = /* @__PURE__ */ E(Hi, [["__scopeId", "data-v-c2d6a06d"]]);
+}, Ee = /* @__PURE__ */ E(Hi, [["__scopeId", "data-v-6af0db56"]]);
 const Ji = {
   name: "MobileXTable",
   inheritAttrs: !1,
@@ -5736,7 +5736,7 @@ const wo = (e) => ({
   for (let s in ve)
     e.component(s, ve[s]);
 }, $o = {
-  version: "1.0.187",
+  version: "1.0.188",
   ...ve,
   ...Ze,
   ...Vt,

@@ -54,9 +54,9 @@ export default {
       config.conditions?.forEach(con => {
         const { prop, op, value } = con
         con.item = this.columns.find(col => col.prop === prop)
-        con.value = value
         this.handleSelectField(con, prop)
         this.handleSelectOp(con, op)
+        con.value = value
         con.ops = COMPONENT_OPS[con.component].map(key => OPS[key])
       })
       if (!config.conditionNo && config.conditions?.length) {
