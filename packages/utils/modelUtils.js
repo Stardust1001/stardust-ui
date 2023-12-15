@@ -2,6 +2,24 @@ import { watch } from 'vue'
 
 const { funcs } = StardustJs
 
+export const initFields = fields => {
+  return fields.map(f => {
+    const keys = Object.keys(f)
+    for (let key of keys) {
+      if (key.startsWith('ta_')) {
+        f.tableAttrs ||= {}
+        f.tableAttrs[key.slice(3)] = f[key]
+        delete f[key]
+      } else if (key.startsWith('fa_')) {
+        f.formAttrs ||= {}
+        f.formAttrs[key.slice(3)] = f[key]
+        delete f[key]
+      }
+    }
+    return f
+  })
+}
+
 export const initModel = (model, fields) => {
   for (let key in model) {
     const value = model[key]
@@ -163,6 +181,7 @@ export const triggers = {
 }
 
 export default {
+  initFields,
   initModel,
   initTable,
   initDialog,

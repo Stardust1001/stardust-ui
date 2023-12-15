@@ -5750,7 +5750,7 @@ const wo = (e) => ({
   for (let s in ve)
     e.component(s, ve[s]);
 }, $o = {
-  version: "1.0.189",
+  version: "1.0.190",
   ...ve,
   ...Ze,
   ...Vt,
