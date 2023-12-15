@@ -1,17 +1,18 @@
 import { watch, nextTick } from 'vue'
 import BaseController from './BaseController.js'
+import { Message, Confirm } from '../utils/message.js'
 const { funcs, highdict, dates } = StardustJs
 const { file, excel } = StardustBrowser
 
 class CrudController extends BaseController {
-
   constructor (props) {
     super(props)
 
     const { model, table, dialog, dbModelName = '', idField = 'id', listProp = 'data' } = props
 
-    this.table = table || model?.table || null
-    this.dialog = dialog || model?.dialog || null
+    this.table = table || model?.table
+    this.dialog = dialog || model?.dialog
+    this.form = model?.form || this.dialog?.form
     this.dbModelName = dbModelName
     this.idField = idField
     this.listProp = listProp
@@ -154,11 +155,7 @@ class CrudController extends BaseController {
 
   async handleDelete ({ $index, row }) {
     if (!await this.beforeDelete({ $index, row })) return
-    const ok = await this.uiUtils.Confirm({
-      message: '确定要删除吗？',
-      title: '警告',
-      type: 'warning'
-    })
+    const ok = await Confirm.w({ message: '确定要删除吗？', title: '警告' })
     if (ok) {
       const params = this.getDeleteParams(row)
       const data = await this.remove(params, row)
@@ -170,9 +167,7 @@ class CrudController extends BaseController {
   }
 
   async handleRowEdit ({ row }) {
-    if (row._loading) {
-      return
-    }
+    if (row._loading) return
     row._loading = true
     const params = this.getUpdateParams(row)
     if (!(await this._checkAllNone(params))) {
@@ -201,7 +196,7 @@ class CrudController extends BaseController {
     if (this._isExporting) return
     type = type || this.config.exportType || 'csv'
     if (!['csv', 'excel'].includes(type)) {
-      this.uiUtils.Message({ type: 'error', message: '不支持的导出类型' })
+      Message('不支持的导出类型')
       return
     }
     this._isExporting = true
@@ -229,7 +224,7 @@ class CrudController extends BaseController {
     if (this._isExporting) return
     type = type || this.config.exportType || 'csv'
     if (!['csv', 'excel'].includes(type)) {
-      this.uiUtils.Message({ type: 'error', message: '不支持的导出类型' })
+      Message('不支持的导出类型')
       return
     }
     this._isExporting = true
@@ -279,24 +274,18 @@ class CrudController extends BaseController {
     }
     data = this.processImportingData(data)
     await this.dbTable.func(['bulkCreate', data])
-    this.uiUtils.Message({ type: 'success', message: '导入成功' })
+    Message.s('导入成功')
     this.handleSearch()
   }
 
   async handleMultiDelete () {
     const { selection } = this.table
     if (!selection.length) {
-      this.uiUtils.Message({ type: 'warning', message: '尚未选择要删除的数据' })
+      Message.w('尚未选择要删除的数据')
       return
     }
-    const ok = await this.uiUtils.Confirm({
-      type: 'warning',
-      title: '警告',
-      message: `确定删除选中的 ${selection.length} 条数据吗？`
-    })
-    if (!ok) {
-      return
-    }
+    const ok = await Confirm.w({ title: '警告', message: `确定删除选中的 ${selection.length} 条数据吗？` })
+    if (!ok) return
     const ids = selection.map(ele => ele[this.idField])
     await this.dbTable.func(['destroy', {
       where: {
@@ -332,18 +321,14 @@ class CrudController extends BaseController {
       return
     }
     this._isSubmitting = false
-    if (!data.err) {
-      this.uiUtils.Message({ type: 'success', message: '保存成功' })
-    }
+    if (!data.err) Message.s('保存成功')
     this.router.go(-1)
     return data
   }
 
   async handleSubmit (params) {
     params = params instanceof Event ? null : params
-    if (this._isSubmitting || !this.dialog.visible) {
-      return false
-    }
+    if (this._isSubmitting || !this.dialog.visible) return false
     this._isSubmitting = true
     const form = params || this.dialog.form
     if (!params) {
@@ -536,9 +521,7 @@ class CrudController extends BaseController {
 
   async _fillRelatedField (list, column) {
     const ids = [...new Set(list.map(ele => ele[column.prop]))]
-    if (!ids.length) {
-      return
-    }
+    if (!ids.length) return
     const { modelName, text, value } = column.formAttrs
     const data = await this.service.restful.search(modelName, {
       limit: -1,
@@ -549,9 +532,7 @@ class CrudController extends BaseController {
         }
       }
     })
-    if (!data.data.length) {
-      return
-    }
+    if (!data.data.length) return
     const dict = highdict.mapField(data.data, value, text)
     this.table.list.forEach(ele => {
       ele[`_formatted_${column.prop}`] = dict[ele[column.prop]]
@@ -569,9 +550,7 @@ class CrudController extends BaseController {
   }
 
   processExportingData (data, mode = 'current') {
-    if (!data.length) {
-      return data
-    }
+    if (!data.length) return data
     const dict = {}
     this.table.ref._visibleColumns.forEach(it => {
       let { formatter = it.formatter, tagValues = it.tagValues } = it.tableAttrs || {}
@@ -650,21 +629,12 @@ class CrudController extends BaseController {
   async _checkAllNone (data) {
     const nones = [null, undefined, '']
     const hasValid = Object.values(data).some(v => !nones.includes(v))
-    if (hasValid) {
-      return true
-    }
-    return await this.uiUtils.Confirm({
-      message: '表单所有数据都是空，确定要继续提交吗？',
-      title: '警告',
-      type: 'warning'
-    })
+    if (hasValid) return true
+    return Confirm.w({ message: '表单所有数据都是空，确定要继续提交吗？', title: '警告' })
   }
 
   _showError (err) {
-    this.uiUtils.Message({
-      type: 'error',
-      message: typeof err === 'object' ? (err.message || err.err || err.toString()) : err
-    })
+    Message(typeof err === 'object' ? (err.message || err.err || err.toString()) : err)
   }
 
   get _isMobile () {

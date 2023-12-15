@@ -3,7 +3,6 @@ import { nextTick } from 'vue'
 import uiUtils from '../utils/index.js'
 
 class BaseController {
-
   constructor ({ model, vue }) {
     this.model = model
     this._bindMethods()
