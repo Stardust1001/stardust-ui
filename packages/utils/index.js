@@ -22,6 +22,7 @@ import {
 } from './model.js'
 
 import {
+  initFields,
   initModel,
   initTable,
   initDialog,
@@ -44,6 +45,7 @@ export {
   baseTable,
   baseDialog,
   baseModel,
+  initFields,
   initModel,
   initTable,
   initDialog,
@@ -67,6 +69,7 @@ export default {
   baseTable,
   baseDialog,
   baseModel,
+  initFields,
   initModel,
   initTable,
   initDialog,
