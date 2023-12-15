@@ -208,9 +208,23 @@ const _t = (e, t, s) => {
   editingIndex: "",
   editingRow: {},
   _isBaseDialog: !0
-}), kt = () => ({
-  table: We(),
-  dialog: ce()
+}), kt = ({
+  table: e = {},
+  dialog: t = {},
+  columns: s = [],
+  query: l = {},
+  form: n = {}
+}) => ({
+  table: {
+    ...We(l),
+    ...e,
+    columns: s
+  },
+  dialog: {
+    ...ce(),
+    ...t,
+    form: n
+  }
 }), { funcs: _e } = StardustJs, $t = (e, t) => {
   for (let s in e) {
     const l = e[s];
@@ -5736,7 +5750,7 @@ const wo = (e) => ({
   for (let s in ve)
     e.component(s, ve[s]);
 }, $o = {
-  version: "1.0.188",
+  version: "1.0.189",
   ...ve,
   ...Ze,
   ...Vt,

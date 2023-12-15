@@ -57,7 +57,7 @@ const install = (app, options) => {
 }
 
 const StardustUI = {
-  version: '1.0.188',
+  version: '1.0.189',
   ...components,
   ...utils,
   ...controllers,

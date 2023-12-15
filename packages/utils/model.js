@@ -35,9 +35,23 @@ export const baseDialog = () => ({
   _isBaseDialog: true
 })
 
-export const baseModel = () => ({
-  table: baseTable(),
-  dialog: baseDialog()
+export const baseModel = ({
+  table = {},
+  dialog = {},
+  columns = [],
+  query = {},
+  form = {}
+}) => ({
+  table: {
+    ...baseTable(query),
+    ...table,
+    columns
+  },
+  dialog: {
+    ...baseDialog(),
+    ...dialog,
+    form
+  }
 })
 
 export default {
