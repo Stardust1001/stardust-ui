@@ -12,7 +12,6 @@ class CrudController extends BaseController {
 
     this.table = table || model?.table
     this.dialog = dialog || model?.dialog
-    this.form = model?.form || this.dialog?.form
     this.dbModelName = dbModelName
     this.idField = idField
     this.listProp = listProp
@@ -45,6 +44,10 @@ class CrudController extends BaseController {
       this._dbTable = new this.service.Table(database, table)
     }
     return this._dbTable
+  }
+
+  get form () {
+    return this.model?.form || this.dialog?.form
   }
 
   _getMethods () {
@@ -298,9 +301,9 @@ class CrudController extends BaseController {
   }
 
   async handleSave (form) {
-    form = form instanceof Event ? (this.model.form || this.model.dialog.form) : form
+    form = form instanceof Event ? this.form : form
     if (this._isSubmitting) return
-    const formRef = this.model.formRef || this.model.dialog.formRef
+    const formRef = this.model.formRef || this.dialog.formRef
     if (!(await this._validateForm(formRef))) return
     this._isSubmitting = true
     const params = this.getAddParams(form)
@@ -330,7 +333,7 @@ class CrudController extends BaseController {
     params = params instanceof Event ? null : params
     if (this._isSubmitting || !this.dialog.visible) return false
     this._isSubmitting = true
-    const form = params || this.dialog.form
+    const form = params || this.form
     if (!params) {
       const shouldTrim = this.dialog.shouldTrim || true
       if (shouldTrim) {
