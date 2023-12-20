@@ -3,6 +3,7 @@ import render, { OPS, COMPONENT_OPS } from './searcher.jsx'
 import { Message } from '../../utils/index.js'
 
 const { storage } = StardustBrowser
+const { deepCopy } = StardustJs.funcs
 
 export default {
   name: 'Searcher',
@@ -32,7 +33,7 @@ export default {
   methods: {
     init () {
       const config = this.uid && storage.local.getJson(this.key, this.config) || this.config
-      this.initConfig(config)
+      this.initConfig(deepCopy(config))
     },
     open () {
       this.visible = true
