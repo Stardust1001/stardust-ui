@@ -211,7 +211,10 @@ const _t = (e, t, s) => {
 }), kt = ({
   table: e = {},
   dialog: t = {},
-  columns: s = [],
+  columns: s = [
+    { fixed: "left", type: "selection" },
+    { type: "_index" }
+  ],
   query: l = {},
   form: n = {}
 }) => ({
@@ -5745,7 +5748,7 @@ const So = (e) => ({
   for (let s in ve)
     e.component(s, ve[s]);
 }, Co = {
-  version: "1.0.192",
+  version: "1.0.193",
   ...ve,
   ...Ze,
   ...Et,

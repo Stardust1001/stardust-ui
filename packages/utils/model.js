@@ -38,7 +38,10 @@ export const baseDialog = () => ({
 export const baseModel = ({
   table = {},
   dialog = {},
-  columns = [],
+  columns = [
+    { fixed: 'left', type: 'selection' },
+    { type: '_index' }
+  ],
   query = {},
   form = {}
 }) => ({
