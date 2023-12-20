@@ -44,7 +44,7 @@ export const baseModel = ({
   ],
   query = {},
   form = {}
-}) => ({
+} = {}) => ({
   table: {
     ...baseTable(query),
     ...table,

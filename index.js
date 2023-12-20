@@ -217,7 +217,7 @@ const _t = (e, t, s) => {
   ],
   query: l = {},
   form: n = {}
-}) => ({
+} = {}) => ({
   table: {
     ...We(l),
     ...e,
@@ -5748,7 +5748,7 @@ const So = (e) => ({
   for (let s in ve)
     e.component(s, ve[s]);
 }, Co = {
-  version: "1.0.193",
+  version: "1.0.195",
   ...ve,
   ...Ze,
   ...Et,
