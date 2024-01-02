@@ -191,6 +191,10 @@ export default {
       const seriesNames = []
       data.forEach(ele => {
         let name = ele[seriesName] || '未知'
+        if (limitSeries && seriesNames.length >= filter.series.limit && !seriesNames.includes(name)) {
+          if (!filter.series.mergeOthers) return
+          name = '其他'
+        }
         if (hasCategories) {
           let cate = cateAttrs.map(c => ele[c]).join('/') || '未知'
           if (limitCategories && cates.length >= filter.categories.limit && !cates.includes(cate)) {
@@ -200,19 +204,16 @@ export default {
           }
           if (!counts[cate]) cates.push(cate)
           counts[cate] ||= {}
+          if (!seriesNames.includes(name)) seriesNames.push(name)
           counts[cate][name] ||= []
           counts[cate][name].push(ele[attr])
         } else {
-          if (limitSeries && seriesNames.length >= filter.series.limit && !seriesNames.includes(name)) {
-            if (!filter.series.mergeOthers) return
-            name = '其他'
-          }
           if (!counts[name]) seriesNames.push(name)
           counts[name] ||= []
           counts[name].push(ele[attr])
         }
       })
-      const legend = hasCategories ? [...new Set(data.map(e => e[seriesName]))] : seriesNames
+      const legend = hasCategories && !limitSeries ? [...new Set(data.map(e => e[seriesName]))] : seriesNames
       if (hasCategories) {
         for (let cate in counts) {
           for (let name in counts[cate]) {
