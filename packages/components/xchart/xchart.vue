@@ -244,24 +244,24 @@ export default {
           }
         })
       } else {
-        series = legend.map((name, i) => {
-          return {
-            name: _legend[i],
-            type,
-            label: { show: true, position: 'top' },
-            data: legend.map(n => ({ name: n, value: n === name ? counts[name] : undefined }))
-          }
-        })
-        // series = [
-        //   {
-        //     name: 'haha',
+        // series = legend.map((name, i) => {
+        //   return {
+        //     name: _legend[i],
         //     type,
         //     label: { show: true, position: 'top' },
-        //     data: legend.map(name => {
-        //       return { name, value: counts[name] }
-        //     })
+        //     data: legend.map(n => ({ name: n, value: n === name ? counts[name] : undefined }))
         //   }
-        // ]
+        // })
+        series = [
+          {
+            type,
+            colorBy: 'data',
+            label: { show: true, position: 'top' },
+            data: legend.map(name => {
+              return { name, value: counts[name] }
+            })
+          }
+        ]
       }
       Object.assign(opts, {
         legend: { data: _legend },
@@ -278,8 +278,7 @@ export default {
     },
     update (option = {}) {
       this.zoom = 1 / (parseFloat(document.documentElement.style.zoom) || 1)
-
-      this.chart?.setOption({
+      option = {
         tooltip: {},
         toolbox: { feature: { saveAsImage: {} } },
         ...this.option,
@@ -293,7 +292,16 @@ export default {
           padding: [0, 60],
           ...option.legend
         }
-      }, true)
+      }
+      // if (option.xAxis) {
+      //   option.xAxis = {
+      //     ...option.xAxis,
+      //     axisLabel: {
+      //       ...option.xAxis.axisLabel
+      //     }
+      //   }
+      // }
+      this.chart?.setOption(option, true)
     }
   }
 }
