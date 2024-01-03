@@ -86,6 +86,10 @@ export default {
         return list
       }
       return this._data
+    },
+    onPaging () {
+      if (this.params.page) delete this.params.page
+      this._emit('search', this.params)
     }
   }
 }
@@ -349,7 +353,7 @@ export default {
           v-if="!!_query && !!_total"
           :query="_query"
           :total="_total"
-          @search="_emit('search', params)"
+          @search="onPaging"
         />
       </el-collapse-item>
     </el-collapse>

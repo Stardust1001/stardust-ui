@@ -1,11 +1,11 @@
-import { toRaw as ot, nextTick as le, watch as we, resolveComponent as u, openBlock as d, createBlock as f, mergeProps as b, createElementBlock as w, Fragment as N, renderList as U, withCtx as c, renderSlot as x, toDisplayString as j, useCssVars as Pe, resolveDirective as ie, withDirectives as B, createElementVNode as T, createTextVNode as C, createVNode as m, createCommentVNode as S, vShow as Oe, pushScopeId as Se, popScopeId as ke, createSlots as te, resolveDynamicComponent as se, normalizeClass as Y, normalizeProps as de, guardReactiveProps as Le, h as G, isVNode as qe, withModifiers as Z, normalizeStyle as at } from "vue";
+import { toRaw as ot, nextTick as le, watch as we, resolveComponent as u, openBlock as d, createBlock as f, mergeProps as b, createElementBlock as w, Fragment as N, renderList as P, withCtx as c, renderSlot as x, toDisplayString as j, useCssVars as Ue, resolveDirective as ie, withDirectives as B, createElementVNode as T, createTextVNode as C, createVNode as m, createCommentVNode as S, vShow as Oe, pushScopeId as Se, popScopeId as ke, createSlots as te, resolveDynamicComponent as se, normalizeClass as Y, normalizeProps as de, guardReactiveProps as Le, h as G, isVNode as qe, withModifiers as Z, normalizeStyle as at } from "vue";
 const rt = (e) => {
   const { width: t, height: s } = e.getBoundingClientRect();
   e.width = t, e.height = s;
   const l = e.getContext("2d");
   class n {
-    constructor(V, D, I, M, _, H, P) {
-      this.x = V, this.y = D, this.radius = I, this.color = M, this.vx = _, this.vy = H, this.ctx = P;
+    constructor(V, D, I, M, _, H, U) {
+      this.x = V, this.y = D, this.radius = I, this.color = M, this.vx = _, this.vy = H, this.ctx = U;
     }
     update() {
       this.x += this.vx, this.y += this.vy, this.ctx.beginPath(), this.ctx.fillStyle = this.color, this.ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2), this.ctx.fill(), this.detectWall();
@@ -957,11 +957,11 @@ const Tt = /* @__PURE__ */ E(At, [["render", Ot]]), Ft = {
 function Rt(e, t, s, l, n, i) {
   const o = u("x-col"), a = u("x-row");
   return d(), w("div", jt, [
-    (d(!0), w(N, null, U(i.rows, (r, h) => (d(), f(a, b({ key: h }, e.$attrs, {
+    (d(!0), w(N, null, P(i.rows, (r, h) => (d(), f(a, b({ key: h }, e.$attrs, {
       platform: e.$attrs.platform
     }), {
       default: c(() => [
-        (d(!0), w(N, null, U(r, (p, v) => (d(), f(o, b(p, {
+        (d(!0), w(N, null, P(r, (p, v) => (d(), f(o, b(p, {
           span: p.span || s.span,
           key: v,
           platform: e.$attrs.platform
@@ -991,10 +991,10 @@ function It(e, t, s, l, n, i) {
     _: 3
   });
 }
-const Mt = /* @__PURE__ */ E(Nt, [["render", It]]), Ut = {
+const Mt = /* @__PURE__ */ E(Nt, [["render", It]]), Pt = {
   name: "PcXButton"
 };
-function Pt(e, t, s, l, n, i) {
+function Ut(e, t, s, l, n, i) {
   const o = u("el-button");
   return d(), f(o, null, {
     default: c(() => [
@@ -1003,7 +1003,7 @@ function Pt(e, t, s, l, n, i) {
     _: 3
   });
 }
-const Lt = /* @__PURE__ */ E(Ut, [["render", Pt]]);
+const Lt = /* @__PURE__ */ E(Pt, [["render", Ut]]);
 const { funcs: qt } = StardustBrowser, Xt = ["index", "selection", "expand", "radio", "_index"], Ce = {
   name: "XChart",
   props: {
@@ -1252,7 +1252,7 @@ const { funcs: qt } = StardustBrowser, Xt = ["index", "selection", "expand", "ra
     }
   }
 }, De = () => {
-  Pe((e) => ({
+  Ue((e) => ({
     e1109eaa: e.zoomedHeight,
     bf45a1f6: e.zoom
   }));
@@ -1478,7 +1478,7 @@ function es(e, t, s, l, n, i) {
     onChange: t[0] || (t[0] = (r) => e.$emit("change", r))
   }), {
     default: c(() => [
-      (d(!0), w(N, null, U(i.formatOptions(s.options, this), (r) => (d(), f(o, b(i.attrs, {
+      (d(!0), w(N, null, P(i.formatOptions(s.options, this), (r) => (d(), f(o, b(i.attrs, {
         key: r[s.text],
         shape: s.shape,
         name: r[s.value]
@@ -1532,7 +1532,7 @@ function ns(e, t, s, l, n, i) {
     onChange: t[1] || (t[1] = (r) => e.$emit("change", r))
   }), {
     default: c(() => [
-      (d(!0), w(N, null, U(i.formatOptions(s.options, this), (r) => (d(), f(o, b(i.attrs, {
+      (d(!0), w(N, null, P(i.formatOptions(s.options, this), (r) => (d(), f(o, b(i.attrs, {
         key: r[s.text],
         label: r[s.value]
       }), {
@@ -2006,7 +2006,7 @@ function Os(e, t, s, l, n, i) {
       e.$slots.pre ? x(e.$slots, "pre", { key: 0 }) : S("", !0),
       m(a, de(Le(e.$attrs)), {
         default: c(() => [
-          (d(!0), w(N, null, U(e._visibleItems, (h, p) => (d(), f(o, b(h, {
+          (d(!0), w(N, null, P(e._visibleItems, (h, p) => (d(), f(o, b(h, {
             rules: e._rules[h.prop] || h.rules,
             key: p,
             modelValue: e.formatModelValue(e._model[h.prop]),
@@ -2093,7 +2093,7 @@ function Ds(e, t, s, l, n, i) {
           }), {
             default: c(() => [
               e.$slots.pre ? x(e.$slots, "pre", { key: 0 }) : S("", !0),
-              (d(!0), w(N, null, U(e._visibleItems, (p, v) => (d(), f(o, b({
+              (d(!0), w(N, null, P(e._visibleItems, (p, v) => (d(), f(o, b({
                 "label-width": s.labelWidth,
                 "show-tooltip": e.$attrs.showTooltip || !1
               }, p, {
@@ -2332,12 +2332,12 @@ const xe = {
     return Ns(this);
   }
 }, Be = () => {
-  Pe((e) => ({
+  Ue((e) => ({
     ba9709f0: e.width
   }));
 }, Ne = xe.setup;
 xe.setup = Ne ? (e, t) => (Be(), Ne(e, t)) : Be;
-const Us = /* @__PURE__ */ E(xe, [["__scopeId", "data-v-d2cde1e2"]]), Ie = /* @__PURE__ */ Object.assign({}), Ps = {
+const Ps = /* @__PURE__ */ E(xe, [["__scopeId", "data-v-d2cde1e2"]]), Ie = /* @__PURE__ */ Object.assign({}), Us = {
   name: "MobileXIcon",
   props: {
     name: String
@@ -2368,7 +2368,7 @@ function qs(e, t, s, l, n, i) {
     alt: "icon"
   }, null, 8, Ls)) : (d(), f(o, b({ key: 1 }, e.$attrs, { name: s.name }), null, 16, ["name"]));
 }
-const Xs = /* @__PURE__ */ E(Ps, [["render", qs]]), Me = /* @__PURE__ */ Object.assign({}), zs = {
+const Xs = /* @__PURE__ */ E(Us, [["render", qs]]), Me = /* @__PURE__ */ Object.assign({}), zs = {
   name: "PcXIcon",
   props: {
     name: String
@@ -2717,7 +2717,7 @@ function Mn(e, t) {
   }
   return i ? "success" : "danger";
 }
-function Un(e, t) {
+function Pn(e, t) {
   const { tagValues: s, prop: l, options: n } = t, i = e.row[l];
   if (s) {
     if (typeof s == "function")
@@ -2731,7 +2731,7 @@ function Un(e, t) {
   }
   return i;
 }
-function Pn(e) {
+function Un(e) {
   return !!(this.onEdit || this._listen.edit) && e.editable !== !1 && !e.isEditing;
 }
 function Ln(e) {
@@ -2811,8 +2811,8 @@ const L = {
     cellClassName: Nn,
     cellStyle: In,
     calcTagType: Mn,
-    calcTagValue: Un,
-    canEdit: Pn,
+    calcTagValue: Pn,
+    canEdit: Un,
     canSave: Ln,
     canRowEdit: qn,
     canCancelEdit: Xn,
@@ -2879,7 +2879,7 @@ function Zn(e, t, s, l, n, i) {
     class: Y(["x-info", { "hide-header": i.hideHeader }])
   }, {
     default: c(() => [
-      (d(!0), w(N, null, U(i.blocks, (p, v) => (d(), f(r, {
+      (d(!0), w(N, null, P(i.blocks, (p, v) => (d(), f(r, {
         key: v,
         title: v,
         name: v
@@ -2890,7 +2890,7 @@ function Zn(e, t, s, l, n, i) {
             border: s.border
           }, {
             default: c(() => [
-              (d(!0), w(N, null, U(p, (y) => (d(), f(o, b({
+              (d(!0), w(N, null, P(p, (y) => (d(), f(o, b({
                 key: y.prop
               }, y), te({
                 default: c(() => [
@@ -2929,7 +2929,7 @@ const ei = /* @__PURE__ */ E(Yn, [["render", Zn], ["__scopeId", "data-v-0c3b67a5
 }, si = { key: 1 };
 function ni(e, t, s, l, n, i) {
   return d(), w("div", null, [
-    (d(!0), w(N, null, U(s.items, (o, a) => (d(), f(se(s.compName), b({ key: a }, o), {
+    (d(!0), w(N, null, P(s.items, (o, a) => (d(), f(se(s.compName), b({ key: a }, o), {
       default: c(() => [
         o.slot || e.$attrs.slot ? x(e.$slots, "default", {
           key: 0,
@@ -3125,7 +3125,7 @@ function fi(e, t, s, l, n, i) {
   const o = u("van-radio"), a = u("van-radio-group");
   return d(), f(a, b({ class: "mobile-x-radios" }, e.$attrs, { direction: s.direction }), {
     default: c(() => [
-      (d(!0), w(N, null, U(i.formatOptions(s.options, this), (r) => (d(), f(o, b(e.$attrs, {
+      (d(!0), w(N, null, P(i.formatOptions(s.options, this), (r) => (d(), f(o, b(e.$attrs, {
         key: r[s.text],
         name: r[s.value]
       }), {
@@ -3182,7 +3182,7 @@ function _i(e, t, s, l, n, i) {
     onChange: t[1] || (t[1] = (a) => e.$emit("change", a))
   }), {
     default: c(() => [
-      (d(!0), w(N, null, U(i.formatOptions(s.options, this), (a) => (d(), f(se(s.button ? "el-radio-button" : "el-radio"), b(i.attrs, {
+      (d(!0), w(N, null, P(i.formatOptions(s.options, this), (a) => (d(), f(se(s.button ? "el-radio-button" : "el-radio"), b(i.attrs, {
         key: a[s.text],
         label: a[s.value]
       }), {
@@ -3208,7 +3208,7 @@ function Si(e, t, s, l, n, i) {
   const o = u("mobile-x-col"), a = u("van-row");
   return d(), f(a, { class: "mobile-x-row" }, {
     default: c(() => [
-      (d(!0), w(N, null, U(s.cols, (r, h) => (d(), f(o, b(r, { key: h }), {
+      (d(!0), w(N, null, P(s.cols, (r, h) => (d(), f(o, b(r, { key: h }), {
         default: c(() => [
           r.slot || e.$attrs.slot ? x(e.$slots, r.slot || e.$attrs.slot, {
             key: 0,
@@ -3235,7 +3235,7 @@ function xi(e, t, s, l, n, i) {
   const o = u("pc-x-col"), a = u("el-row");
   return d(), f(a, { class: "pc-x-row" }, {
     default: c(() => [
-      (d(!0), w(N, null, U(s.cols, (r, h) => (d(), f(o, b(r, { key: h }), {
+      (d(!0), w(N, null, P(s.cols, (r, h) => (d(), f(o, b(r, { key: h }), {
         default: c(() => [
           r.slot || e.$attrs.slot ? x(e.$slots, r.slot || e.$attrs.slot, {
             key: 0,
@@ -3468,7 +3468,7 @@ const Mi = {
       return Ri(e, this);
     }
   }
-}, Ui = { key: 1 }, Pi = { class: "main" }, Li = { class: "remark" };
+}, Pi = { key: 1 }, Ui = { class: "main" }, Li = { class: "remark" };
 function qi(e, t, s, l, n, i) {
   const o = u("el-option"), a = u("el-select");
   return d(), f(a, b({
@@ -3480,7 +3480,7 @@ function qi(e, t, s, l, n, i) {
     "remote-method": e.$attrs.remoteMethod || i.remoteSearch
   }), {
     default: c(() => [
-      (d(!0), w(N, null, U(n._options, (r) => (d(), f(o, b(e.$attrs, {
+      (d(!0), w(N, null, P(n._options, (r) => (d(), f(o, b(e.$attrs, {
         key: r[s.text],
         label: r[s.text],
         value: r[s.value]
@@ -3491,8 +3491,8 @@ function qi(e, t, s, l, n, i) {
             option: r,
             text: s.text,
             value: s.value
-          }, void 0, !0) : (d(), w("span", Ui, [
-            T("span", Pi, j(i.calcMainLabel(r)), 1),
+          }, void 0, !0) : (d(), w("span", Pi, [
+            T("span", Ui, j(i.calcMainLabel(r)), 1),
             T("span", Li, j(i.calcRemarkLabel(r)), 1)
           ]))
         ]),
@@ -3502,7 +3502,7 @@ function qi(e, t, s, l, n, i) {
     _: 3
   }, 16, ["loading", "filterable", "remote-method"]);
 }
-const Xi = /* @__PURE__ */ E(Mi, [["render", qi], ["__scopeId", "data-v-a37eab84"]]), Ue = {
+const Xi = /* @__PURE__ */ E(Mi, [["render", qi], ["__scopeId", "data-v-a37eab84"]]), Pe = {
   eq: {
     text: "等于",
     value: "eq"
@@ -3731,7 +3731,7 @@ const { storage: fe } = StardustBrowser, { deepCopy: Ji } = StardustJs.funcs, Ki
       var t, s;
       (t = e.conditions) == null || t.forEach((l) => {
         const { prop: n, op: i, value: o } = l;
-        l.item = this.columns.find((a) => a.prop === n), this.handleSelectField(l, n), this.handleSelectOp(l, i), l.value = o, l.ops = X[l.component].map((a) => Ue[a]);
+        l.item = this.columns.find((a) => a.prop === n), this.handleSelectField(l, n), this.handleSelectOp(l, i), l.value = o, l.ops = X[l.component].map((a) => Pe[a]);
       }), !e.conditionNo && ((s = e.conditions) != null && s.length) && (e.conditionNo = Math.max.apply(null, e.conditions.map((l) => l.no)) + 1), Object.assign(this, e);
     },
     handleSearch() {
@@ -3850,7 +3850,7 @@ const { storage: fe } = StardustBrowser, { deepCopy: Ji } = StardustJs.funcs, Ki
         readonly: z,
         ...A
       } = i;
-      A.clearable ?? (A.clearable = !0), e.config = A, e.component = o || s && "XSelect" || l === "number" && "ElInputNumber" || "ElInput", e.ops = X[e.component].map((V) => Ue[V]), e.op = e.ops[0].value, e.component === "ElDatePicker" && (e.component = "ElInput", A.type = "date"), A.type === "textarea" && delete A.type;
+      A.clearable ?? (A.clearable = !0), e.config = A, e.component = o || s && "XSelect" || l === "number" && "ElInputNumber" || "ElInput", e.ops = X[e.component].map((V) => Pe[V]), e.op = e.ops[0].value, e.component === "ElDatePicker" && (e.component = "ElInput", A.type = "date"), A.type === "textarea" && delete A.type;
     },
     handleSelectOp(e, t) {
       e.op = t, t === "between" ? e.value = ["", ""] : ["in", "notIn"].includes(t) && (e.value = []), (t === "special" || !["between", "in", "notIn"].includes(t) && Array.isArray(t)) && (e.value = "");
@@ -4005,7 +4005,7 @@ function al(e, t, s, l, n, i) {
       } : void 0
     ]), 1040, ["domids", "onAdd", "onSearch", "onExport", "onSearchExport", "onImport", "onMultiDelete"])) : S("", !0),
     (s.mode || e._attrs.mode) === "card" ? (d(), w("div", Qi, [
-      (d(!0), w(N, null, U(e._data, (g, $) => (d(), w("div", {
+      (d(!0), w(N, null, P(e._data, (g, $) => (d(), w("div", {
         key: $,
         class: "row",
         onClick: (F) => i.handleClickCard($)
@@ -4036,7 +4036,7 @@ function al(e, t, s, l, n, i) {
           }, ["stop"])),
           onChange: t[2] || (t[2] = (...F) => e.handleCheckedChange && e.handleCheckedChange(...F))
         }, null, 40, tl)) : S("", !0),
-        (d(!0), w(N, null, U(i.cols, (F, q) => (d(), w("div", {
+        (d(!0), w(N, null, P(i.cols, (F, q) => (d(), w("div", {
           key: q,
           class: "field"
         }, [
@@ -4051,7 +4051,7 @@ function al(e, t, s, l, n, i) {
       onLoad: t[6] || (t[6] = (g) => e.$emit("search"))
     }), {
       default: c(() => [
-        (d(!0), w(N, null, U(e._data, (g, $) => (d(), f(p, {
+        (d(!0), w(N, null, P(e._data, (g, $) => (d(), f(p, {
           key: $,
           "is-link": "",
           onClick: (F) => i.handleShowDetail(g, $)
@@ -4239,7 +4239,7 @@ function bl(e, t, s, l, n, i) {
                 _: 1
               }, 8, ["onClick"]),
               T("div", ul, [
-                (d(!0), w(N, null, U(n.columns, (g) => (d(), w("div", {
+                (d(!0), w(N, null, P(n.columns, (g) => (d(), w("div", {
                   key: g.prop,
                   "data-prop": g.prop,
                   class: "row flex-center"
@@ -4288,7 +4288,7 @@ function bl(e, t, s, l, n, i) {
                 _: 1
               }, 8, ["onClick"]),
               T("div", fl, [
-                (d(!0), w(N, null, U(n.sorts, (g, $) => (d(), w("div", {
+                (d(!0), w(N, null, P(n.sorts, (g, $) => (d(), w("div", {
                   key: g[0],
                   "data-prop": g[0],
                   class: "row flex-center"
@@ -4393,6 +4393,9 @@ const { highdict: _l } = StardustJs, yl = {
         return i = this.controller.formatList(this.controller._defaultFormatList(i, n), n), i;
       }
       return this._data;
+    },
+    onPaging() {
+      this.params.page && delete this.params.page, this._emit("search", this.params);
     }
   }
 }, vl = {
@@ -4417,7 +4420,7 @@ function Cl(e, t, s, l, n, i) {
       }, null, 8, ["uid", "columns", "config", "onSearch"]),
       m(A, {
         modelValue: n.activeNames,
-        "onUpdate:modelValue": t[5] || (t[5] = (_) => n.activeNames = _),
+        "onUpdate:modelValue": t[4] || (t[4] = (_) => n.activeNames = _),
         class: Y((n._useCollapse ? "use" : "no") + "-collapse"),
         onChange: e.handleCollapseChange
       }, {
@@ -4498,7 +4501,7 @@ function Cl(e, t, s, l, n, i) {
                 onSortChange: e.handleSortChange
               }), {
                 default: c(() => [
-                  (d(!0), w(N, null, U(e._visibleColumns, (_, H) => (d(), f(O, b(_, {
+                  (d(!0), w(N, null, P(e._visibleColumns, (_, H) => (d(), f(O, b(_, {
                     key: H,
                     "min-width": _.minWidth,
                     align: _.align || e._attrs.tableAlign || "center",
@@ -4507,24 +4510,24 @@ function Cl(e, t, s, l, n, i) {
                   }), te({ _: 2 }, [
                     ["selection", "index"].includes(_.type) ? void 0 : {
                       name: "default",
-                      fn: c((P) => [
+                      fn: c((U) => [
                         _.type === "radio" ? (d(), w("input", {
                           key: 0,
                           type: "radio",
-                          value: P.$index,
-                          checked: P.$index === n.checked,
+                          value: U.$index,
+                          checked: U.$index === n.checked,
                           onChange: t[3] || (t[3] = (...me) => e.handleCheckedChange && e.handleCheckedChange(...me))
                         }, null, 40, kl)) : _.slot === "$image" ? (d(), f(p, b({
                           key: 1,
-                          src: e._imageSrc(P, _),
-                          "preview-src-list": e._imagePreviewSrcList(P, _),
+                          src: e._imageSrc(U, _),
+                          "preview-src-list": e._imagePreviewSrcList(U, _),
                           "preview-teleported": ""
                         }, _.imageAttrs), null, 16, ["src", "preview-src-list"])) : _.slot === "$tag" ? (d(), f(v, {
                           key: 2,
-                          type: e.calcTagType(P, _)
+                          type: e.calcTagType(U, _)
                         }, {
                           default: c(() => [
-                            C(j(e.calcTagValue(P, _)), 1)
+                            C(j(e.calcTagValue(U, _)), 1)
                           ]),
                           _: 2
                         }, 1032, ["type"])) : _.slot === "$icon" ? (d(), f(y, {
@@ -4532,25 +4535,25 @@ function Cl(e, t, s, l, n, i) {
                           class: "cell-icon"
                         }, {
                           default: c(() => [
-                            (d(), f(se(P.row[_.prop])))
+                            (d(), f(se(U.row[_.prop])))
                           ]),
                           _: 2
                         }, 1024)) : _.slot ? x(e.$slots, _.slot, {
                           key: 4,
-                          scope: P,
+                          scope: U,
                           column: _,
-                          value: P.row[_.prop]
+                          value: U.row[_.prop]
                         }) : e.slotAll ? x(e.$slots, "all", {
                           key: 5,
-                          scope: P,
+                          scope: U,
                           column: _,
-                          value: P.row[_.prop]
+                          value: U.row[_.prop]
                         }) : (d(), w(N, { key: 6 }, [
-                          _.comp === "ElSwitch" || e.table.isRowEdit && P.row.isEditing && (_.visible !== !1 || _.canEdit) ? (d(), f(se(_.comp || "ElInput"), b({ key: 0 }, { ..._, ..._.formAttrs }, {
-                            modelValue: P.row[_.prop],
-                            "onUpdate:modelValue": (me) => P.row[_.prop] = me,
-                            disabled: !P.row.editable || !P.row.isEditing
-                          }), null, 16, ["modelValue", "onUpdate:modelValue", "disabled"])) : (d(), w("span", $l, j(e.calcValue(P.row, _)), 1))
+                          _.comp === "ElSwitch" || e.table.isRowEdit && U.row.isEditing && (_.visible !== !1 || _.canEdit) ? (d(), f(se(_.comp || "ElInput"), b({ key: 0 }, { ..._, ..._.formAttrs }, {
+                            modelValue: U.row[_.prop],
+                            "onUpdate:modelValue": (me) => U.row[_.prop] = me,
+                            disabled: !U.row.editable || !U.row.isEditing
+                          }), null, 16, ["modelValue", "onUpdate:modelValue", "disabled"])) : (d(), w("span", $l, j(e.calcValue(U.row, _)), 1))
                         ], 64))
                       ]),
                       key: "0"
@@ -4708,8 +4711,8 @@ function Cl(e, t, s, l, n, i) {
                 key: 1,
                 query: e._query,
                 total: e._total,
-                onSearch: t[4] || (t[4] = (_) => e._emit("search", n.params))
-              }, null, 8, ["query", "total"])) : S("", !0)
+                onSearch: i.onPaging
+              }, null, 8, ["query", "total", "onSearch"])) : S("", !0)
             ]),
             _: 3
           }, 8, ["name"])
@@ -4720,7 +4723,7 @@ function Cl(e, t, s, l, n, i) {
     e.hideChart ? S("", !0) : (d(), f(D, {
       key: 0,
       modelValue: n.dialog.visible,
-      "onUpdate:modelValue": t[6] || (t[6] = (_) => n.dialog.visible = _),
+      "onUpdate:modelValue": t[5] || (t[5] = (_) => n.dialog.visible = _),
       title: "图表",
       width: "96%",
       onFullscreenchange: i.handleChartDialogFullscreen
@@ -4966,7 +4969,7 @@ const Ml = (e) => {
     indeterminate: s,
     onChange: l
   }, null);
-}, Ul = (e, t) => {
+}, Pl = (e, t) => {
   const {
     rowIndex: s,
     rowData: l
@@ -4979,7 +4982,7 @@ const Ml = (e) => {
     modelValue: t.selected.has(s),
     onChange: n
   }, null);
-}, Pl = (e, t) => {
+}, Ul = (e, t) => {
   const {
     page: s,
     limit: l
@@ -5033,9 +5036,9 @@ const Ml = (e) => {
     slotRenderers: n = {}
   } = s;
   if (e.type === "selection")
-    return (i) => Ul(i, t);
-  if (e.type === "index")
     return (i) => Pl(i, t);
+  if (e.type === "index")
+    return (i) => Ul(i, t);
   if (e.type === "radio")
     return (i) => Ll(i, t);
   if (e.slot) {
@@ -5694,7 +5697,7 @@ const So = /* @__PURE__ */ E(yo, [["render", wo], ["__scopeId", "data-v-e7280895
   mobilexform: Ts,
   pcxform: Rs,
   mobilexformitem: Ms,
-  pcxformitem: Us,
+  pcxformitem: Ps,
   mobilexicon: Xs,
   pcxicon: Js,
   xinfo: ei,
@@ -5753,7 +5756,7 @@ const ko = (e) => ({
   for (let s in ve)
     e.component(s, ve[s]);
 }, xo = {
-  version: "1.0.200",
+  version: "1.0.201",
   ...ve,
   ...Ze,
   ...Et,
