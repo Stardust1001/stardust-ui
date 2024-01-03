@@ -161,12 +161,12 @@ export default {
     calcSummary (values, summary, count) {
       let value
       if (summary === 'sum' || summary === 'average') {
-        value = values.reduce((sum, v) => sum + v, 0)
+        value = values.reduce((sum, v) => sum + v, 0).toFixed(3) * 1
       }
       if (summary === 'count') {
         value = values.length
       } else if (summary === 'average') {
-        if (values.length) value = (value / (count || values.length)).toFixed(2) * 1
+        if (values.length) value = (value / (count || values.length)).toFixed(3) * 1
         else value = undefined
       } else if (summary === 'first') {
         value = values[0]
