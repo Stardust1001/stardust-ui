@@ -288,6 +288,10 @@ export default {
           left: 30, top: 40, right: 20, bottom: 20,
           ...this.option.grid,
           ...option.grid
+        },
+        legend: {
+          padding: [0, 60],
+          ...option.legend
         }
       }, true)
     }

@@ -1241,18 +1241,22 @@ const { funcs: qt } = StardustBrowser, Xt = ["index", "selection", "expand", "ra
           bottom: 20,
           ...this.option.grid,
           ...e.grid
+        },
+        legend: {
+          padding: [0, 60],
+          ...e.legend
         }
       }, !0);
     }
   }
 }, De = () => {
   Pe((e) => ({
-    "4f063d1c": e.zoomedHeight,
-    "5ad88714": e.zoom
+    "2ba3d09e": e.zoomedHeight,
+    "6c95fc0b": e.zoom
   }));
 }, Re = Ce.setup;
 Ce.setup = Re ? (e, t) => (De(), Re(e, t)) : De;
-const ue = (e) => (Se("data-v-f0c2a027"), e = e(), ke(), e), zt = { class: "x-chart" }, Wt = {
+const ue = (e) => (Se("data-v-d91054c2"), e = e(), ke(), e), zt = { class: "x-chart" }, Wt = {
   class: "chart",
   ref: "el"
 }, Ht = /* @__PURE__ */ ue(() => /* @__PURE__ */ F("span", null, "左", -1)), Jt = /* @__PURE__ */ ue(() => /* @__PURE__ */ F("span", null, "上", -1)), Kt = /* @__PURE__ */ ue(() => /* @__PURE__ */ F("span", null, "右", -1)), Yt = /* @__PURE__ */ ue(() => /* @__PURE__ */ F("span", null, "下", -1));
@@ -1424,7 +1428,7 @@ function Gt(e, t, s, l, n, i) {
     [R, n.loading]
   ]);
 }
-const Qt = /* @__PURE__ */ E(Ce, [["render", Gt], ["__scopeId", "data-v-f0c2a027"]]), Zt = {
+const Qt = /* @__PURE__ */ E(Ce, [["render", Gt], ["__scopeId", "data-v-d91054c2"]]), Zt = {
   name: "MobileXCheckboxs",
   inheritAttrs: !1,
   props: {
@@ -5747,7 +5751,7 @@ const ko = (e) => ({
   for (let s in ve)
     e.component(s, ve[s]);
 }, xo = {
-  version: "1.0.198",
+  version: "1.0.199",
   ...ve,
   ...Ze,
   ...Et,
