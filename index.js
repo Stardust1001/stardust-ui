@@ -2420,7 +2420,7 @@ function Gs() {
     query: Object,
     total: Number,
     selection: Array,
-    chartHeight: Number,
+    chartHeight: String,
     chartOption: Object,
     tref: Object,
     defaultValue: "",
@@ -2553,7 +2553,7 @@ function rn() {
 }
 function dn() {
   const { table: e, chartHeight: t } = this.$props;
-  return t || (e == null ? void 0 : e.chartHeight) || 360;
+  return t || (e == null ? void 0 : e.chartHeight) || "360px";
 }
 function cn() {
   const { table: e, chartOption: t } = this.$props;
@@ -5768,7 +5768,7 @@ const $o = (e) => ({
   for (let s in ve)
     e.component(s, ve[s]);
 }, Vo = {
-  version: "1.0.205",
+  version: "1.0.206",
   ...ve,
   ...Ze,
   ...Et,

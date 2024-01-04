@@ -14,7 +14,7 @@ export function props () {
     query: Object,
     total: Number,
     selection: Array,
-    chartHeight: Number,
+    chartHeight: String,
     chartOption: Object,
     tref: Object,
     defaultValue: '',
@@ -180,7 +180,7 @@ export function _selection () {
 
 export function _chartHeight () {
   const { table, chartHeight } = this.$props
-  return chartHeight || table?.chartHeight || 360
+  return chartHeight || table?.chartHeight || '360px'
 }
 
 export function _chartOption () {
