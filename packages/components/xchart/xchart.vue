@@ -303,7 +303,7 @@ export default {
       return (text) => {
         if (text.length < limit) return text
         return Array.from({
-          length: Math.round(text.length / limit)
+          length: Math.ceil(text.length / limit)
         }).map((_, i) => text.slice(i * limit, (i + 1) * limit)).join('\n')
       }
     }

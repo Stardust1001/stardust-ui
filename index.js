@@ -1252,19 +1252,19 @@ const { funcs: qt } = StardustBrowser, Xt = ["index", "selection", "expand", "ra
     },
     labelSplitFormatter(e) {
       return (t) => t.length < e ? t : Array.from({
-        length: Math.round(t.length / e)
+        length: Math.ceil(t.length / e)
       }).map((s, i) => t.slice(i * e, (i + 1) * e)).join(`
 `);
     }
   }
 }, De = () => {
   Pe((e) => ({
-    "084e2e28": e.zoomedHeight,
-    bc990cfc: e.zoom
+    45358610: e.zoomedHeight,
+    "12c5396a": e.zoom
   }));
 }, Re = Ce.setup;
 Ce.setup = Re ? (e, t) => (De(), Re(e, t)) : De;
-const ue = (e) => (Se("data-v-d34a6f7d"), e = e(), ke(), e), zt = { class: "x-chart" }, Wt = {
+const ue = (e) => (Se("data-v-770edff0"), e = e(), ke(), e), zt = { class: "x-chart" }, Wt = {
   class: "chart",
   ref: "el"
 }, Ht = /* @__PURE__ */ ue(() => /* @__PURE__ */ F("span", null, "左", -1)), Jt = /* @__PURE__ */ ue(() => /* @__PURE__ */ F("span", null, "上", -1)), Kt = /* @__PURE__ */ ue(() => /* @__PURE__ */ F("span", null, "右", -1)), Yt = /* @__PURE__ */ ue(() => /* @__PURE__ */ F("span", null, "下", -1));
@@ -1436,7 +1436,7 @@ function Gt(e, t, s, i, n, l) {
     [R, n.loading]
   ]);
 }
-const Qt = /* @__PURE__ */ E(Ce, [["render", Gt], ["__scopeId", "data-v-d34a6f7d"]]), Zt = {
+const Qt = /* @__PURE__ */ E(Ce, [["render", Gt], ["__scopeId", "data-v-770edff0"]]), Zt = {
   name: "MobileXCheckboxs",
   inheritAttrs: !1,
   props: {
@@ -5762,7 +5762,7 @@ const ko = (e) => ({
   for (let s in ve)
     e.component(s, ve[s]);
 }, xo = {
-  version: "1.0.202",
+  version: "1.0.203",
   ...ve,
   ...Ze,
   ...Et,
