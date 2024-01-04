@@ -293,15 +293,19 @@ export default {
           ...option.legend
         }
       }
-      // if (option.xAxis) {
-      //   option.xAxis = {
-      //     ...option.xAxis,
-      //     axisLabel: {
-      //       ...option.xAxis.axisLabel
-      //     }
-      //   }
-      // }
+      if (option.xAxis && !option.xAxis.axisLabel?.formatter) {
+        option.xAxis.axisLabel ||= {}
+        option.xAxis.axisLabel.formatter = this.labelSplitFormatter(this.option.charsLimitPerLine || 5)
+      }
       this.chart?.setOption(option, true)
+    },
+    labelSplitFormatter (limit) {
+      return (text) => {
+        if (text.length < limit) return text
+        return Array.from({
+          length: Math.round(text.length / limit)
+        }).map((_, i) => text.slice(i * limit, (i + 1) * limit)).join('\n')
+      }
     }
   }
 }
