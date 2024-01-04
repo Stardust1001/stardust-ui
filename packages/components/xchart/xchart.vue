@@ -297,6 +297,7 @@ export default {
         option.xAxis.axisLabel ||= {}
         option.xAxis.axisLabel.formatter = this.labelSplitFormatter(this.option.charsLimitPerLine || 5)
       }
+      console.log(option)
       this.chart?.setOption(option, true)
     },
     labelSplitFormatter (limit) {

@@ -1248,7 +1248,7 @@ const { funcs: qt } = StardustBrowser, Xt = ["index", "selection", "expand", "ra
           padding: [0, 60],
           ...e.legend
         }
-      }, e.xAxis && !((t = e.xAxis.axisLabel) != null && t.formatter) && ((s = e.xAxis).axisLabel || (s.axisLabel = {}), e.xAxis.axisLabel.formatter = this.labelSplitFormatter(this.option.charsLimitPerLine || 5)), (i = this.chart) == null || i.setOption(e, !0);
+      }, e.xAxis && !((t = e.xAxis.axisLabel) != null && t.formatter) && ((s = e.xAxis).axisLabel || (s.axisLabel = {}), e.xAxis.axisLabel.formatter = this.labelSplitFormatter(this.option.charsLimitPerLine || 5)), console.log(e), (i = this.chart) == null || i.setOption(e, !0);
     },
     labelSplitFormatter(e) {
       return (t) => t.length < e ? t : Array.from({
@@ -1259,12 +1259,12 @@ const { funcs: qt } = StardustBrowser, Xt = ["index", "selection", "expand", "ra
   }
 }, De = () => {
   Pe((e) => ({
-    45358610: e.zoomedHeight,
-    "12c5396a": e.zoom
+    "09d1244e": e.zoomedHeight,
+    "7149f5a8": e.zoom
   }));
 }, Re = Ce.setup;
 Ce.setup = Re ? (e, t) => (De(), Re(e, t)) : De;
-const ue = (e) => (Se("data-v-770edff0"), e = e(), ke(), e), zt = { class: "x-chart" }, Wt = {
+const ue = (e) => (Se("data-v-a51976ae"), e = e(), ke(), e), zt = { class: "x-chart" }, Wt = {
   class: "chart",
   ref: "el"
 }, Ht = /* @__PURE__ */ ue(() => /* @__PURE__ */ F("span", null, "左", -1)), Jt = /* @__PURE__ */ ue(() => /* @__PURE__ */ F("span", null, "上", -1)), Kt = /* @__PURE__ */ ue(() => /* @__PURE__ */ F("span", null, "右", -1)), Yt = /* @__PURE__ */ ue(() => /* @__PURE__ */ F("span", null, "下", -1));
@@ -1436,7 +1436,7 @@ function Gt(e, t, s, i, n, l) {
     [R, n.loading]
   ]);
 }
-const Qt = /* @__PURE__ */ E(Ce, [["render", Gt], ["__scopeId", "data-v-770edff0"]]), Zt = {
+const Qt = /* @__PURE__ */ E(Ce, [["render", Gt], ["__scopeId", "data-v-a51976ae"]]), Zt = {
   name: "MobileXCheckboxs",
   inheritAttrs: !1,
   props: {
@@ -5768,7 +5768,7 @@ const $o = (e) => ({
   for (let s in ve)
     e.component(s, ve[s]);
 }, Vo = {
-  version: "1.0.206",
+  version: "1.0.207",
   ...ve,
   ...Ze,
   ...Et,
