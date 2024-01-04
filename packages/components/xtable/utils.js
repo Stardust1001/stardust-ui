@@ -14,6 +14,7 @@ export function props () {
     query: Object,
     total: Number,
     selection: Array,
+    chartHeight: Number,
     chartOption: Object,
     tref: Object,
     defaultValue: '',
@@ -175,6 +176,11 @@ export function _total () {
 export function _selection () {
   const { table, selection } = this.$props
   return selection || table?.selection
+}
+
+export function _chartHeight () {
+  const { table, chartHeight } = this.$props
+  return chartHeight || table?.chartHeight || 360
 }
 
 export function _chartOption () {
@@ -529,6 +535,7 @@ export default {
     _query,
     _total,
     _selection,
+    _chartHeight,
     _chartOption,
     _onSearch,
     _onAdd,

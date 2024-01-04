@@ -368,7 +368,7 @@ export default {
   >
     <x-chart
       ref="chartRef"
-      height="360"
+      :height="_chartHeight"
       :option="_chartOption"
       :datasource="{ columns: _columns, search }"
     />
