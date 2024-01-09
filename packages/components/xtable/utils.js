@@ -275,7 +275,7 @@ export function operatesDropdown () {
 }
 
 export function searcherColumns () {
-  return this._columns.filter(col => !col.type || !TYPES.includes(col.type))
+  return this._columns.filter(col => !col.virtual && (!col.type || !TYPES.includes(col.type)))
 }
 
 export function searcherConfig () {
@@ -288,8 +288,8 @@ export function initSettings () {
     settings.columns = this._columns.filter(col => {
       return col.label && col.prop && !(col.type && TYPES.includes(col.type))
     }).map(col => {
-      const { prop, label, show, hide, width } = col
-      return { prop, label, show, hide, width }
+      const { prop, label, show, hide, width, virtual } = col
+      return { prop, label, show, hide, width, virtual }
     })
   }
   this.settings = settings

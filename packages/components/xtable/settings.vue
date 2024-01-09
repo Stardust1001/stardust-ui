@@ -10,6 +10,7 @@ export default {
     return {
       activeName: 'columns',
       columns: [],
+      sortableColumns: [],
       sorts: [],
       sortOptions: [
         { text: '升序', value: 'asc' },
@@ -27,6 +28,7 @@ export default {
             width: col.width || col.minWidth
           }
         })
+        this.sortableColumns = this.columns.filter(col => !col.virtual)
       },
       immediate: true
     },
@@ -59,7 +61,7 @@ export default {
       })
     },
     handleAddSort () {
-      this.sorts.push([this.columns[0].prop, 'asc', this.columns[0].label])
+      this.sorts.push([this.sortableColumns[0].prop, 'asc', this.sortableColumns[0].label])
     },
     handleResetColumns () {
       const { columns, ...others } = this.modelValue
@@ -128,7 +130,7 @@ export default {
           >
             <x-select
               v-model="sort[0]"
-              :options="columns"
+              :options="sortableColumns"
               text="label"
               value="prop"
               :teleported="false"

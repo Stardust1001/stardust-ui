@@ -2627,7 +2627,7 @@ function Sn() {
   return this.$attrs["operates-dropdown"] !== void 0 && this.$attrs["operates-dropdown"] !== !1;
 }
 function kn() {
-  return this._columns.filter((e) => !e.type || !Ve.includes(e.type));
+  return this._columns.filter((e) => !e.virtual && (!e.type || !Ve.includes(e.type)));
 }
 function $n() {
   return this.table.searcherConfig ?? this.$attrs["searcher-config"] ?? {};
@@ -2635,8 +2635,8 @@ function $n() {
 function Cn() {
   const e = this._uid && st.getJson(`Settings[${this._uid}]`, {}) || {};
   e.columns || (e.columns = this._columns.filter((t) => t.label && t.prop && !(t.type && Ve.includes(t.type))).map((t) => {
-    const { prop: s, label: i, show: n, hide: l, width: o } = t;
-    return { prop: s, label: i, show: n, hide: l, width: o };
+    const { prop: s, label: i, show: n, hide: l, width: o, virtual: a } = t;
+    return { prop: s, label: i, show: n, hide: l, width: o, virtual: a };
   })), this.settings = e;
 }
 function xn(e) {
@@ -4140,6 +4140,7 @@ const cl = {
     return {
       activeName: "columns",
       columns: [],
+      sortableColumns: [],
       sorts: [],
       sortOptions: [
         { text: "升序", value: "asc" },
@@ -4154,7 +4155,7 @@ const cl = {
           ...t,
           show: t.show !== !1,
           width: t.width || t.minWidth
-        }));
+        })), this.sortableColumns = this.columns.filter((t) => !t.virtual);
       },
       immediate: !0
     },
@@ -4186,7 +4187,7 @@ const cl = {
       });
     },
     handleAddSort() {
-      this.sorts.push([this.columns[0].prop, "asc", this.columns[0].label]);
+      this.sorts.push([this.sortableColumns[0].prop, "asc", this.sortableColumns[0].label]);
     },
     handleResetColumns() {
       const { columns: e, ...t } = this.modelValue;
@@ -4207,7 +4208,7 @@ const cl = {
       });
     }
   }
-}, ul = (e) => (Se("data-v-038a7bd3"), e = e(), ke(), e), hl = {
+}, ul = (e) => (Se("data-v-a2f0fe24"), e = e(), ke(), e), hl = {
   class: "table",
   ref: "colsTable"
 }, ml = ["data-prop"], pl = ["title", "onClick"], fl = /* @__PURE__ */ ul(() => /* @__PURE__ */ F("span", { class: "unit" }, "px", -1)), gl = {
@@ -4308,7 +4309,7 @@ function _l(e, t, s, i, n, l) {
                   m(y, {
                     modelValue: g[0],
                     "onUpdate:modelValue": (T) => g[0] = T,
-                    options: n.columns,
+                    options: n.sortableColumns,
                     text: "label",
                     value: "prop",
                     teleported: !1,
@@ -4337,7 +4338,7 @@ function _l(e, t, s, i, n, l) {
     _: 1
   }, 16)) : S("", !0);
 }
-const it = /* @__PURE__ */ E(cl, [["render", _l], ["__scopeId", "data-v-038a7bd3"]]);
+const it = /* @__PURE__ */ E(cl, [["render", _l], ["__scopeId", "data-v-a2f0fe24"]]);
 const { highdict: yl } = StardustJs, vl = {
   name: "PcXTable",
   inheritAttrs: !1,
@@ -5768,7 +5769,7 @@ const $o = (e) => ({
   for (let s in ve)
     e.component(s, ve[s]);
 }, Vo = {
-  version: "1.0.207",
+  version: "1.0.208",
   ...ve,
   ...Ze,
   ...Et,
