@@ -57,10 +57,10 @@ export default {
   <el-upload
     v-model:file-list="fileList"
     drag
-    :disabled="disabled"
+    :disabled
     :action="actionUrl"
-    :accept="accept"
-    :multiple="multiple"
+    :accept
+    :multiple
     :on-success="onSuccess"
     :auto-upload="false"
     class="x-file-uploader"

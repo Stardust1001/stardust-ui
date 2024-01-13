@@ -39,7 +39,7 @@ export default {
   <el-checkbox-group
     class="pc-x-checkboxs"
     v-bind="attrs"
-    :modelValue="modelValue"
+    :modelValue
     @update:modelValue="value => $emit('update:modelValue', value)"
     @change="$emit('change', $event)"
   >

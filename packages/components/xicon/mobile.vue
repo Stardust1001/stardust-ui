@@ -30,9 +30,5 @@ export default {
 
 <template>
   <img v-if="icons[name]" :src="icons[name]" alt="icon">
-  <van-icon
-    v-else
-    v-bind="$attrs"
-    :name="name"
-  />
+  <van-icon v-else v-bind="$attrs" :name />
 </template>

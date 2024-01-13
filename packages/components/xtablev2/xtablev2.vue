@@ -76,7 +76,7 @@ export default {
         <x-table-tools
           v-if="hideTools !== '' && hideTools !== true"
           v-bind="_attrs"
-          :domids="domids"
+          :domids
           @add="_onAdd"
           @search="_onSearch"
           @export="_onExport"
@@ -115,9 +115,9 @@ export default {
               v-loading="_loading"
               :data="_data"
               :columns="convertColumnsForTableV2(_visibleColumns, this)"
-              :fixed="fixed"
-              :width="width"
-              :height="height"
+              :fixed
+              :width
+              :height
             >
               <template v-if="$slots['footer']" #footer>
                 <slot name="footer" />

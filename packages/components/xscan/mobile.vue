@@ -30,8 +30,8 @@ export default {
     placeholder="点此扫码"
     v-bind="$attrs"
     :label="_label"
-    :modelValue="modelValue"
-    :readonly="readonly"
+    :modelValue
+    :readonly
     style="padding: 0;"
     @update:modelValue="v => $emit('update:modelValue', v)"
     @click.native="handleClick"

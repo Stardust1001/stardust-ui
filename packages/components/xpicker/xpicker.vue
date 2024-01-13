@@ -49,7 +49,7 @@ export default {
     <van-picker
       v-bind="$attrs"
       :title="$attrs.title"
-      :columns="columns"
+      :columns
       @cancel="$emit('cancel')"
       @confirm="onConfirm"
     />

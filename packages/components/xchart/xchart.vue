@@ -324,7 +324,7 @@ export default {
       @submit="handleMakeChart"
       @cancel="dialog.visible = false"
     >
-      <x-form :dialog="dialog">
+      <x-form :dialog>
         <template #grid>
           <el-row :gutter="5" class="grid">
             <el-col :span="12">

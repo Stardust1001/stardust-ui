@@ -127,7 +127,7 @@ export default {
         <pc-x-table-tools
           v-if="hideTools !== '' && hideTools !== true"
           v-bind="_attrs"
-          :domids="domids"
+          :domids
           @add="_onAdd"
           @search="_onSearch"
           @export="_onExport"
@@ -212,15 +212,15 @@ export default {
               <slot
                 v-else-if="column.slot"
                 :name="column.slot"
-                :scope="scope"
-                :column="column"
+                :scope
+                :column
                 :value="scope.row[column.prop]"
               />
               <slot
                 v-else-if="slotAll"
                 name="all"
-                :scope="scope"
-                :column="column"
+                :scope
+                :column
                 :value="scope.row[column.prop]"
               />
               <template v-else>
@@ -247,7 +247,7 @@ export default {
             <template #default="scope">
               <slot
                 name="operates-prefix"
-                :scope="scope"
+                :scope
               />
               <el-dropdown v-if="operatesDropdown">
                 <el-button
@@ -343,7 +343,7 @@ export default {
               </el-button>
               <slot
                 name="operates-suffix"
-                :scope="scope"
+                :scope
               />
             </template>
           </el-table-column>

@@ -43,7 +43,7 @@ export default {
   <el-radio-group
     class="pc-x-radios"
     v-bind="attrs"
-    :modelValue="modelValue"
+    :modelValue
     @update:modelValue="value => $emit('update:modelValue', value)"
     @change="$emit('change', $event)"
   >

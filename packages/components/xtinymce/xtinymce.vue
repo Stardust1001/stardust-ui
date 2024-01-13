@@ -75,6 +75,6 @@ export default {
 
 <template>
   <div class="x-tinymce">
-    <textarea :id="id" v-html="modelValue"></textarea>
+    <textarea :id v-html="modelValue"></textarea>
   </div>
 </template>

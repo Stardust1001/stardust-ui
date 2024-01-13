@@ -153,7 +153,7 @@ export default {
     <x-table-tools
       v-if="hideTools !== '' && hideTools !== true"
       v-bind="_attrs"
-      :domids="domids"
+      :domids
       @add="_onAdd"
       @search="_onSearch"
       @export="_onExport"
@@ -263,7 +263,7 @@ export default {
 
     <van-action-sheet
       v-model:show="actionSheetVisible"
-      :actions="actions"
+      :actions
       cancel-text="取消"
       close-on-click-action
       @select="handleSelectAction"

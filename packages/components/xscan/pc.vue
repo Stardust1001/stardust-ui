@@ -24,8 +24,8 @@ export default {
 <template>
   <el-input
     v-bind="$attrs"
-    :modelValue="modelValue"
-    :readonly="readonly"
+    :modelValue
+    :readonly
     @update:modelValue="v => $emit('update:modelValue', v)"
     @click.native="handleClick"
   >

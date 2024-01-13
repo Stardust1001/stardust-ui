@@ -48,14 +48,14 @@ export default {
   <van-checkbox-group
     class="mobile-x-checkboxs"
     v-bind="attrs"
-    :direction="direction"
+    :direction
     @change="$emit('change', $event)"
   >
     <van-checkbox
       v-for="option in formatOptions(options, this)"
       v-bind="attrs"
       :key="option[text]"
-      :shape="shape"
+      :shape
       :name="option[value]"
     >
       {{ option[text] }}

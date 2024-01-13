@@ -30,7 +30,7 @@ export default {
     v-model:current-page="query.page"
     v-model:page-size="query.limit"
     :page-count="pageCount"
-    :total="total"
+    :total
     class="pc-x-pagination"
   />
 </template>

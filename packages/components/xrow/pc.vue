@@ -20,7 +20,7 @@ export default {
       <slot
         v-if="col.slot || $attrs.slot"
         :name="col.slot || $attrs.slot"
-        :col="col"
+        :col
       />
       <span v-else>{{ col.text }}</span>
     </pc-x-col>

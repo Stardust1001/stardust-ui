@@ -59,10 +59,10 @@ export default {
 <template>
   <component
     :is="drawer ? 'ElDrawer' : 'ElDialog'"
-    :draggable="draggable"
+    :draggable
     v-bind="$attrs"
     v-model="visible"
-    :fullscreen="fullscreen"
+    :fullscreen
     :size="$attrs.width"
     class="pc-x-dialog"
     :class="{ 'pc-x-drawer': drawer }"

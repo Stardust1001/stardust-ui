@@ -30,7 +30,7 @@ export default {
   <van-radio-group
     class="mobile-x-radios"
     v-bind="$attrs"
-    :direction="direction"
+    :direction
   >
     <van-radio
       v-for="option in formatOptions(options, this)"

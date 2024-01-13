@@ -58,11 +58,11 @@ export default {
   <el-upload
     v-model:file-list="fileList"
     @update:file-list="handleSelect"
-    :action="action"
+    :action
     list-type="picture-card"
     accept="image/*"
-    :multiple="multiple"
-    :limit="limit"
+    :multiple
+    :limit
     class="x-image-uploader"
     :class="{ disabled: $attrs.disabled || images.length >= limit }"
     :on-preview="handlePreview"

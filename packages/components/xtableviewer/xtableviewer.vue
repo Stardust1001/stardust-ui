@@ -127,7 +127,7 @@ export default {
       v-bind="_dialogAttrs"
       :modelValue="visible"
       @update:modelValue="value => $emit('update:visible', value)"
-      :title="title"
+      :title
       :before-close="handleBeforeClose"
       @submit="handleSubmit"
       @cancel="handleCancel"
@@ -135,7 +135,7 @@ export default {
       <component
         :is="useTableV2 ? 'x-table-v2' : 'x-table'"
         v-model:tref="table.tableRef"
-        :table="table"
+        :table
         v-bind="_tableAttrs"
         @search="controller.handleSearch"
       />

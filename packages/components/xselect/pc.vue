@@ -67,9 +67,9 @@ export default {
 <template>
   <el-select
     class="pc-x-select"
-    :loading="loading"
+    :loading
     v-bind="$attrs"
-    :filterable="filterable"
+    :filterable
     clearable
     :remote-method="$attrs.remoteMethod || remoteSearch"
   >
@@ -83,9 +83,9 @@ export default {
       <slot
         v-if="$slots.custom"
         name="custom"
-        :option="option"
-        :text="text"
-        :value="value"
+        :option
+        :text
+        :value
       />
       <span v-else>
         <span class="main">{{ calcMainLabel(option) }}</span>
