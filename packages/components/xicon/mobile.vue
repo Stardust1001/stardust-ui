@@ -11,6 +11,12 @@ export default {
       icons: {}
     }
   },
+  computed: {
+    iconClass () {
+      const [set, name] = this.name.split(':')
+      return 'icon--' + set + ' icon--' + set + '--' + name
+    }
+  },
   created () {
     this.initIcons()
   },
@@ -29,6 +35,7 @@ export default {
 </script>
 
 <template>
-  <img v-if="icons[name]" :src="icons[name]" alt="icon">
+  <span v-if="name.includes(':')" :class="iconClass" />
+  <img v-else-if="icons[name]" :src="icons[name]" alt="icon">
   <van-icon v-else v-bind="$attrs" :name />
 </template>
