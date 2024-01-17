@@ -58,7 +58,10 @@ export function props () {
     onMultiDelete: Function,
 
     controller: Object,
-    listen: Array | String,
+    listen: {
+      type: Array | String,
+      default: '*'
+    },
 
     title: {
       type: String,

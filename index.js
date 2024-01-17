@@ -2535,7 +2535,10 @@ function Gs() {
     onImport: Function,
     onMultiDelete: Function,
     controller: Object,
-    listen: Array | String,
+    listen: {
+      type: Array | String,
+      default: "*"
+    },
     title: {
       type: String,
       default: "表格"
@@ -5830,7 +5833,7 @@ const Co = (e) => ({
   for (let s in ve)
     e.component(s, ve[s]);
 }, Vo = {
-  version: "1.1.2",
+  version: "1.1.3",
   ...ve,
   ...Ze,
   ...Et,
