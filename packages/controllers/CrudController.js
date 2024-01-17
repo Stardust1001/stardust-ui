@@ -73,6 +73,12 @@ class CrudController extends BaseController {
       'onDelete',
       'onSubmit',
       'onCancel',
+      'onRowEdit',
+      'onCancelEdit',
+      'onExport',
+      'onSearchExport',
+      'onImport',
+      'onMultiDelete',
 
       'search',
       'add',
@@ -659,29 +665,18 @@ class CrudController extends BaseController {
     return window.isMobile
   }
 
-  onSearch (...props) {
-    return this.handleSearch(...props)
-  }
-
-  onAdd (...props) {
-    return this.handleAdd(...props)
-  }
-
-  onEdit (...props) {
-    return this.handleEdit(...props)
-  }
-
-  onDelete (...props) {
-    return this.handleDelete(...props)
-  }
-
-  onSubmit (...props) {
-    return this.handleSubmit(...props)
-  }
-
-  onCancel (...props) {
-    return this.handleCancel(...props)
-  }
+  onSearch (...props) { return this.handleSearch(...props) }
+  onAdd (...props) { return this.handleAdd(...props) }
+  onEdit (...props) { return this.handleEdit(...props) }
+  onDelete (...props) { return this.handleDelete(...props) }
+  onSubmit (...props) { return this.handleSubmit(...props) }
+  onCancel (...props) { return this.handleCancel(...props) }
+  onRowEdit (...props) { return this.handleRowEdit(...props) }
+  onCancelEdit (...props) { return this.handleCancelEdit(...props) }
+  onExport (...props) { return this.handleExport(...props) }
+  onSearchExport (...props) { return this.handleSearchExport(...props) }
+  onImport (...props) { return this.handleImport(...props) }
+  onMultiDelete (...props) { return this.handleMultiDelete(...props) }
 }
 
 const makeOptionsKvMap = (field) => {
