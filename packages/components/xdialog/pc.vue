@@ -11,6 +11,10 @@ export default {
       type: Boolean,
       default: false
     },
+    title: {
+      type: String,
+      default: '详情'
+    },
     submitText: {
       type: String,
       default: '提交'
@@ -69,7 +73,7 @@ export default {
   >
     <template #header>
       <slot v-if="$slots.header" name="header" />
-      <span v-else class="el-dialog__title">{{ $attrs.title }}</span>
+      <span v-else class="el-dialog__title">{{ title }}</span>
       <x-icon
         v-if="!drawer"
         name="FullScreen"

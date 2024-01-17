@@ -1642,6 +1642,10 @@ const cs = /* @__PURE__ */ E(rs, [["render", ds]]), us = {
     modelValue: {
       type: Boolean,
       default: !1
+    },
+    title: {
+      type: String,
+      default: "详情"
     }
   },
   emits: [
@@ -1714,6 +1718,10 @@ const ms = /* @__PURE__ */ E(us, [["render", hs]]), ps = {
       type: Boolean,
       default: !1
     },
+    title: {
+      type: String,
+      default: "详情"
+    },
     submitText: {
       type: String,
       default: "提交"
@@ -1769,7 +1777,7 @@ function gs(e, t, s, l, n, i) {
     class: ["pc-x-dialog", { "pc-x-drawer": s.drawer }]
   }), {
     header: c(() => [
-      e.$slots.header ? x(e.$slots, "header", { key: 0 }) : (d(), v("span", fs, j(e.$attrs.title), 1)),
+      e.$slots.header ? x(e.$slots, "header", { key: 0 }) : (d(), v("span", fs, j(s.title), 1)),
       s.drawer ? S("", !0) : (d(), f(o, {
         key: 2,
         name: "FullScreen",
@@ -5822,7 +5830,7 @@ const Co = (e) => ({
   for (let s in ve)
     e.component(s, ve[s]);
 }, Vo = {
-  version: "1.1.1",
+  version: "1.1.2",
   ...ve,
   ...Ze,
   ...Et,
