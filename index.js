@@ -471,6 +471,12 @@ class tt extends et {
       "handleSubmit",
       "handleCancel",
       "handleSortChange",
+      "onSearch",
+      "onAdd",
+      "onEdit",
+      "onDelete",
+      "onSubmit",
+      "onCancel",
       "search",
       "add",
       "update",
@@ -878,6 +884,24 @@ class tt extends et {
     var s, l;
     const t = ((s = this.table) == null ? void 0 : s.formRef) || ((l = this.dialog) == null ? void 0 : l.formRef);
     return t ? t.$.attrs.class.indexOf("mobile") >= 0 : window.isMobile;
+  }
+  onSearch(...t) {
+    return this.handleSearch(...t);
+  }
+  onAdd(...t) {
+    return this.handleAdd(...t);
+  }
+  onEdit(...t) {
+    return this.handleEdit(...t);
+  }
+  onDelete(...t) {
+    return this.handleDelete(...t);
+  }
+  onSubmit(...t) {
+    return this.handleSubmit(...t);
+  }
+  onCancel(...t) {
+    return this.handleCancel(...t);
   }
 }
 const Vt = (e) => {
@@ -5774,7 +5798,7 @@ const Co = (e) => ({
   for (let s in ve)
     e.component(s, ve[s]);
 }, xo = {
-  version: "1.0.210",
+  version: "1.1.0",
   ...ve,
   ...Ze,
   ...Et,

@@ -66,15 +66,25 @@ class CrudController extends BaseController {
       'handleSubmit',
       'handleCancel',
       'handleSortChange',
+
+      'onSearch',
+      'onAdd',
+      'onEdit',
+      'onDelete',
+      'onSubmit',
+      'onCancel',
+
       'search',
       'add',
       'update',
       'remove',
+
       'getSearchParams',
       'getAddParams',
       'getUpdateParams',
       'getDeleteParams',
       'getSearchExportParams',
+
       'beforeSearch',
       'beforeAdd',
       'beforeEdit',
@@ -84,6 +94,7 @@ class CrudController extends BaseController {
       'afterEdit',
       'afterDelete',
       'afterSubmit',
+
       '_defaultFormatList',
       '_fillRelatedField',
       'formatList',
@@ -646,6 +657,30 @@ class CrudController extends BaseController {
       return ref.$.attrs.class.indexOf('mobile') >= 0
     }
     return window.isMobile
+  }
+
+  onSearch (...props) {
+    return this.handleSearch(...props)
+  }
+
+  onAdd (...props) {
+    return this.handleAdd(...props)
+  }
+
+  onEdit (...props) {
+    return this.handleEdit(...props)
+  }
+
+  onDelete (...props) {
+    return this.handleDelete(...props)
+  }
+
+  onSubmit (...props) {
+    return this.handleSubmit(...props)
+  }
+
+  onCancel (...props) {
+    return this.handleCancel(...props)
   }
 }
 
