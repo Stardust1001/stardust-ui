@@ -2536,7 +2536,7 @@ function Gs() {
     onMultiDelete: Function,
     controller: Object,
     listen: {
-      type: Array | String,
+      type: String,
       default: "*"
     },
     title: {
@@ -2658,7 +2658,7 @@ function bn() {
   if (!this.controller)
     return {};
   let e = this.listen;
-  Array.isArray(this.listen) || (e = this.listen.split(",")), e.includes("*") && (e = [.../* @__PURE__ */ new Set([
+  e.includes("*") && (e = [.../* @__PURE__ */ new Set([
     ...e,
     "search",
     "add",
@@ -5833,7 +5833,7 @@ const Co = (e) => ({
   for (let s in ve)
     e.component(s, ve[s]);
 }, Vo = {
-  version: "1.1.3",
+  version: "1.1.5",
   ...ve,
   ...Ze,
   ...Et,

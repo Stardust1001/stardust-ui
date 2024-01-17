@@ -59,7 +59,7 @@ export function props () {
 
     controller: Object,
     listen: {
-      type: Array | String,
+      type: String,
       default: '*'
     },
 
@@ -230,9 +230,6 @@ export function _onMultiDelete () {
 export function _listen () {
   if (!this.controller) return {}
   let events = this.listen
-  if (!Array.isArray(this.listen)) {
-    events = this.listen.split(',')
-  }
   if (events.includes('*')) {
     events = [...new Set([
       ...events, 'search', 'add', 'multi-delete', 'export', 'search-export', 'import',
