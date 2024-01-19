@@ -566,7 +566,7 @@ class CrudController extends BaseController {
   processExportingColumns (columns, mode = 'current') {
     return columns.filter(col => {
       return !['index', 'selection', 'expand', 'radio', '_index'].includes(col.type)
-    }).filter(col => !col._virtual)
+    }).filter(col => !col.virtual)
   }
 
   processExportingData (data, mode = 'current') {

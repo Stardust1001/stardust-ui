@@ -828,7 +828,7 @@ class tt extends et {
     return t;
   }
   processExportingColumns(t, s = "current") {
-    return t.filter((i) => !["index", "selection", "expand", "radio", "_index"].includes(i.type)).filter((i) => !i._virtual);
+    return t.filter((i) => !["index", "selection", "expand", "radio", "_index"].includes(i.type)).filter((i) => !i.virtual);
   }
   processExportingData(t, s = "current") {
     if (!t.length)
@@ -5834,7 +5834,7 @@ const Co = (e) => ({
   for (let s in ve)
     e.component(s, ve[s]);
 }, Vo = {
-  version: "1.1.6",
+  version: "1.1.7",
   ...ve,
   ...Ze,
   ...Et,
