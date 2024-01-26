@@ -7,6 +7,10 @@ export default {
   props: {
     modelName: String,
     params: Object,
+    plain: {
+      type: Boolean,
+      default: false
+    },
     text: {
       type: String,
       default: 'text'
@@ -67,6 +71,7 @@ export default {
 <template>
   <el-select
     class="pc-x-select"
+    :class="plain ? 'x-select--plain' : ''"
     :loading
     v-bind="$attrs"
     :filterable
@@ -96,6 +101,13 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+.x-select--plain {
+  :deep(.el-select__wrapper) {
+    width: 100px;
+    box-shadow: none;
+    cursor: pointer;
+  }
+}
 .remark {
   color: #a0aaaa;
   margin-left: 10px;

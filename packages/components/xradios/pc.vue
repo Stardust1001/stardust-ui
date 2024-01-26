@@ -6,6 +6,10 @@ export default {
   inheritAttrs: false,
   props: {
     modelValue: Number | String,
+    plain: {
+      type: Boolean,
+      default: false
+    },
     text: {
       type: String,
       default: 'text'
@@ -42,6 +46,7 @@ export default {
 <template>
   <el-radio-group
     class="pc-x-radios"
+    :class="plain ? 'pc-x-radios--plain' : ''"
     v-bind="attrs"
     :modelValue
     @update:modelValue="value => $emit('update:modelValue', value)"
@@ -58,3 +63,14 @@ export default {
     </component>
   </el-radio-group>
 </template>
+
+<style lang="scss" scoped>
+.pc-x-radius--plain {
+  :deep(.el-radio) {
+    margin-right: 20px;
+    .el-radio__input {
+      display: none;
+    }
+  }
+}
+</style>
