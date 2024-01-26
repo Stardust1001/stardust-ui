@@ -102,8 +102,8 @@ export default {
 
 <style lang="scss" scoped>
 .x-select--plain {
+  width: 100px;
   :deep(.el-select__wrapper) {
-    width: 100px;
     box-shadow: none;
     cursor: pointer;
   }

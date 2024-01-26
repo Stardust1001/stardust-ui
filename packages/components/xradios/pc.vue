@@ -65,7 +65,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.pc-x-radius--plain {
+.pc-x-radio--plain {
   :deep(.el-radio) {
     margin-right: 20px;
     .el-radio__input {
