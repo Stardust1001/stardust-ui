@@ -3288,7 +3288,7 @@ function yi(e, t, s, i, l, n) {
     _: 1
   }, 16, ["class", "modelValue"]);
 }
-const vi = /* @__PURE__ */ E(_i, [["render", yi], ["__scopeId", "data-v-99c90dbf"]]), wi = {
+const vi = /* @__PURE__ */ E(_i, [["render", yi], ["__scopeId", "data-v-cfd9db24"]]), wi = {
   name: "MobileXRow",
   props: {
     cols: {
@@ -5844,7 +5844,7 @@ const Co = (e) => ({
   for (let s in ve)
     e.component(s, ve[s]);
 }, Vo = {
-  version: "1.1.10",
+  version: "1.1.11",
   ...ve,
   ...Ze,
   ...Et,

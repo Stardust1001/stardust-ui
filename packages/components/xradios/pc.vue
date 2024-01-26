@@ -65,7 +65,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.pc-x-radio--plain {
+.pc-x-radios--plain {
   :deep(.el-radio) {
     margin-right: 20px;
     font-weight: normal;
