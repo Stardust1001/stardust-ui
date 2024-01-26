@@ -68,6 +68,7 @@ export default {
 .pc-x-radio--plain {
   :deep(.el-radio) {
     margin-right: 20px;
+    font-weight: normal;
     .el-radio__input {
       display: none;
     }
