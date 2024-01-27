@@ -54,8 +54,9 @@ export default {
     @confirm="handleConfirm"
     @cancel="handleCancel"
   >
-    <template v-if="$slots.title" #title>
-      <slot name="title" />
+    <template v-if="$slots.title || title" #title>
+      <slot name="title" v-if="$slots.title" />
+      <span v-else>{{ title }}</span>
     </template>
 
     <template v-if="$slots.header" #header>
