@@ -9,6 +9,10 @@ export default {
       type: String,
       default: 'text'
     },
+    plain: {
+      type: Boolean,
+      default: false
+    },
     value: {
       type: String,
       default: 'value'
@@ -29,6 +33,7 @@ export default {
 <template>
   <van-radio-group
     class="mobile-x-radios"
+    :class="plain ? 'mobile-x-radios--plain' : ''"
     v-bind="$attrs"
     :direction
   >
@@ -42,3 +47,14 @@ export default {
     </van-radio>
   </van-radio-group>
 </template>
+
+<style lang="scss" scoped>
+.mobile-x-radios--plain {
+  :deep(.van-radio) {
+    margin-right: 20px;
+    .van-radio__icon {
+      display: none;
+    }
+  }
+}
+</style>

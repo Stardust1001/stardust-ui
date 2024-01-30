@@ -1490,6 +1490,10 @@ const Qt = /* @__PURE__ */ E($e, [["render", Gt], ["__scopeId", "data-v-94e70f82
       type: String,
       default: "text"
     },
+    plain: {
+      type: Boolean,
+      default: !1
+    },
     value: {
       type: String,
       default: "value"
@@ -1525,7 +1529,9 @@ const Qt = /* @__PURE__ */ E($e, [["render", Gt], ["__scopeId", "data-v-94e70f82
 };
 function es(e, t, s, l, i, n) {
   const o = u("van-checkbox"), a = u("van-checkbox-group");
-  return d(), f(a, b({ class: "mobile-x-checkboxs" }, n.attrs, {
+  return d(), f(a, b({
+    class: ["mobile-x-checkboxs", s.plain ? "mobile-x-checkboxs--plain" : ""]
+  }, n.attrs, {
     direction: s.direction,
     onChange: t[0] || (t[0] = (r) => e.$emit("change", r))
   }), {
@@ -1542,9 +1548,9 @@ function es(e, t, s, l, i, n) {
       }, 1040, ["shape", "name"]))), 128))
     ]),
     _: 1
-  }, 16, ["direction"]);
+  }, 16, ["class", "direction"]);
 }
-const ts = /* @__PURE__ */ E(Zt, [["render", es]]), ss = {
+const ts = /* @__PURE__ */ E(Zt, [["render", es], ["__scopeId", "data-v-ca7cc694"]]), ss = {
   name: "PcXCheckboxs",
   inheritAttrs: !1,
   props: {
@@ -3198,6 +3204,10 @@ const fi = /* @__PURE__ */ E(mi, [["render", pi]]), gi = {
       type: String,
       default: "text"
     },
+    plain: {
+      type: Boolean,
+      default: !1
+    },
     value: {
       type: String,
       default: "value"
@@ -3215,7 +3225,9 @@ const fi = /* @__PURE__ */ E(mi, [["render", pi]]), gi = {
 };
 function bi(e, t, s, l, i, n) {
   const o = u("van-radio"), a = u("van-radio-group");
-  return d(), f(a, b({ class: "mobile-x-radios" }, e.$attrs, { direction: s.direction }), {
+  return d(), f(a, b({
+    class: ["mobile-x-radios", s.plain ? "mobile-x-radios--plain" : ""]
+  }, e.$attrs, { direction: s.direction }), {
     default: c(() => [
       (d(!0), y(I, null, N(n.formatOptions(s.options, this), (r) => (d(), f(o, b(e.$attrs, {
         key: r[s.text],
@@ -3228,9 +3240,9 @@ function bi(e, t, s, l, i, n) {
       }, 1040, ["name"]))), 128))
     ]),
     _: 1
-  }, 16, ["direction"]);
+  }, 16, ["class", "direction"]);
 }
-const _i = /* @__PURE__ */ E(gi, [["render", bi]]), yi = {
+const _i = /* @__PURE__ */ E(gi, [["render", bi], ["__scopeId", "data-v-8d2b2d2c"]]), yi = {
   name: "PcXRadios",
   inheritAttrs: !1,
   props: {
@@ -5903,7 +5915,7 @@ const Fo = (e) => ({
   for (let s in ve)
     e.component(s, ve[s]);
 }, Bo = {
-  version: "1.1.16",
+  version: "1.1.17",
   ...ve,
   ...Ze,
   ...Et,

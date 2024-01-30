@@ -9,6 +9,10 @@ export default {
       type: String,
       default: 'text'
     },
+    plain: {
+      type: Boolean,
+      default: false
+    },
     value: {
       type: String,
       default: 'value'
@@ -47,6 +51,7 @@ export default {
 <template>
   <van-checkbox-group
     class="mobile-x-checkboxs"
+    :class="plain ? 'mobile-x-checkboxs--plain' : ''"
     v-bind="attrs"
     :direction
     @change="$emit('change', $event)"
@@ -62,3 +67,14 @@ export default {
     </van-checkbox>
   </van-checkbox-group>
 </template>
+
+<style lang="scss" scoped>
+.mobile-x-checkboxs--plain {
+  :deep(.van-checkbox) {
+    margin-right: 20px;
+    .van-checkbox__icon {
+      display: none;
+    }
+  }
+}
+</style>
