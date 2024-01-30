@@ -1549,6 +1549,10 @@ const ts = /* @__PURE__ */ E(Zt, [["render", es]]), ss = {
   inheritAttrs: !1,
   props: {
     modelValue: Array,
+    plain: {
+      type: Boolean,
+      default: !1
+    },
     text: {
       type: String,
       default: "text"
@@ -1578,7 +1582,9 @@ const ts = /* @__PURE__ */ E(Zt, [["render", es]]), ss = {
 };
 function ns(e, t, s, l, i, n) {
   const o = u("el-checkbox"), a = u("el-checkbox-group");
-  return d(), f(a, b({ class: "pc-x-checkboxs" }, n.attrs, {
+  return d(), f(a, b({
+    class: ["pc-x-checkboxs", s.plain ? "pc-x-checkboxs--plain" : ""]
+  }, n.attrs, {
     modelValue: s.modelValue,
     "onUpdate:modelValue": t[0] || (t[0] = (r) => e.$emit("update:modelValue", r)),
     onChange: t[1] || (t[1] = (r) => e.$emit("change", r))
@@ -1595,9 +1601,9 @@ function ns(e, t, s, l, i, n) {
       }, 1040, ["label"]))), 128))
     ]),
     _: 1
-  }, 16, ["modelValue"]);
+  }, 16, ["class", "modelValue"]);
 }
-const is = /* @__PURE__ */ E(ss, [["render", ns]]), ls = {
+const is = /* @__PURE__ */ E(ss, [["render", ns], ["__scopeId", "data-v-82200102"]]), ls = {
   name: "MobileXCol",
   inheritAttrs: !1,
   computed: {
@@ -5843,7 +5849,7 @@ const $o = (e) => ({
   for (let s in ve)
     e.component(s, ve[s]);
 }, Eo = {
-  version: "1.1.13",
+  version: "1.1.15",
   ...ve,
   ...Ze,
   ...Et,
