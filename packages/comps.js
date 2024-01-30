@@ -35,6 +35,8 @@ import mobilextabletools from './components/xtabletools/mobile.vue'
 import pcxtabletools from './components/xtabletools/pc.vue'
 import xtablev2 from './components/xtablev2/xtablev2.vue'
 import xtableviewer from './components/xtableviewer/xtableviewer.vue'
+import mobilextags from './components/xtags/mobile.vue'
+import pcxtags from './components/xtags/pc.vue'
 import xtinymce from './components/xtinymce/xtinymce.vue'
 import xfileuploader from './components/xuploader/xfileuploader.vue'
 import ximageuploader from './components/xuploader/ximageuploader.vue'
@@ -77,6 +79,8 @@ const modules = {
   pcxtabletools,
   xtablev2,
   xtableviewer,
+  mobilextags,
+  pcxtags,
   xtinymce,
   xfileuploader,
   ximageuploader
