@@ -55,6 +55,9 @@ export default {
     .van-radio__icon {
       display: none;
     }
+    .van-radio__icon--checked ~ .van-radio__label {
+      color: var(--van-blue);
+    }
   }
 }
 </style>

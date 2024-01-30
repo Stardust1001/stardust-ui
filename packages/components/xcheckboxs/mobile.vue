@@ -75,6 +75,9 @@ export default {
     .van-checkbox__icon {
       display: none;
     }
+    .van-checkbox__icon--checked ~ .van-checkbox__label {
+      color: var(--van-blue);
+    }
   }
 }
 </style>

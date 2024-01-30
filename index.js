@@ -1550,7 +1550,7 @@ function es(e, t, s, l, i, n) {
     _: 1
   }, 16, ["class", "direction"]);
 }
-const ts = /* @__PURE__ */ E(Zt, [["render", es], ["__scopeId", "data-v-ca7cc694"]]), ss = {
+const ts = /* @__PURE__ */ E(Zt, [["render", es], ["__scopeId", "data-v-5d7abb69"]]), ss = {
   name: "PcXCheckboxs",
   inheritAttrs: !1,
   props: {
@@ -3242,7 +3242,7 @@ function bi(e, t, s, l, i, n) {
     _: 1
   }, 16, ["class", "direction"]);
 }
-const _i = /* @__PURE__ */ E(gi, [["render", bi], ["__scopeId", "data-v-8d2b2d2c"]]), yi = {
+const _i = /* @__PURE__ */ E(gi, [["render", bi], ["__scopeId", "data-v-70a93fd1"]]), yi = {
   name: "PcXRadios",
   inheritAttrs: !1,
   props: {
@@ -5915,7 +5915,7 @@ const Fo = (e) => ({
   for (let s in ve)
     e.component(s, ve[s]);
 }, Bo = {
-  version: "1.1.17",
+  version: "1.1.18",
   ...ve,
   ...Ze,
   ...Et,
