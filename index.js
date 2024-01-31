@@ -4679,7 +4679,10 @@ function Vl(e, t, s, l, i, n) {
                   }, {
                     default: c((_) => [
                       x(e.$slots, "operates-prefix", { scope: _ }),
-                      e.operatesDropdown ? (d(), f(C, { key: 0 }, {
+                      e.operatesDropdown ? (d(), f(C, {
+                        key: 0,
+                        class: "operates-dropdown"
+                      }, {
                         dropdown: c(() => [
                           m(g, null, {
                             default: c(() => [
@@ -5915,7 +5918,7 @@ const Fo = (e) => ({
   for (let s in ve)
     e.component(s, ve[s]);
 }, Bo = {
-  version: "1.1.19",
+  version: "1.1.20",
   ...ve,
   ...Ze,
   ...Et,

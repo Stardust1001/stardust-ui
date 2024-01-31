@@ -249,7 +249,7 @@ export default {
                 name="operates-prefix"
                 :scope
               />
-              <el-dropdown v-if="operatesDropdown">
+              <el-dropdown v-if="operatesDropdown" class="operates-dropdown">
                 <el-button
                   v-bind="{ type: 'primary', ..._attrs['operates-btn'] }"
                   icon="arrow-down"
