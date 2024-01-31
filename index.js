@@ -2705,19 +2705,19 @@ function vn() {
   return t || (e == null ? void 0 : e.uid) || "";
 }
 function wn() {
-  return this.table.hideOperates || this.$attrs["hide-operates"] !== void 0 && this.$attrs["hide-operates"] !== !1;
+  return this.table.hideOperates || this._attrs["hide-operates"] !== void 0 && this._attrs["hide-operates"] !== !1;
 }
 function Sn() {
-  return this.table.hideChart || this.$attrs["hide-chart"] !== void 0 && this.$attrs["hide-chart"] !== !1;
+  return this.table.hideChart || this._attrs["hide-chart"] !== void 0 && this._attrs["hide-chart"] !== !1;
 }
 function kn() {
-  return this.$attrs["operates-dropdown"] !== void 0 && this.$attrs["operates-dropdown"] !== !1;
+  return this._attrs["operates-dropdown"] !== void 0 && this._attrs["operates-dropdown"] !== !1;
 }
 function Cn() {
   return this._columns.filter((e) => !e.virtual && (!e.type || !Ve.includes(e.type)));
 }
 function $n() {
-  return this.table.searcherConfig ?? this.$attrs["searcher-config"] ?? {};
+  return this.table.searcherConfig ?? this._attrs["searcher-config"] ?? {};
 }
 function xn() {
   const e = this._uid && st.getJson(`Settings[${this._uid}]`, {}) || {};
@@ -2784,7 +2784,7 @@ function Mn() {
 }
 function Nn(e) {
   var l;
-  let t = this.$attrs["cell-class-name"] ? this.$attrs["cell-class-name"](e) : "";
+  let t = this._attrs["cell-class-name"] ? this._attrs["cell-class-name"](e) : "";
   const s = this._visibleColumns[e.columnIndex];
   if ((l = s == null ? void 0 : s.tableAttrs) != null && l.class) {
     const i = s.tableAttrs.class;
@@ -2794,7 +2794,7 @@ function Nn(e) {
 }
 function Pn(e) {
   var l;
-  const t = this.$attrs["cell-style"] ? this.$attrs["cell-style"](e) : {}, s = this._visibleColumns[e.columnIndex];
+  const t = this._attrs["cell-style"] ? this._attrs["cell-style"](e) : {}, s = this._visibleColumns[e.columnIndex];
   if ((l = s == null ? void 0 : s.tableAttrs) != null && l.style) {
     const i = s.tableAttrs.style;
     typeof i == "function" ? Object.assign(t, i(e)) : typeof i == "object" && Object.assign(t, i);
@@ -5915,7 +5915,7 @@ const Fo = (e) => ({
   for (let s in ve)
     e.component(s, ve[s]);
 }, Bo = {
-  version: "1.1.18",
+  version: "1.1.19",
   ...ve,
   ...Ze,
   ...Et,

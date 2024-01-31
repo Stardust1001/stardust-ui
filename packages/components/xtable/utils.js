@@ -263,15 +263,15 @@ export function _uid () {
 }
 
 export function hideOperates () {
-  return this.table.hideOperates || (this.$attrs['hide-operates'] !== undefined && this.$attrs['hide-operates'] !== false)
+  return this.table.hideOperates || (this._attrs['hide-operates'] !== undefined && this._attrs['hide-operates'] !== false)
 }
 
 export function hideChart () {
-  return this.table.hideChart || (this.$attrs['hide-chart'] !== undefined && this.$attrs['hide-chart'] !== false)  
+  return this.table.hideChart || (this._attrs['hide-chart'] !== undefined && this._attrs['hide-chart'] !== false)
 }
 
 export function operatesDropdown () {
-  return this.$attrs['operates-dropdown'] !== undefined && this.$attrs['operates-dropdown'] !== false
+  return this._attrs['operates-dropdown'] !== undefined && this._attrs['operates-dropdown'] !== false
 }
 
 export function searcherColumns () {
@@ -279,7 +279,7 @@ export function searcherColumns () {
 }
 
 export function searcherConfig () {
-  return this.table.searcherConfig ?? this.$attrs['searcher-config'] ?? {}
+  return this.table.searcherConfig ?? this._attrs['searcher-config'] ?? {}
 }
 
 export function initSettings () {
@@ -415,7 +415,7 @@ export function handleToggleFullscreen () {
 }
 
 export function cellClassName (props) {
-  let classNames = this.$attrs['cell-class-name'] ? this.$attrs['cell-class-name'](props) : ''
+  let classNames = this._attrs['cell-class-name'] ? this._attrs['cell-class-name'](props) : ''
   const col = this._visibleColumns[props.columnIndex]
   if (col?.tableAttrs?.class) {
     const klass = col.tableAttrs.class
@@ -429,7 +429,7 @@ export function cellClassName (props) {
 }
 
 export function cellStyle (props) {
-  const style = this.$attrs['cell-style'] ? this.$attrs['cell-style'](props) : {}
+  const style = this._attrs['cell-style'] ? this._attrs['cell-style'](props) : {}
   const col = this._visibleColumns[props.columnIndex]
   if (col?.tableAttrs?.style) {
     const sty = col.tableAttrs.style
