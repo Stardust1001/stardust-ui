@@ -177,6 +177,9 @@ export function _total () {
 
 export function _infiniteScrollDisabled () {
   const { table, infiniteScrollDisabled } = this.$props
+  console.log('00000000000000')
+  console.log(infiniteScrollDisabled, table.infiniteScrollDisabled)
+  window.v = this
   return infiniteScrollDisabled ?? table?.infiniteScrollDisabled
 }
 
