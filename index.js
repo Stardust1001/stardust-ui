@@ -522,7 +522,7 @@ class st extends tt {
     this.table && this.handleSearch();
   }
   async handleSearch(t) {
-    if (!await this.beforeSearch(t))
+    if (this.table.isInfinite = !1, !await this.beforeSearch(t))
       return;
     t = this.getSearchParams(t), this.table.loading = !0;
     const s = await this.search(t);
@@ -723,7 +723,7 @@ class st extends tt {
       return;
     s.page++, s.page * s.limit >= i && (this.table.infiniteScrollDisabled = !0);
     const l = this.table.list.slice();
-    await this.handleSearch(), this.table.list = l.concat(this.table.list);
+    await this.handleSearch(), this.table.isInfinite = !0, this.table.loading = !0, await this.$sleep(50), this.table.list = l.concat(this.table.list), this.table.loading = !1;
   }
   get(t) {
     return this.dbTable.get(t);
@@ -5944,7 +5944,7 @@ const Io = (e) => ({
   for (let s in we)
     e.component(s, we[s]);
 }, Lo = {
-  version: "1.1.31",
+  version: "1.1.32",
   ...we,
   ...et,
   ...At,

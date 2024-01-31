@@ -123,6 +123,7 @@ class CrudController extends BaseController {
   }
 
   async handleSearch (params) {
+    this.table.isInfinite = false
     if (!await this.beforeSearch(params)) return
     params = this.getSearchParams(params)
     this.table.loading = true
@@ -422,7 +423,11 @@ class CrudController extends BaseController {
     }
     const list = this.table.list.slice()
     await this.handleSearch()
+    this.table.isInfinite = true
+    this.table.loading = true
+    await this.$sleep(50)
     this.table.list = list.concat(this.table.list)
+    this.table.loading = false
   }
 
   get (id) {
