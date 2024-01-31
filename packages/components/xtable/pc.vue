@@ -257,7 +257,7 @@ export default {
                   操作
                 </el-button>
                 <template #dropdown>
-                  <el-dropdown-menu>
+                  <el-dropdown-menu class="operates-dropdown-menu">
                     <el-dropdown-item v-if="canEdit(scope.row)">
                       <el-button
                         v-bind="{ type: 'warning', ..._attrs['edit-btn'] }"

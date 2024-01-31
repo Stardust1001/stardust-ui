@@ -4684,7 +4684,7 @@ function El(e, t, s, l, i, n) {
                         class: "operates-dropdown"
                       }, {
                         dropdown: c(() => [
-                          m(g, null, {
+                          m(g, { class: "operates-dropdown-menu" }, {
                             default: c(() => [
                               e.canEdit(_.row) ? (d(), f(R, { key: 0 }, {
                                 default: c(() => [
@@ -5918,7 +5918,7 @@ const Do = (e) => ({
   for (let s in ve)
     e.component(s, ve[s]);
 }, Io = {
-  version: "1.1.22",
+  version: "1.1.23",
   ...ve,
   ...Ze,
   ...Et,
