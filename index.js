@@ -4675,7 +4675,7 @@ function Vl(e, t, s, l, i, n) {
                     label: "操作",
                     "min-width": e.operatesWidth,
                     align: e._attrs.operatesAlign || e._attrs.tableAlign || "center",
-                    fixed: e._attrs.operatesFixed || "right"
+                    fixed: e._attrs.operatesFixed ?? "right"
                   }, {
                     default: c((_) => [
                       x(e.$slots, "operates-prefix", { scope: _ }),
@@ -5918,7 +5918,7 @@ const Fo = (e) => ({
   for (let s in ve)
     e.component(s, ve[s]);
 }, Bo = {
-  version: "1.1.20",
+  version: "1.1.21",
   ...ve,
   ...Ze,
   ...Et,

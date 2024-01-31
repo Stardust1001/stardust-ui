@@ -242,7 +242,7 @@ export default {
             label="操作"
             :min-width="operatesWidth"
             :align="_attrs.operatesAlign || _attrs.tableAlign || 'center'"
-            :fixed="_attrs.operatesFixed || 'right'"
+            :fixed="_attrs.operatesFixed ?? 'right'"
           >
             <template #default="scope">
               <slot
