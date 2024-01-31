@@ -721,7 +721,7 @@ class st extends tt {
     const { loading: t, query: s, total: l } = this.table;
     if (this.table.isInfinite = !0, t || !l)
       return;
-    s.page++, s.page * s.limit >= l && (this.table.infiniteScrollDisabled = !0);
+    this.table.loading = !0, s.page++, s.page * s.limit >= l && (this.table.infiniteScrollDisabled = !0);
     const i = this.table.list.slice();
     await this.handleSearch({}, { isInfinite: !0 }), this.table.loading = !0, await this.$sleep(50), this.table.list = i.concat(this.table.list), this.table.loading = !1;
   }
@@ -5944,7 +5944,7 @@ const Io = (e) => ({
   for (let s in we)
     e.component(s, we[s]);
 }, Lo = {
-  version: "1.1.33",
+  version: "1.1.36",
   ...we,
   ...et,
   ...At,

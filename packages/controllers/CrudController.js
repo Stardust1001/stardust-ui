@@ -417,6 +417,7 @@ class CrudController extends BaseController {
     const { loading, query, total } = this.table
     this.table.isInfinite = true
     if (loading || !total) return
+    this.table.loading = true
     query.page ++
     if (query.page * query.limit >= total) {
       this.table.infiniteScrollDisabled = true
