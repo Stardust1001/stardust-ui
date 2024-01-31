@@ -59,9 +59,6 @@ export default {
   },
   methods: {
     ...utils.methods,
-    load () {
-      this.$emit('load')
-    },
     async handleShowPieDialog () {
       this.dialog.visible = true
       await this.$nextTick()
@@ -175,7 +172,7 @@ export default {
           ref="tableRef"
           v-bind="elTableAttrs"
           v-loading="_loading"
-          v-el-table-infinite-scroll="load"
+          v-el-table-infinite-scroll="_onLoad"
           :infinite-scroll-disabled="infiniteScrollDisabled"
           @header-dragend="handleHeaderDragend"
           @selection-change="handleSelectionChange"

@@ -228,13 +228,17 @@ export function _onMultiDelete () {
   return (this.onMultiDelete || this._listen['multi-delete']) ? () => this._emit('multi-delete') : null
 }
 
+export function _onLoad () {
+  return this.onLoad || this._listen['load'] ? () => this._emit('load') : null
+}
+
 export function _listen () {
   if (!this.controller || !this.listen?.length) return {}
   let events = this.listen.split(',')
   if (events.includes('*')) {
     events = [...new Set([
       ...events, 'search', 'add', 'multi-delete', 'export', 'search-export', 'import',
-      'edit', 'row-edit', 'cancel-edit', 'delete'
+      'edit', 'row-edit', 'cancel-edit', 'delete', 'load'
     ])]
   }
   const dict = {}
@@ -548,6 +552,7 @@ export default {
     _onSearchExport,
     _onImport,
     _onMultiDelete,
+    _onLoad,
     _listen,
     _visibleColumns,
     _uid,
