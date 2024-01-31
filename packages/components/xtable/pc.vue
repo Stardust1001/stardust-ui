@@ -352,7 +352,7 @@ export default {
         </el-table>
 
         <x-pagination
-          v-if="!!_query && !!_total && hidePagination !== '' && hidePagination !== true"
+          v-if="!!_query && !!_total && !hidePagination"
           :query="_query"
           :total="_total"
           @search="onPaging"

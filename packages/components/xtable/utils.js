@@ -31,10 +31,6 @@ export function props () {
       type: Boolean,
       default: false
     },
-    hidePagination: {
-      type: Boolean,
-      default: false
-    },
     hideTools: {
       type: Boolean,
       default: false
@@ -276,6 +272,10 @@ export function _uid () {
 
 export function hideOperates () {
   return this.table.hideOperates || (this._attrs['hide-operates'] !== undefined && this._attrs['hide-operates'] !== false)
+}
+
+export function hidePagination () {
+  return this.table.hidePagination || (this._attrs['hide-pagination'] !== undefined && this._attrs['hide-pagination'] !== false)
 }
 
 export function operatesWidth () {
@@ -565,6 +565,7 @@ export default {
     _visibleColumns,
     _uid,
     hideOperates,
+    hidePagination,
     operatesWidth,
     hideChart,
     operatesDropdown,
