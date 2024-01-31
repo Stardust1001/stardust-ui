@@ -66,6 +66,7 @@ class CrudController extends BaseController {
       'handleSubmit',
       'handleCancel',
       'handleSortChange',
+      'handleLoad',
 
       'onSearch',
       'onAdd',
@@ -409,6 +410,19 @@ class CrudController extends BaseController {
       ]
     }
     this.handleSearch()
+  }
+
+  async handleLoad () {
+    const { loading, query, total } = this.table
+    this.table.isInfinite = true
+    if (loading || !total) return
+    query.page ++
+    if (query.page * query.limit >= total) {
+      this.table.infiniteScrollDisabled = true
+    }
+    const list = this.table.list.slice()
+    await this.handleSearch()
+    this.table.list = list.concat(this.table.list)
   }
 
   get (id) {
