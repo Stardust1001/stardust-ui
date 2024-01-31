@@ -19,6 +19,7 @@ export const baseTable = (query = {}) => ({
   },
   total: 0,
   infiniteScrollDisabled: false,
+  isInfinite: false,
   list: [],
   columns: [],
   tableRef: null,

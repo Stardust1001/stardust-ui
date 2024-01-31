@@ -155,7 +155,7 @@ export function _columns () {
         label: '序号',
         index (num) {
           const { page, limit } = _query
-          return (page - 1) * limit + num + 1
+          return (table.isInfinite ? 0 : (page - 1) * limit) + num + 1
         }
       }, col, { type: 'index' })
     } else if (col.type === 'radio') {

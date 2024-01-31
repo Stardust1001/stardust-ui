@@ -195,6 +195,7 @@ const yt = (e, t, s) => {
   },
   total: 0,
   infiniteScrollDisabled: !1,
+  isInfinite: !1,
   list: [],
   columns: [],
   tableRef: null,
@@ -2621,7 +2622,7 @@ function an() {
     label: "序号",
     index(o) {
       const { page: a, limit: r } = t;
-      return (a - 1) * r + o + 1;
+      return (s.isInfinite ? 0 : (a - 1) * r) + o + 1;
     }
   }, n, { type: "index" }) : n.type === "radio" ? Object.assign({ width: 60, label: "单选" }, n) : Object.assign({}, n, n.tableAttrs));
 }
@@ -5934,7 +5935,7 @@ const Io = (e) => ({
   for (let s in we)
     e.component(s, we[s]);
 }, Lo = {
-  version: "1.1.29",
+  version: "1.1.30",
   ...we,
   ...et,
   ...At,
