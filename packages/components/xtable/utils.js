@@ -31,6 +31,10 @@ export function props () {
       type: Boolean,
       default: false
     },
+    hidePagination: {
+      type: Boolean,
+      default: false
+    },
     hideTools: {
       type: Boolean,
       default: false

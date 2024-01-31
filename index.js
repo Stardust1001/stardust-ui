@@ -2527,6 +2527,10 @@ function Zs() {
       type: Boolean,
       default: !1
     },
+    hidePagination: {
+      type: Boolean,
+      default: !1
+    },
     hideTools: {
       type: Boolean,
       default: !1
@@ -4843,7 +4847,7 @@ function Dl(e, t, s, i, l, n) {
                 [N, e._loading],
                 [le, e._onLoad]
               ]),
-              e._query && e._total ? (d(), f(q, {
+              e._query && e._total && e.hidePagination !== "" && e.hidePagination !== !0 ? (d(), f(q, {
                 key: 1,
                 query: e._query,
                 total: e._total,
@@ -5940,7 +5944,7 @@ const Io = (e) => ({
   for (let s in we)
     e.component(s, we[s]);
 }, No = {
-  version: "1.1.52",
+  version: "1.1.53",
   ...we,
   ...et,
   ...At,
