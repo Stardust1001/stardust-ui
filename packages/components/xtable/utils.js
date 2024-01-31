@@ -34,10 +34,6 @@ export function props () {
       type: Boolean,
       default: false
     },
-    operatesWidth: {
-      type: [Number, String],
-      default: 195
-    },
     hideSettings: {
       type: Boolean,
       default: false
@@ -264,6 +260,10 @@ export function _uid () {
 
 export function hideOperates () {
   return this.table.hideOperates || (this._attrs['hide-operates'] !== undefined && this._attrs['hide-operates'] !== false)
+}
+
+export function operatesWidth () {
+  return this.table.operatesWidth || this._attrs['operatesWidth'] || this._attrs['operates-width']
 }
 
 export function hideChart () {
@@ -547,6 +547,7 @@ export default {
     _visibleColumns,
     _uid,
     hideOperates,
+    operatesWidth,
     hideChart,
     operatesDropdown,
     searcherColumns,
