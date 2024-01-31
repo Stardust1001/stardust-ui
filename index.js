@@ -719,9 +719,11 @@ class st extends tt {
   }
   async handleLoad() {
     const { loading: t, query: s, total: l } = this.table;
-    if (this.table.isInfinite = !0, t || !l)
+    if (t || !l || this.table.infiniteScrollDisabled)
       return;
-    this.table.loading = !0, s.page++, s.page * s.limit >= l && (this.table.infiniteScrollDisabled = !0);
+    if (s.page * s.limit >= l)
+      return this.table.infiniteScrollDisabled = !0;
+    this.table.isInfinite = !0, this.table.loading = !0, s.page++;
     const i = this.table.list.slice();
     await this.handleSearch({}, { isInfinite: !0 }), this.table.loading = !0, await this.$sleep(50), this.table.list = i.concat(this.table.list), this.table.loading = !1;
   }
@@ -5948,7 +5950,7 @@ const Mo = (e) => ({
   for (let s in we)
     e.component(s, we[s]);
 }, Po = {
-  version: "1.1.57",
+  version: "1.1.58",
   ...we,
   ...et,
   ...At,
