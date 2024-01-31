@@ -2641,7 +2641,7 @@ function dn() {
 }
 function cn() {
   const { table: e, infiniteScrollDisabled: t } = this.$props;
-  return console.log("00000000000000"), console.log(t, e.infiniteScrollDisabled), window.v = this, t ?? (e == null ? void 0 : e.infiniteScrollDisabled);
+  return t ?? (e == null ? void 0 : e.infiniteScrollDisabled);
 }
 function un() {
   const { table: e, selection: t } = this.$props;
@@ -5940,7 +5940,7 @@ const Io = (e) => ({
   for (let s in we)
     e.component(s, we[s]);
 }, No = {
-  version: "1.1.51",
+  version: "1.1.52",
   ...we,
   ...et,
   ...At,
