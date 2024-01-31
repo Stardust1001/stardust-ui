@@ -4491,6 +4491,9 @@ const lt = /* @__PURE__ */ E(ml, [["render", wl], ["__scopeId", "data-v-a2f0fe24
   },
   methods: {
     ...U.methods,
+    load() {
+      this.$emit("load");
+    },
     async handleShowPieDialog() {
       this.dialog.visible = !0, await this.$nextTick(), this.table && (this.table.chartRef = this.$refs.chartRef), await this.$refs.chartRef.init(), this.$refs.chartRef.initDatasource();
     },
@@ -4826,7 +4829,7 @@ function Al(e, t, s, l, i, n) {
                 _: 3
               }, 16, ["infinite-scroll-disabled", "onHeaderDragend", "onSelectionChange", "onSortChange"])), [
                 [P, e._loading],
-                [le, e.$emit("load")]
+                [le, n.load]
               ]),
               e._query && e._total ? (d(), f(q, {
                 key: 1,
@@ -5925,7 +5928,7 @@ const Ro = (e) => ({
   for (let s in we)
     e.component(s, we[s]);
 }, Mo = {
-  version: "1.1.25",
+  version: "1.1.26",
   ...we,
   ...et,
   ...At,
