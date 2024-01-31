@@ -56,6 +56,7 @@ export function props () {
     onSearchExport: Function,
     onImport: Function,
     onMultiDelete: Function,
+    onLoad: Function,
 
     controller: Object,
     listen: {

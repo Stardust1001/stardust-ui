@@ -1,4 +1,4 @@
-import { toRaw as at, nextTick as oe, watch as Se, resolveComponent as u, openBlock as d, createBlock as f, mergeProps as b, createElementBlock as _, Fragment as I, renderList as N, withCtx as c, renderSlot as x, toDisplayString as T, useCssVars as Ue, resolveDirective as ee, withDirectives as B, createElementVNode as j, createTextVNode as $, createVNode as m, createCommentVNode as S, vShow as Te, pushScopeId as ke, popScopeId as Ce, createSlots as se, resolveDynamicComponent as ne, normalizeClass as K, normalizeProps as ce, guardReactiveProps as qe, h as G, isVNode as Xe, withModifiers as Z, normalizeStyle as rt } from "vue";
+import { toRaw as at, nextTick as oe, watch as Se, resolveComponent as u, openBlock as d, createBlock as f, mergeProps as b, createElementBlock as _, Fragment as I, renderList as N, withCtx as c, renderSlot as x, toDisplayString as F, useCssVars as Ue, resolveDirective as ee, withDirectives as B, createElementVNode as T, createTextVNode as $, createVNode as m, createCommentVNode as S, vShow as Fe, pushScopeId as ke, popScopeId as Ce, createSlots as se, resolveDynamicComponent as ne, normalizeClass as K, normalizeProps as ce, guardReactiveProps as qe, h as G, isVNode as Xe, withModifiers as Z, normalizeStyle as rt } from "vue";
 const dt = (e) => {
   const { width: t, height: s } = e.getBoundingClientRect();
   e.width = t, e.height = s;
@@ -47,9 +47,9 @@ const dt = (e) => {
       M.x += V / O, M.y += D / O;
     }), g = A.pageX, C = A.pageY;
   });
-  let F = Date.now(), q = null;
+  let j = Date.now(), q = null;
   const z = () => {
-    Date.now() - F >= k && (n(), p(), R.forEach((A) => A.update()), F = Date.now()), q = requestAnimationFrame(z);
+    Date.now() - j >= k && (n(), p(), R.forEach((A) => A.update()), j = Date.now()), q = requestAnimationFrame(z);
   };
   return q = requestAnimationFrame(z), () => cancelAnimationFrame(q);
 }, ct = ({
@@ -161,8 +161,8 @@ const yt = (e, t, s) => {
         var p, w, y, O, k, R, g;
         const h = (r != null && r.path ? r.path + "/" : "") + a.path;
         a.meta || (a.meta = {}), a.meta.acl === !1 ? (p = a.children) == null || p.forEach((C) => {
-          var F;
-          C.meta || (C.meta = {}), (F = C.meta).acl || (F.acl = !1), o(C, a);
+          var j;
+          C.meta || (C.meta = {}), (j = C.meta).acl || (j.acl = !1), o(C, a);
         }) : (a.meta._hidden = a.meta.hidden, r && (a.meta.hidden == null && ((y = a.meta).hidden ?? (y.hidden = (w = r.meta) == null ? void 0 : w.hidden), a.meta = { ...a.meta }), a.meta.visitable == null && ((k = a.meta).visitable ?? (k.visitable = (O = r.meta) == null ? void 0 : O.visitable), a.meta = { ...a.meta })), (R = a.children) == null || R.forEach((C) => o(C, a)), a.meta.hidden !== !1 && a.meta._hidden == null && (a.meta.hidden = !n.includes(h), (g = a.children) != null && g.some((C) => C.meta.hidden === !1) && (a.meta.hidden = !1)));
       };
       s.forEach(o);
@@ -432,7 +432,7 @@ class tt {
     ];
   }
 }
-const { funcs: je, highdict: Fe, dates: fe } = StardustJs, { file: De, excel: re } = StardustBrowser;
+const { funcs: Te, highdict: je, dates: fe } = StardustJs, { file: De, excel: re } = StardustBrowser;
 class st extends tt {
   constructor(t) {
     super(t);
@@ -523,7 +523,7 @@ class st extends tt {
       return;
     t = this.getSearchParams(t), this.table.loading = !0;
     const s = await this.search(t);
-    let l = Fe.get(s, this.listProp);
+    let l = je.get(s, this.listProp);
     return l = this.formatList(this._defaultFormatList(l, s), s), Object.assign(this.table, {
       list: l,
       total: s.total,
@@ -534,7 +534,7 @@ class st extends tt {
     await this.beforeAdd() && (this._resetForm(), Object.assign(this.dialog, {
       visible: !0,
       isEditing: !1
-    }), await oe(), await je.sleep(50), this._clearValidate(), this.afterAdd());
+    }), await oe(), await Te.sleep(50), this._clearValidate(), this.afterAdd());
   }
   async handleEdit({ $index: t, row: s }) {
     var l;
@@ -587,7 +587,7 @@ class st extends tt {
     this._isExporting = !0;
     const { list: l, selection: i, ref: n } = this.table;
     let o = i.length > 0 ? i : l;
-    o = je.deepCopy(o), o = this.processExportingData(o);
+    o = Te.deepCopy(o), o = this.processExportingData(o);
     const a = this.processExportingColumns(n._visibleColumns, "current"), r = a.map((y) => y.prop), h = a.map((y) => y.label);
     o = o.map((y) => r.map((O) => y[O]));
     let p = null;
@@ -793,8 +793,8 @@ class st extends tt {
         t.forEach((k) => k[`_formatted_${r}`] = ""), this._fillRelatedField(t, a);
       else if (Array.isArray(h) && p !== !1) {
         const R = Se(() => a.options, (g, C) => {
-          const F = C ? this.table.list : t, q = Vt(a);
-          F.forEach((z, A) => {
+          const j = C ? this.table.list : t, q = Vt(a);
+          j.forEach((z, A) => {
             const V = z[r];
             z[`_formatted_${r}`] = q[V] || (w == null ? void 0 : w(V, z, A)) || V;
           });
@@ -818,7 +818,7 @@ class st extends tt {
     });
     if (!a.data.length)
       return;
-    const r = Fe.mapField(a.data, o, n);
+    const r = je.mapField(a.data, o, n);
     this.table.list.forEach((h) => {
       h[`_formatted_${s.prop}`] = r[h[s.prop]];
     });
@@ -970,7 +970,7 @@ const At = {
     actionSheet: Object
   }
 };
-function Tt(e, t, s, l, i, n) {
+function Ft(e, t, s, l, i, n) {
   const o = u("van-action-sheet");
   return d(), f(o, b(e.$attrs, {
     show: s.actionSheet.show,
@@ -978,7 +978,7 @@ function Tt(e, t, s, l, i, n) {
     actions: s.actionSheet.actions
   }), null, 16, ["show", "actions"]);
 }
-const jt = /* @__PURE__ */ E(Ot, [["render", Tt]]), Ft = {
+const Tt = /* @__PURE__ */ E(Ot, [["render", Ft]]), jt = {
   name: "XAutoRows",
   props: {
     span: {
@@ -1017,7 +1017,7 @@ function Bt(e, t, s, l, i, n) {
             p.slot || e.$attrs.slot ? x(e.$slots, p.slot || e.$attrs.slot, {
               key: 0,
               col: p
-            }) : (d(), _("span", Rt, T(p.text), 1))
+            }) : (d(), _("span", Rt, F(p.text), 1))
           ]),
           _: 2
         }, 1040, ["span", "platform"]))), 128))
@@ -1026,7 +1026,7 @@ function Bt(e, t, s, l, i, n) {
     }, 1040, ["platform"]))), 128))
   ]);
 }
-const It = /* @__PURE__ */ E(Ft, [["render", Bt]]), Mt = {
+const It = /* @__PURE__ */ E(jt, [["render", Bt]]), Mt = {
   name: "MobileXButton"
 };
 function Nt(e, t, s, l, i, n) {
@@ -1238,7 +1238,7 @@ const qt = /* @__PURE__ */ E(Pt, [["render", Ut]]), { funcs: Xt } = StardustBrow
         } else
           k[D] || C.push(D), k[D] || (k[D] = []), k[D].push(V[l]);
       });
-      const F = h && !O ? [...new Set(s.map((V) => V[w]))] : C;
+      const j = h && !O ? [...new Set(s.map((V) => V[w]))] : C;
       if (h)
         for (let V in k)
           for (let D in k[V])
@@ -1250,10 +1250,10 @@ const qt = /* @__PURE__ */ E(Pt, [["render", Ut]]), { funcs: Xt } = StardustBrow
       else
         for (let V in k)
           k[V] = this.calcSummary(k[V], i);
-      let q = F;
-      typeof e.series == "object" && e.series.formatter && (q = F.map((V) => e.series.formatter(V)));
+      let q = j;
+      typeof e.series == "object" && e.series.formatter && (q = j.map((V) => e.series.formatter(V)));
       let z = [];
-      h ? z = F.map((V, D) => ({
+      h ? z = j.map((V, D) => ({
         name: q[D],
         type: n,
         label: { show: !0, position: "top" },
@@ -1263,7 +1263,7 @@ const qt = /* @__PURE__ */ E(Pt, [["render", Ut]]), { funcs: Xt } = StardustBrow
           type: n,
           colorBy: "data",
           label: { show: !0, position: "top" },
-          data: F.map((V) => ({ name: V, value: k[V] }))
+          data: j.map((V) => ({ name: V, value: k[V] }))
         }
       ], Object.assign(r, {
         legend: { data: q },
@@ -1313,11 +1313,11 @@ xe.setup = Be ? (e, t) => (Re(), Be(e, t)) : Re;
 const he = (e) => (ke("data-v-94e70f82"), e = e(), Ce(), e), Wt = { class: "x-chart" }, Ht = {
   class: "chart",
   ref: "el"
-}, Jt = /* @__PURE__ */ he(() => /* @__PURE__ */ j("span", null, "左", -1)), Kt = /* @__PURE__ */ he(() => /* @__PURE__ */ j("span", null, "上", -1)), Yt = /* @__PURE__ */ he(() => /* @__PURE__ */ j("span", null, "右", -1)), Gt = /* @__PURE__ */ he(() => /* @__PURE__ */ j("span", null, "下", -1));
+}, Jt = /* @__PURE__ */ he(() => /* @__PURE__ */ T("span", null, "左", -1)), Kt = /* @__PURE__ */ he(() => /* @__PURE__ */ T("span", null, "上", -1)), Yt = /* @__PURE__ */ he(() => /* @__PURE__ */ T("span", null, "右", -1)), Gt = /* @__PURE__ */ he(() => /* @__PURE__ */ T("span", null, "下", -1));
 function Qt(e, t, s, l, i, n) {
   const o = u("pc-x-icon"), a = u("el-input-number"), r = u("el-col"), h = u("el-row"), p = u("el-checkbox"), w = u("el-tab-pane"), y = u("el-tabs"), O = u("x-form"), k = u("x-dialog"), R = ee("loading");
   return B((d(), _("div", Wt, [
-    j("div", Ht, null, 512),
+    T("div", Ht, null, 512),
     s.datasource ? (d(), _("div", {
       key: 0,
       class: "settings flex-center",
@@ -1409,7 +1409,7 @@ function Qt(e, t, s, l, i, n) {
                       ]),
                       _: 1
                     }, 8, ["modelValue"]),
-                    B(j("div", null, [
+                    B(T("div", null, [
                       $(" 记录条数 "),
                       m(a, {
                         modelValue: n.categories.limit,
@@ -1427,7 +1427,7 @@ function Qt(e, t, s, l, i, n) {
                         _: 1
                       }, 8, ["modelValue"])
                     ], 512), [
-                      [Te, n.categories.isLimit]
+                      [Fe, n.categories.isLimit]
                     ])
                   ]),
                   _: 1
@@ -1446,7 +1446,7 @@ function Qt(e, t, s, l, i, n) {
                       ]),
                       _: 1
                     }, 8, ["modelValue"]),
-                    B(j("div", null, [
+                    B(T("div", null, [
                       $(" 记录条数 "),
                       m(a, {
                         modelValue: n.series.limit,
@@ -1464,7 +1464,7 @@ function Qt(e, t, s, l, i, n) {
                         _: 1
                       }, 8, ["modelValue"])
                     ], 512), [
-                      [Te, n.series.isLimit]
+                      [Fe, n.series.isLimit]
                     ])
                   ]),
                   _: 1
@@ -1542,7 +1542,7 @@ function ts(e, t, s, l, i, n) {
         name: r[s.value]
       }), {
         default: c(() => [
-          $(T(r[s.text]), 1)
+          $(F(r[s.text]), 1)
         ]),
         _: 2
       }, 1040, ["shape", "name"]))), 128))
@@ -1601,7 +1601,7 @@ function is(e, t, s, l, i, n) {
         label: r[s.value]
       }), {
         default: c(() => [
-          $(T(r[s.text]), 1)
+          $(F(r[s.text]), 1)
         ]),
         _: 2
       }, 1040, ["label"]))), 128))
@@ -1697,7 +1697,7 @@ function ps(e, t, s, l, i, n) {
     e.$slots.title || s.title ? {
       name: "title",
       fn: c(() => [
-        e.$slots.title ? x(e.$slots, "title", { key: 0 }) : (d(), _("span", ms, T(s.title), 1))
+        e.$slots.title ? x(e.$slots, "title", { key: 0 }) : (d(), _("span", ms, F(s.title), 1))
       ]),
       key: "0"
     } : void 0,
@@ -1788,7 +1788,7 @@ function _s(e, t, s, l, i, n) {
     class: ["pc-x-dialog", { "pc-x-drawer": s.drawer }]
   }), {
     header: c(() => [
-      e.$slots.header ? x(e.$slots, "header", { key: 0 }) : (d(), _("span", bs, T(s.title), 1)),
+      e.$slots.header ? x(e.$slots, "header", { key: 0 }) : (d(), _("span", bs, F(s.title), 1)),
       s.drawer ? S("", !0) : (d(), f(o, {
         key: 2,
         name: "FullScreen",
@@ -1806,7 +1806,7 @@ function _s(e, t, s, l, i, n) {
         onClick: t[0] || (t[0] = (r) => e.$emit("submit"))
       }, {
         default: c(() => [
-          $(T(s.submitText), 1)
+          $(F(s.submitText), 1)
         ]),
         _: 1
       }, 8, ["disabled"])) : S("", !0),
@@ -1816,7 +1816,7 @@ function _s(e, t, s, l, i, n) {
         onClick: t[1] || (t[1] = (r) => e.$emit("cancel"))
       }, {
         default: c(() => [
-          $(T(s.cancelText), 1)
+          $(F(s.cancelText), 1)
         ]),
         _: 1
       }, 8, ["disabled"])) : S("", !0)
@@ -2042,7 +2042,7 @@ const ie = {
     calcStyle: As,
     formatModelValue: Os
   }
-}, Ts = {
+}, Fs = {
   name: "MobileXForm",
   inheritAttrs: !1,
   props: {
@@ -2068,7 +2068,7 @@ const ie = {
     ...ie.methods
   }
 };
-function js(e, t, s, l, i, n) {
+function Ts(e, t, s, l, i, n) {
   const o = u("mobile-x-form-item"), a = u("van-cell-group"), r = u("van-form");
   return d(), f(r, {
     ref: "formRef",
@@ -2098,7 +2098,7 @@ function js(e, t, s, l, i, n) {
     _: 3
   }, 8, ["class"]);
 }
-const Fs = /* @__PURE__ */ E(Ts, [["render", js]]), Ds = {
+const js = /* @__PURE__ */ E(Fs, [["render", Ts]]), Ds = {
   name: "PcXForm",
   inheritAttrs: !1,
   props: {
@@ -2153,7 +2153,7 @@ function Bs(e, t, s, l, i, n) {
         name: i.activeNames[0]
       }, {
         title: c(() => [
-          e.$slots["collapse-title"] ? x(e.$slots, "collapse-title", { key: 0 }) : (d(), _("span", Rs, T(s.title), 1))
+          e.$slots["collapse-title"] ? x(e.$slots, "collapse-title", { key: 0 }) : (d(), _("span", Rs, F(s.title), 1))
         ]),
         default: c(() => [
           m(a, b({ ref: "formRef" }, e.$attrs, {
@@ -2545,6 +2545,7 @@ function Zs() {
     onSearchExport: Function,
     onImport: Function,
     onMultiDelete: Function,
+    onLoad: Function,
     controller: Object,
     listen: {
       type: String,
@@ -2737,7 +2738,7 @@ function An() {
 function On(e) {
   nt.setJson(`Settings[${this._uid}]`, e);
 }
-function Tn(e, t) {
+function Fn(e, t) {
   const { prop: s } = t;
   let { format: l, formatter: i } = t.tableAttrs || t;
   l = Array.isArray(t.options) ? l !== !1 : l;
@@ -2753,13 +2754,13 @@ function Tn(e, t) {
   }
   return n;
 }
-function jn(e) {
+function Tn(e) {
   if (["index", "selection", "expand"].includes(e.type))
     return !1;
   const { showOverflowTooltip: t } = e.tableAttrs || e;
   return t !== !1;
 }
-function Fn(e) {
+function jn(e) {
   this.params = e, this._emit("search", e);
 }
 function Dn(e) {
@@ -2906,9 +2907,9 @@ const U = {
   methods: {
     initSettings: An,
     saveSettings: On,
-    calcValue: Tn,
-    calcOverflowTooltip: jn,
-    handleSearch: Fn,
+    calcValue: Fn,
+    calcOverflowTooltip: Tn,
+    handleSearch: jn,
     handleResetSettings: Dn,
     handleHeaderDragend: Rn,
     handleSelectionChange: Bn,
@@ -3004,7 +3005,7 @@ function ii(e, t, s, l, i, n) {
                 default: c(() => [
                   y.slot ? (d(), _("span", si, [
                     x(e.$slots, y.slot, ce(qe({ data: s.data, field: y, value: n.calcValue(s.data, y) })), void 0, !0)
-                  ])) : (d(), _("span", ni, T(n.calcValue(s.data, y)), 1))
+                  ])) : (d(), _("span", ni, F(n.calcValue(s.data, y)), 1))
                 ]),
                 _: 2
               }, [
@@ -3042,7 +3043,7 @@ function ri(e, t, s, l, i, n) {
         o.slot || e.$attrs.slot ? x(e.$slots, "default", {
           key: 0,
           item: o
-        }) : (d(), _("span", ai, T(o.text), 1))
+        }) : (d(), _("span", ai, F(o.text), 1))
       ]),
       _: 2
     }, 1040))), 128))
@@ -3078,7 +3079,7 @@ function ui(e, t, s, l, i, n) {
     default: c(() => [
       m(o, { span: 6 }, {
         default: c(() => [
-          j("span", null, "总计: " + T(s.total), 1)
+          T("span", null, "总计: " + F(s.total), 1)
         ]),
         _: 1
       }),
@@ -3102,7 +3103,7 @@ function ui(e, t, s, l, i, n) {
               m(a, { name: "arrow" })
             ]),
             page: c(({ text: p }) => [
-              $(T(p), 1)
+              $(F(p), 1)
             ]),
             _: 1
           }, 16, ["items-per-page", "total-items", "modelValue", "page-count"])
@@ -3182,10 +3183,10 @@ const fi = /* @__PURE__ */ E(mi, [["render", pi]]), gi = {
 function bi(e, t, s, l, i, n) {
   const o = u("van-picker"), a = u("van-popup");
   return d(), _(I, null, [
-    j("span", {
+    T("span", {
       onClick: t[0] || (t[0] = (r) => e.$emit("show")),
       class: K(`x-picker__${s.modelValue ? "value" : "placeholder"}`)
-    }, T(s.modelValue || s.placeholder), 3),
+    }, F(s.modelValue || s.placeholder), 3),
     m(a, b({
       class: "x-picker",
       round: "",
@@ -3244,7 +3245,7 @@ function vi(e, t, s, l, i, n) {
         name: r[s.value]
       }), {
         default: c(() => [
-          $(T(r[s.text]), 1)
+          $(F(r[s.text]), 1)
         ]),
         _: 2
       }, 1040, ["name"]))), 128))
@@ -3307,7 +3308,7 @@ function ki(e, t, s, l, i, n) {
         label: a[s.value]
       }), {
         default: c(() => [
-          $(T(a[s.text]), 1)
+          $(F(a[s.text]), 1)
         ]),
         _: 2
       }, 1040, ["label"]))), 128))
@@ -3333,7 +3334,7 @@ function Vi(e, t, s, l, i, n) {
           r.slot || e.$attrs.slot ? x(e.$slots, r.slot || e.$attrs.slot, {
             key: 0,
             col: r
-          }) : (d(), _("span", xi, T(r.text), 1))
+          }) : (d(), _("span", xi, F(r.text), 1))
         ]),
         _: 2
       }, 1040))), 128)),
@@ -3351,7 +3352,7 @@ const Ei = /* @__PURE__ */ E($i, [["render", Vi]]), Ai = {
     }
   }
 }, Oi = { key: 1 };
-function Ti(e, t, s, l, i, n) {
+function Fi(e, t, s, l, i, n) {
   const o = u("pc-x-col"), a = u("el-row");
   return d(), f(a, { class: "pc-x-row" }, {
     default: c(() => [
@@ -3360,7 +3361,7 @@ function Ti(e, t, s, l, i, n) {
           r.slot || e.$attrs.slot ? x(e.$slots, r.slot || e.$attrs.slot, {
             key: 0,
             col: r
-          }) : (d(), _("span", Oi, T(r.text), 1))
+          }) : (d(), _("span", Oi, F(r.text), 1))
         ]),
         _: 2
       }, 1040))), 128)),
@@ -3369,7 +3370,7 @@ function Ti(e, t, s, l, i, n) {
     _: 3
   });
 }
-const ji = /* @__PURE__ */ E(Ai, [["render", Ti]]), Fi = {
+const Ti = /* @__PURE__ */ E(Ai, [["render", Fi]]), ji = {
   name: "MobileXScan",
   props: {
     modelValue: String,
@@ -3412,7 +3413,7 @@ function Di(e, t, s, l, i, n) {
     _: 1
   }, 16, ["label", "modelValue", "readonly", "onClick"]);
 }
-const Ri = /* @__PURE__ */ E(Fi, [["render", Di]]), Bi = {
+const Ri = /* @__PURE__ */ E(ji, [["render", Di]]), Bi = {
   name: "PcXScan",
   props: {
     modelValue: String,
@@ -3615,8 +3616,8 @@ function Ji(e, t, s, l, i, n) {
             text: s.text,
             value: s.value
           }, void 0, !0) : (d(), _("span", zi, [
-            j("span", Wi, T(n.calcMainLabel(r)), 1),
-            j("span", Hi, T(n.calcRemarkLabel(r)), 1)
+            T("span", Wi, F(n.calcMainLabel(r)), 1),
+            T("span", Hi, F(n.calcRemarkLabel(r)), 1)
           ]))
         ]),
         _: 2
@@ -3968,7 +3969,7 @@ const { storage: ge } = StardustBrowser, { deepCopy: Zi } = StardustJs.funcs, el
         tagTypes: R,
         tagValues: g,
         width: C,
-        minWidth: F,
+        minWidth: j,
         disabled: q,
         readonly: z,
         ...A
@@ -4130,13 +4131,13 @@ function hl(e, t, s, l, i, n) {
       (d(!0), _(I, null, N(e._data, (g, C) => (d(), _("div", {
         key: C,
         class: "row",
-        onClick: (F) => n.handleClickCard(C)
+        onClick: (j) => n.handleClickCard(C)
       }, [
-        j("div", ll, [
+        T("div", ll, [
           n.hasSelection ? (d(), f(r, {
             key: 0,
             modelValue: i.selected[C],
-            "onUpdate:modelValue": (F) => i.selected[C] = F,
+            "onUpdate:modelValue": (j) => i.selected[C] = j,
             shape: "square",
             class: "selection",
             onClick: t[0] || (t[0] = Z(() => {
@@ -4145,7 +4146,7 @@ function hl(e, t, s, l, i, n) {
           m(h, {
             name: "ellipsis",
             class: "more",
-            onClick: Z((F) => n.handleShowActionSheet(g, C), ["stop"])
+            onClick: Z((j) => n.handleShowActionSheet(g, C), ["stop"])
           }, null, 8, ["onClick"])
         ]),
         n.hasRadio ? (d(), _("input", {
@@ -4156,14 +4157,14 @@ function hl(e, t, s, l, i, n) {
           class: "radio",
           onClick: t[1] || (t[1] = Z(() => {
           }, ["stop"])),
-          onChange: t[2] || (t[2] = (...F) => e.handleCheckedChange && e.handleCheckedChange(...F))
+          onChange: t[2] || (t[2] = (...j) => e.handleCheckedChange && e.handleCheckedChange(...j))
         }, null, 40, ol)) : S("", !0),
-        (d(!0), _(I, null, N(n.cols, (F, q) => (d(), _("div", {
+        (d(!0), _(I, null, N(n.cols, (j, q) => (d(), _("div", {
           key: q,
           class: "field"
         }, [
-          j("span", al, T(F.label) + ":", 1),
-          j("span", rl, T(e.calcValue(g, F)), 1)
+          T("span", al, F(j.label) + ":", 1),
+          T("span", rl, F(e.calcValue(g, j)), 1)
         ]))), 128))
       ], 8, il))), 128))
     ])) : (s.mode || e._attrs.mode) === "list" ? (d(), f(w, b({
@@ -4176,13 +4177,13 @@ function hl(e, t, s, l, i, n) {
         (d(!0), _(I, null, N(e._data, (g, C) => (d(), f(p, {
           key: C,
           "is-link": "",
-          onClick: (F) => n.handleShowDetail(g, C)
+          onClick: (j) => n.handleShowDetail(g, C)
         }, {
           default: c(() => [
             n.hasSelection ? (d(), f(r, {
               key: 0,
               modelValue: i.selected[C],
-              "onUpdate:modelValue": (F) => i.selected[C] = F,
+              "onUpdate:modelValue": (j) => i.selected[C] = j,
               shape: "square",
               class: "selection",
               onClick: t[3] || (t[3] = Z(() => {
@@ -4196,10 +4197,10 @@ function hl(e, t, s, l, i, n) {
               class: "radio",
               onClick: t[4] || (t[4] = Z(() => {
               }, ["stop"])),
-              onChange: t[5] || (t[5] = (...F) => e.handleCheckedChange && e.handleCheckedChange(...F))
+              onChange: t[5] || (t[5] = (...j) => e.handleCheckedChange && e.handleCheckedChange(...j))
             }, null, 40, dl)) : S("", !0),
-            n.hasIndex ? (d(), _("span", cl, T(C + 1), 1)) : S("", !0),
-            j("span", ul, T(n.calcTitle(g)), 1)
+            n.hasIndex ? (d(), _("span", cl, F(C + 1), 1)) : S("", !0),
+            T("span", ul, F(n.calcTitle(g)), 1)
           ]),
           _: 2
         }, 1032, ["onClick"]))), 128))
@@ -4320,7 +4321,7 @@ const ml = /* @__PURE__ */ E(tl, [["render", hl], ["__scopeId", "data-v-84e93229
 }, fl = (e) => (ke("data-v-a2f0fe24"), e = e(), Ce(), e), gl = {
   class: "table",
   ref: "colsTable"
-}, bl = ["data-prop"], _l = ["title", "onClick"], yl = /* @__PURE__ */ fl(() => /* @__PURE__ */ j("span", { class: "unit" }, "px", -1)), vl = {
+}, bl = ["data-prop"], _l = ["title", "onClick"], yl = /* @__PURE__ */ fl(() => /* @__PURE__ */ T("span", { class: "unit" }, "px", -1)), vl = {
   class: "table",
   ref: "sortsTable"
 }, wl = ["data-prop"];
@@ -4360,7 +4361,7 @@ function Sl(e, t, s, l, i, n) {
                 ]),
                 _: 1
               }, 8, ["onClick"]),
-              j("div", gl, [
+              T("div", gl, [
                 (d(!0), _(I, null, N(i.columns, (g) => (d(), _("div", {
                   key: g.prop,
                   "data-prop": g.prop,
@@ -4377,11 +4378,11 @@ function Sl(e, t, s, l, i, n) {
                     "onUpdate:modelValue": (C) => g.show = C,
                     onChange: n.update
                   }, null, 8, ["modelValue", "onUpdate:modelValue", "onChange"]),
-                  j("span", {
+                  T("span", {
                     class: "label overflow-text",
                     title: g.label,
                     onClick: (C) => n.handleToggle(g)
-                  }, T(g.label), 9, _l),
+                  }, F(g.label), 9, _l),
                   m(p, {
                     modelValue: g.width,
                     "onUpdate:modelValue": (C) => g.width = C,
@@ -4409,7 +4410,7 @@ function Sl(e, t, s, l, i, n) {
                 ]),
                 _: 1
               }, 8, ["onClick"]),
-              j("div", vl, [
+              T("div", vl, [
                 (d(!0), _(I, null, N(i.sorts, (g, C) => (d(), _("div", {
                   key: g[0],
                   "data-prop": g[0],
@@ -4417,7 +4418,7 @@ function Sl(e, t, s, l, i, n) {
                 }, [
                   m(y, {
                     modelValue: g[0],
-                    "onUpdate:modelValue": (F) => g[0] = F,
+                    "onUpdate:modelValue": (j) => g[0] = j,
                     options: i.sortableColumns,
                     text: "label",
                     value: "prop",
@@ -4426,14 +4427,14 @@ function Sl(e, t, s, l, i, n) {
                   }, null, 8, ["modelValue", "onUpdate:modelValue", "options"]),
                   m(O, {
                     modelValue: g[1],
-                    "onUpdate:modelValue": (F) => g[1] = F,
+                    "onUpdate:modelValue": (j) => g[1] = j,
                     options: i.sortOptions
                   }, null, 8, ["modelValue", "onUpdate:modelValue", "options"]),
                   m(o, {
                     type: "danger",
                     plain: "",
                     icon: "DeleteFilled",
-                    onClick: (F) => i.sorts.splice(C, 1)
+                    onClick: (j) => i.sorts.splice(C, 1)
                   }, null, 8, ["onClick"])
                 ], 8, wl))), 128))
               ], 512)
@@ -4525,11 +4526,11 @@ const lt = /* @__PURE__ */ E(pl, [["render", Sl], ["__scopeId", "data-v-a2f0fe24
 }, xl = {
   key: 2,
   class: "collapse-title"
-}, Vl = /* @__PURE__ */ j("span", null, "-", -1), El = ["value", "checked"], Al = { key: 1 };
+}, Vl = /* @__PURE__ */ T("span", null, "-", -1), El = ["value", "checked"], Al = { key: 1 };
 function Ol(e, t, s, l, i, n) {
-  const o = u("searcher"), a = u("pc-x-icon"), r = u("settings"), h = u("pc-x-table-tools"), p = u("el-image"), w = u("el-tag"), y = u("el-icon"), O = u("el-table-column"), k = u("el-button"), R = u("el-dropdown-item"), g = u("el-dropdown-menu"), C = u("el-dropdown"), F = u("el-table"), q = u("x-pagination"), z = u("el-collapse-item"), A = u("el-collapse"), V = u("x-chart"), D = u("x-dialog"), M = ee("domid"), L = ee("loading"), le = ee("el-table-infinite-scroll");
+  const o = u("searcher"), a = u("pc-x-icon"), r = u("settings"), h = u("pc-x-table-tools"), p = u("el-image"), w = u("el-tag"), y = u("el-icon"), O = u("el-table-column"), k = u("el-button"), R = u("el-dropdown-item"), g = u("el-dropdown-menu"), C = u("el-dropdown"), j = u("el-table"), q = u("x-pagination"), z = u("el-collapse-item"), A = u("el-collapse"), V = u("x-chart"), D = u("x-dialog"), M = ee("domid"), L = ee("loading"), le = ee("el-table-infinite-scroll");
   return d(), _(I, null, [
-    j("div", {
+    T("div", {
       class: K(["pc-x-table", { fullscreen: i.isFullscreen, "hide-header": e.hideHeader }])
     }, [
       m(o, {
@@ -4550,13 +4551,13 @@ function Ol(e, t, s, l, i, n) {
             name: i.activeNames[0]
           }, {
             title: c(() => [
-              e.$slots["collapse-title"] ? x(e.$slots, "collapse-title", { key: 0 }) : i.activeNames.length ? (d(), _("span", $l, T(e.title), 1)) : (d(), _("span", xl, [
-                $(T(e.title) + "，当前第 ", 1),
-                j("span", null, T(e._query.page), 1),
+              e.$slots["collapse-title"] ? x(e.$slots, "collapse-title", { key: 0 }) : i.activeNames.length ? (d(), _("span", $l, F(e.title), 1)) : (d(), _("span", xl, [
+                $(F(e.title) + "，当前第 ", 1),
+                T("span", null, F(e._query.page), 1),
                 $(" 页，展示 "),
-                j("span", null, T(e._data.length), 1),
+                T("span", null, F(e._data.length), 1),
                 $(" 条数据， 共 "),
-                j("span", null, T(e._total || e._data.length), 1),
+                T("span", null, F(e._total || e._data.length), 1),
                 $(" 条数据 ")
               ]))
             ]),
@@ -4577,7 +4578,7 @@ function Ol(e, t, s, l, i, n) {
                     class: "chart",
                     onClick: n.handleShowPieDialog
                   }, null, 8, ["onClick"])),
-                  j("span", {
+                  T("span", {
                     class: "minus",
                     onClick: t[0] || (t[0] = (...v) => e.handleMinus && e.handleMinus(...v))
                   }, [
@@ -4616,7 +4617,7 @@ function Ol(e, t, s, l, i, n) {
                   key: "1"
                 } : void 0
               ]), 1040, ["domids", "onAdd", "onSearch", "onExport", "onSearchExport", "onImport", "onMultiDelete"])) : S("", !0),
-              B((d(), f(F, b({ ref: "tableRef" }, e.elTableAttrs, {
+              B((d(), f(j, b({ ref: "tableRef" }, e.elTableAttrs, {
                 "infinite-scroll-disabled": e.infiniteScrollDisabled,
                 onHeaderDragend: e.handleHeaderDragend,
                 onSelectionChange: e.handleSelectionChange,
@@ -4649,7 +4650,7 @@ function Ol(e, t, s, l, i, n) {
                           type: e.calcTagType(P, v)
                         }, {
                           default: c(() => [
-                            $(T(e.calcTagValue(P, v)), 1)
+                            $(F(e.calcTagValue(P, v)), 1)
                           ]),
                           _: 2
                         }, 1032, ["type"])) : v.slot === "$icon" ? (d(), f(y, {
@@ -4675,7 +4676,7 @@ function Ol(e, t, s, l, i, n) {
                             modelValue: P.row[v.prop],
                             "onUpdate:modelValue": (pe) => P.row[v.prop] = pe,
                             disabled: !P.row.editable || !P.row.isEditing
-                          }), null, 16, ["modelValue", "onUpdate:modelValue", "disabled"])) : (d(), _("span", Al, T(e.calcValue(P.row, v)), 1))
+                          }), null, 16, ["modelValue", "onUpdate:modelValue", "disabled"])) : (d(), _("span", Al, F(e.calcValue(P.row, v)), 1))
                         ], 64))
                       ]),
                       key: "0"
@@ -4866,7 +4867,7 @@ function Ol(e, t, s, l, i, n) {
     }, 8, ["modelValue", "onFullscreenchange"]))
   ], 64);
 }
-const Tl = /* @__PURE__ */ E(Cl, [["render", Ol]]), jl = {
+const Fl = /* @__PURE__ */ E(Cl, [["render", Ol]]), Tl = {
   name: "MobileXTableTools",
   inheritAttrs: !1,
   props: {
@@ -4878,10 +4879,10 @@ const Tl = /* @__PURE__ */ E(Cl, [["render", Ol]]), jl = {
     importBtn: Object,
     domids: Object
   }
-}, Fl = { class: "mobile-x-table-tools" }, Dl = { key: 0 }, Rl = { class: "tools" }, Bl = { class: "tools-end" };
+}, jl = { class: "mobile-x-table-tools" }, Dl = { key: 0 }, Rl = { class: "tools" }, Bl = { class: "tools-end" };
 function Il(e, t, s, l, i, n) {
   const o = u("van-floating-bubble"), a = u("mobile-x-icon"), r = u("van-button"), h = ee("domid");
-  return d(), _("div", Fl, [
+  return d(), _("div", jl, [
     e.$attrs.onAdd ? B((d(), _("div", Dl, [
       m(o, {
         axis: "xy",
@@ -4894,7 +4895,7 @@ function Il(e, t, s, l, i, n) {
     ])), [
       [h, s.domids.add]
     ]) : S("", !0),
-    j("div", Rl, [
+    T("div", Rl, [
       x(e.$slots, "tools-prefix", {}, void 0, !0),
       e.$attrs.onSearch ? B((d(), f(r, b({ key: 0 }, { type: "success", ...s.searchBtn }, {
         onClick: t[1] || (t[1] = (p) => e.$emit("search"))
@@ -4963,13 +4964,13 @@ function Il(e, t, s, l, i, n) {
         [h, s.domids.import]
       ]) : S("", !0),
       x(e.$slots, "tools-suffix", {}, void 0, !0),
-      j("div", Bl, [
+      T("div", Bl, [
         x(e.$slots, "tools-end", {}, void 0, !0)
       ])
     ])
   ]);
 }
-const Ml = /* @__PURE__ */ E(jl, [["render", Il], ["__scopeId", "data-v-6ef6b95e"]]), Nl = {
+const Ml = /* @__PURE__ */ E(Tl, [["render", Il], ["__scopeId", "data-v-6ef6b95e"]]), Nl = {
   name: "PcXTableTools",
   inheritAttrs: !1,
   props: {
@@ -4990,7 +4991,7 @@ function Ul(e, t, s, l, i, n) {
     class: "pc-x-table-tools"
   }, {
     default: c(() => [
-      j("div", Ll, [
+      T("div", Ll, [
         x(e.$slots, "tools-prefix", {}, void 0, !0),
         e.$attrs.onSearch ? B((d(), f(o, b({ key: 0 }, { type: "success", ...s.searchBtn }, {
           icon: "search",
@@ -5070,7 +5071,7 @@ function Ul(e, t, s, l, i, n) {
           [r, s.domids.import]
         ]) : S("", !0),
         x(e.$slots, "tools-suffix", {}, void 0, !0),
-        j("div", Pl, [
+        T("div", Pl, [
           x(e.$slots, "tools-end", {}, void 0, !0)
         ])
       ])
@@ -5309,7 +5310,7 @@ function no(e, t, s, l, i, n) {
           name: i.activeNames[0]
         }, {
           title: c(() => [
-            e.$slots["collapse-title"] ? x(e.$slots, "collapse-title", { key: 0 }) : (d(), _("span", so, T(e.title), 1))
+            e.$slots["collapse-title"] ? x(e.$slots, "collapse-title", { key: 0 }) : (d(), _("span", so, F(e.title), 1))
           ]),
           default: c(() => [
             e.hideTools !== "" && e.hideTools !== !0 ? (d(), f(h, b({ key: 0 }, e._attrs, {
@@ -5542,7 +5543,7 @@ function ho(e, t, s, l, i, n) {
       onClose: (h) => e.$emit("close", a.text, r)
     }), {
       default: c(() => [
-        $(T(a.text), 1)
+        $(F(a.text), 1)
       ]),
       _: 2
     }, 1040, ["onClose"]))), 128))
@@ -5568,7 +5569,7 @@ function go(e, t, s, l, i, n) {
       onClose: (h) => e.$emit("close", a.text, r)
     }), {
       default: c(() => [
-        $(T(a.text), 1)
+        $(F(a.text), 1)
       ]),
       _: 2
     }, 1040, ["onClose"]))), 128))
@@ -5653,7 +5654,7 @@ const bo = /* @__PURE__ */ E(po, [["render", go], ["__scopeId", "data-v-4674d140
 }, yo = { class: "x-tinymce" }, vo = ["id", "innerHTML"];
 function wo(e, t, s, l, i, n) {
   return d(), _("div", yo, [
-    j("textarea", {
+    T("textarea", {
       id: i.id,
       innerHTML: s.modelValue
     }, null, 8, vo)
@@ -5713,7 +5714,7 @@ const So = /* @__PURE__ */ E(_o, [["render", wo]]), ko = {
 }, Oe = (e) => (ke("data-v-a3a105f3"), e = e(), Ce(), e), Co = { class: "mask" }, $o = {
   key: 0,
   class: "el-upload__text"
-}, xo = /* @__PURE__ */ Oe(() => /* @__PURE__ */ j("em", null, "点击上传", -1)), Vo = /* @__PURE__ */ Oe(() => /* @__PURE__ */ j("br", null, null, -1)), Eo = /* @__PURE__ */ Oe(() => /* @__PURE__ */ j("br", null, null, -1)), Ao = {
+}, xo = /* @__PURE__ */ Oe(() => /* @__PURE__ */ T("em", null, "点击上传", -1)), Vo = /* @__PURE__ */ Oe(() => /* @__PURE__ */ T("br", null, null, -1)), Eo = /* @__PURE__ */ Oe(() => /* @__PURE__ */ T("br", null, null, -1)), Ao = {
   key: 0,
   class: "path"
 };
@@ -5732,7 +5733,7 @@ function Oo(e, t, s, l, i, n) {
     class: "x-file-uploader"
   }, e.$attrs), {
     default: c(() => [
-      j("div", Co, [
+      T("div", Co, [
         m(o, { name: "upload-filled" }),
         i.disabled ? S("", !0) : (d(), _("div", $o, [
           $(" 将文件拖到此处，或"),
@@ -5751,12 +5752,12 @@ function Oo(e, t, s, l, i, n) {
           }, 8, ["onClick"])) : S("", !0)
         ]))
       ]),
-      n.filepath ? (d(), _("div", Ao, T(s.modelValue), 1)) : S("", !0)
+      n.filepath ? (d(), _("div", Ao, F(s.modelValue), 1)) : S("", !0)
     ]),
     _: 1
   }, 16, ["file-list", "disabled", "action", "accept", "multiple", "on-success"]);
 }
-const To = /* @__PURE__ */ E(ko, [["render", Oo], ["__scopeId", "data-v-a3a105f3"]]), jo = {
+const Fo = /* @__PURE__ */ E(ko, [["render", Oo], ["__scopeId", "data-v-a3a105f3"]]), To = {
   name: "XImageUploader",
   props: {
     modelValue: Array | String,
@@ -5806,7 +5807,7 @@ const To = /* @__PURE__ */ E(ko, [["render", Oo], ["__scopeId", "data-v-a3a105f3
       W({ type: "warning", message: "超出图片限制数量" });
     }
   }
-}, Fo = ["src"];
+}, jo = ["src"];
 function Do(e, t, s, l, i, n) {
   const o = u("Plus"), a = u("el-icon"), r = u("el-upload"), h = u("el-dialog");
   return d(), _(I, null, [
@@ -5844,17 +5845,17 @@ function Do(e, t, s, l, i, n) {
       title: "预览图片" + i.previewingImage.name
     }, {
       default: c(() => [
-        j("img", {
+        T("img", {
           src: i.previewingImage.url,
           alt: "previewing-image"
-        }, null, 8, Fo)
+        }, null, 8, jo)
       ]),
       _: 1
     }, 8, ["modelValue", "title"])
   ], 64);
 }
-const Ro = /* @__PURE__ */ E(jo, [["render", Do], ["__scopeId", "data-v-87a71ccc"]]), _e = {
-  xactionsheet: jt,
+const Ro = /* @__PURE__ */ E(To, [["render", Do], ["__scopeId", "data-v-87a71ccc"]]), _e = {
+  xactionsheet: Tt,
   xautorows: It,
   mobilexbutton: Lt,
   pcxbutton: qt,
@@ -5866,7 +5867,7 @@ const Ro = /* @__PURE__ */ E(jo, [["render", Do], ["__scopeId", "data-v-87a71ccc
   mobilexdialog: fs,
   pcxdialog: ys,
   xdistrictselect: Ss,
-  mobilexform: Fs,
+  mobilexform: js,
   pcxform: Is,
   mobilexformitem: Ps,
   pcxformitem: Us,
@@ -5880,13 +5881,13 @@ const Ro = /* @__PURE__ */ E(jo, [["render", Do], ["__scopeId", "data-v-87a71ccc
   mobilexradios: wi,
   pcxradios: Ci,
   mobilexrow: Ei,
-  pcxrow: ji,
+  pcxrow: Ti,
   mobilexscan: Ri,
   pcxscan: Mi,
   mobilexselect: qi,
   pcxselect: Ki,
   mobilextable: ml,
-  pcxtable: Tl,
+  pcxtable: Fl,
   mobilextabletools: Ml,
   pcxtabletools: ql,
   xtablev2: io,
@@ -5894,7 +5895,7 @@ const Ro = /* @__PURE__ */ E(jo, [["render", Do], ["__scopeId", "data-v-87a71ccc
   mobilextags: mo,
   pcxtags: bo,
   xtinymce: So,
-  xfileuploader: To,
+  xfileuploader: Fo,
   ximageuploader: Ro
 }, ae = {};
 for (let e in _e)
@@ -5930,7 +5931,7 @@ const Bo = (e) => ({
   for (let s in we)
     e.component(s, we[s]);
 }, No = {
-  version: "1.1.27",
+  version: "1.1.28",
   ...we,
   ...et,
   ...At,
