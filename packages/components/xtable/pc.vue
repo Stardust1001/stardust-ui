@@ -172,6 +172,8 @@ export default {
           ref="tableRef"
           v-bind="elTableAttrs"
           v-loading="_loading"
+          v-el-table-infinite-scroll="$emit('load')"
+          :infinite-scroll-disabled="infiniteScrollDisabled"
           @header-dragend="handleHeaderDragend"
           @selection-change="handleSelectionChange"
           @sort-change="handleSortChange"

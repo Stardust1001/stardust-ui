@@ -38,6 +38,10 @@ export function props () {
       type: Boolean,
       default: false
     },
+    infiniteScrollDisabled: {
+      type: Boolean,
+      default: false
+    },
     onSelectionChange: Function,
     onSortChange: Function,
     onHeaderDragend: Function,
@@ -81,7 +85,8 @@ export function emits () {
     'cancel-edit',
     'delete',
     'export',
-    'search-export'
+    'search-export',
+    'load'
   ]
 }
 
