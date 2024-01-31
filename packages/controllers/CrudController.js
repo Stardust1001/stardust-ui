@@ -22,10 +22,6 @@ class CrudController extends BaseController {
     this._isExporting = false
     // 上次查询条件，json 字符串
     this._lastSearchParams = null
-    // 是否 el-table 无限加载 正在加载中
-    this._isLoading = true
-    // el-table 无限加载，加载前列表
-    this._loadingList = []
 
     this._dbTable = null
 
@@ -126,7 +122,8 @@ class CrudController extends BaseController {
     this.table && this.handleSearch()
   }
 
-  async handleSearch (params) {
+  async handleSearch (params, { isInfinite = false } = {}) {
+    this.table.isInfinite = isInfinite
     if (!await this.beforeSearch(params)) return
     params = this.getSearchParams(params)
     this.table.loading = true
@@ -419,13 +416,15 @@ class CrudController extends BaseController {
   async handleLoad () {
     const { loading, query, total } = this.table
     this.table.isInfinite = true
-    if (this._isLoading || loading || !total) return
-    this._isLoading = true
-    this._loadingList = this.table.list.slice()
+    if (loading || !total) return
     query.page ++
     if (query.page * query.limit >= total) {
       this.table.infiniteScrollDisabled = true
     }
+    const list = this.table.list.slice()
+    await this.handleSearch({}, { isInfinite: true })
+    await this.$sleep(50)
+    this.table.list = list.concat(this.table.list)
   }
 
   get (id) {
@@ -512,11 +511,6 @@ class CrudController extends BaseController {
         const { page, limit, order, count, ...others } = params
         this.dbTable.func(['count', others]).then(data => this.table.total = data.data)
       }
-    }
-    if (this._isLoading) {
-      this.table.isInfinite = true
-      this.table.list = this._loadingList.concat(list)
-      this._isLoading = false
     }
     return list
   }
