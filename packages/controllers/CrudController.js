@@ -122,8 +122,8 @@ class CrudController extends BaseController {
     this.table && this.handleSearch()
   }
 
-  async handleSearch (params) {
-    this.table.isInfinite = false
+  async handleSearch (params, { isInfinite = false } = {}) {
+    this.table.isInfinite = isInfinite
     if (!await this.beforeSearch(params)) return
     params = this.getSearchParams(params)
     this.table.loading = true
@@ -422,8 +422,7 @@ class CrudController extends BaseController {
       this.table.infiniteScrollDisabled = true
     }
     const list = this.table.list.slice()
-    await this.handleSearch()
-    this.table.isInfinite = true
+    await this.handleSearch({}, { isInfinite: true })
     this.table.loading = true
     await this.$sleep(50)
     this.table.list = list.concat(this.table.list)
