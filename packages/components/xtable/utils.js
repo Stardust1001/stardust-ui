@@ -253,7 +253,7 @@ export function _listen () {
 
 export function _visibleColumns () {
   const left = this._columns.filter(col => col.type && TYPES.includes(col.type) || col.fixed === 'left')
-  const right = this.settings.columns.filter(col => col.fixed !== 'left').filter(col => !col.hide).map(col => {
+  const right = this.settings.columns.filter(col => !col.hide && col.fixed !== 'left').map(col => {
     const column = this._columns.find(c => c.prop === col.prop)
     return {
       sortable: 'custom',
@@ -303,8 +303,8 @@ export function initSettings () {
     settings.columns = this._columns.filter(col => {
       return col.label && col.prop && !(col.type && TYPES.includes(col.type))
     }).map(col => {
-      const { prop, label, show, hide, width, virtual } = col
-      return { prop, label, show, hide, width, virtual }
+      const { prop, label, show, hide, width, virtual, fixed } = col
+      return { prop, label, show, hide, width, virtual, fixed }
     })
   }
   this.settings = settings

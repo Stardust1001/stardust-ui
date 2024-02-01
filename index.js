@@ -2710,7 +2710,7 @@ function $n() {
   }), t;
 }
 function xn() {
-  const e = this._columns.filter((s) => s.type && Oe.includes(s.type) || s.fixed === "left"), t = this.settings.columns.filter((s) => s.fixed !== "left").filter((s) => !s.hide).map((s) => {
+  const e = this._columns.filter((s) => s.type && Oe.includes(s.type) || s.fixed === "left"), t = this.settings.columns.filter((s) => !s.hide && s.fixed !== "left").map((s) => {
     const i = this._columns.find((n) => n.prop === s.prop);
     return {
       sortable: "custom",
@@ -2748,8 +2748,8 @@ function Fn() {
 function Rn() {
   const e = this._uid && at.getJson(`Settings[${this._uid}]`, {}) || {};
   e.columns || (e.columns = this._columns.filter((t) => t.label && t.prop && !(t.type && Oe.includes(t.type))).map((t) => {
-    const { prop: s, label: i, show: n, hide: l, width: o, virtual: a } = t;
-    return { prop: s, label: i, show: n, hide: l, width: o, virtual: a };
+    const { prop: s, label: i, show: n, hide: l, width: o, virtual: a, fixed: r } = t;
+    return { prop: s, label: i, show: n, hide: l, width: o, virtual: a, fixed: r };
   })), this.settings = e;
 }
 function In(e) {
@@ -5985,7 +5985,7 @@ const { ElInfiniteScroll: Xe } = window.ElementPlus || {}, de = ".el-scrollbar__
   for (let s in ve)
     e.directive(ve[s].name, ve[s]);
 }, Ho = {
-  version: "1.1.66",
+  version: "1.1.67",
   ...ke,
   ...it,
   ...jt,
