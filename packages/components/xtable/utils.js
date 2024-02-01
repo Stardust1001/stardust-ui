@@ -91,10 +91,9 @@ export function emits () {
 export function _attrs () {
   const platform = this.$.attrs.platform || (window.isMobile ? 'mobile' : 'pc')
   const key = platform + 'TableAttrs'
-  const dict = { ...this.$attrs }
-  if (key in this) {
-    Object.assign(dict, this[key])
-  }
+  const dict = {}
+  if (key in this) Object.assign(dict, this[key])
+  Object.assign(dict, this.$attrs)
   return dict
 }
 
