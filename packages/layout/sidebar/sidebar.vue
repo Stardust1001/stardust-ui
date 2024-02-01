@@ -6,8 +6,8 @@ import store from '@/store'
 import Menu from './menu.vue'
 import Item from './item.vue'
 
+const props = defineProps({ menu: Array })
 const route = useRoute()
-
 const hoverMenu = ref(null)
 
 const { app, routes } = store
@@ -16,7 +16,7 @@ const collapse = computed(() => app.sidebarCollapse)
 const toggled = computed(() => app.sidebarToggled)
 const toggleDuration = computed(() => app.toggleDuration + 's')
 
-const menu = computed(() => {
+const _menu = computed(() => {
   const filtered = routes.enabledRoutes.filter(route => {
     return !route.meta.hidden && route.path.split('/').length === 2
   })
@@ -33,6 +33,8 @@ const setTabIndex = (menu, start = 1) => {
   })
   return start
 }
+
+const menu = computed(() => props.menu || _menu)
 
 const sidebarClasses = computed(() => ({
   collapse: collapse.value,
