@@ -5,6 +5,7 @@ import './index.scss'
 import utils from './utils/index.js'
 import controllers from './controllers/index.js'
 import all from './comps'
+import directives from './directives/index.js'
 
 const makePlatformComp = (name) => {
   return {
@@ -54,10 +55,13 @@ const install = (app, options) => {
   for (let key in components) {
     app.component(key, components[key])
   }
+  for (let item of directives) {
+    app.directive(item.name, item)
+  }
 }
 
 const StardustUI = {
-  version: '1.1.58',
+  version: '1.1.59',
   ...components,
   ...utils,
   ...controllers,
