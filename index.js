@@ -2710,7 +2710,7 @@ function $n() {
   }), t;
 }
 function xn() {
-  const e = this._columns.filter((s) => s.type && Oe.includes(s.type) || s.fixed === "left"), t = this.settings.columns.filter((s) => !s.hide && s.fixed !== "left").map((s) => {
+  const e = this._columns.filter((s) => s.type && Oe.includes(s.type) || s.fixed === "left"), t = this.settings.columns.filter((s) => s.fixed !== "left").filter((s) => !s.hide).map((s) => {
     const i = this._columns.find((n) => n.prop === s.prop);
     return {
       sortable: "custom",
@@ -2718,7 +2718,7 @@ function xn() {
       width: s.width || i.width
     };
   });
-  return console.log("000000000000000000"), console.log(e, t), window.v1 = this, e.concat(t);
+  return e.concat(t);
 }
 function Vn() {
   const { table: e, uid: t } = this.$props;
@@ -5985,7 +5985,7 @@ const { ElInfiniteScroll: Xe } = window.ElementPlus || {}, de = ".el-scrollbar__
   for (let s in ve)
     e.directive(ve[s].name, ve[s]);
 }, Ho = {
-  version: "1.1.65",
+  version: "1.1.66",
   ...ke,
   ...it,
   ...jt,

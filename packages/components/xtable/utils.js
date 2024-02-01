@@ -253,7 +253,7 @@ export function _listen () {
 
 export function _visibleColumns () {
   const left = this._columns.filter(col => col.type && TYPES.includes(col.type) || col.fixed === 'left')
-  const right = this.settings.columns.filter(col => !col.hide && col.fixed !== 'left').map(col => {
+  const right = this.settings.columns.filter(col => col.fixed !== 'left').filter(col => !col.hide).map(col => {
     const column = this._columns.find(c => c.prop === col.prop)
     return {
       sortable: 'custom',
@@ -261,9 +261,6 @@ export function _visibleColumns () {
       width: col.width || column.width
     }
   })
-  console.log('000000000000000000')
-  console.log(left, right)
-  window.v1 = this
   return left.concat(right)
 }
 
