@@ -2710,7 +2710,7 @@ function $n() {
   }), t;
 }
 function xn() {
-  const e = this._columns.filter((s) => s.type && Oe.includes(s.type)), t = this.settings.columns.filter((s) => !s.hide).map((s) => {
+  const e = this._columns.filter((s) => s.type && Oe.includes(s.type) || s.fixed === "left"), t = this.settings.columns.filter((s) => !s.hide && s.fixed !== "left").map((s) => {
     const i = this._columns.find((n) => n.prop === s.prop);
     return {
       sortable: "custom",
@@ -5985,7 +5985,7 @@ const { ElInfiniteScroll: Xe } = window.ElementPlus || {}, de = ".el-scrollbar__
   for (let s in ve)
     e.directive(ve[s].name, ve[s]);
 }, Ho = {
-  version: "1.1.62",
+  version: "1.1.63",
   ...ke,
   ...it,
   ...jt,
