@@ -55,13 +55,13 @@ const install = (app, options) => {
   for (let key in components) {
     app.component(key, components[key])
   }
-  for (let item of directives) {
-    app.directive(item.name, item)
+  for (let key in directives) {
+    app.directive(directives[key].name, directives[key])
   }
 }
 
 const StardustUI = {
-  version: '1.1.59',
+  version: '1.1.60',
   ...components,
   ...utils,
   ...controllers,
