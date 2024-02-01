@@ -124,6 +124,7 @@ export default {
             <span>{{ _total || _data.length }}</span> 条数据
           </span>
         </template>
+        <slot name="tools-top" />
         <pc-x-table-tools
           v-if="hideTools !== '' && hideTools !== true"
           v-bind="_attrs"
@@ -167,6 +168,7 @@ export default {
             />
           </template>
         </pc-x-table-tools>
+        <slot name="tools-bottom" />
 
         <el-table
           ref="tableRef"

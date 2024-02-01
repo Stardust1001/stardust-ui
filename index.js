@@ -4581,6 +4581,7 @@ function Il(e, t, s, i, n, l) {
               ]))
             ]),
             default: c(() => [
+              x(e.$slots, "tools-top"),
               e.hideTools !== "" && e.hideTools !== !0 ? (d(), f(h, b({ key: 0 }, e._attrs, {
                 domids: e.domids,
                 onAdd: e._onAdd,
@@ -4636,6 +4637,7 @@ function Il(e, t, s, i, n, l) {
                   key: "1"
                 } : void 0
               ]), 1040, ["domids", "onAdd", "onSearch", "onExport", "onSearchExport", "onImport", "onMultiDelete"])) : S("", !0),
+              x(e.$slots, "tools-bottom"),
               I((d(), f(j, b({ ref: "tableRef" }, e.elTableAttrs, {
                 "infinite-scroll-disabled": e._infiniteScrollDisabled,
                 onHeaderDragend: e.handleHeaderDragend,
@@ -5985,7 +5987,7 @@ const { ElInfiniteScroll: Xe } = window.ElementPlus || {}, de = ".el-scrollbar__
   for (let s in ve)
     e.directive(ve[s].name, ve[s]);
 }, Ho = {
-  version: "1.1.67",
+  version: "1.1.68",
   ...ke,
   ...it,
   ...jt,
