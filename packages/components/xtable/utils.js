@@ -261,6 +261,9 @@ export function _visibleColumns () {
       width: col.width || column.width
     }
   })
+  console.log('000000000000000000')
+  console.log(left, right)
+  window.v1 = this
   return left.concat(right)
 }
 
