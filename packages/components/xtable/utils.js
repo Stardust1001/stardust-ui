@@ -13,7 +13,7 @@ export function props () {
     columns: Array,
     query: Object,
     total: Number,
-    infiniteScrollDisabled: Boolean,
+    finished: Boolean,
     selection: Array,
     chartHeight: String,
     chartOption: Object,
@@ -174,9 +174,9 @@ export function _total () {
   return total || table?.total
 }
 
-export function _infiniteScrollDisabled () {
-  const { table, infiniteScrollDisabled } = this.$props
-  return infiniteScrollDisabled ?? table?.infiniteScrollDisabled
+export function _finished () {
+  const { table, finished } = this.$props
+  return finished ?? table?.finished
 }
 
 export function _selection () {
@@ -549,7 +549,7 @@ export default {
     _columns,
     _query,
     _total,
-    _infiniteScrollDisabled,
+    _finished,
     _selection,
     _chartHeight,
     _chartOption,

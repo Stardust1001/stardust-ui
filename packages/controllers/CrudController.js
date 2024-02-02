@@ -414,10 +414,11 @@ class CrudController extends BaseController {
   }
 
   async handleLoad () {
+    if (!this.table.list.length) return this.handleSearch()
     const { loading, query, total } = this.table
-    if (loading || !total || this.table.infiniteScrollDisabled) return
+    if (loading || !total || this.table.finished) return
     if (query.page * query.limit >= total) {
-      return this.table.infiniteScrollDisabled = true
+      return this.table.finished = true
     }
     this.table.isInfinite = true
     this.table.loading = true
