@@ -414,10 +414,16 @@ class CrudController extends BaseController {
   }
 
   async handleLoad () {
-    if (!this.table.list.length) return this.handleSearch()
+    if (!this.table.list.length) {
+      await this.handleSearch()
+      return this.table.moreLoading = false
+    }
     const { loading, query, total } = this.table
-    if (loading || !total || this.table.finished) return
+    if (loading || !total || this.table.finished) {
+      return this.table.moreLoading = false
+    }
     if (query.page * query.limit >= total) {
+      this.table.moreLoading = false
       return this.table.finished = true
     }
     this.table.isInfinite = true
@@ -429,6 +435,7 @@ class CrudController extends BaseController {
     await this.$sleep(50)
     this.table.list = list.concat(this.table.list)
     this.table.loading = false
+    this.table.moreLoading = false
   }
 
   get (id) {

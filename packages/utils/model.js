@@ -18,6 +18,7 @@ export const baseTable = (query = {}) => ({
     ...query
   },
   total: 0,
+  moreLoading: false,
   finished: false,
   isInfinite: false,
   list: [],
