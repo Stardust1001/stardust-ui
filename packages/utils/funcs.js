@@ -21,7 +21,14 @@ export const formatPrecision = (number, precision) => {
 
 export const formatOptions = (options, vm) => {
   const opts = options.__v_isRef ? options.value : toRaw(options)
-  const items = opts.map(op => typeof op === 'object' ? op : { text: op, value: op })
+  const { text = 'text', value = 'value' } = vm
+  const items = opts.map(op => {
+    if (typeof op === 'object') {
+      return { text: op[text], value: op[value] }
+    } else {
+      return { text: op, value: op }
+    }
+  })
   if (!vm.sort) return items
   const field = typeof vm.sort === 'string' ? vm.sort : (vm.text || 'text')
   return items.sort((a, b) => {
