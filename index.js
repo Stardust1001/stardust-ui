@@ -1710,10 +1710,10 @@ const fs = /* @__PURE__ */ E(ms, [["render", ps]]), gs = {
   },
   methods: {
     async handleCancel() {
-      this.actionsheet || (await this.$nextTick(), this.visible = !0, await this.$nextTick()), this.$emit("cancel");
+      await this.$nextTick(), this.visible = !0, await this.$nextTick(), this.$emit("cancel");
     },
     async handleConfirm() {
-      this.actionsheet || (await this.$nextTick(), this.visible = !0, await this.$nextTick()), this.$emit("submit");
+      await this.$nextTick(), this.visible = !0, await this.$nextTick(), this.$emit("submit");
     }
   }
 }, bs = { key: 1 }, _s = { key: 1 };
@@ -6049,7 +6049,7 @@ const { ElInfiniteScroll: Xe } = window.ElementPlus || {}, de = ".el-scrollbar__
   for (let s in ve)
     e.directive(ve[s].name, ve[s]);
 }, Jo = {
-  version: "1.1.76",
+  version: "1.1.77",
   ...ke,
   ...it,
   ...Ft,

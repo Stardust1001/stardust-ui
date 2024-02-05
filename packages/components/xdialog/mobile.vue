@@ -46,19 +46,15 @@ export default {
   },
   methods: {
     async handleCancel () {
-      if (!this.actionsheet) {
-        await this.$nextTick()
-        this.visible = true
-        await this.$nextTick()
-      }
+      await this.$nextTick()
+      this.visible = true
+      await this.$nextTick()
       this.$emit('cancel')
     },
     async handleConfirm () {
-      if (!this.actionsheet) {
-        await this.$nextTick()
-        this.visible = true
-        await this.$nextTick()
-      }
+      await this.$nextTick()
+      this.visible = true
+      await this.$nextTick()
       this.$emit('submit')
     }
   }
