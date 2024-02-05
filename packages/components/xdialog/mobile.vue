@@ -2,6 +2,10 @@
 export default {
   name: 'MobileXDialog',
   props: {
+    actionsheet: {
+      type: Boolean,
+      default: false
+    },
     modelValue: {
       type: Boolean,
       default: false
@@ -9,7 +13,15 @@ export default {
     title: {
       type: String,
       default: '详情'
-    }
+    },
+    submitText: {
+      type: String,
+      default: '提交'
+    },
+    cancelText: {
+      type: String,
+      default: '取消'
+    },
   },
   emits: [
     'update:modelValue',
@@ -24,19 +36,32 @@ export default {
       set (value) {
         this.$emit('update:modelValue', value)
       }
+    },
+    canCancel () {
+      return !!this.$attrs.onCancel || !!this.$parent.$attrs.onCancel
+    },
+    canConfirm () {
+      return !!this.$attrs.onSubmit || !!this.$parent.$attrs.onSubmit
     }
+  },
+  created () {
+    console.log(this.actionsheet)
   },
   methods: {
     async handleCancel () {
-      await this.$nextTick()
-      this.visible = true
-      await this.$nextTick()
+      if (!this.actionsheet) {
+        await this.$nextTick()
+        this.visible = true
+        await this.$nextTick()
+      }
       this.$emit('cancel')
     },
     async handleConfirm () {
-      await this.$nextTick()
-      this.visible = true
-      await this.$nextTick()
+      if (!this.actionsheet) {
+        await this.$nextTick()
+        this.visible = true
+        await this.$nextTick()
+      }
       this.$emit('submit')
     }
   }
@@ -44,13 +69,14 @@ export default {
 </script>
 
 <template>
-  <van-dialog
+  <component
+    :is="actionsheet ? 'van-action-sheet' : 'van-dialog'"
     width="92%"
     v-bind="$attrs"
     v-model:show="visible"
     class="mobile-x-dialog"
-    :show-confirm-button="!!$attrs.onSubmit || !!$parent.$attrs.onSubmit"
-    :show-cancel-button="!!$attrs.onCancel || !!$parent.$attrs.onCancel"
+    :show-confirm-button="canConfirm"
+    :show-cancel-button="canCancel"
     @confirm="handleConfirm"
     @cancel="handleCancel"
   >
@@ -66,5 +92,21 @@ export default {
     <template v-if="$slots.default" #default>
       <slot name="default" />
     </template>
-  </van-dialog>
+
+    <template v-if="$slots.title || title" #description>
+      <slot name="title" v-if="$slots.title" />
+      <span v-else>{{ title }}</span>
+    </template>
+
+    <template v-if="canConfirm || canCancel" #cancel>
+      <van-row :gutter="10">
+        <van-col v-if="canCancel" :span="12">
+          <span @click="handleCancel">{{ cancelText }}</span>
+        </van-col>
+        <van-col v-if="canConfirm" :span="12">
+          <span style="color: var(--van-blue);" @click="handleConfirm">{{ submitText }}</span>
+        </van-col>
+      </van-row>
+    </template>
+  </component>
 </template>
