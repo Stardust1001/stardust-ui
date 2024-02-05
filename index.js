@@ -1708,9 +1708,6 @@ const fs = /* @__PURE__ */ E(ms, [["render", ps]]), gs = {
       return !!this.$attrs.onSubmit || !!this.$parent.$attrs.onSubmit;
     }
   },
-  created() {
-    console.log(this.actionsheet);
-  },
   methods: {
     async handleCancel() {
       this.actionsheet || (await this.$nextTick(), this.visible = !0, await this.$nextTick()), this.$emit("cancel");
@@ -6052,7 +6049,7 @@ const { ElInfiniteScroll: Xe } = window.ElementPlus || {}, de = ".el-scrollbar__
   for (let s in ve)
     e.directive(ve[s].name, ve[s]);
 }, Jo = {
-  version: "1.1.72",
+  version: "1.1.75",
   ...ke,
   ...it,
   ...Ft,

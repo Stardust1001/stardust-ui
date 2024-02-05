@@ -44,9 +44,6 @@ export default {
       return !!this.$attrs.onSubmit || !!this.$parent.$attrs.onSubmit
     }
   },
-  created () {
-    console.log(this.actionsheet)
-  },
   methods: {
     async handleCancel () {
       if (!this.actionsheet) {
