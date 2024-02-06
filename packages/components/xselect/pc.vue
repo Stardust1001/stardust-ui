@@ -79,11 +79,11 @@ export default {
     :remote-method="$attrs.remoteMethod || remoteSearch"
   >
     <el-option
-      v-for="option in _options"
+      v-for="(option, index) in _options"
       v-bind="$attrs"
-      :key="option[text]"
-      :label="option[text]"
-      :value="option[value]"
+      :key="option.value"
+      :label="option.text"
+      :value="option.value"
     >
       <slot
         v-if="$slots.custom"
@@ -93,8 +93,8 @@ export default {
         :value
       />
       <span v-else>
-        <span class="main">{{ calcMainLabel(option) }}</span>
-        <span class="remark">{{ calcRemarkLabel(option) }}</span>
+        <span class="main">{{ calcMainLabel(options[index]) }}</span>
+        <span class="remark">{{ calcRemarkLabel(options[index]) }}</span>
       </span>
     </el-option>
   </el-select>

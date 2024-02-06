@@ -3685,10 +3685,10 @@ function tl(e, t, s, l, n, i) {
     "remote-method": e.$attrs.remoteMethod || i.remoteSearch
   }), {
     default: c(() => [
-      (d(!0), _(B, null, M(n._options, (r) => (d(), f(o, b(e.$attrs, {
-        key: r[s.text],
-        label: r[s.text],
-        value: r[s.value]
+      (d(!0), _(B, null, M(n._options, (r, h) => (d(), f(o, b(e.$attrs, {
+        key: r.value,
+        label: r.text,
+        value: r.value
       }), {
         default: c(() => [
           e.$slots.custom ? x(e.$slots, "custom", {
@@ -3697,8 +3697,8 @@ function tl(e, t, s, l, n, i) {
             text: s.text,
             value: s.value
           }, void 0, !0) : (d(), _("span", Qi, [
-            j("span", Zi, T(i.calcMainLabel(r)), 1),
-            j("span", el, T(i.calcRemarkLabel(r)), 1)
+            j("span", Zi, T(i.calcMainLabel(s.options[h])), 1),
+            j("span", el, T(i.calcRemarkLabel(s.options[h])), 1)
           ]))
         ]),
         _: 2
@@ -3707,7 +3707,7 @@ function tl(e, t, s, l, n, i) {
     _: 3
   }, 16, ["class", "loading", "filterable", "remote-method"]);
 }
-const sl = /* @__PURE__ */ E(Gi, [["render", tl], ["__scopeId", "data-v-d36889f6"]]), qe = {
+const sl = /* @__PURE__ */ E(Gi, [["render", tl], ["__scopeId", "data-v-05cac3b4"]]), qe = {
   eq: {
     text: "等于",
     value: "eq"
@@ -6049,7 +6049,7 @@ const { ElInfiniteScroll: Xe } = window.ElementPlus || {}, de = ".el-scrollbar__
   for (let s in ve)
     e.directive(ve[s].name, ve[s]);
 }, Jo = {
-  version: "1.1.77",
+  version: "1.1.78",
   ...ke,
   ...it,
   ...Ft,
