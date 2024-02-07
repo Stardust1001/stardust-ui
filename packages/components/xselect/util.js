@@ -16,17 +16,15 @@ const remoteSearch = async (restful, query, vm) => {
 }
 
 const calcMainLabel = (option, vm) => {
-  if (!vm.labelTexts || !vm.labelTexts.length) {
-    return option[vm.text]
-  }
+  if (!option || typeof option !== 'object') return option
+  if (!vm.labelTexts || !vm.labelTexts.length) return option[vm.text]
   const labels = vm.labelTexts.map(text => option[text])
   return labels[0]
 }
 
 const calcRemarkLabel = (option, vm) => {
-  if (!vm.labelTexts || vm.labelTexts.length < 2) {
-    return ''
-  }
+  if (!option || typeof option !== 'object') return ''
+  if (!vm.labelTexts || vm.labelTexts.length < 2) return ''
   const labels = vm.labelTexts.map(text => option[text])
   return '(' + labels.slice(1).join(' - ') + ')'
 }
