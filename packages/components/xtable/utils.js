@@ -231,7 +231,7 @@ export function _onMultiDelete () {
 }
 
 export function _onLoad () {
-  return this.onLoad || this._listen['load'] ? () => this._emit('load') : null
+  return this.onLoad || this._listen['load'] ? () => this._emit('load') : () => {}
 }
 
 export function _listen () {

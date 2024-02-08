@@ -2744,7 +2744,8 @@ function Cn() {
   return this.onMultiDelete || this._listen["multi-delete"] ? () => this._emit("multi-delete") : null;
 }
 function $n() {
-  return this.onLoad || this._listen.load ? () => this._emit("load") : null;
+  return this.onLoad || this._listen.load ? () => this._emit("load") : () => {
+  };
 }
 function xn() {
   var s;
@@ -6049,7 +6050,7 @@ const { ElInfiniteScroll: Xe } = window.ElementPlus || {}, de = ".el-scrollbar__
   for (let s in ve)
     e.directive(ve[s].name, ve[s]);
 }, Jo = {
-  version: "1.1.79",
+  version: "1.1.80",
   ...ke,
   ...it,
   ...Ft,
