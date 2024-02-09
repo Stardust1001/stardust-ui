@@ -1,14 +1,16 @@
+import path from 'node:path'
+
 const autoInit = () => {
   return {
-    name: 'auto-inject-model-controller',
+    name: 'auto-init',
     transform (src, id) {
       const name = path.basename(id)
       if (id.includes('/src/') && name.includes('.vue') && src.startsWith('<script setup>')) {
         const lines = src.split('\n')
-        if (!src.includes('// no controller')) {
+        if (!src.includes('no controller')) {
           lines.splice(1, 0, `import $controller from './controller.js'`, `const controller = $controller({ model, vue })`)
         }
-        if (!src.includes('// no model')) {
+        if (!src.includes('no model')) {
           lines.splice(1, 0, `import $model from './model.js'`, `const model = $model()`)
         }
         src = lines.join('\n')
