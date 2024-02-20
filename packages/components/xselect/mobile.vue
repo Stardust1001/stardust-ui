@@ -33,7 +33,7 @@ export default {
       if (value === 'true' || value === 'false') {
         value = value === 'true'
       }
-      return this._options.find(op => op.value === value).text
+      return this._options.find(op => op.value === value)?.text ?? ''
     }
   },
   watch: {

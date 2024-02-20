@@ -3565,8 +3565,9 @@ const zi = /* @__PURE__ */ E(qi, [["render", Xi]]), rt = async (e, t, s) => {
   },
   computed: {
     formattedModelValue() {
+      var t;
       let e = this.modelValue;
-      return (e === "true" || e === "false") && (e = e === "true"), this._options.find((t) => t.value === e).text;
+      return (e === "true" || e === "false") && (e = e === "true"), ((t = this._options.find((s) => s.value === e)) == null ? void 0 : t.text) ?? "";
     }
   },
   watch: {
@@ -6047,7 +6048,7 @@ const { ElInfiniteScroll: Xe } = window.ElementPlus || {}, de = ".el-scrollbar__
   for (let s in ve)
     e.directive(ve[s].name, ve[s]);
 }, Jo = {
-  version: "1.1.89",
+  version: "1.1.90",
   ...ke,
   ...it,
   ...Ft,
