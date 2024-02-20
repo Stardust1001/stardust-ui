@@ -92,12 +92,12 @@ export default {
     </template>
 
     <template v-if="canConfirm || canCancel" #cancel>
-      <van-row :gutter="10">
+      <van-row>
         <van-col v-if="canCancel" :span="12">
-          <span @click="handleCancel">{{ cancelText }}</span>
+          <van-button block @click.stop="handleCancel">{{ cancelText }}</van-button>
         </van-col>
         <van-col v-if="canConfirm" :span="12">
-          <span style="color: var(--van-blue);" @click="handleConfirm">{{ submitText }}</span>
+          <van-button block style="color: var(--van-blue);" @click.stop="handleConfirm">{{ submitText }}</van-button>
         </van-col>
       </van-row>
     </template>

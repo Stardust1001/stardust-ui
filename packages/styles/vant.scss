@@ -62,3 +62,13 @@ main {
     margin-right: var(--main-button-padding);
   }
 }
+
+.mobile-x-dialog .van-action-sheet__cancel {
+  padding: 0;
+  .van-button {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border: none;
+  }
+}
