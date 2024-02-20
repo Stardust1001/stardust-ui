@@ -3565,11 +3565,8 @@ const zi = /* @__PURE__ */ E(qi, [["render", Xi]]), rt = async (e, t, s) => {
   },
   computed: {
     formattedModelValue() {
-      if (this.modelValue === "true" || this.modelValue === "false") {
-        const e = this.modelValue === "true";
-        return this._options.find((t) => t[this.value] === e)[this.text];
-      }
-      return this.modelValue;
+      let e = this.modelValue;
+      return (e === "true" || e === "false") && (e = e === "true"), this._options.find((t) => t[this.value] === e)[this.text];
     }
   },
   watch: {
@@ -6050,7 +6047,7 @@ const { ElInfiniteScroll: Xe } = window.ElementPlus || {}, de = ".el-scrollbar__
   for (let s in ve)
     e.directive(ve[s].name, ve[s]);
 }, Jo = {
-  version: "1.1.87",
+  version: "1.1.88",
   ...ke,
   ...it,
   ...Ft,

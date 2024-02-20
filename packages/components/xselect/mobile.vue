@@ -29,11 +29,11 @@ export default {
   },
   computed: {
     formattedModelValue () {
-      if (this.modelValue === 'true' || this.modelValue === 'false') {
-        const value = this.modelValue === 'true'
-        return this._options.find(op => op[this.value] === value)[this.text]
+      let value = this.modelValue
+      if (value === 'true' || value === 'false') {
+        value = value === 'true'
       }
-      return this.modelValue
+      return this._options.find(op => op[this.value] === value)[this.text]
     }
   },
   watch: {
