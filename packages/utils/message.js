@@ -11,6 +11,7 @@ export const Message = options => {
   const { isMobile = window.isMobile, type } = opts
   if (isMobile) {
     if (type === 'error' || type === 'warning') opts.type = 'fail'
+    opts['z-index'] ||= 1e6
     showToast(opts)
   } else {
     ElMessage({

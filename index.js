@@ -102,7 +102,7 @@ const mt = (e) => {
     ...t
   };
   const { isMobile: s = window.isMobile, type: i } = t;
-  s ? ((i === "error" || i === "warning") && (t.type = "fail"), vt(t)) : bt({
+  s ? ((i === "error" || i === "warning") && (t.type = "fail"), t["z-index"] || (t["z-index"] = 1e6), vt(t)) : bt({
     showClose: !0,
     grouping: !0,
     ...t
@@ -6060,7 +6060,7 @@ const { ElInfiniteScroll: Xe } = window.ElementPlus || {}, de = ".el-scrollbar__
   for (let s in ve)
     e.directive(ve[s].name, ve[s]);
 }, Jo = {
-  version: "1.1.91",
+  version: "1.1.92",
   ...ke,
   ...it,
   ...Ft,
