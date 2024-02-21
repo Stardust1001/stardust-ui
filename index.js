@@ -719,14 +719,15 @@ class ot extends lt {
     this.handleSearch();
   }
   async handleLoad() {
+    const { query: t } = this.table;
     if (!this.table.list.length)
-      return await this.handleSearch(), this.table.moreLoading = !1;
-    const { loading: t, query: s, total: i } = this.table;
-    if (t || !i || this.table.finished)
+      return await this.handleSearch(), t.page * t.limit >= this.table.total && (this.table.finished = !0), this.table.moreLoading = !1;
+    const { loading: s, total: i } = this.table;
+    if (s || !i || this.table.finished)
       return this.table.moreLoading = !1;
-    if (s.page * s.limit >= i)
+    if (t.page * t.limit >= i)
       return this.table.moreLoading = !1, this.table.finished = !0;
-    this.table.isInfinite = !0, this.table.loading = !0, s.page++;
+    this.table.isInfinite = !0, this.table.loading = !0, t.page++;
     const n = this.table.list.slice();
     await this.handleSearch({}, { isInfinite: !0 }), this.table.loading = !0, await this.$sleep(50), this.table.list = n.concat(this.table.list), this.table.loading = !1, this.table.moreLoading = !1;
   }
@@ -6060,7 +6061,7 @@ const { ElInfiniteScroll: Xe } = window.ElementPlus || {}, de = ".el-scrollbar__
   for (let s in ve)
     e.directive(ve[s].name, ve[s]);
 }, Jo = {
-  version: "1.1.92",
+  version: "1.1.93",
   ...ke,
   ...it,
   ...Ft,
