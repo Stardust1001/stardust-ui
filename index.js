@@ -5937,6 +5937,7 @@ function Po(e, t, s, i, n, l) {
     m(h, {
       modelValue: n.dialogVisible,
       "onUpdate:modelValue": t[1] || (t[1] = (p) => n.dialogVisible = p),
+      actionsheet: "",
       title: "预览图片" + (n.previewingImage.name || "")
     }, {
       default: c(() => [
@@ -5950,7 +5951,7 @@ function Po(e, t, s, i, n, l) {
     }, 8, ["modelValue", "title"])
   ], 64);
 }
-const Uo = /* @__PURE__ */ E(Mo, [["render", Po], ["__scopeId", "data-v-075b17d0"]]), ye = {
+const Uo = /* @__PURE__ */ E(Mo, [["render", Po], ["__scopeId", "data-v-0afe3ea6"]]), ye = {
   xactionsheet: It,
   xautorows: Pt,
   mobilexbutton: Xt,
@@ -6062,7 +6063,7 @@ const { ElInfiniteScroll: Xe } = window.ElementPlus || {}, de = ".el-scrollbar__
   for (let s in ve)
     e.directive(ve[s].name, ve[s]);
 }, Jo = {
-  version: "1.1.96",
+  version: "1.1.97",
   ...ke,
   ...it,
   ...Ft,

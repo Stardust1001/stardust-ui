@@ -77,6 +77,7 @@ export default {
   </el-upload>
   <x-dialog
     v-model="dialogVisible"
+    actionsheet
     :title="'预览图片' + (previewingImage.name || '')"
   >
     <img :src="previewingImage.url" alt="previewing-image" class="previewing-image">
