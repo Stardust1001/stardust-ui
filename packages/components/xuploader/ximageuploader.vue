@@ -75,12 +75,12 @@ export default {
       <el-icon><Plus /></el-icon>
     </template>
   </el-upload>
-  <el-dialog
+  <x-dialog
     v-model="dialogVisible"
     :title="'预览图片' + previewingImage.name"
   >
     <img :src="previewingImage.url" alt="previewing-image">
-  </el-dialog>
+  </x-dialog>
 </template>
 
 <style lang="scss" scoped>

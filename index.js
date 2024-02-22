@@ -5904,7 +5904,7 @@ const Lo = /* @__PURE__ */ E(Oo, [["render", Bo], ["__scopeId", "data-v-a3a105f3
   }
 }, No = ["src"];
 function Po(e, t, s, i, n, l) {
-  const o = u("Plus"), a = u("el-icon"), r = u("el-upload"), h = u("el-dialog");
+  const o = u("Plus"), a = u("el-icon"), r = u("el-upload"), h = u("x-dialog");
   return d(), _(B, null, [
     m(r, b({
       "file-list": n.fileList,
@@ -5949,7 +5949,7 @@ function Po(e, t, s, i, n, l) {
     }, 8, ["modelValue", "title"])
   ], 64);
 }
-const Uo = /* @__PURE__ */ E(Mo, [["render", Po], ["__scopeId", "data-v-87a71ccc"]]), ye = {
+const Uo = /* @__PURE__ */ E(Mo, [["render", Po], ["__scopeId", "data-v-0a2788e2"]]), ye = {
   xactionsheet: It,
   xautorows: Pt,
   mobilexbutton: Xt,
@@ -6061,7 +6061,7 @@ const { ElInfiniteScroll: Xe } = window.ElementPlus || {}, de = ".el-scrollbar__
   for (let s in ve)
     e.directive(ve[s].name, ve[s]);
 }, Jo = {
-  version: "1.1.93",
+  version: "1.1.95",
   ...ke,
   ...it,
   ...Ft,
