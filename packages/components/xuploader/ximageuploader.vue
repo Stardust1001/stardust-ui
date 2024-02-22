@@ -77,9 +77,9 @@ export default {
   </el-upload>
   <x-dialog
     v-model="dialogVisible"
-    :title="'预览图片' + previewingImage.name"
+    :title="'预览图片' + (previewingImage.name || '')"
   >
-    <img :src="previewingImage.url" alt="previewing-image">
+    <img :src="previewingImage.url" alt="previewing-image" class="previewing-image">
   </x-dialog>
 </template>
 
@@ -91,7 +91,7 @@ export default {
     }
   }
 }
-.el-dialog img {
+.previewing-image {
   display: block;
   width: 100%;
   margin: auto;
