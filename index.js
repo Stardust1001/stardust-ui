@@ -343,10 +343,16 @@ class lt {
     return this.vm && this.vm.ctx.$el || null;
   }
   get router() {
-    throw "请自行注入 rouer";
+    throw "请自行注入 router";
   }
   get route() {
     return this.router.currentRoute.value;
+  }
+  get params() {
+    return this.route.params;
+  }
+  get query() {
+    return this.route.query;
   }
   get store() {
     throw "请自行注入 store";
@@ -6063,7 +6069,7 @@ const { ElInfiniteScroll: Xe } = window.ElementPlus || {}, de = ".el-scrollbar__
   for (let s in ve)
     e.directive(ve[s].name, ve[s]);
 }, Jo = {
-  version: "1.1.97",
+  version: "1.1.98",
   ...ke,
   ...it,
   ...Ft,
