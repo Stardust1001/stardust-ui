@@ -29,6 +29,7 @@ import mobilexscan from './components/xscan/mobile.vue'
 import pcxscan from './components/xscan/pc.vue'
 import mobilexselect from './components/xselect/mobile.vue'
 import pcxselect from './components/xselect/pc.vue'
+import xselectv2 from './components/xselectv2/xselectv2.vue'
 import mobilextable from './components/xtable/mobile.vue'
 import pcxtable from './components/xtable/pc.vue'
 import mobilextabletools from './components/xtabletools/mobile.vue'
@@ -73,6 +74,7 @@ const modules = {
   pcxscan,
   mobilexselect,
   pcxselect,
+  xselectv2,
   mobilextable,
   pcxtable,
   mobilextabletools,

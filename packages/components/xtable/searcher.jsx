@@ -31,6 +31,8 @@ export const COMPONENT_OPS = {
   'ElInput': ['eq', 'ne', 'like', 'notLike', 'between', 'special']
 }
 COMPONENT_OPS['x-select'] = COMPONENT_OPS['XSelect']
+COMPONENT_OPS['XSelectV2'] = COMPONENT_OPS['XSelect']
+COMPONENT_OPS['x-select-v2'] = COMPONENT_OPS['XSelect']
 COMPONENT_OPS['x-radios'] = COMPONENT_OPS['XRadios']
 COMPONENT_OPS['x-checkboxs'] = COMPONENT_OPS['XCheckboxs']
 COMPONENT_OPS['el-date-picker'] = COMPONENT_OPS['ElDatePicker']
