@@ -37,14 +37,32 @@ export const autoInject = () => {
 }
 
 export const autoDeconstruct = () => {
+  const filterPrivateFields = `
+    const filterPrivateFields = source => {
+      const target = {}
+      for (let key in source) {
+        if (key[0] !== "$" && key[0] !== "_") {
+          target[key] = source[key]
+        }
+      }
+      return target
+    }
+  `
   return {
     name: 'auto-deconstruct',
     transform (src, id) {
-      if (src.includes('import makeModel ') && src.includes('return __returned__')) {
-        src = src.replace('return __returned__', 'return { ...__returned__, ...model }')
-      }
-      if (src.includes('import makeController ') && src.includes('return __returned__')) {
-        src = src.replace('return __returned__', 'return { ...__returned__, ...controller }')
+      const needModel = src.includes('import makeModel ') && src.includes('return __returned__')
+      const needController = src.includes('import makeController ') && src.includes('return __returned__')
+      if (needModel || needController) {
+        let replacement = filterPrivateFields
+        if (needModel && needController) {
+          replacement += 'return { ...__returned__, ...filterPrivateFields(model), ...filterPrivateFields(controller) }'
+        } else if (needModel) {
+          replacement += 'return { ...__returned__, ...filterPrivateFields(model) }'
+        } else if (needController) {
+          replacement += 'return { ...__returned__, ...filterPrivateFields(controller) }'
+        }
+        src = src.replace('return __returned__', replacement)
       }
       return { code: src }
     }
