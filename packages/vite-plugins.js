@@ -24,10 +24,10 @@ export const autoInject = () => {
           lines.push(...['<style lang="scss">', `@import "./${name}.scss";`, '</style>'])
         }
         if (needController) {
-          lines.splice(1, 0, `import $controller from './controller.js'`, `const controller = $controller({ ${needModel ? 'model, ' : ''}vue })`)
+          lines.splice(1, 0, `import makeController from './controller.js'`, `const controller = makeController({ ${needModel ? 'model, ' : ''}vue })`)
         }
         if (needModel) {
-          lines.splice(1, 0, `import $model from './model.js'`, `const model = $model()`)
+          lines.splice(1, 0, `import makeModel from './model.js'`, `const model = makeModel()`)
         }
         src = lines.join('\n')
       }
@@ -40,10 +40,10 @@ export const autoDeconstruct = () => {
   return {
     name: 'auto-deconstruct',
     transform (src, id) {
-      if (src.includes('import $model ') && src.includes('return __returned__')) {
+      if (src.includes('import makeModel ') && src.includes('return __returned__')) {
         src = src.replace('return __returned__', 'return { ...__returned__, ...model }')
       }
-      if (src.includes('import $controller ') && src.includes('return __returned__')) {
+      if (src.includes('import makeController ') && src.includes('return __returned__')) {
         src = src.replace('return __returned__', 'return { ...__returned__, ...controller }')
       }
       return { code: src }
