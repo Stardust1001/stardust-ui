@@ -12,26 +12,21 @@ const autoInit = () => {
       const hasScss = fs.existsSync(path.join(dirname, name + '.scss'))
       const hasModel = fs.existsSync(path.join(dirname, 'model.js'))
       const hasController = fs.existsSync(path.join(dirname, 'controller.js'))
+      const needModel = hasModel && !src.includes('no model') && !src.includes('const model')
+      const needController = hasController && !src.includes('no controller') && !src.includes('const controller')
+
       if (id.includes('/src/') && basename.includes('.vue') && src.startsWith('<script setup>')) {
         const lines = src.split('\n')
         if (hasScopedScss) {
-          lines.push(...[
-            '<style lang="scss" scoped>',
-            `@import "./${name}-scoped.scss";`,
-            '</style>'
-          ])
+          lines.push(...['<style lang="scss" scoped>', `@import "./${name}-scoped.scss";`, '</style>'])
         }
         if (hasScss) {
-          lines.push(...[
-            '<style lang="scss">',
-            `@import "./${name}.scss";`,
-            '</style>'
-          ])
+          lines.push(...['<style lang="scss">', `@import "./${name}.scss";`, '</style>'])
         }
-        if (hasController && !src.includes('no controller') && !src.includes('const controller')) {
-          lines.splice(1, 0, `import $controller from './controller.js'`, `const controller = $controller({ model, vue })`)
+        if (needController) {
+          lines.splice(1, 0, `import $controller from './controller.js'`, `const controller = $controller({ ${needModel ? 'model, ' : ''}vue })`)
         }
-        if (hasModel && !src.includes('no model') && !src.includes('const model')) {
+        if (needModel) {
           lines.splice(1, 0, `import $model from './model.js'`, `const model = $model()`)
         }
         src = lines.join('\n')
