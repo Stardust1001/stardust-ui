@@ -22,6 +22,11 @@ export default {
     options: Array | Object
   },
   emits: ['update:modelValue', 'change'],
+  data () {
+    return {
+      _options: []
+    }
+  },
   computed: {
     attrs () {
       const {
@@ -33,8 +38,14 @@ export default {
       return others
     }
   },
-  methods: {
-    formatOptions
+  watch: {
+    options: {
+      immediate: true,
+      deep: true,
+      handler (value) {
+        this._options = formatOptions(value, this)
+      }
+    }
   }
 }
 </script>
@@ -49,19 +60,17 @@ export default {
     @change="$emit('change', $event)"
   >
     <el-checkbox
-      v-for="option in formatOptions(options, this)"
+      v-for="option in _options"
       v-bind="attrs"
-      :key="option[text]"
-      :label="option[value]"
+      :key="option.text"
+      :label="option.value"
     >
       <slot
         v-if="$slots.custom"
         name="custom"
         :option
-        :text
-        :value
       />
-      <span v-else>{{ option[text] }}</span>
+      <span v-else>{{ option.text }}</span>
     </el-checkbox>
   </el-checkbox-group>
 </template>

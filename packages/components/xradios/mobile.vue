@@ -24,8 +24,19 @@ export default {
     sort: Boolean | String,
     options: Array | Object
   },
-  methods: {
-    formatOptions
+  data () {
+    return {
+      _options: []
+    }
+  },
+  watch: {
+    options: {
+      immediate: true,
+      deep: true,
+      handler () {
+        this._options = formatOptions(this.options, this)
+      }
+    }
   }
 }
 </script>
@@ -38,12 +49,12 @@ export default {
     :direction
   >
     <van-radio
-      v-for="option in formatOptions(options, this)"
+      v-for="option in _options"
       v-bind="$attrs"
-      :key="option[text]"
-      :name="option[value]"
+      :key="option.text"
+      :name="option.value"
     >
-      {{ option[text] }}
+      {{ option.text }}
     </van-radio>
   </van-radio-group>
 </template>

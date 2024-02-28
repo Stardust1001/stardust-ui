@@ -26,6 +26,11 @@ export default {
     options: Array | Object,
   },
   emits: ['update:modelValue', 'change'],
+  data () {
+    return {
+      _options: []
+    }
+  },
   computed: {
     attrs () {
       const {
@@ -37,8 +42,14 @@ export default {
       return others
     }
   },
-  methods: {
-    formatOptions
+  watch: {
+    options: {
+      immediate: true,
+      deep: true,
+      handler () {
+        this._options = formatOptions(this.options, this)
+      }
+    }
   }
 }
 </script>
@@ -54,12 +65,12 @@ export default {
   >
     <component
       :is="button ? 'el-radio-button' : 'el-radio'"
-      v-for="option in formatOptions(options, this)"
+      v-for="option in _options"
       v-bind="attrs"
-      :key="option[text]"
-      :label="option[value]"
+      :key="option.text"
+      :label="option.value"
     >
-      {{ option[text] }}
+      {{ option.text }}
     </component>
   </el-radio-group>
 </template>

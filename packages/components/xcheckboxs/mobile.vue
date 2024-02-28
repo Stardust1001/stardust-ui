@@ -29,6 +29,11 @@ export default {
     options: Array | Object
   },
   emits: ['change'],
+  data () {
+    return {
+      _options: []
+    }
+  },
   computed: {
     attrs () {
       const {
@@ -42,8 +47,14 @@ export default {
       return others
     }
   },
-  methods: {
-    formatOptions
+  watch: {
+    options: {
+      immediate: true,
+      deep: true,
+      handler () {
+        this._options = formatOptions(this.options, this)
+      }
+    }
   }
 }
 </script>
@@ -57,13 +68,13 @@ export default {
     @change="$emit('change', $event)"
   >
     <van-checkbox
-      v-for="option in formatOptions(options, this)"
+      v-for="option in _options"
       v-bind="attrs"
-      :key="option[text]"
+      :key="option.text"
       :shape
-      :name="option[value]"
+      :name="option.value"
     >
-      {{ option[text] }}
+      {{ option.text }}
     </van-checkbox>
   </van-checkbox-group>
 </template>
