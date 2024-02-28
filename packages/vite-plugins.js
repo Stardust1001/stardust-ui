@@ -1,9 +1,9 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-const autoInit = () => {
+export const autoInject = () => {
   return {
-    name: 'auto-init',
+    name: 'auto-inject',
     transform (src, id) {
       const dirname = path.dirname(id)
       const basename = path.basename(id)
@@ -31,11 +31,22 @@ const autoInit = () => {
         }
         src = lines.join('\n')
       }
-      return {
-        code: src
-      }
+      return { code: src }
     }
   }
 }
 
-export default autoInit
+export const autoDeconstruct = () => {
+  return {
+    name: 'auto-deconstruct',
+    transform (src, id) {
+      if (src.includes('import $model ') && src.includes('return __returned__')) {
+        src = src.replace('return __returned__', 'return { ...__returned__, ...model }')
+      }
+      if (src.includes('import $controller ') && src.includes('return __returned__')) {
+        src = src.replace('return __returned__', 'return { ...__returned__, ...controller }')
+      }
+      return { code: src }
+    }
+  }
+}
