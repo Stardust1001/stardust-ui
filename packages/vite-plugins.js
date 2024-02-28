@@ -16,6 +16,7 @@ export const autoInject = () => {
       const needController = hasController && !src.includes('no controller') && !src.includes('const controller')
 
       if (id.includes('/src/') && basename.includes('.vue') && src.startsWith('<script setup>')) {
+        src = src.replace('<script setup>', '<script setup>\n')
         const lines = src.split('\n')
         if (hasScopedScss) {
           lines.push(...['<style lang="scss" scoped>', `@import "./${name}-scoped.scss";`, '</style>'])
