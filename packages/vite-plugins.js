@@ -50,7 +50,7 @@ const instantiateTables = (src, id) => {
   const isJs = basename.includes('.js')
   if (id.includes('/src/') && (isVue || isJs)) {
     const names = new Set([...src.matchAll(/[^a-z][A-Z]\w+\.(search|add|update|remove|func|batch|get)/g)].map(e => e[0].slice(1).split('.')[0]))
-    if (names.length) {
+    if (names.size) {
       let top = ''
       names.forEach(name => {
         const tablename = name.replace(/[A-Z]/g, c => '_' + c.toLowerCase()).slice(1)
