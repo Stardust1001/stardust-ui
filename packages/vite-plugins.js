@@ -47,7 +47,7 @@ const inject = (src, id) => {
 const instantiateTables = (src, id) => {
   const basename = path.basename(id)
   if (id.includes('/src/') && (basename.includes('.vue') || basename.includes('.js'))) {
-    const names = new Set([...src.matchAll(/[A-Z]\w+\.(search|add|update|remove|func|batch|get)/g)].map(e => e[0].split('.')[0]))
+    const names = new Set([...src.matchAll(/[^a-z][A-Z]\w+\.(search|add|update|remove|func|batch|get)/g)].map(e => e[0].slice(1).split('.')[0]))
     names.forEach(name => {
       const tablename = name.replace(/[A-Z]/g, c => '_' + c.toLowerCase()).slice(1)
       src = `const ${name} = new Table(DbName, '${tablename}')\n` + src
