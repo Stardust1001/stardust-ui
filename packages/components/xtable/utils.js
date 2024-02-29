@@ -240,7 +240,7 @@ export function _listen () {
   if (events.includes('*')) {
     events = [...new Set([
       ...events, 'search', 'add', 'multi-delete', 'export', 'search-export', 'import',
-      'edit', 'row-edit', 'cancel-edit', 'delete', 'load'
+      'edit', 'row-edit', 'cancel-edit', 'delete'
     ])]
   }
   const dict = {}

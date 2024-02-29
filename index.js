@@ -2809,8 +2809,7 @@ function An() {
     "edit",
     "row-edit",
     "cancel-edit",
-    "delete",
-    "load"
+    "delete"
   ])]);
   const t = {};
   return e.forEach((i) => {
@@ -6205,7 +6204,7 @@ const { ElInfiniteScroll: ze } = window.ElementPlus || {}, de = ".el-scrollbar__
   for (let s in ve)
     e.directive(ve[s].name, ve[s]);
 }, ta = {
-  version: "1.2.15",
+  version: "1.2.16",
   ...ke,
   ...lt,
   ...Rt,
