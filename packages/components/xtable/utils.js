@@ -23,22 +23,6 @@ export function props () {
       type: Boolean,
       default: false
     },
-    hideHeader: {
-      type: Boolean,
-      default: false
-    },
-    hideSearcher: {
-      type: Boolean,
-      default: false
-    },
-    hideTools: {
-      type: Boolean,
-      default: false
-    },
-    hideSettings: {
-      type: Boolean,
-      default: false
-    },
     onSelectionChange: Function,
     onSortChange: Function,
     onHeaderDragend: Function,
@@ -269,6 +253,26 @@ export function _uid () {
   return uid || table?.uid || ''
 }
 
+export function hideHeader () {
+  return this.table.hideHeader || (this._attrs['hide-header'] !== undefined && this._attrs['hide-header'] !== false)
+}
+
+export function hideTools () {
+  return this.table.hideTools || (this._attrs['hide-tools'] !== undefined && this._attrs['hide-tools'] !== false)
+}
+
+export function hideSearcher () {
+  return this.table.hideSearcher || (this._attrs['hide-searcher'] !== undefined && this._attrs['hide-searcher'] !== false)
+}
+
+export function hideChart () {
+  return this.table.hideChart || (this._attrs['hide-chart'] !== undefined && this._attrs['hide-chart'] !== false)
+}
+
+export function hideSettings () {
+  return this.table.hideSettings || (this._attrs['hide-settings'] !== undefined && this._attrs['hide-settings'] !== false)
+}
+
 export function hideOperates () {
   return this.table.hideOperates || (this._attrs['hide-operates'] !== undefined && this._attrs['hide-operates'] !== false)
 }
@@ -279,10 +283,6 @@ export function hidePagination () {
 
 export function operatesWidth () {
   return this.table.operatesWidth || this._attrs['operatesWidth'] || this._attrs['operates-width']
-}
-
-export function hideChart () {
-  return this.table.hideChart || (this._attrs['hide-chart'] !== undefined && this._attrs['hide-chart'] !== false)
 }
 
 export function operatesDropdown () {
@@ -563,10 +563,14 @@ export default {
     _listen,
     _visibleColumns,
     _uid,
+    hideHeader,
+    hideTools,
+    hideSearcher,
+    hideChart,
+    hideSettings,
     hideOperates,
     hidePagination,
     operatesWidth,
-    hideChart,
     operatesDropdown,
     searcherColumns,
     searcherConfig
