@@ -45,7 +45,8 @@ const inject = (src, id) => {
 }
 
 const instantiateTables = (src, id) => {
-  if (id.includes('controller.js')) {
+  const basename = path.basename(id)
+  if (id.includes('/src/') && (basename.includes('.vue') || basename.includes('.js'))) {
     const names = new Set([...src.matchAll(/[A-Z]\w+\.(search|add|update|func|batch|get)/g)].map(e => e[0].split('.')[0]))
     names.forEach(name => {
       const tablename = name.replace(/[A-Z]/g, c => '_' + c.toLowerCase()).slice(1)
