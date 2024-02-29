@@ -460,8 +460,10 @@ class at extends ot {
     return this._dbTable;
   }
   get form() {
-    var t, s;
-    return ((t = this.model) == null ? void 0 : t.form) || ((s = this.dialog) == null ? void 0 : s.form);
+    var t, s, i, n;
+    if ((t = this.model) != null && t.form && ((s = this.dialog) != null && s.form))
+      throw "conflict of model.form and dialog.form";
+    return ((i = this.model) == null ? void 0 : i.form) || ((n = this.dialog) == null ? void 0 : n.form);
   }
   _getMethods() {
     return [
@@ -6203,7 +6205,7 @@ const { ElInfiniteScroll: ze } = window.ElementPlus || {}, de = ".el-scrollbar__
   for (let s in ve)
     e.directive(ve[s].name, ve[s]);
 }, ta = {
-  version: "1.2.8",
+  version: "1.2.9",
   ...ke,
   ...lt,
   ...Rt,

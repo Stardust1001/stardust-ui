@@ -47,6 +47,7 @@ class CrudController extends BaseController {
   }
 
   get form () {
+    if (this.model?.form && this.dialog?.form) throw 'conflict of model.form and dialog.form'
     return this.model?.form || this.dialog?.form
   }
 
