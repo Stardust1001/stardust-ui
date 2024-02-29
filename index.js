@@ -512,6 +512,7 @@ class at extends ot {
       "afterEdit",
       "afterDelete",
       "afterSubmit",
+      "updatePartials",
       "_defaultFormatList",
       "_fillRelatedField",
       "formatList",
@@ -806,6 +807,13 @@ class at extends ot {
   afterDelete(t) {
   }
   afterSubmit(t) {
+  }
+  async updatePartials({ row: t }, s = []) {
+    if (!s.length)
+      return;
+    this.table.loading = !0;
+    const i = {};
+    s.forEach((n) => i[n] = t[n]), await this.update(i, t[this.idField]), this.table.loading = !1;
   }
   _defaultFormatList(t, s) {
     const { columns: i, query: n } = this.table, { page: l, limit: o } = n;
@@ -6204,7 +6212,7 @@ const { ElInfiniteScroll: ze } = window.ElementPlus || {}, de = ".el-scrollbar__
   for (let s in ve)
     e.directive(ve[s].name, ve[s]);
 }, ta = {
-  version: "1.2.16",
+  version: "1.2.17",
   ...ke,
   ...lt,
   ...Rt,

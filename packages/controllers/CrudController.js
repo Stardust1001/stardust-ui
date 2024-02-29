@@ -103,6 +103,8 @@ class CrudController extends BaseController {
       'afterDelete',
       'afterSubmit',
 
+      'updatePartials',
+
       '_defaultFormatList',
       '_fillRelatedField',
       'formatList',
@@ -538,6 +540,15 @@ class CrudController extends BaseController {
   afterDelete (data) { }
 
   afterSubmit (data) { }
+
+  async updatePartials ({ row }, fields = []) {
+    if (!fields.length) return
+    this.table.loading = true
+    const partials = {}
+    fields.forEach(f => partials[f] = row[f])
+    await this.update(partials, row[this.idField])
+    this.table.loading = false
+  }
 
   _defaultFormatList (list, res) {
     const { columns, query } = this.table
