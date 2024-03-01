@@ -89,8 +89,7 @@ export default {
         v-if="$slots.custom"
         name="custom"
         :option
-        :text
-        :value
+        :raw="option.raw"
       />
       <span v-else>
         <span class="main">{{ calcMainLabel(options[index]) }}</span>

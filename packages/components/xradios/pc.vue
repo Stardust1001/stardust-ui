@@ -74,8 +74,7 @@ export default {
         v-if="$slots.custom"
         name="custom"
         :option
-        :text
-        :value
+        :raw="option.raw"
       />
       <span v-else>{{ option.text }}</span>
     </component>

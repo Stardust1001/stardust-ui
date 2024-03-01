@@ -1658,7 +1658,8 @@ function hs(e, t, s, i, n, l) {
         default: c(() => [
           e.$slots.custom ? $(e.$slots, "custom", {
             key: 0,
-            option: r
+            option: r,
+            raw: r.raw
           }, void 0, !0) : (d(), _("span", us, A(r.text), 1))
         ]),
         _: 2
@@ -1667,7 +1668,7 @@ function hs(e, t, s, i, n, l) {
     _: 3
   }, 16, ["class", "modelValue"]);
 }
-const ms = /* @__PURE__ */ E(cs, [["render", hs], ["__scopeId", "data-v-720c6fb4"]]), ps = {
+const ms = /* @__PURE__ */ E(cs, [["render", hs], ["__scopeId", "data-v-9aba84fc"]]), ps = {
   name: "MobileXCol",
   inheritAttrs: !1,
   computed: {
@@ -3468,8 +3469,7 @@ function Mi(e, t, s, i, n, l) {
           e.$slots.custom ? $(e.$slots, "custom", {
             key: 0,
             option: a,
-            text: s.text,
-            value: s.value
+            raw: a.raw
           }, void 0, !0) : (d(), _("span", Li, A(a.text), 1))
         ]),
         _: 2
@@ -3478,7 +3478,7 @@ function Mi(e, t, s, i, n, l) {
     _: 3
   }, 16, ["class", "modelValue"]);
 }
-const Ni = /* @__PURE__ */ E(Bi, [["render", Mi], ["__scopeId", "data-v-cbb3765c"]]), Pi = {
+const Ni = /* @__PURE__ */ E(Bi, [["render", Mi], ["__scopeId", "data-v-5922d9e1"]]), Pi = {
   name: "MobileXRow",
   props: {
     cols: {
@@ -3773,8 +3773,7 @@ function rl(e, t, s, i, n, l) {
           e.$slots.custom ? $(e.$slots, "custom", {
             key: 0,
             option: r,
-            text: s.text,
-            value: s.value
+            raw: r.raw
           }, void 0, !0) : (d(), _("span", ll, [
             j("span", ol, A(l.calcMainLabel(s.options[h])), 1),
             j("span", al, A(l.calcRemarkLabel(s.options[h])), 1)
@@ -3786,7 +3785,7 @@ function rl(e, t, s, i, n, l) {
     _: 3
   }, 16, ["class", "loading", "filterable", "remote-method"]);
 }
-const dl = /* @__PURE__ */ E(il, [["render", rl], ["__scopeId", "data-v-05cac3b4"]]), cl = {
+const dl = /* @__PURE__ */ E(il, [["render", rl], ["__scopeId", "data-v-f40a3d2e"]]), cl = {
   name: "XSelectV2",
   props: {
     modelName: String,
@@ -3860,8 +3859,7 @@ function pl(e, t, s, i, n, l) {
       e.$slots.custom ? $(e.$slots, "custom", {
         key: 0,
         option: e.option,
-        text: s.text,
-        value: s.value
+        raw: e.option.raw
       }, void 0, !0) : (d(), _("span", ul, [
         j("span", hl, A(l.calcMainLabel(s.options[r])), 1),
         j("span", ml, A(l.calcRemarkLabel(s.options[r])), 1)
@@ -3870,7 +3868,7 @@ function pl(e, t, s, i, n, l) {
     _: 3
   }, 16, ["class", "loading", "options", "filterable", "remote-method"]);
 }
-const fl = /* @__PURE__ */ E(cl, [["render", pl], ["__scopeId", "data-v-309e0676"]]), Xe = {
+const fl = /* @__PURE__ */ E(cl, [["render", pl], ["__scopeId", "data-v-3dc27006"]]), Xe = {
   eq: {
     text: "等于",
     value: "eq"
@@ -6217,7 +6215,7 @@ const { ElInfiniteScroll: ze } = window.ElementPlus || {}, de = ".el-scrollbar__
   for (let s in ve)
     e.directive(ve[s].name, ve[s]);
 }, aa = {
-  version: "1.2.22",
+  version: "1.2.23",
   ...ke,
   ...lt,
   ...It,

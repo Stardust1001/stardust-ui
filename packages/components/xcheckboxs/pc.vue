@@ -69,6 +69,7 @@ export default {
         v-if="$slots.custom"
         name="custom"
         :option
+        :raw="option.raw"
       />
       <span v-else>{{ option.text }}</span>
     </el-checkbox>
