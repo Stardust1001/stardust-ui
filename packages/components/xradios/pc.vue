@@ -70,7 +70,14 @@ export default {
       :key="option.text"
       :label="option.value"
     >
-      {{ option.text }}
+      <slot
+        v-if="$slots.custom"
+        name="custom"
+        :option
+        :text
+        :value
+      />
+      <span v-else>{{ option.text }}</span>
     </component>
   </el-radio-group>
 </template>
