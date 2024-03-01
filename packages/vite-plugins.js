@@ -67,18 +67,38 @@ const instantiateTables = (src, id) => {
 }
 
 const deconstruct = (src, id) => {
-  const needModel = src.includes('import makeModel ') && src.includes('return __returned__')
-  const needController = src.includes('import makeController ') && src.includes('return __returned__')
-  if (needModel || needController) {
-    let replacement = filterPrivateFields
-    if (needModel && needController) {
-      replacement += 'return { ...__returned__, ...filterPrivateFields(model), ...filterPrivateFields(controller) }'
-    } else if (needModel) {
-      replacement += 'return { ...__returned__, ...filterPrivateFields(model) }'
-    } else if (needController) {
-      replacement += 'return { ...__returned__, ...filterPrivateFields(controller) }'
+  const basename = path.basename(id)
+  const isVue = basename.includes('.vue')
+  if (id.includes('/src/') && isVue) {
+    const devText = 'return __returned__'
+    const buildText = 'return (_ctx, _cache) => {'
+    const isDev = src.includes(devText)
+    const isBuild = src.includes(buildText)
+    const needModel = (isDev || isBuild) && src.includes('import makeModel ')
+    const needController = (isDev || isBuild) && src.includes('import makeController ')
+    if (needModel || needController) {
+      let replacement = filterPrivateFields
+      if (isDev) {
+        if (needModel && needController) {
+          replacement += 'return { ...__returned__, ...filterPrivateFields(model), ...filterPrivateFields(controller) }'
+        } else if (needModel) {
+          replacement += 'return { ...__returned__, ...filterPrivateFields(model) }'
+        } else if (needController) {
+          replacement += 'return { ...__returned__, ...filterPrivateFields(controller) }'
+        }
+      } else {
+        replacement += buildText + '\n'
+        if (needModel && needController) {
+          replacement += '_ctx = { ..._ctx, ...filterPrivateFields(model), ...filterPrivateFields(controller) }'
+        } else if (needModel) {
+          replacement += '_ctx = { ..._ctx, ...filterPrivateFields(model) }'
+        } else if (needController) {
+          replacement += '_ctx = { ..._ctx, ...filterPrivateFields(controller) }'
+        }
+        replacement += '\n'
+      }
+      src = src.replace(isDev ? devText : buildText, replacement)
     }
-    src = src.replace('return __returned__', replacement)
   }
   return src
 }
