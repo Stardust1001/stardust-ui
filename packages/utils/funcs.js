@@ -1,4 +1,4 @@
-import { toRaw } from 'vue'
+import { toRaw, markRaw } from 'vue'
 
 export const validateForm = async (model) => {
   const ok = await model.formRef?.validate().then(() => true).catch(() => false)
@@ -24,7 +24,7 @@ export const formatOptions = (options, vm) => {
   const { text = 'text', value = 'value' } = vm
   const items = opts.map(op => {
     if (typeof op === 'object') {
-      return { text: op[text], value: op[value] }
+      return { text: op[text], value: op[value], raw: markRaw(op) }
     } else {
       return { text: op, value: op }
     }
