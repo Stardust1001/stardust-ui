@@ -11,6 +11,14 @@ const filterPrivateFields = `
     }
     return target
   }
+  const wrapCtx = (_ctx, model, controller) => {
+    return new Proxy(_ctx, {
+      get (obj, prop) {
+        if (prop in obj) return obj[prop]
+        return model?.[prop] ?? controller?.[prop]
+      }
+    })
+  }
 `
 
 const inject = (src, id) => {
@@ -89,11 +97,11 @@ const deconstruct = (src, id) => {
       } else {
         replacement += buildText + '\n'
         if (needModel && needController) {
-          replacement += '_ctx = { ..._ctx, ...filterPrivateFields(model), ...filterPrivateFields(controller) }'
+          replacement += '_ctx = wrapCtx(_ctx, filterPrivateFields(model), filterPrivateFields(controller))'
         } else if (needModel) {
-          replacement += '_ctx = { ..._ctx, ...filterPrivateFields(model) }'
+          replacement += '_ctx = wrapCtx(_ctx, filterPrivateFields(model))'
         } else if (needController) {
-          replacement += '_ctx = { ..._ctx, ...filterPrivateFields(controller) }'
+          replacement += '_ctx = wrapCtx(_ctx, null, filterPrivateFields(controller))'
         }
         replacement += '\n'
       }
