@@ -282,7 +282,7 @@ export function hidePagination () {
 }
 
 export function operatesWidth () {
-  return this.table.operatesWidth || this._attrs['operatesWidth'] || this._attrs['operates-width']
+  return this.table.operatesWidth || this._attrs['operatesWidth'] || this._attrs['operates-width'] || 150
 }
 
 export function operatesDropdown () {

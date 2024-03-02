@@ -2847,7 +2847,7 @@ function Mn() {
   return this.table.hidePagination || this._attrs["hide-pagination"] !== void 0 && this._attrs["hide-pagination"] !== !1;
 }
 function Nn() {
-  return this.table.operatesWidth || this._attrs.operatesWidth || this._attrs["operates-width"];
+  return this.table.operatesWidth || this._attrs.operatesWidth || this._attrs["operates-width"] || 150;
 }
 function Pn() {
   return this._attrs["operates-dropdown"] !== void 0 && this._attrs["operates-dropdown"] !== !1;
@@ -5478,7 +5478,7 @@ const uo = (e) => {
     key: n.length,
     title: "操作",
     type: "operates",
-    width: t.operatesWidth || 195,
+    width: t.operatesWidth || 150,
     align: s.operatesAlign || s.tableAlign || "center",
     fixed: s.operatesFixed || "right",
     cellRenderer(l) {
@@ -6215,7 +6215,7 @@ const { ElInfiniteScroll: ze } = window.ElementPlus || {}, de = ".el-scrollbar__
   for (let s in ve)
     e.directive(ve[s].name, ve[s]);
 }, aa = {
-  version: "1.2.26",
+  version: "1.2.27",
   ...ke,
   ...lt,
   ...It,

@@ -189,7 +189,7 @@ export const convertColumnsForTableV2 = (columns, vm) => {
       key: cols.length,
       title: '操作',
       type: 'operates',
-      width: vm.operatesWidth || 195,
+      width: vm.operatesWidth || 150,
       align: _attrs.operatesAlign || _attrs.tableAlign || 'center',
       fixed: _attrs.operatesFixed || 'right',
       cellRenderer (props) {
