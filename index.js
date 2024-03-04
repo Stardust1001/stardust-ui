@@ -532,7 +532,7 @@ class at extends ot {
     this.table && this.handleSearch();
   }
   async handleSearch(t, { isInfinite: s = !1 } = {}) {
-    if (this.table.isInfinite = s, !await this.beforeSearch(t))
+    if (this.table.isInfinite = s, this.table.loading || !await this.beforeSearch(t))
       return;
     t = this.getSearchParams(t), this.table.loading = !0;
     const i = await this.search(t);
@@ -6215,7 +6215,7 @@ const { ElInfiniteScroll: ze } = window.ElementPlus || {}, de = ".el-scrollbar__
   for (let s in ve)
     e.directive(ve[s].name, ve[s]);
 }, aa = {
-  version: "1.2.27",
+  version: "1.2.28",
   ...ke,
   ...lt,
   ...It,

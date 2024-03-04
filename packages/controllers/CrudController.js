@@ -127,7 +127,7 @@ class CrudController extends BaseController {
 
   async handleSearch (params, { isInfinite = false } = {}) {
     this.table.isInfinite = isInfinite
-    if (!await this.beforeSearch(params)) return
+    if (this.table.loading || !await this.beforeSearch(params)) return
     params = this.getSearchParams(params)
     this.table.loading = true
     const data = await this.search(params)
