@@ -59,7 +59,7 @@
 .el-dialog {
   &.is-fullscreen {
     .el-dialog__body {
-      height: calc(100% - 100px);
+      height: calc(100% - 127px);
       overflow-y: auto;
     }
   }
