@@ -2,7 +2,11 @@
 export default {
   name: 'PcXTags',
   props: {
-    data: Array
+    data: Array,
+    text: {
+      type: String,
+      default: 'text'
+    }
   },
   emits: ['close'],
   computed: {
@@ -19,9 +23,9 @@ export default {
     <el-tag
       v-for="(item, index) in _data" :key="index"
       v-bind="{ ...$attrs, item }"
-      @close="$emit('close', item.text, index)"
+      @close="$emit('close', item[text], index)"
     >
-      {{ item.text }}
+      {{ item[text] }}
     </el-tag>
   </div>
 </template>

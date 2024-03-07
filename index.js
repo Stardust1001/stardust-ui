@@ -5794,7 +5794,11 @@ function Eo(e, t, s, n, i, l) {
 const Ao = /* @__PURE__ */ E(xo, [["render", Eo], ["__scopeId", "data-v-e6f36700"]]), Oo = {
   name: "MobileXTags",
   props: {
-    data: Array
+    data: Array,
+    text: {
+      type: String,
+      default: "text"
+    }
   },
   emits: ["close"],
   computed: {
@@ -5808,19 +5812,23 @@ function jo(e, t, s, n, i, l) {
   const o = u("van-tag");
   return d(), _("div", To, [
     (d(!0), _(B, null, N(l._data, (a, r) => (d(), f(o, b({ key: r }, { ...e.$attrs, item: a }, {
-      onClose: (h) => e.$emit("close", a.text, r)
+      onClose: (h) => e.$emit("close", a[s.text], r)
     }), {
       default: c(() => [
-        x(A(a.text), 1)
+        x(A(a[s.text]), 1)
       ]),
       _: 2
     }, 1040, ["onClose"]))), 128))
   ]);
 }
-const Fo = /* @__PURE__ */ E(Oo, [["render", jo], ["__scopeId", "data-v-00235f22"]]), Do = {
+const Fo = /* @__PURE__ */ E(Oo, [["render", jo], ["__scopeId", "data-v-d8beefdf"]]), Do = {
   name: "PcXTags",
   props: {
-    data: Array
+    data: Array,
+    text: {
+      type: String,
+      default: "text"
+    }
   },
   emits: ["close"],
   computed: {
@@ -5834,16 +5842,16 @@ function Io(e, t, s, n, i, l) {
   const o = u("el-tag");
   return d(), _("div", Ro, [
     (d(!0), _(B, null, N(l._data, (a, r) => (d(), f(o, b({ key: r }, { ...e.$attrs, item: a }, {
-      onClose: (h) => e.$emit("close", a.text, r)
+      onClose: (h) => e.$emit("close", a[s.text], r)
     }), {
       default: c(() => [
-        x(A(a.text), 1)
+        x(A(a[s.text]), 1)
       ]),
       _: 2
     }, 1040, ["onClose"]))), 128))
   ]);
 }
-const Bo = /* @__PURE__ */ E(Do, [["render", Io], ["__scopeId", "data-v-4674d140"]]), Mo = {
+const Bo = /* @__PURE__ */ E(Do, [["render", Io], ["__scopeId", "data-v-bd702be1"]]), Mo = {
   name: "XTinymce",
   props: {
     modelValue: {
@@ -6237,7 +6245,7 @@ const { ElInfiniteScroll: Je } = window.ElementPlus || {}, de = ".el-scrollbar__
   for (let s in we)
     e.directive(we[s].name, we[s]);
 }, aa = {
-  version: "1.2.50",
+  version: "1.2.51",
   ...xe,
   ...rt,
   ...It,
