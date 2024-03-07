@@ -3731,7 +3731,10 @@ const nl = /* @__PURE__ */ E(tl, [["render", sl]]), il = {
       immediate: !0,
       deep: !0,
       handler() {
-        this._options = J(this.options, this);
+        const e = J(this.options, this);
+        this.$slots.custom || e.forEach((t, s) => {
+          t._main_ = this.calcMainLabel(this.options[s]), t._remark_ = this.calcRemarkLabel(this.options[s]);
+        }), this._options = e;
       }
     }
   },
@@ -3740,6 +3743,15 @@ const nl = /* @__PURE__ */ E(tl, [["render", sl]]), il = {
   },
   methods: {
     formatOptions: J,
+    filter(e) {
+      if (e = e.trim(), !e)
+        return !0;
+      const t = !!this.$slots.custom;
+      return this._options.filter((s) => {
+        let i = s.text;
+        return t || (i += s._main_ + s._remark_), i.includes(e);
+      });
+    },
     remoteSearch(e) {
       if (!this.remote && !this.modelName)
         return this._options;
@@ -3761,6 +3773,7 @@ function rl(e, t, s, i, n, l) {
   }, e.$attrs, {
     filterable: s.filterable,
     clearable: "",
+    "filter-method": e.$attrs.filterMethod || l.filter,
     "remote-method": e.$attrs.remoteMethod || l.remoteSearch
   }), {
     default: c(() => [
@@ -3775,17 +3788,17 @@ function rl(e, t, s, i, n, l) {
             option: r,
             raw: r.raw
           }, void 0, !0) : (d(), _("span", ll, [
-            j("span", ol, A(l.calcMainLabel(s.options[h])), 1),
-            j("span", al, A(l.calcRemarkLabel(s.options[h])), 1)
+            j("span", ol, A(r._main_), 1),
+            j("span", al, A(r._remark_), 1)
           ]))
         ]),
         _: 2
       }, 1040, ["label", "value"]))), 128))
     ]),
     _: 3
-  }, 16, ["class", "loading", "filterable", "remote-method"]);
+  }, 16, ["class", "loading", "filterable", "filter-method", "remote-method"]);
 }
-const dl = /* @__PURE__ */ E(il, [["render", rl], ["__scopeId", "data-v-f40a3d2e"]]), cl = {
+const dl = /* @__PURE__ */ E(il, [["render", rl], ["__scopeId", "data-v-6c69c2de"]]), cl = {
   name: "XSelectV2",
   props: {
     modelName: String,
@@ -6215,7 +6228,7 @@ const { ElInfiniteScroll: ze } = window.ElementPlus || {}, de = ".el-scrollbar__
   for (let s in ve)
     e.directive(ve[s].name, ve[s]);
 }, aa = {
-  version: "1.2.30",
+  version: "1.2.31",
   ...ke,
   ...lt,
   ...It,

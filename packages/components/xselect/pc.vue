@@ -41,7 +41,14 @@ export default {
       immediate: true,
       deep: true,
       handler () {
-        this._options = formatOptions(this.options, this)
+        const ops = formatOptions(this.options, this)
+        if (!this.$slots.custom) {
+          ops.forEach((op, index) => {
+            op._main_ = this.calcMainLabel(this.options[index])
+            op._remark_ = this.calcRemarkLabel(this.options[index])
+          })
+        }
+        this._options = ops
       }
     }
   },
@@ -52,6 +59,16 @@ export default {
   },
   methods: {
     formatOptions,
+    filter (keywords) {
+      keywords = keywords.trim()
+      if (!keywords) return true
+      const isCustom = !!this.$slots.custom
+      return this._options.filter(op => {
+        let text = op.text
+        if (!isCustom) text += op._main_ + op._remark_
+        return text.includes(keywords)
+      })
+    },
     remoteSearch (query) {
       if (!this.remote && !this.modelName) {
         return this._options
@@ -76,6 +93,7 @@ export default {
     v-bind="$attrs"
     :filterable
     clearable
+    :filter-method="$attrs.filterMethod || filter"
     :remote-method="$attrs.remoteMethod || remoteSearch"
   >
     <el-option
@@ -92,8 +110,8 @@ export default {
         :raw="option.raw"
       />
       <span v-else>
-        <span class="main">{{ calcMainLabel(options[index]) }}</span>
-        <span class="remark">{{ calcRemarkLabel(options[index]) }}</span>
+        <span class="main">{{ option._main_ }}</span>
+        <span class="remark">{{ option._remark_ }}</span>
       </span>
     </el-option>
   </el-select>
