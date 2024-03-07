@@ -1,4 +1,5 @@
 <script>
+import { markRaw } from 'vue'
 import { formatOptions } from '../../utils/index.js'
 import { remoteSearch, calcMainLabel, calcRemarkLabel } from './util.js'
 
