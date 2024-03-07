@@ -61,7 +61,9 @@ export default {
     formatOptions,
     filter (keywords) {
       keywords = keywords.trim()
-      if (!keywords) return markRaw(this._options)
+      if (!keywords) {
+        return this.list = markRaw(this._options)
+      }
       const isCustom = !!this.$slots.custom
       this.list = markRaw(this._options.filter(op => {
         let text = op.text
