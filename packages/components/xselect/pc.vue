@@ -33,7 +33,8 @@ export default {
   data () {
     return {
       loading: false,
-      _options: []
+      _options: [],
+      list: []
     }
   },
   watch: {
@@ -44,11 +45,12 @@ export default {
         const ops = formatOptions(this.options, this)
         if (!this.$slots.custom) {
           ops.forEach((op, index) => {
-            op._main_ = this.calcMainLabel(this.options[index])
-            op._remark_ = this.calcRemarkLabel(this.options[index])
+            op._main_ = calcMainLabel(this.options[index], this)
+            op._remark_ = calcRemarkLabel(this.options[index], this)
           })
         }
-        this._options = ops
+        this._options = markRaw(ops)
+        this.list = this._options
       }
     }
   },
@@ -61,13 +63,13 @@ export default {
     formatOptions,
     filter (keywords) {
       keywords = keywords.trim()
-      if (!keywords) return true
+      if (!keywords) return markRaw(this._options)
       const isCustom = !!this.$slots.custom
-      return this._options.filter(op => {
+      this.list = markRaw(this._options.filter(op => {
         let text = op.text
         if (!isCustom) text += op._main_ + op._remark_
         return text.includes(keywords)
-      })
+      }))
     },
     remoteSearch (query) {
       if (!this.remote && !this.modelName) {

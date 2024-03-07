@@ -1,4 +1,5 @@
 <script>
+import { markRaw } from 'vue'
 import { formatOptions } from '../../utils/index.js'
 import { remoteSearch, calcMainLabel, calcRemarkLabel } from '../xselect/util.js'
 
@@ -30,7 +31,8 @@ export default {
   data () {
     return {
       loading: false,
-      _options: []
+      _options: [],
+      list: []
     }
   },
   watch: {
@@ -38,7 +40,15 @@ export default {
       immediate: true,
       deep: true,
       handler () {
-        this._options = formatOptions(this.options, this)
+        const ops = formatOptions(this.options, this)
+        if (!this.$slots.custom) {
+          ops.forEach((op, index) => {
+            op._main_ = calcMainLabel(this.options[index], this)
+            op._remark_ = calcRemarkLabel(this.options[index], this)
+          })
+        }
+        this._options = markRaw(ops)
+        this.list = this._options
       }
     }
   },
@@ -49,17 +59,21 @@ export default {
   },
   methods: {
     formatOptions,
+    filter (keywords) {
+      keywords = keywords.trim()
+      if (!keywords) return markRaw(this._options)
+      const isCustom = !!this.$slots.custom
+      this.list = markRaw(this._options.filter(op => {
+        let text = op.text
+        if (!isCustom) text += op._main_ + op._remark_
+        return text.includes(keywords)
+      }))
+    },
     remoteSearch (query) {
       if (!this.remote && !this.modelName) {
         return this._options
       }
       remoteSearch(this.service.restful, query, this)
-    },
-    calcMainLabel (option) {
-      return calcMainLabel(option, this)
-    },
-    calcRemarkLabel (option) {
-      return calcRemarkLabel(option, this)
     }
   }
 }
@@ -71,22 +85,23 @@ export default {
     :class="plain ? 'x-select-v2--plain' : ''"
     :loading
     v-bind="$attrs"
-    :options="_options"
+    :options="list"
     :props="{ label: 'text' }"
     :filterable
     clearable
+    :filter-method="$attrs.filterMethod || filter"
     :remote-method="$attrs.remoteMethod || remoteSearch"
   >
     <template #default="{ item, index }">
       <slot
         v-if="$slots.custom"
         name="custom"
-        :option
-        :raw="option.raw"
+        :option="item"
+        :raw="item.raw"
       />
       <span v-else>
-        <span class="main">{{ calcMainLabel(options[index]) }}</span>
-        <span class="remark">{{ calcRemarkLabel(options[index]) }}</span>
+        <span class="main">{{ item._main_ }}</span>
+        <span class="remark">{{ item._remark_ }}</span>
       </span>
     </template>
   </el-select-v2>
