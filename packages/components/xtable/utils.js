@@ -260,7 +260,7 @@ export function plain () {
 
 export function hideHeader () {
   const { 'hide-header': hideHeader } = this._attrs
-  return this.plain ? hideHeader !== false : (hideHeader || hideHeader === '')
+  return hideHeader || hideHeader === ''
 }
 
 export function hideTools () {

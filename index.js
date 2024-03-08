@@ -2838,7 +2838,7 @@ function Fn() {
 }
 function Dn() {
   const { "hide-header": e } = this._attrs;
-  return this.plain ? e !== !1 : e || e === "";
+  return e || e === "";
 }
 function In() {
   const { "hide-tools": e } = this._attrs;
@@ -6276,7 +6276,7 @@ const { ElInfiniteScroll: Je } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in we)
     e.directive(we[s].name, we[s]);
 }, ra = {
-  version: "1.2.68",
+  version: "1.2.69",
   ...xe,
   ...rt,
   ...Rt,
