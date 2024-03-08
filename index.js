@@ -590,7 +590,7 @@ class ct extends dt {
   async handleCancelEdit({ row: t }) {
     Object.assign(t, JSON.parse(t.originData)), delete t.originData, t.isEditing = !1;
   }
-  async handleExport(t = this.exportType, s = "导出数据") {
+  async handleExport(t = this.exportType, s = document.title) {
     if (this._isExporting)
       return;
     if (t instanceof Event && (t = ""), t = t || this.config.exportType || "csv", !["csv", "excel"].includes(t)) {
@@ -6265,7 +6265,7 @@ const { ElInfiniteScroll: Je } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in we)
     e.directive(we[s].name, we[s]);
 }, aa = {
-  version: "1.2.62",
+  version: "1.2.63",
   ...xe,
   ...rt,
   ...Rt,

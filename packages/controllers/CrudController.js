@@ -217,7 +217,7 @@ class CrudController extends BaseController {
     row.isEditing = false
   }
 
-  async handleExport (type = this.exportType, filename = '导出数据') {
+  async handleExport (type = this.exportType, filename = document.title) {
     if (this._isExporting) return
     if (type instanceof Event) type = ''
     type = type || this.config.exportType || 'csv'
