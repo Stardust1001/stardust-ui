@@ -104,6 +104,7 @@ export default {
     <el-option
       v-for="(option, index) in _options"
       v-bind="$attrs"
+      :disabled="option.raw?.disabled"
       :key="option.value"
       :label="option.text"
       :value="option.value"

@@ -1580,22 +1580,25 @@ function rs(e, t, s, n, i, l) {
     onChange: t[0] || (t[0] = (r) => e.$emit("change", r))
   }), {
     default: c(() => [
-      (d(!0), _(B, null, N(i._options, (r) => (d(), f(o, b(l.attrs, {
-        disabled: r.disabled ?? l.attrs.disabled,
-        key: r.text,
-        shape: s.shape,
-        name: r.value
-      }), {
-        default: c(() => [
-          x(A(r.text), 1)
-        ]),
-        _: 2
-      }, 1040, ["disabled", "shape", "name"]))), 128))
+      (d(!0), _(B, null, N(i._options, (r) => {
+        var h;
+        return d(), f(o, b(l.attrs, {
+          disabled: (h = r.raw) == null ? void 0 : h.disabled,
+          key: r.text,
+          shape: s.shape,
+          name: r.value
+        }), {
+          default: c(() => [
+            x(A(r.text), 1)
+          ]),
+          _: 2
+        }, 1040, ["disabled", "shape", "name"]);
+      }), 128))
     ]),
     _: 1
   }, 16, ["class", "direction"]);
 }
-const ds = /* @__PURE__ */ E(as, [["render", rs], ["__scopeId", "data-v-ede52d94"]]), cs = {
+const ds = /* @__PURE__ */ E(as, [["render", rs], ["__scopeId", "data-v-f7122501"]]), cs = {
   name: "PcXCheckboxs",
   inheritAttrs: !1,
   props: {
@@ -1652,25 +1655,28 @@ function hs(e, t, s, n, i, l) {
     onChange: t[1] || (t[1] = (r) => e.$emit("change", r))
   }), {
     default: c(() => [
-      (d(!0), _(B, null, N(i._options, (r) => (d(), f(o, b(l.attrs, {
-        disabled: r.disabled ?? l.attrs.disabled,
-        key: r.text,
-        value: r.value
-      }), {
-        default: c(() => [
-          e.$slots.custom ? $(e.$slots, "custom", {
-            key: 0,
-            option: r,
-            raw: r.raw
-          }, void 0, !0) : (d(), _("span", us, A(r.text), 1))
-        ]),
-        _: 2
-      }, 1040, ["disabled", "value"]))), 128))
+      (d(!0), _(B, null, N(i._options, (r) => {
+        var h;
+        return d(), f(o, b(l.attrs, {
+          disabled: (h = r.raw) == null ? void 0 : h.disabled,
+          key: r.text,
+          value: r.value
+        }), {
+          default: c(() => [
+            e.$slots.custom ? $(e.$slots, "custom", {
+              key: 0,
+              option: r,
+              raw: r.raw
+            }, void 0, !0) : (d(), _("span", us, A(r.text), 1))
+          ]),
+          _: 2
+        }, 1040, ["disabled", "value"]);
+      }), 128))
     ]),
     _: 3
   }, 16, ["class", "modelValue"]);
 }
-const ms = /* @__PURE__ */ E(cs, [["render", hs], ["__scopeId", "data-v-964bac6a"]]), ps = {
+const ms = /* @__PURE__ */ E(cs, [["render", hs], ["__scopeId", "data-v-4dd3721a"]]), ps = {
   name: "MobileXCol",
   inheritAttrs: !1,
   computed: {
@@ -3389,21 +3395,24 @@ function In(e, t, s, n, i, l) {
     class: ["mobile-x-radios", s.plain ? "mobile-x-radios--plain" : ""]
   }, e.$attrs, { direction: s.direction }), {
     default: c(() => [
-      (d(!0), _(B, null, N(i._options, (r) => (d(), f(o, b(e.$attrs, {
-        disabled: r.disabled ?? e.attrs.disabled,
-        key: r.text,
-        name: r.value
-      }), {
-        default: c(() => [
-          x(A(r.text), 1)
-        ]),
-        _: 2
-      }, 1040, ["disabled", "name"]))), 128))
+      (d(!0), _(B, null, N(i._options, (r) => {
+        var h;
+        return d(), f(o, b(e.$attrs, {
+          disabled: (h = r.raw) == null ? void 0 : h.disabled,
+          key: r.text,
+          name: r.value
+        }), {
+          default: c(() => [
+            x(A(r.text), 1)
+          ]),
+          _: 2
+        }, 1040, ["disabled", "name"]);
+      }), 128))
     ]),
     _: 1
   }, 16, ["class", "direction"]);
 }
-const Rn = /* @__PURE__ */ E(Dn, [["render", In], ["__scopeId", "data-v-f799f220"]]), Bn = {
+const Rn = /* @__PURE__ */ E(Dn, [["render", In], ["__scopeId", "data-v-667a10bc"]]), Bn = {
   name: "PcXRadios",
   inheritAttrs: !1,
   props: {
@@ -3464,25 +3473,28 @@ function Nn(e, t, s, n, i, l) {
     onChange: t[1] || (t[1] = (a) => e.$emit("change", a))
   }), {
     default: c(() => [
-      (d(!0), _(B, null, N(i._options, (a) => (d(), f(Q(s.button ? "el-radio-button" : "el-radio"), b(l.attrs, {
-        disabled: a.disabled ?? l.attrs.disabled,
-        key: a.text,
-        value: a.value
-      }), {
-        default: c(() => [
-          e.$slots.custom ? $(e.$slots, "custom", {
-            key: 0,
-            option: a,
-            raw: a.raw
-          }, void 0, !0) : (d(), _("span", Mn, A(a.text), 1))
-        ]),
-        _: 2
-      }, 1040, ["disabled", "value"]))), 128))
+      (d(!0), _(B, null, N(i._options, (a) => {
+        var r;
+        return d(), f(Q(s.button ? "el-radio-button" : "el-radio"), b(l.attrs, {
+          disabled: (r = a.raw) == null ? void 0 : r.disabled,
+          key: a.text,
+          value: a.value
+        }), {
+          default: c(() => [
+            e.$slots.custom ? $(e.$slots, "custom", {
+              key: 0,
+              option: a,
+              raw: a.raw
+            }, void 0, !0) : (d(), _("span", Mn, A(a.text), 1))
+          ]),
+          _: 2
+        }, 1040, ["disabled", "value"]);
+      }), 128))
     ]),
     _: 3
   }, 16, ["class", "modelValue"]);
 }
-const Ln = /* @__PURE__ */ E(Bn, [["render", Nn], ["__scopeId", "data-v-dbcea005"]]), Pn = {
+const Ln = /* @__PURE__ */ E(Bn, [["render", Nn], ["__scopeId", "data-v-1c8cf979"]]), Pn = {
   name: "MobileXRow",
   props: {
     cols: {
@@ -3782,28 +3794,32 @@ function rl(e, t, s, n, i, l) {
     "remote-method": e.$attrs.remoteMethod || l.remoteSearch
   }), {
     default: c(() => [
-      (d(!0), _(B, null, N(i._options, (r, h) => (d(), f(o, b(e.$attrs, {
-        key: r.value,
-        label: r.text,
-        value: r.value
-      }), {
-        default: c(() => [
-          e.$slots.custom ? $(e.$slots, "custom", {
-            key: 0,
-            option: r,
-            raw: r.raw
-          }, void 0, !0) : (d(), _("span", ll, [
-            j("span", ol, A(r._main_), 1),
-            j("span", al, A(r._remark_), 1)
-          ]))
-        ]),
-        _: 2
-      }, 1040, ["label", "value"]))), 128))
+      (d(!0), _(B, null, N(i._options, (r, h) => {
+        var p;
+        return d(), f(o, b(e.$attrs, {
+          disabled: (p = r.raw) == null ? void 0 : p.disabled,
+          key: r.value,
+          label: r.text,
+          value: r.value
+        }), {
+          default: c(() => [
+            e.$slots.custom ? $(e.$slots, "custom", {
+              key: 0,
+              option: r,
+              raw: r.raw
+            }, void 0, !0) : (d(), _("span", ll, [
+              j("span", ol, A(r._main_), 1),
+              j("span", al, A(r._remark_), 1)
+            ]))
+          ]),
+          _: 2
+        }, 1040, ["disabled", "label", "value"]);
+      }), 128))
     ]),
     _: 3
   }, 16, ["class", "loading", "filterable", "filter-method", "remote-method"]);
 }
-const dl = /* @__PURE__ */ E(nl, [["render", rl], ["__scopeId", "data-v-8fcee081"]]), cl = {
+const dl = /* @__PURE__ */ E(nl, [["render", rl], ["__scopeId", "data-v-341f5486"]]), cl = {
   name: "XSelectV2",
   props: {
     modelName: String,
@@ -6249,7 +6265,7 @@ const { ElInfiniteScroll: Je } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in we)
     e.directive(we[s].name, we[s]);
 }, aa = {
-  version: "1.2.60",
+  version: "1.2.61",
   ...xe,
   ...rt,
   ...Rt,
