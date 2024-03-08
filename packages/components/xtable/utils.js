@@ -253,40 +253,44 @@ export function _uid () {
   return uid || table?.uid || ''
 }
 
+export function plain () {
+  return this.table.plain ?? this._attrs.plain
+}
+
 export function hideHeader () {
-  return this.table.hideHeader || (this._attrs['hide-header'] !== undefined && this._attrs['hide-header'] !== false)
+  return this._attrs.hideHeader ?? this._attrs['hide-header'] ?? this.plain
 }
 
 export function hideTools () {
-  return this.table.hideTools || (this._attrs['hide-tools'] !== undefined && this._attrs['hide-tools'] !== false)
+  return this._attrs.hideTools ?? this._attrs['hide-tools'] ?? this.plain
 }
 
 export function hideSearcher () {
-  return this.table.hideSearcher || (this._attrs['hide-searcher'] !== undefined && this._attrs['hide-searcher'] !== false)
+  return this._attrs.hideSearcher ?? this._attrs['hide-searcher'] ?? this.plain
 }
 
 export function hideChart () {
-  return this.table.hideChart || (this._attrs['hide-chart'] !== undefined && this._attrs['hide-chart'] !== false)
+  return this._attrs.hideChart ?? this._attrs['hide-chart'] ?? this.plain
 }
 
 export function hideSettings () {
-  return this.table.hideSettings || (this._attrs['hide-settings'] !== undefined && this._attrs['hide-settings'] !== false)
+  return this._attrs.hideSettings ?? this._attrs['hide-settings'] ?? this.plain
 }
 
 export function hideOperates () {
-  return this.table.hideOperates || (this._attrs['hide-operates'] !== undefined && this._attrs['hide-operates'] !== false)
+  return this._attrs.hideOperates ?? this._attrs['hide-operates'] ?? this.plain
 }
 
 export function hidePagination () {
-  return this.table.hidePagination || (this._attrs['hide-pagination'] !== undefined && this._attrs['hide-pagination'] !== false)
+  return this._attrs.hidePagination ?? this._attrs['hide-pagination'] ?? this.plain
 }
 
 export function operatesWidth () {
-  return this.table.operatesWidth || this._attrs['operatesWidth'] || this._attrs['operates-width'] || 150
+  return this._attrs.operatesWidth ?? this._attrs['operates-width'] ?? 150
 }
 
 export function operatesDropdown () {
-  return this._attrs['operates-dropdown'] !== undefined && this._attrs['operates-dropdown'] !== false
+  return this._attrs['operates-dropdown']
 }
 
 export function searcherColumns () {
@@ -563,6 +567,7 @@ export default {
     _listen,
     _visibleColumns,
     _uid,
+    plain,
     hideHeader,
     hideTools,
     hideSearcher,
