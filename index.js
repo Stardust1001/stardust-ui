@@ -3463,7 +3463,7 @@ function Nn(e, t, s, n, i, l) {
     default: c(() => [
       (d(!0), _(B, null, N(i._options, (a) => (d(), f(Q(s.button ? "el-radio-button" : "el-radio"), b(l.attrs, {
         key: a.text,
-        label: a.value
+        value: a.value
       }), {
         default: c(() => [
           e.$slots.custom ? $(e.$slots, "custom", {
@@ -3473,12 +3473,12 @@ function Nn(e, t, s, n, i, l) {
           }, void 0, !0) : (d(), _("span", Mn, A(a.text), 1))
         ]),
         _: 2
-      }, 1040, ["label"]))), 128))
+      }, 1040, ["value"]))), 128))
     ]),
     _: 3
   }, 16, ["class", "modelValue"]);
 }
-const Ln = /* @__PURE__ */ E(Bn, [["render", Nn], ["__scopeId", "data-v-5922d9e1"]]), Pn = {
+const Ln = /* @__PURE__ */ E(Bn, [["render", Nn], ["__scopeId", "data-v-1945d5e3"]]), Pn = {
   name: "MobileXRow",
   props: {
     cols: {
@@ -6245,7 +6245,7 @@ const { ElInfiniteScroll: Je } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in we)
     e.directive(we[s].name, we[s]);
 }, aa = {
-  version: "1.2.55",
+  version: "1.2.56",
   ...xe,
   ...rt,
   ...Rt,

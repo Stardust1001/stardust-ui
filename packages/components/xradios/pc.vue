@@ -68,7 +68,7 @@ export default {
       v-for="option in _options"
       v-bind="attrs"
       :key="option.text"
-      :label="option.value"
+      :value="option.value"
     >
       <slot
         v-if="$slots.custom"
