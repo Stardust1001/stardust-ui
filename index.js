@@ -755,7 +755,7 @@ class ct extends dt {
     return this.dbTable.remove(t[this.idField]);
   }
   getSearchParams(t) {
-    return t != null && t.page && (this.table.query.page = t.page), t != null && t.limit && (this.table.query.limit = t.limit), Object.assign({}, JSON.parse(this._lastSearchParams), this.table.query, t);
+    return t != null && t.page && (this.table.query.page = t.page), t != null && t.limit && (this.table.query.limit = t.limit), Object.assign({ where: {} }, JSON.parse(this._lastSearchParams), this.table.query, t);
   }
   getAddParams(t) {
     const s = Object.keys(this.dialog.initialForm), n = {};
@@ -6264,7 +6264,7 @@ const { ElInfiniteScroll: Je } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in we)
     e.directive(we[s].name, we[s]);
 }, aa = {
-  version: "1.2.65",
+  version: "1.2.66",
   ...xe,
   ...rt,
   ...Rt,

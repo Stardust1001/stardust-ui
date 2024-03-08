@@ -470,7 +470,7 @@ class CrudController extends BaseController {
   getSearchParams (params) {
     if (params?.page) this.table.query.page = params.page
     if (params?.limit) this.table.query.limit = params.limit
-    return Object.assign({}, JSON.parse(this._lastSearchParams), this.table.query, params)
+    return Object.assign({ where: {} }, JSON.parse(this._lastSearchParams), this.table.query, params)
   }
 
   getAddParams (params) {
