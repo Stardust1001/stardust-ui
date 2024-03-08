@@ -51,6 +51,7 @@ export default {
     <van-radio
       v-for="option in _options"
       v-bind="$attrs"
+      :disabled="option.disabled ?? attrs.disabled"
       :key="option.text"
       :name="option.value"
     >

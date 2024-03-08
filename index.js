@@ -1581,6 +1581,7 @@ function rs(e, t, s, n, i, l) {
   }), {
     default: c(() => [
       (d(!0), _(B, null, N(i._options, (r) => (d(), f(o, b(l.attrs, {
+        disabled: r.disabled ?? l.attrs.disabled,
         key: r.text,
         shape: s.shape,
         name: r.value
@@ -1589,12 +1590,12 @@ function rs(e, t, s, n, i, l) {
           x(A(r.text), 1)
         ]),
         _: 2
-      }, 1040, ["shape", "name"]))), 128))
+      }, 1040, ["disabled", "shape", "name"]))), 128))
     ]),
     _: 1
   }, 16, ["class", "direction"]);
 }
-const ds = /* @__PURE__ */ E(as, [["render", rs], ["__scopeId", "data-v-64dce36e"]]), cs = {
+const ds = /* @__PURE__ */ E(as, [["render", rs], ["__scopeId", "data-v-ede52d94"]]), cs = {
   name: "PcXCheckboxs",
   inheritAttrs: !1,
   props: {
@@ -1652,6 +1653,7 @@ function hs(e, t, s, n, i, l) {
   }), {
     default: c(() => [
       (d(!0), _(B, null, N(i._options, (r) => (d(), f(o, b(l.attrs, {
+        disabled: r.disabled ?? l.attrs.disabled,
         key: r.text,
         value: r.value
       }), {
@@ -1663,12 +1665,12 @@ function hs(e, t, s, n, i, l) {
           }, void 0, !0) : (d(), _("span", us, A(r.text), 1))
         ]),
         _: 2
-      }, 1040, ["value"]))), 128))
+      }, 1040, ["disabled", "value"]))), 128))
     ]),
     _: 3
   }, 16, ["class", "modelValue"]);
 }
-const ms = /* @__PURE__ */ E(cs, [["render", hs], ["__scopeId", "data-v-2edda416"]]), ps = {
+const ms = /* @__PURE__ */ E(cs, [["render", hs], ["__scopeId", "data-v-964bac6a"]]), ps = {
   name: "MobileXCol",
   inheritAttrs: !1,
   computed: {
@@ -3388,6 +3390,7 @@ function In(e, t, s, n, i, l) {
   }, e.$attrs, { direction: s.direction }), {
     default: c(() => [
       (d(!0), _(B, null, N(i._options, (r) => (d(), f(o, b(e.$attrs, {
+        disabled: r.disabled ?? e.attrs.disabled,
         key: r.text,
         name: r.value
       }), {
@@ -3395,12 +3398,12 @@ function In(e, t, s, n, i, l) {
           x(A(r.text), 1)
         ]),
         _: 2
-      }, 1040, ["name"]))), 128))
+      }, 1040, ["disabled", "name"]))), 128))
     ]),
     _: 1
   }, 16, ["class", "direction"]);
 }
-const Rn = /* @__PURE__ */ E(Dn, [["render", In], ["__scopeId", "data-v-0fd8723f"]]), Bn = {
+const Rn = /* @__PURE__ */ E(Dn, [["render", In], ["__scopeId", "data-v-f799f220"]]), Bn = {
   name: "PcXRadios",
   inheritAttrs: !1,
   props: {
@@ -3462,6 +3465,7 @@ function Nn(e, t, s, n, i, l) {
   }), {
     default: c(() => [
       (d(!0), _(B, null, N(i._options, (a) => (d(), f(Q(s.button ? "el-radio-button" : "el-radio"), b(l.attrs, {
+        disabled: a.disabled ?? l.attrs.disabled,
         key: a.text,
         value: a.value
       }), {
@@ -3473,12 +3477,12 @@ function Nn(e, t, s, n, i, l) {
           }, void 0, !0) : (d(), _("span", Mn, A(a.text), 1))
         ]),
         _: 2
-      }, 1040, ["value"]))), 128))
+      }, 1040, ["disabled", "value"]))), 128))
     ]),
     _: 3
   }, 16, ["class", "modelValue"]);
 }
-const Ln = /* @__PURE__ */ E(Bn, [["render", Nn], ["__scopeId", "data-v-1945d5e3"]]), Pn = {
+const Ln = /* @__PURE__ */ E(Bn, [["render", Nn], ["__scopeId", "data-v-dbcea005"]]), Pn = {
   name: "MobileXRow",
   props: {
     cols: {
@@ -6245,7 +6249,7 @@ const { ElInfiniteScroll: Je } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in we)
     e.directive(we[s].name, we[s]);
 }, aa = {
-  version: "1.2.58",
+  version: "1.2.59",
   ...xe,
   ...rt,
   ...Rt,

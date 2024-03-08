@@ -70,6 +70,7 @@ export default {
     <van-checkbox
       v-for="option in _options"
       v-bind="attrs"
+      :disabled="option.disabled ?? attrs.disabled"
       :key="option.text"
       :shape
       :name="option.value"
