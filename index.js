@@ -593,7 +593,7 @@ class ct extends dt {
   async handleExport(t = this.exportType, s = "导出数据") {
     if (this._isExporting)
       return;
-    if (t = t || this.config.exportType || "csv", !["csv", "excel"].includes(t)) {
+    if (t instanceof Event && (t = ""), t = t || this.config.exportType || "csv", !["csv", "excel"].includes(t)) {
       W("不支持的导出类型");
       return;
     }
@@ -6265,7 +6265,7 @@ const { ElInfiniteScroll: Je } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in we)
     e.directive(we[s].name, we[s]);
 }, aa = {
-  version: "1.2.61",
+  version: "1.2.62",
   ...xe,
   ...rt,
   ...Rt,

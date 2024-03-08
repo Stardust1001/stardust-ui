@@ -219,6 +219,7 @@ class CrudController extends BaseController {
 
   async handleExport (type = this.exportType, filename = '导出数据') {
     if (this._isExporting) return
+    if (type instanceof Event) type = ''
     type = type || this.config.exportType || 'csv'
     if (!['csv', 'excel'].includes(type)) {
       Message('不支持的导出类型')
