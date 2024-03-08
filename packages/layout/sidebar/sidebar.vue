@@ -34,7 +34,7 @@ const setTabIndex = (menu, start = 1) => {
   return start
 }
 
-const menu = computed(() => props.menu || _menu)
+const menu = computed(() => props.menu || _menu.value)
 
 const sidebarClasses = computed(() => ({
   collapse: collapse.value,
