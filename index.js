@@ -89,7 +89,7 @@ const gt = (e) => {
   }
   return e.toFixed(t) * 1;
 }, J = (e, t) => {
-  const s = e.__v_isRef ? e.value : pt(e), { text: n = "text", value: i = "value" } = t, l = s.map((a) => typeof a == "object" ? { text: a[n], value: a[i], raw: te(a) } : { text: a, value: a });
+  const s = e.__v_isRef ? e.value : pt(e), { text: n = "text", value: i = "value" } = t, l = s.map((a) => typeof a == "object" ? { text: a[n], value: a[i], disabled: a.disabled, raw: te(a) } : { text: a, value: a });
   if (!t.sort)
     return l;
   const o = typeof t.sort == "string" ? t.sort : t.text || "text";
@@ -6249,7 +6249,7 @@ const { ElInfiniteScroll: Je } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in we)
     e.directive(we[s].name, we[s]);
 }, aa = {
-  version: "1.2.59",
+  version: "1.2.60",
   ...xe,
   ...rt,
   ...Rt,
