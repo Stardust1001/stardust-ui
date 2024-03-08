@@ -254,39 +254,47 @@ export function _uid () {
 }
 
 export function plain () {
-  return this.table.plain ?? this._attrs.plain
+  const { plain } = this._attrs
+  return plain || plain === ''
 }
 
 export function hideHeader () {
-  return this._attrs.hideHeader ?? this._attrs['hide-header'] ?? this.plain
+  const { 'hide-header': hideHeader } = this._attrs
+  return this.plain ? hideHeader !== false : (hideHeader || hideHeader === '')
 }
 
 export function hideTools () {
-  return this._attrs.hideTools ?? this._attrs['hide-tools'] ?? this.plain
+  const { 'hide-tools': hideTools } = this._attrs
+  return this.plain ? hideTools !== false : (hideTools || hideTools === '')
 }
 
 export function hideSearcher () {
-  return this._attrs.hideSearcher ?? this._attrs['hide-searcher'] ?? this.plain
+  const { 'hide-searcher': hideSearcher } = this._attrs
+  return this.plain ? hideSearcher !== false : (hideSearcher || hideSearcher === '')
 }
 
 export function hideChart () {
-  return this._attrs.hideChart ?? this._attrs['hide-chart'] ?? this.plain
+  const { 'hide-chart': hideChart } = this._attrs
+  return this.plain ? hideChart !== false : (hideChart || hideChart === '')
 }
 
 export function hideSettings () {
-  return this._attrs.hideSettings ?? this._attrs['hide-settings'] ?? this.plain
+  const { 'hide-settings': hideSettings } = this._attrs
+  return this.plain ? hideSettings !== false : (hideSettings || hideSettings === '')
 }
 
 export function hideOperates () {
-  return this._attrs.hideOperates ?? this._attrs['hide-operates'] ?? this.plain
+  const { 'hide-operates': hideOperates } = this._attrs
+  return this.plain ? hideOperates !== false : (hideOperates || hideOperates === '')
 }
 
 export function hidePagination () {
-  return this._attrs.hidePagination ?? this._attrs['hide-pagination'] ?? this.plain
+  const { 'hide-pagination': hidePagination } = this._attrs
+  return this.plain ? hidePagination !== false : (hidePagination || hidePagination === '')
 }
 
 export function operatesWidth () {
-  return this._attrs.operatesWidth ?? this._attrs['operates-width'] ?? 150
+  return this._attrs['operates-width'] ?? 150
 }
 
 export function operatesDropdown () {
