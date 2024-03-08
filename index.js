@@ -1653,7 +1653,7 @@ function hs(e, t, s, n, i, l) {
     default: c(() => [
       (d(!0), _(B, null, N(i._options, (r) => (d(), f(o, b(l.attrs, {
         key: r.text,
-        label: r.value
+        value: r.value
       }), {
         default: c(() => [
           e.$slots.custom ? $(e.$slots, "custom", {
@@ -1663,12 +1663,12 @@ function hs(e, t, s, n, i, l) {
           }, void 0, !0) : (d(), _("span", us, A(r.text), 1))
         ]),
         _: 2
-      }, 1040, ["label"]))), 128))
+      }, 1040, ["value"]))), 128))
     ]),
     _: 3
   }, 16, ["class", "modelValue"]);
 }
-const ms = /* @__PURE__ */ E(cs, [["render", hs], ["__scopeId", "data-v-9aba84fc"]]), ps = {
+const ms = /* @__PURE__ */ E(cs, [["render", hs], ["__scopeId", "data-v-2edda416"]]), ps = {
   name: "MobileXCol",
   inheritAttrs: !1,
   computed: {
@@ -6245,7 +6245,7 @@ const { ElInfiniteScroll: Je } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in we)
     e.directive(we[s].name, we[s]);
 }, aa = {
-  version: "1.2.57",
+  version: "1.2.58",
   ...xe,
   ...rt,
   ...Rt,
