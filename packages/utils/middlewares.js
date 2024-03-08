@@ -13,8 +13,7 @@ export const check404 = (router, store, routes) => {
 
 export const setTitle = (router, store, routes) => {
   router.afterEach((to, from) => {
-    const titles = to.matched.map(r => r.meta.title)
-    document.title = [store.app.sitename, ...titles].filter(t => t).reverse().join('-')
+    document.title = store.app.sitename + '-' + to.matched[to.matched.length - 1].meta.title
   })
 }
 
