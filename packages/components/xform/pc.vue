@@ -63,26 +63,32 @@ export default {
         :model="_model"
         :rules="_rules"
         :label-width="labelWidth"
-        :label-position="$attrs.labelPosition || 'right'"
+        :label-position="$attrs['label-position'] || 'right'"
         :class="['pc-x-form', { 'hide-labels': hideLabels }]"
       >
         <slot v-if="$slots.pre" name="pre" />
 
-        <pc-x-form-item
-          v-for="(item, index) in _visibleItems"
-          :label-width="labelWidth"
-          :show-tooltip="$attrs.showTooltip || false"
-          v-bind="item"
-          :key="index"
-          v-model="_model[item.prop]"
-          :prop="item.prop || item.model"
-          :clearable="item.clearable !== false"
-          :placeholder="calcPlaceholder(item)"
-          :style="calcStyle(item)"
-          @update:modelValue="item.onChange || null"
-        >
-          <slot v-if="item.slot" :name="item.slot" />
-        </pc-x-form-item>
+        <el-row :gutter="$attrs.gutter" :justify="$attrs.justify" :align="$attrs.align" :tag="$attrs.tag">
+          <el-col
+            v-for="(item, index) in _visibleItems"
+            :key="index"
+            :span="item.span" :offset="item.offset" :tag="item.tag"
+            :xs="item.xs" :sm="item.sm" :md="item.md" :lg="item.lg" :xl="item.xl"
+          >
+            <pc-x-form-item
+              :label-width="labelWidth"
+              :show-tooltip="$attrs.showTooltip || false"
+              v-bind="item"
+              v-model="_model[item.prop]"
+              :prop="item.prop || item.model"
+              :clearable="item.clearable !== false"
+              :placeholder="calcPlaceholder(item)"
+              @update:modelValue="item.onChange || null"
+            >
+              <slot v-if="item.slot" :name="item.slot" />
+            </pc-x-form-item>
+          </el-col>
+        </el-row>
 
         <slot v-if="$slots.default" name="default" />
       </el-form>

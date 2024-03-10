@@ -62,20 +62,6 @@ export function calcPlaceholder (item) {
   return placeholder
 }
 
-export function calcStyle (item) {
-  const style = { ...item.style }
-  if ('itemWidth' in this) {
-    style.width = this.itemWidth
-  }
-  if (item.span) {
-    style.width = (item.span / 24 * 100) + '%'
-  }
-  if (item.offset) {
-    style.marginLeft = (item.offset / 24 * 100) + '%'
-  }
-  return style
-}
-
 export function formatModelValue (value) {
   if (typeof value === 'boolean') {
     return value.toString()
@@ -93,7 +79,6 @@ export default {
   },
   methods: {
     calcPlaceholder,
-    calcStyle,
     formatModelValue
   }
 }

@@ -64,7 +64,7 @@ const model = reactive({
     district: '',
     form: {},
     formItems: [
-      { label: '姓名-age', prop: 'name', 'label-width': '40px' },
+      { label: '姓名-age', prop: 'name', 'label-width': '40px', span: 16, xs: 24 },
       { label: '性别', prop: 'gender', comp: 'x-select', options: ['男', '女'] },
       { label: '年龄', prop: 'age', comp: 'ElInputNumber' },
       { label: '插槽', prop: 'slot', slot: 'slot' }
@@ -116,11 +116,11 @@ const controller = {
       listen="search,add,edit,export,search-export,delete"
     ></x-table>
     <br>
-    <pc-x-form label-width="40px" :form="model.form">
+    <x-form label-width="40px" :gutter="5" :form="model.form">
       <template #slot>
         this is 插槽
       </template>
-    </pc-x-form>
+    </x-form>
     <x-image-uploader v-model="others.files" :limit="3" />
     <x-info :data="model.form" :fields="model.table.columns"></x-info>
   </div>
