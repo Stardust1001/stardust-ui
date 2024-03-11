@@ -86,6 +86,12 @@ export default {
             <slot name="label" :label="field.label" />
           </template>
           <span v-if="field.slot">
+            <router-link
+              v-if="field.slot === 'link'"
+              :to="field.to(data)"
+            >
+              {{ field.link ? field.link(data) : data[field.linkProp || field.prop] }}
+            </router-link>
             <slot
               :name="field.slot"
               v-bind="{ data, field, value: calcValue(data, field) }"

@@ -210,6 +210,12 @@ export default {
               >
                 {{ calcTagValue(scope, column) }}
               </el-tag>
+              <router-link
+                v-else-if="column.slot === 'link'"
+                :to="column.to(scope)"
+              >
+                {{ column.link ? column.link(scope) : scope.row[column.linkProp || column.prop] }}
+              </router-link>
               <el-icon v-else-if="column.slot === '$icon'" class="cell-icon">
                 <component :is="scope.row[column.prop]" />
               </el-icon>
