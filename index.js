@@ -2201,7 +2201,7 @@ const le = {
   }
 };
 function Ls(e, t, s, i, n, l) {
-  const o = u("mobile-x-form-item"), a = u("van-col"), r = u("van-row"), h = u("van-form");
+  const o = u("mobile-x-form-item"), a = u("el-col"), r = u("el-row"), h = u("van-form");
   return d(), f(h, {
     ref: "formRef",
     class: Y(["mobile-x-form", { "hide-labels": s.hideLabels }])
@@ -2212,15 +2212,19 @@ function Ls(e, t, s, i, n, l) {
         gutter: e.$attrs.gutter,
         justify: e.$attrs.justify,
         align: e.$attrs.align,
-        tag: e.$attrs.tag,
-        wrap: e.$attrs.wrap
+        tag: e.$attrs.tag
       }, {
         default: c(() => [
           (d(!0), y(B, null, N(e._visibleItems, (p, w) => (d(), f(a, {
             key: w,
             span: p.span,
             offset: p.offset,
-            tag: p.tag
+            tag: p.tag,
+            xs: p.xs,
+            sm: p.sm,
+            md: p.md,
+            lg: p.lg,
+            xl: p.xl
           }, {
             default: c(() => [
               m(o, b(p, {
@@ -2236,10 +2240,10 @@ function Ls(e, t, s, i, n, l) {
               }, 1040, ["rules", "modelValue", "onUpdate:modelValue", "placeholder"])
             ]),
             _: 2
-          }, 1032, ["span", "offset", "tag"]))), 128))
+          }, 1032, ["span", "offset", "tag", "xs", "sm", "md", "lg", "xl"]))), 128))
         ]),
         _: 3
-      }, 8, ["gutter", "justify", "align", "tag", "wrap"]),
+      }, 8, ["gutter", "justify", "align", "tag"]),
       e.$slots.default ? C(e.$slots, "default", { key: 1 }) : S("", !0)
     ]),
     _: 3
@@ -6312,7 +6316,7 @@ const { ElInfiniteScroll: Je } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in ve)
     e.directive(ve[s].name, ve[s]);
 }, aa = {
-  version: "1.2.72",
+  version: "1.2.75",
   ...Ce,
   ...at,
   ...Rt,

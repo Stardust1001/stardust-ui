@@ -37,11 +37,12 @@ export default {
   >
     <slot v-if="$slots.pre" name="pre" />
 
-    <van-row :gutter="$attrs.gutter" :justify="$attrs.justify" :align="$attrs.align" :tag="$attrs.tag" :wrap="$attrs.wrap">
-      <van-col
+    <el-row :gutter="$attrs.gutter" :justify="$attrs.justify" :align="$attrs.align" :tag="$attrs.tag">
+      <el-col
         v-for="(item, index) in _visibleItems"
         :key="index"
         :span="item.span" :offset="item.offset" :tag="item.tag"
+        :xs="item.xs" :sm="item.sm" :md="item.md" :lg="item.lg" :xl="item.xl"
       >
         <mobile-x-form-item
           v-bind="item"
@@ -52,8 +53,8 @@ export default {
         >
           <slot v-if="item.slot" :name="item.slot" v-bind="item" />
         </mobile-x-form-item>
-      </van-col>
-    </van-row>
+      </el-col>
+    </el-row>
 
     <slot v-if="$slots.default" name="default" />
   </van-form>
