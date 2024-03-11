@@ -9,7 +9,7 @@ const model = reactive({
     ...baseTable(),
     searcherConfig: {
       conditions: [
-        { no: 1, prop: 'name', op: 'like', value: '' },
+        { no: 1, prop: 'name', op: 'like', value: '', universal: true },
         { no: 2, prop: 'gender', op: 'eq', value: '' },
       ],
       expression: '1 2',
@@ -28,7 +28,7 @@ const model = reactive({
         block: 'base',
         tableAttrs: { slot: '$image' }
       },
-      { label: '姓名', prop: 'name', minWidth: 100, block: 'base' },
+      { label: '姓名', prop: 'name', minWidth: 100, block: 'base', universal: true },
       {
         label: '性别',
         prop: 'gender',

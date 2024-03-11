@@ -28,7 +28,8 @@ export const COMPONENT_OPS = {
   'XCheckboxs': ['eq', 'ne', 'in', 'notIn', 'special'],
   'ElDatePicker': ['eq', 'gt', 'gte', 'lt', 'lte', 'between', 'special'],
   'ElInputNumber': ['eq', 'ne', 'gt', 'gte', 'lt', 'lte', 'between', 'special'],
-  'ElInput': ['eq', 'ne', 'like', 'notLike', 'between', 'special']
+  'ElInput': ['eq', 'ne', 'like', 'notLike', 'between', 'special'],
+  'universal': ['eq', 'ne', 'gt', 'gte', 'lt', 'lte', 'in', 'like', 'notIn', 'notLike', 'between', 'special']
 }
 COMPONENT_OPS['x-select'] = COMPONENT_OPS['XSelect']
 COMPONENT_OPS['XSelectV2'] = COMPONENT_OPS['XSelect']
@@ -42,7 +43,7 @@ COMPONENT_OPS['el-input'] = COMPONENT_OPS['ElInput']
 export default function () {
   const size = window.isMobile ? 'small' : ''
   const {
-    config, columns, visible, conditions, expression,
+    $attrs, config, columns, visible, conditions, expression,
     handleSearch, handleReset, handleAdd, handleDelete, handleSelectField, handleSelectOp
   } = this
   return (
@@ -50,10 +51,10 @@ export default function () {
       append-to-body
       drawer
       width="700px"
-      title="自定义查询"
+      title={$attrs.title || '自定义查询'}
       class="searcher"
       cancel-text="重置"
-      submit-text="查询"
+      submit-text={$attrs['submit-text'] || '查询'}
       {...{
         modelValue: visible,
         'onUpdate:modelValue': value => this.visible = value,
