@@ -3196,7 +3196,7 @@ function vi(e, t, s, i, n, l) {
               }, w), le({
                 default: c(() => [
                   w.slot ? (d(), y("span", _i, [
-                    w.slot === "link" ? (d(), f(o, {
+                    w.slot === "$link" ? (d(), f(o, {
                       key: 0,
                       to: w.to(s.data)
                     }, {
@@ -3230,7 +3230,7 @@ function vi(e, t, s, i, n, l) {
     _: 3
   }, 8, ["modelValue", "class"]);
 }
-const wi = /* @__PURE__ */ A(bi, [["render", vi], ["__scopeId", "data-v-1d6eadb0"]]), Si = {
+const wi = /* @__PURE__ */ A(bi, [["render", vi], ["__scopeId", "data-v-0d684908"]]), Si = {
   name: "XLooper",
   props: {
     compName: String,
@@ -5001,7 +5001,7 @@ function Gl(e, t, s, i, n, l) {
                             C(O(e.calcTagValue(L, _)), 1)
                           ]),
                           _: 2
-                        }, 1032, ["type"])) : _.slot === "link" ? (d(), f(v, {
+                        }, 1032, ["type"])) : _.slot === "$link" ? (d(), f(v, {
                           key: 3,
                           to: _.to(L)
                         }, {
@@ -6333,7 +6333,7 @@ const { ElInfiniteScroll: Ke } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in we)
     e.directive(we[s].name, we[s]);
 }, ra = {
-  version: "1.2.76",
+  version: "1.2.77",
   ...xe,
   ...rt,
   ...Bt,

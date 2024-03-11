@@ -87,7 +87,7 @@ export default {
           </template>
           <span v-if="field.slot">
             <router-link
-              v-if="field.slot === 'link'"
+              v-if="field.slot === '$link'"
               :to="field.to(data)"
             >
               {{ field.link ? field.link(data) : data[field.linkProp || field.prop] }}
