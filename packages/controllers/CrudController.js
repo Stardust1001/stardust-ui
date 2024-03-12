@@ -571,7 +571,10 @@ class CrudController extends BaseController {
             const rows = oldVal ? this.table.list : list
             const kvMap = makeOptionsKvMap(col)
             rows.forEach((ele, index) => {
-              const value = ele[prop]
+              let value = ele[prop]
+              if (value === undefined && (prop.includes('.') || prop.includes('['))) {
+                value = highdict.get(ele, prop)
+              }
               ele[`_formatted_${prop}`] = kvMap[value] || formatter?.(value, ele, index) || value
             })
           }
