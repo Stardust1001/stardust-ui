@@ -2,6 +2,8 @@ import { nextTick } from 'vue'
 
 import uiUtils from '../utils/index.js'
 
+const { funcs } = StardustJs
+
 class BaseController {
   constructor ({ model, vue }) {
     this.model = model
