@@ -122,6 +122,7 @@ class CrudController extends BaseController {
   }
 
   onInit () {
+    super.onInit()
     this.table && this.handleSearch()
   }
 

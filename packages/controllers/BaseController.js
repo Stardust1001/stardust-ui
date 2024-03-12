@@ -17,7 +17,9 @@ class BaseController {
     nextTick(this.onInit)
   }
 
-  onInit () { }
+  onInit () {
+    this._evalAction()
+  }
 
   get app () { throw '请自行注入 app' }
 
@@ -93,10 +95,19 @@ class BaseController {
     })
   }
 
+  _evalAction () {
+    const { _action_, _action_params_, ...others } = this.query
+    if (_action_ && this[_action_]) {
+      this[_action_]?.(JSON.parse(_action_params_ || '{}'))
+      this.router.replace(this.route.path + '?' + funcs.encodeQuery(others))
+    }
+  }
+
   _getMethods () {
     return [
       '_bindMethods',
       '_initLifeCycles',
+      '_evalAction',
       '_getMethods',
       'onInit'
     ]

@@ -334,6 +334,7 @@ class dt {
     ae(this.onInit);
   }
   onInit() {
+    this._evalAction();
   }
   get app() {
     throw "请自行注入 app";
@@ -431,10 +432,16 @@ class dt {
       this[s] && this.vue[s](this[s]);
     });
   }
+  _evalAction() {
+    var n;
+    const { _action_: t, _action_params_: s, ...i } = this.query;
+    t && this[t] && ((n = this[t]) == null || n.call(this, JSON.parse(s || "{}")), this.router.replace(this.route.path + "?" + funcs.encodeQuery(i)));
+  }
   _getMethods() {
     return [
       "_bindMethods",
       "_initLifeCycles",
+      "_evalAction",
       "_getMethods",
       "onInit"
     ];
@@ -528,7 +535,7 @@ class ct extends dt {
     ];
   }
   onInit() {
-    this.table && this.handleSearch();
+    super.onInit(), this.table && this.handleSearch();
   }
   async handleSearch(t, { isInfinite: s = !1 } = {}) {
     if (this.table.isInfinite = s, this.table.loading || !await this.beforeSearch(t))
@@ -6329,7 +6336,7 @@ const { ElInfiniteScroll: Ke } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in we)
     e.directive(we[s].name, we[s]);
 }, ra = {
-  version: "1.2.79",
+  version: "1.2.80",
   ...xe,
   ...rt,
   ...Bt,
