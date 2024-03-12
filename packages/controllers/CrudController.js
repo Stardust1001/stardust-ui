@@ -560,7 +560,7 @@ class CrudController extends BaseController {
     })
     columns.forEach(col => {
       let { prop, options } = col
-      const { format, formatter, autoFill } = col.tableAttrs || {}
+      const { format, autoFill } = col.tableAttrs || {}
       const { modelName } = col.formAttrs || {}
       if (modelName && autoFill) {
         list.forEach(ele => ele[`_formatted_${prop}`] = '')
@@ -571,11 +571,8 @@ class CrudController extends BaseController {
             const rows = oldVal ? this.table.list : list
             const kvMap = makeOptionsKvMap(col)
             rows.forEach((ele, index) => {
-              let value = ele[prop]
-              if (value === undefined && (prop.includes('.') || prop.includes('['))) {
-                value = highdict.get(ele, prop)
-              }
-              ele[`_formatted_${prop}`] = kvMap[value] || formatter?.(value, ele, index) || value
+              const value = ele[prop]
+              ele[`_formatted_${prop}`] = kvMap[value] || value
             })
           }
           const un = watch(() => col.options, update, { immediate: true, deep: true })

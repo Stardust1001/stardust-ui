@@ -328,23 +328,24 @@ export function saveSettings (value) {
 
 export function calcValue (row, column) {
   const { prop } = column
-  let { format, formatter } = column.tableAttrs || column
-  format = Array.isArray(column.options) ? format !== false : format
   const value = row[prop]
-  if (value == undefined || value === '') {
-    return this.defaultValue
-  }
-  if (format || formatter) {
+  let { format, formatter } = column.tableAttrs || column
+  if (formatter) return formatter(value, row)
+  format = Array.isArray(column.options) ? format !== false : format
+  if (format) {
     const formatProp = `_formatted_${prop}`
     if (formatProp in row) {
       return row[formatProp]
     }
-    if (formatter) {
-      if (typeof formatter === 'function') {
-        return formatter(value, row, column)
-      }
-      return highdict.get(row, formatter)
+  }
+  if (value === undefined) {
+    if (prop.includes('.') || prop.includes('[')) {
+      return highdict.get(row, prop)
     }
+    return this.defaultValue
+  }
+  if (value === '') {
+    return this.defaultValue
   }
   return value
 }
