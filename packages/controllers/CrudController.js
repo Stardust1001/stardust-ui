@@ -622,7 +622,7 @@ class CrudController extends BaseController {
       if (!formatter && typeof tagValues === 'function') formatter = tagValues
       dict[it.prop] = { formatter, tagValues }
     })
-    const keys = Object.keys(data[0])
+    const keys = [...new Set(Object.keys(data[0]).concat(this.table.ref._visibleColumns.map(c => c.prop)))]
     data.forEach(ele => {
       keys.forEach(key => {
         const value = ele[key]
@@ -636,10 +636,15 @@ class CrudController extends BaseController {
           if (ele[key].endsWith(' 00:00:00')) {
             ele[key] = ele[key].slice(0, -9)
           }
-        } else if (typeof value === 'object') {
-          ele[key] = JSON.stringify(value)
         } else if (value === undefined) {
           ele[key] = highdict.get(ele, key)
+        }
+      })
+    })
+    data.forEach(ele => {
+      keys.forEach(key => {
+        if (ele[key] && typeof ele[key] === 'object') {
+          ele[key] = JSON.stringify(ele[key])
         }
       })
     })
