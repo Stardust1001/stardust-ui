@@ -2943,7 +2943,7 @@ function Jn(e, t) {
   return i === void 0 ? s.includes(".") || s.includes("[") ? ut.get(e, s) : this.defaultValue : i === "" ? this.defaultValue : i;
 }
 function Kn(e, t) {
-  return t.link ? t.link(e) : t.linkProp ? ut.get(e.row, t.linkProp) : e.row[t.prop];
+  return t.link ? t.link(e) : ut.get(e.row, t.linkProp || t.prop);
 }
 function Yn(e) {
   if (["index", "selection", "expand"].includes(e.type))
@@ -6340,7 +6340,7 @@ const { ElInfiniteScroll: Ke } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in we)
     e.directive(we[s].name, we[s]);
 }, ca = {
-  version: "1.2.82",
+  version: "1.2.83",
   ...xe,
   ...rt,
   ...Lt,
