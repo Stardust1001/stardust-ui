@@ -214,7 +214,7 @@ export default {
                 v-else-if="column.slot === '$link'"
                 :to="column.to(scope)"
               >
-                {{ column.link ? column.link(scope) : scope.row[column.linkProp || column.prop] }}
+                {{ calcLink(scope, column) }}
               </router-link>
               <el-icon v-else-if="column.slot === '$icon'" class="cell-icon">
                 <component :is="scope.row[column.prop]" />

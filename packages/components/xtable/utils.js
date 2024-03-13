@@ -350,6 +350,12 @@ export function calcValue (row, column) {
   return value
 }
 
+export function calcLink (scope, column) {
+  if (column.link) return column.link(scope)
+  if (column.linkProp) return highdict.get(scope.row, column.linkProp)
+  return scope.row[column.prop]
+}
+
 export function calcOverflowTooltip (column) {
   if (['index', 'selection', 'expand'].includes(column.type)) {
     return false
@@ -596,6 +602,7 @@ export default {
     initSettings,
     saveSettings,
     calcValue,
+    calcLink,
     calcOverflowTooltip,
     handleSearch,
     handleResetSettings,
