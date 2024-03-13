@@ -638,6 +638,8 @@ class CrudController extends BaseController {
           }
         } else if (typeof value === 'object') {
           ele[key] = JSON.stringify(value)
+        } else if (value === undefined) {
+          ele[key] = highdict.get(ele, key)
         }
       })
     })
