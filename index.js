@@ -5255,7 +5255,7 @@ function oo(e, t, s, i, n, l) {
         axis: "xy",
         magnetic: "x",
         icon: "plus",
-        class: "flex-center",
+        class: "flex-center x-table-search",
         style: { position: "fixed", top: "0", "font-size": "22px", width: "40px", height: "40px", "background-color": "#1989fa", "border-radius": "50%", color: "white" },
         onClick: t[0] || (t[0] = (p) => e.$emit("add"))
       })
@@ -5265,6 +5265,7 @@ function oo(e, t, s, i, n, l) {
     j("div", io, [
       x(e.$slots, "tools-prefix", {}, void 0, !0),
       e.$attrs.onSearch ? R((d(), f(r, b({ key: 0 }, { type: "success", ...s.searchBtn }, {
+        class: "x-table-search",
         onClick: t[1] || (t[1] = (p) => e.$emit("search"))
       }), {
         default: c(() => [
@@ -5276,6 +5277,7 @@ function oo(e, t, s, i, n, l) {
         [h, s.domids.search]
       ]) : S("", !0),
       e.$attrs.onMultiEdit ? R((d(), f(r, b({ key: 1 }, { type: "warning", ...s.multiEditBtn }, {
+        class: "x-table-edit",
         onClick: t[2] || (t[2] = (p) => e.$emit("multi-edit"))
       }), {
         default: c(() => [
@@ -5287,6 +5289,7 @@ function oo(e, t, s, i, n, l) {
         [h, s.domids["multi-edit"]]
       ]) : S("", !0),
       e.$attrs.onMultiDelete ? R((d(), f(r, b({ key: 2 }, { type: "danger", ...s.multiDeleteBtn }, {
+        class: "x-table-multi-delete",
         onClick: t[3] || (t[3] = (p) => e.$emit("multi-delete"))
       }), {
         default: c(() => [
@@ -5298,6 +5301,7 @@ function oo(e, t, s, i, n, l) {
         [h, s.domids["multi-delete"]]
       ]) : S("", !0),
       e.$attrs.onExport ? R((d(), f(r, b({ key: 3 }, { type: "success", ...s.exportBtn }, {
+        class: "x-table-export",
         onClick: t[4] || (t[4] = (p) => e.$emit("export"))
       }), {
         default: c(() => [
@@ -5309,6 +5313,7 @@ function oo(e, t, s, i, n, l) {
         [h, s.domids.export]
       ]) : S("", !0),
       e.$attrs.onSearchExport ? R((d(), f(r, b({ key: 4 }, { type: "success", ...s.exportBtn }, {
+        class: "x-table-search-export",
         onClick: t[5] || (t[5] = (p) => e.$emit("search-export"))
       }), {
         default: c(() => [
@@ -5320,6 +5325,7 @@ function oo(e, t, s, i, n, l) {
         [h, s.domids["search-export"]]
       ]) : S("", !0),
       e.$attrs.onImport ? R((d(), f(r, b({ key: 5 }, { type: "warning", ...s.importBtn }, {
+        class: "x-table-import",
         onClick: t[6] || (t[6] = (p) => e.$emit("import"))
       }), {
         default: c(() => [
@@ -5337,7 +5343,7 @@ function oo(e, t, s, i, n, l) {
     ])
   ]);
 }
-const ao = /* @__PURE__ */ A(to, [["render", oo], ["__scopeId", "data-v-6ef6b95e"]]), ro = {
+const ao = /* @__PURE__ */ A(to, [["render", oo], ["__scopeId", "data-v-1563b1e5"]]), ro = {
   name: "PcXTableTools",
   inheritAttrs: !1,
   props: {
@@ -5362,6 +5368,7 @@ function ho(e, t, s, i, n, l) {
         x(e.$slots, "tools-prefix", {}, void 0, !0),
         e.$attrs.onSearch ? R((d(), f(o, b({ key: 0 }, { type: "success", ...s.searchBtn }, {
           icon: "search",
+          class: "x-table-search",
           onClick: t[0] || (t[0] = (h) => e.$emit("search"))
         }), {
           default: c(() => [
@@ -5373,6 +5380,7 @@ function ho(e, t, s, i, n, l) {
         ]) : S("", !0),
         e.$attrs.onAdd ? R((d(), f(o, b({ key: 1 }, { type: "primary", ...s.addBtn }, {
           icon: "circle-plus-filled",
+          class: "x-table-add",
           onClick: t[1] || (t[1] = (h) => e.$emit("add"))
         }), {
           default: c(() => [
@@ -5384,6 +5392,7 @@ function ho(e, t, s, i, n, l) {
         ]) : S("", !0),
         e.$attrs.onMultiEdit ? R((d(), f(o, b({ key: 2 }, { type: "warning", ...s.multiEditBtn }, {
           icon: "edit",
+          class: "x-table-edit",
           onClick: t[2] || (t[2] = (h) => e.$emit("multi-edit"))
         }), {
           default: c(() => [
@@ -5395,6 +5404,7 @@ function ho(e, t, s, i, n, l) {
         ]) : S("", !0),
         e.$attrs.onMultiDelete ? R((d(), f(o, b({ key: 3 }, { type: "danger", ...s.multiDeleteBtn }, {
           icon: "DeleteFilled",
+          class: "x-table-multi-delete",
           onClick: t[3] || (t[3] = (h) => e.$emit("multi-delete"))
         }), {
           default: c(() => [
@@ -5406,6 +5416,7 @@ function ho(e, t, s, i, n, l) {
         ]) : S("", !0),
         e.$attrs.onExport ? R((d(), f(o, b({ key: 4 }, { type: "success", ...s.exportBtn }, {
           icon: "printer",
+          class: "x-table-export",
           onClick: t[4] || (t[4] = (h) => e.$emit("export"))
         }), {
           default: c(() => [
@@ -5417,6 +5428,7 @@ function ho(e, t, s, i, n, l) {
         ]) : S("", !0),
         e.$attrs.onSearchExport ? R((d(), f(o, b({ key: 5 }, { type: "success", ...s.exportBtn }, {
           icon: "printer",
+          class: "x-table-search-export",
           onClick: t[5] || (t[5] = (h) => e.$emit("search-export"))
         }), {
           default: c(() => [
@@ -5428,6 +5440,7 @@ function ho(e, t, s, i, n, l) {
         ]) : S("", !0),
         e.$attrs.onImport ? R((d(), f(o, b({ key: 6 }, { type: "warning", ...s.importBtn }, {
           icon: "UploadFilled",
+          class: "x-table-import",
           onClick: t[6] || (t[6] = (h) => e.$emit("import"))
         }), {
           default: c(() => [
@@ -5446,7 +5459,7 @@ function ho(e, t, s, i, n, l) {
     _: 3
   });
 }
-const mo = /* @__PURE__ */ A(ro, [["render", ho], ["__scopeId", "data-v-368940cf"]]);
+const mo = /* @__PURE__ */ A(ro, [["render", ho], ["__scopeId", "data-v-c173e163"]]);
 function pt(e) {
   return typeof e == "function" || Object.prototype.toString.call(e) === "[object Object]" && !Qe(e);
 }
@@ -6344,7 +6357,7 @@ const { ElInfiniteScroll: Ke } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ca = {
-  version: "1.2.86",
+  version: "1.2.87",
   ...Ve,
   ...rt,
   ...Lt,

@@ -24,6 +24,7 @@ export default {
         v-bind="{ type: 'success', ...searchBtn }"
         v-domid="domids['search']"
         icon="search"
+        class="x-table-search"
         @click="$emit('search')"
       >
         查询
@@ -33,6 +34,7 @@ export default {
         v-bind="{ type: 'primary', ...addBtn }"
         v-domid="domids['add']"
         icon="circle-plus-filled"
+        class="x-table-add"
         @click="$emit('add')"
       >
         新增
@@ -42,6 +44,7 @@ export default {
         v-bind="{ type: 'warning', ...multiEditBtn }"
         v-domid="domids['multi-edit']"
         icon="edit"
+        class="x-table-edit"
         @click="$emit('multi-edit')"
       >
         编辑
@@ -51,6 +54,7 @@ export default {
         v-bind="{ type: 'danger', ...multiDeleteBtn }"
         v-domid="domids['multi-delete']"
         icon="DeleteFilled"
+        class="x-table-multi-delete"
         @click="$emit('multi-delete')"
       >
         批量删除
@@ -60,6 +64,7 @@ export default {
         v-bind="{ type: 'success', ...exportBtn }"
         v-domid="domids['export']"
         icon="printer"
+        class="x-table-export"
         @click="$emit('export')"
       >
         导出
@@ -69,6 +74,7 @@ export default {
         v-bind="{ type: 'success', ...exportBtn }"
         v-domid="domids['search-export']"
         icon="printer"
+        class="x-table-search-export"
         @click="$emit('search-export')"
       >
         查询导出
@@ -78,6 +84,7 @@ export default {
         v-bind="{ type: 'warning', ...importBtn }"
         v-domid="domids['import']"
         icon="UploadFilled"
+        class="x-table-import"
         @click="$emit('import')"
       >
         导入

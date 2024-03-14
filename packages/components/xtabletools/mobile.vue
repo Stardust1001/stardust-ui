@@ -24,7 +24,7 @@ export default {
         axis="xy"
         magnetic="x"
         icon="plus"
-        class="flex-center"
+        class="flex-center x-table-search"
         style="position: fixed; top: 0; font-size: 22px; width: 40px; height: 40px; background-color: #1989fa; border-radius: 50%; color: white;"
         @click="$emit('add')"
       />
@@ -36,6 +36,7 @@ export default {
         v-if="!!$attrs.onSearch"
         v-bind="{ type: 'success', ...searchBtn }"
         v-domid="domids['search']"
+        class="x-table-search"
         @click="$emit('search')"
       >
         <mobile-x-icon name="search" />
@@ -45,6 +46,7 @@ export default {
         v-if="!!$attrs.onMultiEdit"
         v-bind="{ type: 'warning', ...multiEditBtn }"
         v-domid="domids['multi-edit']"
+        class="x-table-edit"
         @click="$emit('multi-edit')"
       >
         <mobile-x-icon name="edit" />
@@ -54,6 +56,7 @@ export default {
         v-if="!!$attrs.onMultiDelete"
         v-bind="{ type: 'danger', ...multiDeleteBtn }"
         v-domid="domids['multi-delete']"
+        class="x-table-multi-delete"
         @click="$emit('multi-delete')"
       >
         <mobile-x-icon name="DeleteFilled" />
@@ -63,6 +66,7 @@ export default {
         v-if="!!$attrs.onExport"
         v-bind="{ type: 'success', ...exportBtn }"
         v-domid="domids['export']"
+        class="x-table-export"
         @click="$emit('export')"
       >
         <mobile-x-icon name="printer" />
@@ -72,6 +76,7 @@ export default {
         v-if="!!$attrs.onSearchExport"
         v-bind="{ type: 'success', ...exportBtn }"
         v-domid="domids['search-export']"
+        class="x-table-search-export"
         @click="$emit('search-export')"
       >
         <mobile-x-icon name="printer" />
@@ -81,6 +86,7 @@ export default {
         v-if="!!$attrs.onImport"
         v-bind="{ type: 'warning', ...importBtn }"
         v-domid="domids['import']"
+        class="x-table-import"
         @click="$emit('import')"
       >
         <mobile-x-icon name="UploadFilled" />
