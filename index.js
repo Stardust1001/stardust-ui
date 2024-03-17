@@ -742,7 +742,7 @@ class ct extends dt {
       return this.table.moreLoading = !1;
     if (t.page * t.limit >= i)
       return this.table.moreLoading = !1, this.table.finished = !0;
-    this.table.isInfinite = !0, this.table.loading = !0, t.page++;
+    this.table.isInfinite = !0, t.page++;
     const n = this.table.list.slice();
     await this.handleSearch({}, { isInfinite: !0 }), this.table.loading = !0, await this.$sleep(50), this.table.list = n.concat(this.table.list), this.table.loading = !1, this.table.moreLoading = !1;
   }
@@ -6357,7 +6357,7 @@ const { ElInfiniteScroll: Ke } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ca = {
-  version: "1.2.87",
+  version: "1.2.88",
   ...Ve,
   ...rt,
   ...Lt,

@@ -436,7 +436,6 @@ class CrudController extends BaseController {
       return this.table.finished = true
     }
     this.table.isInfinite = true
-    this.table.loading = true
     query.page ++
     const list = this.table.list.slice()
     await this.handleSearch({}, { isInfinite: true })
