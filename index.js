@@ -543,7 +543,7 @@ class ct extends dt {
     if (!t)
       return this.handleSearch();
     let { keywordsSearchFields: s, columns: i } = this.table;
-    if (s.length || (s = [...new Set(i.filter((l) => l.comp !== "ElDatePicker" && l.type !== "number" && l.prop).map((l) => l.prop))]), !s.length)
+    if (s.length || (s = [...new Set(i.filter((l) => l.prop && l.type !== "number" && !l.comp && !l.virtual).map((l) => l.prop))]), !s.length)
       return this.handleSearch();
     const n = { "[Op.or]": s.map((l) => ({ [l]: { "[Op.like]": "%" + t + "%" } })) };
     return this.handleSearch({ where: n });
@@ -6395,7 +6395,7 @@ const { ElInfiniteScroll: Je } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ha = {
-  version: "1.2.91",
+  version: "1.2.92",
   ...Ve,
   ...rt,
   ...Nt,

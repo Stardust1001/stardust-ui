@@ -132,7 +132,7 @@ class CrudController extends BaseController {
     let { keywordsSearchFields, columns } = this.table
     if (!keywordsSearchFields.length) {
       keywordsSearchFields = [...new Set(columns.filter(c => {
-        return c.comp !== 'ElDatePicker' && c.type !== 'number' && c.prop
+        return c.prop && c.type !== 'number' && !c.comp && !c.virtual
       }).map(c => c.prop))]
     }
     if (!keywordsSearchFields.length) return this.handleSearch()
