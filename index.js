@@ -5292,7 +5292,7 @@ function ro(e, t, s, i, n, l) {
       }), {
         default: c(() => [
           p(o, { name: "search" }),
-          C(" 查询 ")
+          C(" 高级查询 ")
         ]),
         _: 1
       }, 16)), [
@@ -5365,7 +5365,7 @@ function ro(e, t, s, i, n, l) {
     ])
   ]);
 }
-const co = /* @__PURE__ */ A(no, [["render", ro], ["__scopeId", "data-v-1563b1e5"]]), uo = {
+const co = /* @__PURE__ */ A(no, [["render", ro], ["__scopeId", "data-v-dda9e446"]]), uo = {
   name: "PcXTableTools",
   inheritAttrs: !1,
   props: {
@@ -5410,7 +5410,7 @@ function po(e, t, s, i, n, l) {
           onClick: t[2] || (t[2] = (m) => e.$emit("search"))
         }), {
           default: c(() => [
-            C(" 查询 ")
+            C(" 高级查询 ")
           ]),
           _: 1
         }, 16)), [
@@ -5497,7 +5497,7 @@ function po(e, t, s, i, n, l) {
     _: 3
   });
 }
-const fo = /* @__PURE__ */ A(uo, [["render", po], ["__scopeId", "data-v-2b31e131"]]);
+const fo = /* @__PURE__ */ A(uo, [["render", po], ["__scopeId", "data-v-714f3287"]]);
 function pt(e) {
   return typeof e == "function" || Object.prototype.toString.call(e) === "[object Object]" && !Qe(e);
 }
@@ -6395,7 +6395,7 @@ const { ElInfiniteScroll: Je } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ha = {
-  version: "1.2.93",
+  version: "1.2.95",
   ...Ve,
   ...rt,
   ...Nt,

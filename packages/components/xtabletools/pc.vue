@@ -41,7 +41,7 @@ export default {
         class="x-table-search"
         @click="$emit('search')"
       >
-        查询
+        高级查询
       </el-button>
       <el-button
         v-if="!!$attrs.onAdd"

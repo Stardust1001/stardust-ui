@@ -40,7 +40,7 @@ export default {
         @click="$emit('search')"
       >
         <mobile-x-icon name="search" />
-        查询
+        高级查询
       </van-button>
       <van-button
         v-if="!!$attrs.onMultiEdit"
