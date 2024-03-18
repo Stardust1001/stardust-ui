@@ -129,16 +129,23 @@ class CrudController extends BaseController {
 
   async handleKeywordsSearch (keywords) {
     this._lastSearchParams = null
-    if (!keywords) return this.handleSearch()
-    let { keywordsSearchFields, columns } = this.table
-    if (!keywordsSearchFields.length) {
-      keywordsSearchFields = [...new Set(columns.filter(c => {
+    keywords = keywords.replace(/,/g, ' ').split(' ').filter(k => k)
+    if (!keywords.length) return this.handleSearch()
+    let { searchFields, columns } = this.table
+    if (!searchFields.length) {
+      searchFields = [...new Set(columns.filter(c => {
+        if (typeof c.canSearch === 'boolean') return c.canSearch
         return c.prop && c.type !== 'number' && !c.comp && !c.virtual
       }).map(c => c.prop))]
     }
-    if (!keywordsSearchFields.length) return this.handleSearch()
-    const where = { '[Op.or]': keywordsSearchFields.map(f => ({ [f]: { '[Op.like]': '%' + keywords + '%' } })) }
-    return this.handleSearch({ where })
+    if (!searchFields.length) return this.handleSearch()
+    const ors = []
+    searchFields.forEach(field => {
+      keywords.forEach(k => {
+        ors.push({ [field]: { '[Op.like]': '%' + k + '%' } })
+      })
+    })
+    return this.handleSearch({ where: { '[Op.or]': ors } })
   }
 
   async handleSearch (params, { isInfinite = false } = {}) {
