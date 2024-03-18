@@ -27,6 +27,7 @@ export function props () {
     onSortChange: Function,
     onHeaderDragend: Function,
     onCheckedChange: Function,
+    onKeywordsSearch: Function,
     onSearch: Function,
     onAdd: Function,
     onEdit: Function,
@@ -84,6 +85,7 @@ export function _attrs () {
 export function domids () {
   const domids = {}
   const keys = [
+    'keywords-search',
     'search',
     'add',
     'multi-delete',
@@ -178,6 +180,10 @@ export function _chartOption () {
   return chartOption || table?.chartOption || []
 }
 
+export function _onKeywordsSearch () {
+  return (this.onKeywordsSearch || this._listen['keywords-search']) ? () => this._emit('keywords-search') : null
+}
+
 export function _onSearch () {
   if (this.hideSearcher) {
     return (this.onSearch || this._listen['search']) ? () => this._emit('search') : null
@@ -223,7 +229,7 @@ export function _listen () {
   let events = this.listen.split(',')
   if (events.includes('*')) {
     events = [...new Set([
-      ...events, 'search', 'add', 'multi-delete', 'export', 'search-export', 'import',
+      ...events, 'keywords-search', 'search', 'add', 'multi-delete', 'export', 'search-export', 'import',
       'edit', 'row-edit', 'cancel-edit', 'delete'
     ])]
   }
@@ -571,6 +577,7 @@ export default {
     _selection,
     _chartHeight,
     _chartOption,
+    _onKeywordsSearch,
     _onSearch,
     _onAdd,
     _onExport,

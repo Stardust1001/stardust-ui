@@ -26,6 +26,7 @@ export const baseTable = (query = {}) => ({
   tableRef: null,
   selection: [],
   checked: null,
+  keywordsSearchFields: [],
   _isBaseTable: true
 })
 

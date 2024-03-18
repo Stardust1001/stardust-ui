@@ -80,6 +80,9 @@ const others = reactive({
 })
 
 const controller = {
+  handleKeywordsSearch () {
+
+  },
   handleSearch () {
 
   },
@@ -113,7 +116,7 @@ const controller = {
       :controller="controller"
       operates-width="100"
       operates-dropdown
-      listen="search,add,edit,export,search-export,delete"
+      listen="keywords-search,search,add,edit,export,search-export,delete"
     ></x-table>
     <br>
     <x-form label-width="40px" :gutter="5" :form="model.form">

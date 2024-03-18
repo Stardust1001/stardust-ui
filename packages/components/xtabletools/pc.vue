@@ -10,6 +10,11 @@ export default {
     exportBtn: Object,
     importBtn: Object,
     domids: Object
+  },
+  data () {
+    return {
+      keywords: ''
+    }
   }
 }
 </script>
@@ -18,6 +23,15 @@ export default {
   <el-card shadow="hover" :body-style="{ padding: '10px' }" class="pc-x-table-tools">
     <div class="tools">
       <slot name="tools-prefix" />
+      <el-input
+        v-if="!!$attrs.onKeywordsSearch"
+        v-domid="domids['keywords-search']"
+        v-model="keywords"
+        :placeholder="$attrs.keywordsPlaceholder || '输入关键词搜索'"
+        clearable
+        class="keywords-search"
+        @keyup.enter="$emit('keywords-search', keywords.trim())"
+      />
 
       <el-button
         v-if="!!$attrs.onSearch"
@@ -108,6 +122,10 @@ export default {
   :deep(.el-input) {
     width: 100%;
     margin-right: 5px;
+  }
+  .keywords-search {
+    width: 200px;
+    margin-right: 10px;
   }
   .tools {
     position: relative;

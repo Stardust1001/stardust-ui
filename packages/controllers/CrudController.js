@@ -54,6 +54,7 @@ class CrudController extends BaseController {
   _getMethods () {
     return [
       ...super._getMethods(),
+      'handleKeywordsSearch',
       'handleSearch',
       'handleAdd',
       'handleEdit',
@@ -124,6 +125,19 @@ class CrudController extends BaseController {
   onInit () {
     super.onInit()
     this.table && this.handleSearch()
+  }
+
+  async handleKeywordsSearch (keywords) {
+    if (!keywords) return this.handleSearch()
+    let { keywordsSearchFields, columns } = this.table
+    if (!keywordsSearchFields.length) {
+      keywordsSearchFields = [...new Set(columns.filter(c => {
+        return c.comp !== 'ElDatePicker' && c.type !== 'number' && c.prop
+      }).map(c => c.prop))]
+    }
+    if (!keywordsSearchFields.length) return this.handleSearch()
+    const params = { '[Op.or]': keywordsSearchFields.map(f => ({ [f]: { '[Op.like]': '%' + keywords + '%' } })) }
+    return this.handleSearch(params)
   }
 
   async handleSearch (params, { isInfinite = false } = {}) {
@@ -716,6 +730,7 @@ class CrudController extends BaseController {
     return window.isMobile
   }
 
+  onKeywordsSearch (...props) { return this.handleKeywordsSearch(...props) }
   onSearch (...props) { return this.handleSearch(...props) }
   onAdd (...props) { return this.handleAdd(...props) }
   onEdit (...props) { return this.handleEdit(...props) }

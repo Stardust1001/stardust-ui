@@ -130,6 +130,7 @@ export default {
           v-bind="_attrs"
           :domids
           @add="_onAdd"
+          @keywords-search="_onKeywordsSearch"
           @search="_onSearch"
           @export="_onExport"
           @search-export="_onSearchExport"
