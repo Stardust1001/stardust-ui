@@ -27,7 +27,7 @@ export default {
         v-if="!!$attrs.onKeywordsSearch"
         v-domid="domids['keywords-search']"
         v-model="keywords"
-        :placeholder="$attrs.keywordsPlaceholder || '输入关键词搜索'"
+        :placeholder="$attrs['keywords-placeholder'] || '输入关键词搜索'"
         clearable
         class="keywords-search"
         @keyup.enter="$emit('keywords-search', keywords.trim())"

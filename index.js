@@ -5397,7 +5397,7 @@ function po(e, t, s, i, n, l) {
           key: 0,
           modelValue: n.keywords,
           "onUpdate:modelValue": t[0] || (t[0] = (m) => n.keywords = m),
-          placeholder: e.$attrs.keywordsPlaceholder || "输入关键词搜索",
+          placeholder: e.$attrs["keywords-placeholder"] || "输入关键词搜索",
           clearable: "",
           class: "keywords-search",
           onKeyup: t[1] || (t[1] = bt((m) => e.$emit("keywords-search", n.keywords.trim()), ["enter"]))
@@ -5497,7 +5497,7 @@ function po(e, t, s, i, n, l) {
     _: 3
   });
 }
-const fo = /* @__PURE__ */ A(uo, [["render", po], ["__scopeId", "data-v-2eac4de4"]]);
+const fo = /* @__PURE__ */ A(uo, [["render", po], ["__scopeId", "data-v-2b31e131"]]);
 function pt(e) {
   return typeof e == "function" || Object.prototype.toString.call(e) === "[object Object]" && !Qe(e);
 }
@@ -6395,7 +6395,7 @@ const { ElInfiniteScroll: Je } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ha = {
-  version: "1.2.92",
+  version: "1.2.93",
   ...Ve,
   ...rt,
   ...Nt,
