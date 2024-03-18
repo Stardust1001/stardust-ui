@@ -136,8 +136,8 @@ class CrudController extends BaseController {
       }).map(c => c.prop))]
     }
     if (!keywordsSearchFields.length) return this.handleSearch()
-    const params = { '[Op.or]': keywordsSearchFields.map(f => ({ [f]: { '[Op.like]': '%' + keywords + '%' } })) }
-    return this.handleSearch(params)
+    const where = { '[Op.or]': keywordsSearchFields.map(f => ({ [f]: { '[Op.like]': '%' + keywords + '%' } })) }
+    return this.handleSearch({ where })
   }
 
   async handleSearch (params, { isInfinite = false } = {}) {

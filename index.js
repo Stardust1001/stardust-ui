@@ -546,7 +546,7 @@ class ct extends dt {
     if (s.length || (s = [...new Set(i.filter((l) => l.comp !== "ElDatePicker" && l.type !== "number" && l.prop).map((l) => l.prop))]), !s.length)
       return this.handleSearch();
     const n = { "[Op.or]": s.map((l) => ({ [l]: { "[Op.like]": "%" + t + "%" } })) };
-    return this.handleSearch(n);
+    return this.handleSearch({ where: n });
   }
   async handleSearch(t, { isInfinite: s = !1 } = {}) {
     if (this.table.isInfinite = s, this.table.loading || !await this.beforeSearch(t))
@@ -6395,7 +6395,7 @@ const { ElInfiniteScroll: Je } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ha = {
-  version: "1.2.90",
+  version: "1.2.91",
   ...Ve,
   ...rt,
   ...Nt,
