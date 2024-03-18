@@ -540,7 +540,7 @@ class ct extends dt {
     super.onInit(), this.table && this.handleSearch();
   }
   async handleKeywordsSearch(t) {
-    if (!t)
+    if (this._lastSearchParams = null, !t)
       return this.handleSearch();
     let { keywordsSearchFields: s, columns: i } = this.table;
     if (s.length || (s = [...new Set(i.filter((l) => l.prop && l.type !== "number" && !l.comp && !l.virtual).map((l) => l.prop))]), !s.length)
@@ -6395,7 +6395,7 @@ const { ElInfiniteScroll: Je } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ha = {
-  version: "1.2.95",
+  version: "1.2.96",
   ...Ve,
   ...rt,
   ...Nt,

@@ -128,6 +128,7 @@ class CrudController extends BaseController {
   }
 
   async handleKeywordsSearch (keywords) {
+    this._lastSearchParams = null
     if (!keywords) return this.handleSearch()
     let { keywordsSearchFields, columns } = this.table
     if (!keywordsSearchFields.length) {
