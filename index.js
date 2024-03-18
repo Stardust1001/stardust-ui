@@ -2834,7 +2834,7 @@ function $n() {
   return t || (e == null ? void 0 : e.chartOption) || [];
 }
 function Cn() {
-  return this.onKeywordsSearch || this._listen["keywords-search"] ? () => this._emit("keywords-search") : null;
+  return this.onKeywordsSearch || this._listen["keywords-search"] ? (...e) => this._emit("keywords-search", ...e) : null;
 }
 function xn() {
   return this.hideSearcher ? this.onSearch || this._listen.search ? () => this._emit("search") : null : this.onSearch || this._listen.search ? (e) => {
@@ -6395,7 +6395,7 @@ const { ElInfiniteScroll: Je } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ha = {
-  version: "1.2.89",
+  version: "1.2.90",
   ...Ve,
   ...rt,
   ...Nt,

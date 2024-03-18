@@ -181,7 +181,10 @@ export function _chartOption () {
 }
 
 export function _onKeywordsSearch () {
-  return (this.onKeywordsSearch || this._listen['keywords-search']) ? () => this._emit('keywords-search') : null
+  if (this.onKeywordsSearch || this._listen['keywords-search']) {
+    return (...props) => this._emit('keywords-search', ...props)
+  }
+  return null
 }
 
 export function _onSearch () {
