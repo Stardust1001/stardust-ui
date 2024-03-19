@@ -2002,6 +2002,10 @@ const Ts = /* @__PURE__ */ A(As, [["render", js]]), K = {}, te = {
   props: {
     areaList: Object,
     modelValue: String,
+    seperator: {
+      type: String,
+      default: "/"
+    },
     level: {
       type: String,
       default: "county"
@@ -2062,7 +2066,7 @@ const Ts = /* @__PURE__ */ A(As, [["render", js]]), K = {}, te = {
     },
     async init() {
       this.inited = !1;
-      const [e, t, s] = this.modelValue.split("/");
+      const [e, t, s] = this.modelValue.split(this.seperator);
       if (e) {
         const i = Object.entries(K.province_list).find((n) => n[1] === e);
         this.province = i == null ? void 0 : i[0];
@@ -2091,7 +2095,7 @@ const Ts = /* @__PURE__ */ A(As, [["render", js]]), K = {}, te = {
         this.province && K.province_list[this.province] || "",
         this.number > 1 && this.city && K.city_list[this.city] || "",
         this.number > 2 && this.county && K.county_list[this.county] || ""
-      ].slice(0, this.number).join("/");
+      ].slice(0, this.number).join(this.seperator);
       this.$emit("update:modelValue", e), this.$emit("change", e);
     }
   }
@@ -6399,7 +6403,7 @@ const { ElInfiniteScroll: Je } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ha = {
-  version: "1.3.1",
+  version: "1.3.2",
   ...Ve,
   ...rt,
   ...Nt,

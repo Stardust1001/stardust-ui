@@ -12,6 +12,10 @@ export default {
   props: {
     areaList: Object,
     modelValue: String,
+    seperator: {
+      type: String,
+      default: '/'
+    },
     level: {
       type: String,
       default: 'county'
@@ -85,7 +89,7 @@ export default {
     },
     async init () {
       this.inited = false
-      const [province, city, county] = this.modelValue.split('/')
+      const [province, city, county] = this.modelValue.split(this.seperator)
       if (province) {
         const ele = Object.entries(areaList.province_list).find(ele => ele[1] === province)
         this.province = ele?.[0]
@@ -121,7 +125,7 @@ export default {
         this.province && areaList.province_list[this.province] || '',
         this.number > 1 && this.city && areaList.city_list[this.city] || '',
         this.number > 2 && this.county && areaList.county_list[this.county] || ''
-      ].slice(0, this.number).join('/')
+      ].slice(0, this.number).join(this.seperator)
       this.$emit('update:modelValue', value)
       this.$emit('change', value)
     }
