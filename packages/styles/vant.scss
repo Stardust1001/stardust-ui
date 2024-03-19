@@ -63,12 +63,17 @@ main {
   }
 }
 
-.mobile-x-dialog .van-action-sheet__cancel {
-  padding: 0;
-  .van-button {
-    margin: 0;
+.mobile-x-dialog {
+  .van-action-sheet__description {
+    padding: 15px 0;
+  }
+  .van-action-sheet__cancel {
     padding: 0;
-    width: 100%;
-    border: none;
+    .van-button {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      border: none;
+    }
   }
 }
