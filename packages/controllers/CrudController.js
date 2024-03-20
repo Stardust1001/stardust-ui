@@ -149,6 +149,7 @@ class CrudController extends BaseController {
   }
 
   async handleSearch (params, { isInfinite = false } = {}) {
+    if (params instanceof Event) params = null
     this.table.isInfinite = isInfinite
     if (this.table.loading || !(await this.beforeSearch(params))) return
     params = this.getSearchParams(params)

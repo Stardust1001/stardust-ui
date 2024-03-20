@@ -553,7 +553,7 @@ class ct extends dt {
     }), this.handleSearch({ where: { "[Op.or]": n } });
   }
   async handleSearch(t, { isInfinite: s = !1 } = {}) {
-    if (this.table.isInfinite = s, this.table.loading || !await this.beforeSearch(t))
+    if (t instanceof Event && (t = null), this.table.isInfinite = s, this.table.loading || !await this.beforeSearch(t))
       return;
     t = this.getSearchParams(t), this.table.loading = !0;
     const i = await this.search(t);
@@ -6403,7 +6403,7 @@ const { ElInfiniteScroll: Je } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ha = {
-  version: "1.3.2",
+  version: "1.3.3",
   ...Ve,
   ...rt,
   ...Nt,
