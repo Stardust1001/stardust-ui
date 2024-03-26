@@ -5006,7 +5006,10 @@ function to(e, t, s, i, n, l) {
                 } : void 0
               ]), 1040, ["domids", "onAdd", "onKeywordsSearch", "onSearch", "onExport", "onSearchExport", "onImport", "onMultiDelete"])) : S("", !0),
               x(e.$slots, "tools-bottom"),
-              R((d(), f(q, b({ ref: "tableRef" }, e.elTableAttrs, {
+              R((d(), f(q, b({
+                ref: "tableRef",
+                "element-loading-text": "加载中..."
+              }, e.elTableAttrs, {
                 "infinite-scroll-disabled": e._finished,
                 onHeaderDragend: e.handleHeaderDragend,
                 onSelectionChange: e.handleSelectionChange,
@@ -6403,7 +6406,7 @@ const { ElInfiniteScroll: Je } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ha = {
-  version: "1.3.4",
+  version: "1.3.6",
   ...Ve,
   ...rt,
   ...Nt,

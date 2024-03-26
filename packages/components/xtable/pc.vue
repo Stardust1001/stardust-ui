@@ -173,6 +173,7 @@ export default {
 
         <el-table
           ref="tableRef"
+          element-loading-text="加载中..."
           v-bind="elTableAttrs"
           v-loading="_loading"
           v-el-table-infinite-scroll="_onLoad"
