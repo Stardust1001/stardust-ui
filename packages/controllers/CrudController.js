@@ -94,6 +94,11 @@ class CrudController extends BaseController {
       'getDeleteParams',
       'getSearchExportParams',
 
+      'injectSearchParams',
+      'injectAddParams',
+      'injectUpdateParams',
+      'injectDeleteParams',
+
       'beforeSearch',
       'beforeAdd',
       'beforeEdit',
@@ -153,6 +158,7 @@ class CrudController extends BaseController {
     this.table.isInfinite = isInfinite
     if (this.table.loading || !(await this.beforeSearch(params))) return
     params = this.getSearchParams(params)
+    this.injectSearchParams(params)
     this.table.loading = true
     const data = await this.search(params)
     let list = highdict.get(data, this.listProp)
@@ -207,6 +213,7 @@ class CrudController extends BaseController {
     const ok = await Confirm.w({ message: '确定要删除吗？', title: '警告' })
     if (ok) {
       const params = this.getDeleteParams(row)
+      this.injectDeleteParams(params)
       const data = await this.remove(params, row)
       if (!data.err) {
         this.afterDelete(data)
@@ -219,6 +226,7 @@ class CrudController extends BaseController {
     if (row._loading) return
     row._loading = true
     const params = this.getUpdateParams(row)
+    this.injectUpdateParams(params)
     if (!(await this._checkAllNone(params))) {
       row._loading = false
       return
@@ -354,6 +362,7 @@ class CrudController extends BaseController {
     if (!(await this._validateForm(formRef))) return
     this._isSubmitting = true
     const params = this.getAddParams(form)
+    this.injectAddParams(params)
     if (!(await this._checkAllNone(params))) {
       this._isSubmitting = false
       return
@@ -395,6 +404,7 @@ class CrudController extends BaseController {
     try {
       if (this.dialog.isEditing) {
         const params = this.getUpdateParams(form)
+        this.injectUpdateParams(params)
         if (!(await this._checkAllNone(params))) {
           this._isSubmitting = false
           return false
@@ -402,6 +412,7 @@ class CrudController extends BaseController {
         data = await this.update(params, this.dialog.editingRow[this.idField])
       } else {
         const params = this.getAddParams(form)
+        this.injectAddParams(params)
         if (!(await this._checkAllNone(params))) {
           this._isSubmitting = false
           return false
@@ -531,12 +542,22 @@ class CrudController extends BaseController {
   }
 
   getSearchExportParams () {
-    return Object.assign({}, this.getSearchParams(), {
+    const params = this.getSearchParams()
+    this.injectSearchParams(params)
+    return Object.assign({}, params, {
       page: 1,
       limit: - 1,
       attributes: this.processExportingColumns(this.table.ref._visibleColumns, 'search').map(col => col.prop)
     })
   }
+
+  injectSearchParams (params) { }
+
+  injectAddParams (params) { }
+
+  injectUpdateParams (params) { }
+
+  injectDeleteParams (params) { }
 
   beforeSearch (params) { return true }
 
