@@ -67,10 +67,10 @@ export default {
       if (!keywords) {
         return this.list = markRaw(this._options)
       }
-      const isCustom = !!this.$slots.custom
+      const isRemarking = !this.$slots.custom && this.labelTexts
       this.list = markRaw(this._options.filter(op => {
         let text = op.text
-        if (!isCustom) text += op._main_ + op._remark_
+        if (isRemarking) text += op._main_ + op._remark_
         return text.includes(keywords)
       }))
     },
@@ -102,7 +102,7 @@ export default {
     :remote-method="$attrs.remoteMethod || remoteSearch"
   >
     <el-option
-      v-for="(option, index) in _options"
+      v-for="(option, index) in list"
       v-bind="$attrs"
       :disabled="option.raw?.disabled"
       :key="option.value"
