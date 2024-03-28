@@ -142,7 +142,8 @@ const At = (e, t, s) => {
   });
 }, Ot = (e, t, s) => {
   e.afterEach((i, n) => {
-    document.title = t.app.sitename + "-" + i.matched[i.matched.length - 1].meta.title;
+    var l;
+    document.title = ((l = i.matched[i.matched.length - 1].meta) == null ? void 0 : l.title) || t.app.sitename;
   });
 }, jt = (e, t, s) => {
   e.beforeEach((i, n, l) => {
@@ -6424,7 +6425,7 @@ const { ElInfiniteScroll: Je } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ho = {
-  version: "1.3.11",
+  version: "1.3.12",
   ...Ve,
   ...rt,
   ...Lt,
