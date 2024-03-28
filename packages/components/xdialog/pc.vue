@@ -49,6 +49,11 @@ export default {
       set (value) {
         this.$emit('update:modelValue', value)
       }
+    },
+    hasFooter () {
+      return this.onSubmit || this.$parent.$attrs.onSubmit
+        || this.onCancel || this.$parent.$attrs.onCancel
+        || this.$slots.footer
     }
   },
   methods: {
@@ -69,7 +74,7 @@ export default {
     :fullscreen
     :size="$attrs.width"
     class="pc-x-dialog"
-    :class="{ 'pc-x-drawer': drawer }"
+    :class="{ 'pc-x-drawer': drawer, 'no-footer': !hasFooter }"
   >
     <template #header>
       <slot v-if="$slots.header" name="header" />

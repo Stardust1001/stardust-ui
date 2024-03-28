@@ -1948,6 +1948,9 @@ const Es = /* @__PURE__ */ A($s, [["render", Vs]]), As = {
       set(e) {
         this.$emit("update:modelValue", e);
       }
+    },
+    hasFooter() {
+      return this.onSubmit || this.$parent.$attrs.onSubmit || this.onCancel || this.$parent.$attrs.onCancel || this.$slots.footer;
     }
   },
   methods: {
@@ -1966,7 +1969,7 @@ function js(e, t, s, i, n, l) {
     "onUpdate:modelValue": t[2] || (t[2] = (r) => l.visible = r),
     fullscreen: n.fullscreen,
     size: e.$attrs.width,
-    class: ["pc-x-dialog", { "pc-x-drawer": s.drawer }]
+    class: ["pc-x-dialog", { "pc-x-drawer": s.drawer, "no-footer": !l.hasFooter }]
   }), {
     header: c(() => [
       e.$slots.header ? x(e.$slots, "header", { key: 0 }) : (d(), _("span", Os, O(s.title), 1)),
@@ -6421,7 +6424,7 @@ const { ElInfiniteScroll: Je } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ho = {
-  version: "1.3.10",
+  version: "1.3.11",
   ...Ve,
   ...rt,
   ...Lt,

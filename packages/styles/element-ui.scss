@@ -58,6 +58,19 @@
       overflow-y: auto;
     }
   }
+  &.no-footer {
+    .el-dialog__body {
+      padding-bottom: 15px;
+    }
+    .el-dialog__footer {
+      display: none;
+    }
+  }
+  &.is-fullscreen.no-footer {
+    .el-dialog__body {
+      height: calc(100% - 55px);
+    }
+  }
   .el-dialog__header {
     text-align: left;
     border-bottom: var(--x-default-border);
