@@ -6,22 +6,25 @@ export default {
   props: {
     data: Object,
     fields: Array,
-    column: {
-      type: Number,
-      default: 24
-    },
-    border: {
-      type: Boolean,
-      default: true
-    },
     span: {
       type: Number,
       default: window.isMobile ? 24 : 8
+    },
+    showColon: {
+      type: Boolean,
+      default: false
+    },
+    labelWidth: {
+      type: String,
+      default: '80px'
     },
     labelSlot: {
       type: Boolean,
       default: false
     },
+    align: String,
+    labelAlign: String,
+    valueAlign: String,
     defaultValue: ''
   },
   computed: {
@@ -48,6 +51,12 @@ export default {
     hideHeader () {
       const keys = Object.keys(this.blocks)
       return keys.length === 1 && keys[0] === '基本信息'
+    },
+    _labelAlign () {
+      return this.labelAlign || this.align || 'left'
+    },
+    _valueAlign () {
+      return this.valueAlign || this.align || 'left'
     }
   },
   data () {
@@ -76,32 +85,33 @@ export default {
       :title="k"
       :name="k"
     >
-      <el-descriptions :column="column" :border="border">
-        <el-descriptions-item
+      <el-row :gutter="$attrs.gutter || 10">
+        <el-col
           v-for="field in items"
           :key="field.prop"
+          :span
           v-bind="field"
         >
-          <template v-if="labelSlot" #label>
-            <slot name="label" :label="field.label" />
-          </template>
-          <span v-if="field.slot">
+          <div class="x-info__label">
+            <slot v-if="$slots.label" name="label" :label="field.label" />
+            <span v-else>{{ field.label }}{{ showColon ? '：' : '' }}</span>
+          </div>
+          <div class="x-info__value">
+            <slot
+              v-if="field.slot"
+              :name="field.slot"
+              v-bind="{ data, field, value: calcValue(data, field) }"
+            />
             <router-link
-              v-if="field.slot === '$link'"
+              v-else-if="field.slot === '$link'"
               :to="field.to(data)"
             >
               {{ field.link ? field.link(data) : data[field.linkProp || field.prop] }}
             </router-link>
-            <slot
-              :name="field.slot"
-              v-bind="{ data, field, value: calcValue(data, field) }"
-            />
-          </span>
-          <span v-else>
-            {{ calcValue(data, field) }}
-          </span>
-        </el-descriptions-item>
-      </el-descriptions>
+            <span v-else>{{ calcValue(data, field) }}</span>
+          </div>
+        </el-col>
+      </el-row>
     </el-collapse-item>
   </el-collapse>
 </template>
@@ -115,6 +125,19 @@ export default {
   }
   :deep(.el-collapse-item__content) {
     padding-bottom: 10px;
+  }
+  .x-info__label {
+    color: #303333;
+    display: inline-block;
+    width: v-bind('labelWidth');
+    vertical-align: top;
+    text-align: v-bind('_labelAlign');
+  }
+  .x-info__value {
+    display: inline-block;
+    width: calc(100% - v-bind('labelWidth'));
+    color: #606666;
+    text-align: v-bind('_valueAlign');
   }
 }
 </style>

@@ -125,6 +125,6 @@ const controller = {
       </template>
     </x-form>
     <x-image-uploader v-model="others.files" :limit="3" />
-    <x-info :data="model.form" :fields="model.table.columns"></x-info>
+    <x-info :data="model.table.list[0]" :fields="model.table.columns"></x-info>
   </div>
 </template>
