@@ -15,6 +15,7 @@ export default {
     <mobile-x-col
       v-for="(col, index) in cols"
       v-bind="col"
+      :span="col.xs ?? col.span"
       :key="index"
     >
       <slot

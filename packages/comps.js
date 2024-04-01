@@ -1,4 +1,3 @@
-import xactionsheet from './components/xactionsheet/xactionsheet.vue'
 import xautorows from './components/xautorows/xautorows.vue'
 import mobilexbutton from './components/xbutton/mobile.vue'
 import pcxbutton from './components/xbutton/pc.vue'
@@ -43,7 +42,6 @@ import xfileuploader from './components/xuploader/xfileuploader.vue'
 import ximageuploader from './components/xuploader/ximageuploader.vue'
 
 const modules = {
-  xactionsheet,
   xautorows,
   mobilexbutton,
   pcxbutton,

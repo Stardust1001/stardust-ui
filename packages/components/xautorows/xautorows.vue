@@ -12,6 +12,9 @@ export default {
     }
   },
   computed: {
+    isMobile () {
+      return this.$attrs.platform === 'mobile'
+    },
     rows () {
       const rows = [[]]
       let currentRow = rows[0]
@@ -43,7 +46,7 @@ export default {
       <x-col
         v-for="(col, j) in row"
         v-bind="col"
-        :span="col.span || span"
+        :span="isMobile ? (col.xs || col.span || span) : (col.span || span)"
         :key="j"
         :platform="$attrs.platform"
       >
