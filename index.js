@@ -3230,9 +3230,9 @@ const X = {
   }
 }, Ye = () => {
   Ae((e) => ({
-    "29b1e6fe": e.labelWidth,
-    "4cb74aa1": e._labelAlign,
-    "28d33e44": e._valueAlign
+    e1bb710c: e.labelWidth,
+    "28236ec8": e._labelAlign,
+    "043f626b": e._valueAlign
   }));
 }, Ge = Re.setup;
 Re.setup = Ge ? (e, t) => (Ye(), Ge(e, t)) : Ye;
@@ -3290,7 +3290,7 @@ function $i(e, t, s, l, n, i) {
     _: 3
   }, 8, ["modelValue", "class"]);
 }
-const Ci = /* @__PURE__ */ O(Re, [["render", $i], ["__scopeId", "data-v-53bf371d"]]), xi = {
+const Ci = /* @__PURE__ */ O(Re, [["render", $i], ["__scopeId", "data-v-1c223135"]]), xi = {
   name: "XLooper",
   props: {
     compName: String,
@@ -6428,7 +6428,7 @@ const { ElInfiniteScroll: Ze } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ho = {
-  version: "1.3.21",
+  version: "1.3.22",
   ...Ve,
   ...ut,
   ...Ut,

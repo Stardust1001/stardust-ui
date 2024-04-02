@@ -128,7 +128,7 @@ export default {
   }
   .x-info__label {
     padding-left: 10px;
-    color: #606666;
+    color: #909999;
     display: inline-block;
     width: v-bind('labelWidth');
     vertical-align: top;
