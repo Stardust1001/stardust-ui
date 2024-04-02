@@ -127,16 +127,18 @@ export default {
     padding-bottom: 10px;
   }
   .x-info__label {
-    color: #303333;
+    padding-left: 10px;
+    color: #606666;
     display: inline-block;
     width: v-bind('labelWidth');
     vertical-align: top;
     text-align: v-bind('_labelAlign');
   }
   .x-info__value {
+    padding-left: 10px;
     display: inline-block;
     width: calc(100% - v-bind('labelWidth'));
-    color: #606666;
+    color: #303333;
     text-align: v-bind('_valueAlign');
   }
 }
