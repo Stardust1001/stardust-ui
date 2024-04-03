@@ -10,6 +10,10 @@ export default {
       type: Boolean,
       default: false
     },
+    labelWidth: {
+      type: String,
+      default: props => props.labelWidth || '80px'
+    },
     useWhen: {
       type: Boolean,
       default: false
@@ -45,6 +49,8 @@ export default {
         :xs="item.xs" :sm="item.sm" :md="item.md" :lg="item.lg" :xl="item.xl"
       >
         <mobile-x-form-item
+          :label-width="labelWidth"
+          :label-position="$attrs['label-position'] || 'right'"
           v-bind="item"
           :rules="_rules[item.prop] || item.rules"
           :modelValue="formatModelValue(_model[item.prop])"

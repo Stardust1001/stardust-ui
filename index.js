@@ -2224,6 +2224,10 @@ const le = {
       type: Boolean,
       default: !1
     },
+    labelWidth: {
+      type: String,
+      default: (e) => e.labelWidth || "80px"
+    },
     useWhen: {
       type: Boolean,
       default: !1
@@ -2268,7 +2272,10 @@ function qs(e, t, s, l, n, i) {
             xl: m.xl
           }, {
             default: c(() => [
-              p(a, b(m, {
+              p(a, b({
+                "label-width": s.labelWidth,
+                "label-position": e.$attrs["label-position"] || "right"
+              }, m, {
                 rules: e._rules[m.prop] || m.rules,
                 modelValue: e.formatModelValue(e._model[m.prop]),
                 "onUpdate:modelValue": (y) => e._model[m.prop] = y,
@@ -2278,7 +2285,7 @@ function qs(e, t, s, l, n, i) {
                   m.slot ? x(e.$slots, m.slot, Te(b({ key: 0 }, m))) : S("", !0)
                 ]),
                 _: 2
-              }, 1040, ["rules", "modelValue", "onUpdate:modelValue", "placeholder"])
+              }, 1040, ["label-width", "label-position", "rules", "modelValue", "onUpdate:modelValue", "placeholder"])
             ]),
             _: 2
           }, 1032, ["span", "offset", "tag", "xs", "sm", "md", "lg", "xl"]))), 128))
@@ -2494,6 +2501,8 @@ const $e = (e) => {
     });
   const m = {
     modelValue: a,
+    labelWidth: s["label-width"],
+    labelAlign: s["label-align"] ?? s["label-position"],
     "onUpdate:modelValue": (k) => n("update:modelValue", k)
   };
   return o && s.label || r ? Z(u("van-field"), m, {
@@ -6428,7 +6437,7 @@ const { ElInfiniteScroll: Ze } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ho = {
-  version: "1.3.31",
+  version: "1.3.33",
   ...Ve,
   ...ut,
   ...Ut,

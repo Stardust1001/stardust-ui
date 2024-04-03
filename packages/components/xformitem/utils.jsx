@@ -70,6 +70,8 @@ export const MobileItem = (vm) => {
 
   const opts = {
     modelValue: mValue,
+    labelWidth: $attrs['label-width'],
+    labelAlign: $attrs['label-align'] ?? $attrs['label-position'],
     'onUpdate:modelValue': value => $emit('update:modelValue', value)
   }
   if (slot && $attrs.label || comp) {
