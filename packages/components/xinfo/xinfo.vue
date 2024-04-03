@@ -94,7 +94,7 @@ export default {
         >
           <div class="x-info__label">
             <slot v-if="$slots.label" name="label" :label="field.label" />
-            <span v-else>{{ field.label }}{{ showColon ? '：' : '' }}</span>
+            <span v-else>{{ field.label ? (showColon ? (field + '：') : field) : '' }}</span>
           </div>
           <div class="x-info__value">
             <slot
