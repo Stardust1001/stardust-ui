@@ -907,7 +907,7 @@ class mt extends ht {
       let { formatter: a = i.formatter, tagValues: o = i.tagValues } = i.tableAttrs || {};
       !a && typeof o == "function" && (a = o), l[i.prop] = { formatter: a, tagValues: o };
     });
-    const n = [...new Set(Object.keys(t[0]).concat(this.table.ref._visibleColumns.map((i) => i.prop)))];
+    const n = [...new Set(Object.keys(t[0]).concat(this.table.ref._visibleColumns.map((i) => i.prop).filter((i) => i)))];
     return t.forEach((i) => {
       n.forEach((a) => {
         var r, h;
@@ -6428,7 +6428,7 @@ const { ElInfiniteScroll: Ze } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ho = {
-  version: "1.3.30",
+  version: "1.3.31",
   ...Ve,
   ...ut,
   ...Ut,

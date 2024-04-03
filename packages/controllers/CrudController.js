@@ -665,7 +665,7 @@ class CrudController extends BaseController {
       if (!formatter && typeof tagValues === 'function') formatter = tagValues
       dict[it.prop] = { formatter, tagValues }
     })
-    const keys = [...new Set(Object.keys(data[0]).concat(this.table.ref._visibleColumns.map(c => c.prop)))]
+    const keys = [...new Set(Object.keys(data[0]).concat(this.table.ref._visibleColumns.map(c => c.prop).filter(p => p)))]
     data.forEach(ele => {
       keys.forEach(key => {
         const value = ele[key]
