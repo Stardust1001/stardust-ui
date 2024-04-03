@@ -349,7 +349,7 @@ export function calcValue (row, column) {
   }
   if (value === undefined) {
     if (prop.includes('.') || prop.includes('[')) {
-      return highdict.get(row, prop)
+      return highdict.get(row, prop, this.defaultValue)
     }
     return this.defaultValue
   }

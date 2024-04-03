@@ -2980,7 +2980,7 @@ function Jn(e, t) {
     if (a in e)
       return e[a];
   }
-  return l === void 0 ? s.includes(".") || s.includes("[") ? pt.get(e, s) : this.defaultValue : l === "" ? this.defaultValue : l;
+  return l === void 0 ? s.includes(".") || s.includes("[") ? pt.get(e, s, this.defaultValue) : this.defaultValue : l === "" ? this.defaultValue : l;
 }
 function Yn(e, t) {
   return t.link ? t.link(e) : pt.get(e.row, t.linkProp || t.prop);
@@ -6428,7 +6428,7 @@ const { ElInfiniteScroll: Ze } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ho = {
-  version: "1.3.23",
+  version: "1.3.26",
   ...Ve,
   ...ut,
   ...Ut,
