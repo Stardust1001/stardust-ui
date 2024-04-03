@@ -124,10 +124,10 @@ export default {
     }
   }
   :deep(.el-collapse-item__content) {
-    padding-bottom: 10px;
+    padding: 10px 0;
   }
   .x-info__label {
-    padding-left: 10px;
+    padding: 0 10px;
     color: #909999;
     display: inline-block;
     width: v-bind('labelWidth');
@@ -135,7 +135,7 @@ export default {
     text-align: v-bind('_labelAlign');
   }
   .x-info__value {
-    padding-left: 10px;
+    padding: 0 10px;
     display: inline-block;
     width: calc(100% - v-bind('labelWidth'));
     color: #303333;
