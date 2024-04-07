@@ -25,6 +25,10 @@ export default {
       type: Boolean,
       default: true
     },
+    remote: {
+      type: Boolean,
+      default: false
+    },
     sort: Boolean | String,
     options: Array | Object,
 
@@ -62,6 +66,13 @@ export default {
   },
   methods: {
     formatOptions,
+    handleRemote (e) {
+      const keywords = e.target.value.trim()
+      if (keywords === this._last_keywords_) return
+      this._last_keywords_ = keywords
+      if (this.$attrs.remoteMethod) this.$attrs.remoteMethod(keywords)
+      else if (this.remoteSearch) this.remoteSearch(keywords)
+    },
     filter (keywords) {
       keywords = keywords.trim()
       if (!keywords) {
@@ -97,9 +108,10 @@ export default {
     :loading
     v-bind="$attrs"
     :filterable
+    :remote
     clearable
-    :filter-method="$attrs.filterMethod || filter"
-    :remote-method="$attrs.remoteMethod || remoteSearch"
+    :filter-method="remote ? undefined : ($attrs.filterMethod || filter)"
+    @keyup.enter="handleRemote"
   >
     <el-option
       v-for="(option, index) in list"

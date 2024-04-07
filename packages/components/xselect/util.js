@@ -1,10 +1,12 @@
 
 const remoteSearch = async (restful, query, vm) => {
+  if (vm.loading) return
   vm.loading = true
   const keywords = query?.trim()
   const { text = 'text', value = 'value', labelTexts, params = {} } = vm
   params.attributes = [...new Set(params.attributes || [...(labelTexts || []), text, value])]
-  params.limit = params.limit || 20
+  params.page ||= 1
+  params.limit ||= 100
   if (keywords) {
     params.where = params.where || {}
     params.where[text] = params.where[text] || {}
