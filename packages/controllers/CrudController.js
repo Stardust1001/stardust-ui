@@ -575,7 +575,6 @@ class CrudController extends BaseController {
         this.dbTable.func(['count', others]).then(data => this.table.total = data.data)
       }
     }
-    return list
   }
 
   afterAdd () { }
