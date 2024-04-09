@@ -19,8 +19,9 @@ export const setTitle = (router, store, routes) => {
 
 export const checkRolesPages = (router, store, routes) => {
   router.beforeEach((to, from, next) => {
+    const path = to.matched[to.matched.length - 1].path.split('/:')[0]
     if (to.meta.acl === false || to.meta?.visitable) return next()
-    if (!store.acl.paths.includes(to.path)) {
+    if (!store.acl.paths.includes(path)) {
       Message.e('无权访问页面: ' + to.path)
       return next(store.acl.paths[0] || '/404')
     }

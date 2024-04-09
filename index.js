@@ -147,8 +147,9 @@ const jt = (e, t, s) => {
   });
 }, Ft = (e, t, s) => {
   e.beforeEach((l, n, i) => {
-    var o;
-    return l.meta.acl === !1 || (o = l.meta) != null && o.visitable || t.acl.paths.includes(l.path) ? i() : (z.e("无权访问页面: " + l.path), i(t.acl.paths[0] || "/404"));
+    var a;
+    const o = l.matched[l.matched.length - 1].path.split("/:")[0];
+    return l.meta.acl === !1 || (a = l.meta) != null && a.visitable || t.acl.paths.includes(o) ? i() : (z.e("无权访问页面: " + l.path), i(t.acl.paths[0] || "/404"));
   }), oe(() => {
     let l = !1;
     Ee(() => t.acl.menus, (n) => {
@@ -835,7 +836,6 @@ class pt extends mt {
       const { page: i, limit: o, order: a, count: r, ...h } = s;
       this.dbTable.func(["count", h]).then((m) => this.table.total = m.data);
     }
-    return t;
   }
   afterAdd() {
   }
@@ -6457,7 +6457,7 @@ const { ElInfiniteScroll: et } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ho = {
-  version: "1.3.36",
+  version: "1.5.0",
   ...Ve,
   ...ht,
   ...Ut,
