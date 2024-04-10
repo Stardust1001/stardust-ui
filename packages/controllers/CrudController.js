@@ -272,7 +272,7 @@ class CrudController extends BaseController {
     } else {
       func = excel.export2Excel
     }
-    let options = { header, data, filename }
+    let options = { list, header, data, filename }
     options = await this.processExporting(options)
     func(options)
     this._isExporting = false
@@ -290,7 +290,7 @@ class CrudController extends BaseController {
     let data = res.data
     data = this.formatList(data, res)
     data = this.processExportingData(data, 'search')
-    const cols = this.processExportingColumns(this.table.ref._visibleColumns, 'search')
+    const cols = this.processExportingColumns(this.table.ref._visibleColumns, 'search-export')
     const props = cols.map(col => col.prop)
     const header = cols.map(col => col.label)
     data = data.map(row => props.map(prop => row[prop]))
@@ -300,7 +300,7 @@ class CrudController extends BaseController {
     } else {
       func = excel.export2Excel
     }
-    let options = { header, data, filename }
+    let options = { list: res.data, header, data, filename }
     options = await this.processExporting(options)
     func(options)
     this._isExporting = false
@@ -547,7 +547,7 @@ class CrudController extends BaseController {
     return Object.assign({}, params, {
       page: 1,
       limit: - 1,
-      attributes: this.processExportingColumns(this.table.ref._visibleColumns, 'search').map(col => col.prop)
+      attributes: this.processExportingColumns(this.table.ref._visibleColumns, 'search-attributes').map(col => col.prop)
     })
   }
 
