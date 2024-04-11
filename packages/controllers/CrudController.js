@@ -683,9 +683,9 @@ class CrudController extends BaseController {
     if (!data.length) return data
     const dict = {}
     this.table.ref._visibleColumns.forEach(it => {
-      let { formatter = it.formatter, tagValues = it.tagValues } = it.tableAttrs || {}
+      let { formatter = it.formatter, tagValues = it.tagValues, options = it.options } = it.tableAttrs || {}
       if (!formatter && typeof tagValues === 'function') formatter = tagValues
-      dict[it.prop] = { formatter, tagValues }
+      dict[it.prop] = { formatter, tagValues, options }
     })
     const keys = [...new Set(Object.keys(data[0]).concat(this.table.ref._visibleColumns.map(c => c.prop).filter(p => p)))]
     data.forEach(ele => {
@@ -694,6 +694,7 @@ class CrudController extends BaseController {
         if (ele.hasOwnProperty('_formatted_' + key)) return ele[key] = ele['_formatted_' + key]
         if (dict[key]?.formatter) return ele[key] = dict[key].formatter(value)
         if (dict[key]?.tagValues) return ele[key] = dict[key].tagValues[value]
+        if (dict[key]?.options) return ele[key] = dict[key].options.find(o => o.value === ele[key])?.text ?? ele[key]
         if (typeof value === 'boolean') {
           ele[key] = value && 1 || 0
         } else if (value instanceof Date) {
