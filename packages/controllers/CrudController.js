@@ -18,6 +18,8 @@ class CrudController extends BaseController {
 
     // 是否在提交中
     this._isSubmitting = false
+    // 是否导入中
+    this._isImporting = false
     // 是否导出中
     this._isExporting = false
     // 上次查询条件，json 字符串
@@ -209,17 +211,18 @@ class CrudController extends BaseController {
   }
 
   async handleDelete ({ $index, row }) {
+    if (this.table.loading) return
     if (!await this.beforeDelete({ $index, row })) return
     const ok = await Confirm.w({ message: '确定要删除吗？', title: '警告' })
-    if (ok) {
-      const params = this.getDeleteParams(row)
-      this.injectDeleteParams(params)
-      const data = await this.remove(params, row)
-      if (!data.err) {
-        this.afterDelete(data)
-        this.handleSearch()
-      }
-    }
+    if (!ok) return
+    this.table.loading = true
+    const params = this.getDeleteParams(row)
+    this.injectDeleteParams(params)
+    const data = await this.remove(params, row)
+    this.table.loading = false
+    if (data.err) return
+    this.afterDelete(data)
+    this.handleSearch()
   }
 
   async handleRowEdit ({ row }) {
@@ -250,7 +253,10 @@ class CrudController extends BaseController {
   }
 
   async handleExport (type = this.exportType, filename = document.title) {
-    if (this._isExporting) return
+    if (this._isExporting) {
+      Message.w('导出中...')
+      return
+    }
     if (type instanceof Event) type = ''
     type = type || this.config.exportType || 'csv'
     if (!['csv', 'excel'].includes(type)) {
@@ -279,7 +285,10 @@ class CrudController extends BaseController {
   }
 
   async handleSearchExport (type = this.exportType, filename = '查询导出数据') {
-    if (this._isExporting) return
+    if (this._isExporting) {
+      Message.w('导出中...')
+      return
+    }
     type = type || this.config.exportType || 'csv'
     if (!['csv', 'excel'].includes(type)) {
       Message('不支持的导出类型')
@@ -307,7 +316,12 @@ class CrudController extends BaseController {
   }
 
   async handleImport () {
+    if (this._isImporting) {
+      Message.w('导入中...')
+      return
+    }
     const f = await file.select('.xlsx,.csv')
+    this._isImporting = true
     const isCsv = f.name.toLowerCase().endsWith('.csv')
     const content = await file.toType(f, isCsv ? 'text' : 'arraybuffer')
     let data = []
@@ -333,10 +347,12 @@ class CrudController extends BaseController {
     data = this.processImportingData(data)
     await this.dbTable.func(['bulkCreate', data])
     Message.s('导入成功')
+    this._isImporting = false
     this.handleSearch()
   }
 
   async handleMultiDelete () {
+    if (this.table.loading) return
     const { selection } = this.table
     if (!selection.length) {
       Message.w('尚未选择要删除的数据')
@@ -344,20 +360,23 @@ class CrudController extends BaseController {
     }
     const ok = await Confirm.w({ title: '警告', message: `确定删除选中的 ${selection.length} 条数据吗？` })
     if (!ok) return
+    this.table.loading = true
     const ids = selection.map(ele => ele[this.idField])
     await this.dbTable.func(['destroy', {
       where: {
-        [this.idField]: {
-          '[Op.in]': ids
-        }
+        [this.idField]: { '[Op.in]': ids }
       }
     }])
+    this.table.loading = false
     this.handleSearch()
   }
 
   async handleSave (form) {
     form = form instanceof Event ? this.form : form
-    if (this._isSubmitting) return
+    if (this._isSubmitting) {
+      Message.w('正在保存...')
+      return
+    }
     const formRef = this.model.formRef || this.dialog.formRef
     if (!(await this._validateForm(formRef))) return
     this._isSubmitting = true
@@ -387,7 +406,11 @@ class CrudController extends BaseController {
 
   async handleSubmit (params) {
     params = params instanceof Event ? null : params
-    if (this._isSubmitting || !this.dialog.visible) return false
+    if (this._isSubmitting) {
+      Message.w('正在提交...')
+      return false
+    }
+    if (!this.dialog.visible) return false
     this._isSubmitting = true
     const form = params || this.form
     if (!params) {
