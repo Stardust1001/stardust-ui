@@ -50,7 +50,7 @@ export default {
       >
         <mobile-x-form-item
           :label-width="labelWidth"
-          :label-position="$attrs['label-position'] || 'right'"
+          :label-position="$attrs['label-position'] || 'left'"
           v-bind="item"
           :rules="_rules[item.prop] || item.rules"
           :modelValue="formatModelValue(_model[item.prop])"

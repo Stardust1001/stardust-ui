@@ -2274,7 +2274,7 @@ function qs(e, t, s, i, n, l) {
             default: c(() => [
               p(o, b({
                 "label-width": s.labelWidth,
-                "label-position": e.$attrs["label-position"] || "right"
+                "label-position": e.$attrs["label-position"] || "left"
               }, m, {
                 rules: e._rules[m.prop] || m.rules,
                 modelValue: e.formatModelValue(e._model[m.prop]),
@@ -6457,7 +6457,7 @@ const { ElInfiniteScroll: et } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ho = {
-  version: "1.5.1",
+  version: "1.5.2",
   ...Ve,
   ...ht,
   ...Ut,
