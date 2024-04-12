@@ -3256,9 +3256,9 @@ const X = {
   }
 }, Ge = () => {
   Ae((e) => ({
-    "482e5ced": e.labelWidth,
-    decbf096: e._labelAlign,
-    "6cb5fb58": e._valueAlign
+    "5cf44854": e.labelWidth,
+    "323265ec": e._labelAlign,
+    "0e4e598f": e._valueAlign
   }));
 }, Qe = Be.setup;
 Be.setup = Qe ? (e, t) => (Ge(), Qe(e, t)) : Ge;
@@ -3293,15 +3293,15 @@ function $i(e, t, s, l, n, i) {
                     }, void 0, !0) : (d(), y("span", vi, A(v.label ? s.showColon ? v.label + "：" : v.label : ""), 1))
                   ]),
                   j("div", Si, [
-                    v.slot ? x(e.$slots, v.slot, Te(b({ key: 0 }, { data: s.data, field: v, value: i.calcValue(s.data, v) })), void 0, !0) : v.slot === "$link" ? (d(), f(o, {
-                      key: 1,
+                    v.slot === "$link" ? (d(), f(o, {
+                      key: 0,
                       to: v.to(s.data)
                     }, {
                       default: c(() => [
                         C(A(i.calcLink(s.data, v)), 1)
                       ]),
                       _: 2
-                    }, 1032, ["to"])) : (d(), y("span", ki, A(i.calcValue(s.data, v)), 1))
+                    }, 1032, ["to"])) : v.slot ? x(e.$slots, v.slot, Te(b({ key: 1 }, { data: s.data, field: v, value: i.calcValue(s.data, v) })), void 0, !0) : (d(), y("span", ki, A(i.calcValue(s.data, v)), 1))
                   ])
                 ]),
                 _: 2
@@ -3316,7 +3316,7 @@ function $i(e, t, s, l, n, i) {
     _: 3
   }, 8, ["modelValue", "class"]);
 }
-const Ci = /* @__PURE__ */ O(Be, [["render", $i], ["__scopeId", "data-v-783d16e3"]]), xi = {
+const Ci = /* @__PURE__ */ O(Be, [["render", $i], ["__scopeId", "data-v-d4d685d3"]]), xi = {
   name: "XLooper",
   props: {
     compName: String,
@@ -6474,7 +6474,7 @@ const { ElInfiniteScroll: et } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ho = {
-  version: "1.5.7",
+  version: "1.5.8",
   ...Ve,
   ...ht,
   ...Ut,

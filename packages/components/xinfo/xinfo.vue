@@ -98,17 +98,17 @@ export default {
             <span v-else>{{ field.label ? (showColon ? (field.label + '：') : field.label) : '' }}</span>
           </div>
           <div class="x-info__value">
-            <slot
-              v-if="field.slot"
-              :name="field.slot"
-              v-bind="{ data, field, value: calcValue(data, field) }"
-            />
             <router-link
-              v-else-if="field.slot === '$link'"
+              v-if="field.slot === '$link'"
               :to="field.to(data)"
             >
               {{ calcLink(data, field) }}
             </router-link>
+            <slot
+              v-else-if="field.slot"
+              :name="field.slot"
+              v-bind="{ data, field, value: calcValue(data, field) }"
+            />
             <span v-else>{{ calcValue(data, field) }}</span>
           </div>
         </el-col>
