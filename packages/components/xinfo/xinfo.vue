@@ -68,7 +68,8 @@ export default {
     this.activeNames = Object.keys(this.blocks)
   },
   methods: {
-    calcValue: tableUtils.methods.calcValue
+    calcValue: tableUtils.methods.calcValue,
+    calcLink: tableUtils.methods.calcLink
   }
 }
 </script>
@@ -106,7 +107,7 @@ export default {
               v-else-if="field.slot === '$link'"
               :to="field.to(data)"
             >
-              {{ field.link ? field.link(data) : data[field.linkProp || field.prop] }}
+              {{ calcLink(data, field) }}
             </router-link>
             <span v-else>{{ calcValue(data, field) }}</span>
           </div>

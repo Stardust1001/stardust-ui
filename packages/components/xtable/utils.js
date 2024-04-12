@@ -359,9 +359,9 @@ export function calcValue (row, column) {
   return value
 }
 
-export function calcLink (scope, column) {
-  if (column.link) return column.link(scope)
-  return highdict.get(scope.row, column.linkProp || column.prop)
+export function calcLink (row, column) {
+  if (column.link) return column.link(row)
+  return highdict.get(row, column.linkProp || column.prop)
 }
 
 export function calcOverflowTooltip (column) {
