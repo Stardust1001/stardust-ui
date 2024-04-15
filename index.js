@@ -149,7 +149,7 @@ const jt = (e, t, s) => {
   e.beforeEach((l, n, i) => {
     var a;
     const o = l.matched[l.matched.length - 1].path.split("/:")[0];
-    return l.meta.acl === !1 || (a = l.meta) != null && a.visitable || t.acl.paths.includes(o) ? i() : (N.e("无权访问页面: " + l.path), i(t.acl.paths[0] || "/404"));
+    return l.meta.acl === !1 || (a = l.meta) != null && a.visitable || t.acl.paths.includes(o) ? i() : (t.getters.logined && N.e("无权访问页面: " + l.path), i(t.acl.paths[0] || "/404"));
   }), oe(() => {
     let l = !1;
     Ee(() => t.acl.menus, (n) => {
@@ -6474,7 +6474,7 @@ const { ElInfiniteScroll: et } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ho = {
-  version: "1.5.8",
+  version: "1.5.9",
   ...Ve,
   ...ht,
   ...Ut,
