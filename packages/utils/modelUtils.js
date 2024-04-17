@@ -102,8 +102,12 @@ export const initFormRules = (container) => {
     const isSelects = 'options' in item
     const message = `请${item.validator || item.asyncValidator ? '正确' : ''}${isSelects ? '选择' : '输入'}${item?.label || field}`
     const baseRule = { required: true, message }
-    if (item.validator) baseRule.validator = item.validator
-    if (item.asyncValidator) baseRule.asyncValidator = item.asyncValidator
+    if (item.validator) baseRule.validator = (param1, param2) => {
+      return platform === 'pc' ? item.validator(param1, param2) : item.validator(param2, param1)
+    }
+    if (item.asyncValidator) baseRule.asyncValidator = (param1, param2) => {
+      return platform === 'pc' ? item.asyncValidator(param1, param2) : item.asyncValidator(param2, param1)
+    }
     if (!item.comp) {
       itemRules.push({ ...baseRule, trigger: trigger.blur })
     } else {
