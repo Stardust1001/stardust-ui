@@ -72,7 +72,9 @@ export default {
       this.$emit('update:modelValue', this._value)
       this.$emit('change', this._value)
     },
-    onChange () { }
+    onChange (e) {
+      this._value = e.selectedValues[0]
+    }
   }
 }
 </script>
@@ -85,7 +87,7 @@ export default {
     <x-picker
       v-bind="$attrs"
       :modelValue="formattedModelValue"
-      @update:modelValue="e => _value = e.selectedValues[0]"
+      @update:modelValue="onChange"
       :show="visible"
       :columns="_options"
       @click.stop
