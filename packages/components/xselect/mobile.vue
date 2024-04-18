@@ -71,7 +71,8 @@ export default {
       this.visible = false
       this.$emit('update:modelValue', this._value)
       this.$emit('change', this._value)
-    }
+    },
+    onChange () { }
   }
 }
 </script>
@@ -91,7 +92,7 @@ export default {
       @show="visible = true"
       @cancel="visible = false"
       @confirm="onConfirm"
-      @change.stop.prevent
+      @change="onChange"
     />
   </div>
 </template>
