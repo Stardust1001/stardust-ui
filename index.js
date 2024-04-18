@@ -3804,20 +3804,20 @@ const ll = /* @__PURE__ */ O(nl, [["render", il]]), Me = async (e, t, s) => {
   data() {
     return {
       visible: !1,
-      value: void 0,
+      _value: void 0,
       _options: []
     };
   },
   computed: {
     formattedModelValue() {
       var t;
-      let e = this.value;
+      let e = this._value;
       return (e === "true" || e === "false") && (e = e === "true"), ((t = this._options.find((s) => s.value === e)) == null ? void 0 : t.text) ?? "";
     }
   },
   watch: {
     modelValue(e) {
-      this.value = e;
+      this._value = e;
     },
     options: {
       immediate: !0,
@@ -3841,7 +3841,7 @@ const ll = /* @__PURE__ */ O(nl, [["render", il]]), Me = async (e, t, s) => {
       e.target.classList.contains("van-overlay") || (this.visible = !0);
     },
     onConfirm() {
-      this.visible = !1, this.$emit("update:modelValue", this.value);
+      this.visible = !1, this.$emit("update:modelValue", this._value);
     }
   }
 };
@@ -3853,7 +3853,7 @@ function ol(e, t, s, l, n, i) {
   }, [
     p(o, b(e.$attrs, {
       modelValue: i.formattedModelValue,
-      "onUpdate:modelValue": t[0] || (t[0] = (a) => n.value = a.selectedValues[0]),
+      "onUpdate:modelValue": t[0] || (t[0] = (a) => n._value = a.selectedValues[0]),
       show: n.visible,
       columns: n._options,
       onClick: t[1] || (t[1] = G(() => {
@@ -6481,7 +6481,7 @@ const { ElInfiniteScroll: et } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ho = {
-  version: "1.5.11",
+  version: "1.5.12",
   ...Ve,
   ...ht,
   ...Ut,

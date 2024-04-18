@@ -24,13 +24,13 @@ export default {
   data () {
     return {
       visible: false,
-      value: undefined,
+      _value: undefined,
       _options: []
     }
   },
   computed: {
     formattedModelValue () {
-      let value = this.value
+      let value = this._value
       if (value === 'true' || value === 'false') {
         value = value === 'true'
       }
@@ -39,7 +39,7 @@ export default {
   },
   watch: {
     modelValue (value) {
-      this.value = value
+      this._value = value
     },
     options: {
       immediate: true,
@@ -69,7 +69,7 @@ export default {
     },
     onConfirm () {
       this.visible = false
-      this.$emit('update:modelValue', this.value)
+      this.$emit('update:modelValue', this._value)
     }
   }
 }
@@ -83,7 +83,7 @@ export default {
     <x-picker
       v-bind="$attrs"
       :modelValue="formattedModelValue"
-      @update:modelValue="e => value = e.selectedValues[0]"
+      @update:modelValue="e => _value = e.selectedValues[0]"
       :show="visible"
       :columns="_options"
       @click.stop
