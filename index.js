@@ -3837,8 +3837,11 @@ const ll = /* @__PURE__ */ O(nl, [["render", il]]), Me = async (e, t, s) => {
         return this._options;
       Me(this.service.restful, e, this);
     },
+    onShow() {
+      (this._value == null || this._value === "") && (this._value = this._options[0].value), this.visible = !0;
+    },
     onClick(e) {
-      e.target.classList.contains("van-overlay") || (this.visible = !0);
+      e.target.classList.contains("van-overlay") || this.onShow();
     },
     onConfirm() {
       this.visible = !1, this.$emit("update:modelValue", this._value), this.$emit("change", this._value);
@@ -3851,7 +3854,7 @@ const ll = /* @__PURE__ */ O(nl, [["render", il]]), Me = async (e, t, s) => {
 function ol(e, t, s, l, i, n) {
   const a = u("x-picker");
   return d(), w("div", {
-    onClick: t[3] || (t[3] = (...o) => n.onClick && n.onClick(...o)),
+    onClick: t[2] || (t[2] = (...o) => n.onClick && n.onClick(...o)),
     class: "mobile-x-select"
   }, [
     p(a, b(e.$attrs, {
@@ -3861,11 +3864,11 @@ function ol(e, t, s, l, i, n) {
       columns: i._options,
       onClick: t[0] || (t[0] = G(() => {
       }, ["stop"])),
-      onShow: t[1] || (t[1] = (o) => i.visible = !0),
-      onCancel: t[2] || (t[2] = (o) => i.visible = !1),
+      onShow: n.onShow,
+      onCancel: t[1] || (t[1] = (o) => i.visible = !1),
       onConfirm: n.onConfirm,
       onChange: n.onChange
-    }), null, 16, ["modelValue", "onUpdate:modelValue", "show", "columns", "onConfirm", "onChange"])
+    }), null, 16, ["modelValue", "onUpdate:modelValue", "show", "columns", "onShow", "onConfirm", "onChange"])
   ]);
 }
 const rl = /* @__PURE__ */ O(al, [["render", ol]]), dl = {
@@ -6485,7 +6488,7 @@ const { ElInfiniteScroll: et } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ho = {
-  version: "1.5.17",
+  version: "1.5.18",
   ...Ve,
   ...ht,
   ...Ut,

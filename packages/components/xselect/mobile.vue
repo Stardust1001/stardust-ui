@@ -62,9 +62,15 @@ export default {
       }
       remoteSearch(this.service.restful, query, this)
     },
+    onShow () {
+      if (this._value == null || this._value === '') {
+        this._value = this._options[0].value
+      }
+      this.visible = true
+    },
     onClick (e) {
       if (!e.target.classList.contains('van-overlay')) {
-        this.visible = true
+        this.onShow()
       }
     },
     onConfirm () {
@@ -91,7 +97,7 @@ export default {
       :show="visible"
       :columns="_options"
       @click.stop
-      @show="visible = true"
+      @show="onShow"
       @cancel="visible = false"
       @confirm="onConfirm"
       @change="onChange"
