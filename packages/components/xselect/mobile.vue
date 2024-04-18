@@ -24,12 +24,13 @@ export default {
   data () {
     return {
       visible: false,
+      value: undefined,
       _options: []
     }
   },
   computed: {
     formattedModelValue () {
-      let value = this.modelValue
+      let value = this.value
       if (value === 'true' || value === 'false') {
         value = value === 'true'
       }
@@ -37,6 +38,9 @@ export default {
     }
   },
   watch: {
+    modelValue (value) {
+      this.value = value
+    },
     options: {
       immediate: true,
       deep: true,
@@ -62,6 +66,10 @@ export default {
       if (!e.target.classList.contains('van-overlay')) {
         this.visible = true
       }
+    },
+    onConfirm () {
+      this.visible = false
+      this.$emit('update:modelValue', this.value)
     }
   }
 }
@@ -75,13 +83,13 @@ export default {
     <x-picker
       v-bind="$attrs"
       :modelValue="formattedModelValue"
-      @update:modelValue="e => $emit('update:modelValue', e.selectedValues[0])"
+      @update:modelValue="e => value = e.selectedValues[0]"
       :show="visible"
       :columns="_options"
       @click.stop
       @show="visible = true"
       @cancel="visible = false"
-      @confirm="visible = false"
+      @confirm="onConfirm"
     />
   </div>
 </template>

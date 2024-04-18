@@ -3804,17 +3804,21 @@ const ll = /* @__PURE__ */ O(nl, [["render", il]]), Me = async (e, t, s) => {
   data() {
     return {
       visible: !1,
+      value: void 0,
       _options: []
     };
   },
   computed: {
     formattedModelValue() {
       var t;
-      let e = this.modelValue;
+      let e = this.value;
       return (e === "true" || e === "false") && (e = e === "true"), ((t = this._options.find((s) => s.value === e)) == null ? void 0 : t.text) ?? "";
     }
   },
   watch: {
+    modelValue(e) {
+      this.value = e;
+    },
     options: {
       immediate: !0,
       deep: !0,
@@ -3835,26 +3839,29 @@ const ll = /* @__PURE__ */ O(nl, [["render", il]]), Me = async (e, t, s) => {
     },
     onClick(e) {
       e.target.classList.contains("van-overlay") || (this.visible = !0);
+    },
+    onConfirm() {
+      this.visible = !1, this.$emit("update:modelValue", this.value);
     }
   }
 };
 function ol(e, t, s, l, n, i) {
   const o = u("x-picker");
   return d(), w("div", {
-    onClick: t[5] || (t[5] = (...a) => i.onClick && i.onClick(...a)),
+    onClick: t[4] || (t[4] = (...a) => i.onClick && i.onClick(...a)),
     class: "mobile-x-select"
   }, [
     p(o, b(e.$attrs, {
       modelValue: i.formattedModelValue,
-      "onUpdate:modelValue": t[0] || (t[0] = (a) => e.$emit("update:modelValue", a.selectedValues[0])),
+      "onUpdate:modelValue": t[0] || (t[0] = (a) => n.value = a.selectedValues[0]),
       show: n.visible,
       columns: n._options,
       onClick: t[1] || (t[1] = G(() => {
       }, ["stop"])),
       onShow: t[2] || (t[2] = (a) => n.visible = !0),
       onCancel: t[3] || (t[3] = (a) => n.visible = !1),
-      onConfirm: t[4] || (t[4] = (a) => n.visible = !1)
-    }), null, 16, ["modelValue", "show", "columns"])
+      onConfirm: i.onConfirm
+    }), null, 16, ["modelValue", "show", "columns", "onConfirm"])
   ]);
 }
 const rl = /* @__PURE__ */ O(al, [["render", ol]]), dl = {
@@ -6474,7 +6481,7 @@ const { ElInfiniteScroll: et } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ho = {
-  version: "1.5.10",
+  version: "1.5.11",
   ...Ve,
   ...ht,
   ...Ut,
