@@ -20,7 +20,7 @@ export default {
     sort: Boolean | String,
     options: Array | Object
   },
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'change'],
   data () {
     return {
       visible: false,
@@ -70,6 +70,7 @@ export default {
     onConfirm () {
       this.visible = false
       this.$emit('update:modelValue', this._value)
+      this.$emit('change', this._value)
     }
   }
 }
@@ -90,6 +91,7 @@ export default {
       @show="visible = true"
       @cancel="visible = false"
       @confirm="onConfirm"
+      @change.stop.prevent
     />
   </div>
 </template>
