@@ -28,15 +28,6 @@ export default {
       _options: []
     }
   },
-  computed: {
-    formattedModelValue () {
-      let value = this._value
-      if (value === 'true' || value === 'false') {
-        value = value === 'true'
-      }
-      return this._options.find(op => op.value === value)?.text ?? ''
-    }
-  },
   watch: {
     modelValue (value) {
       this._value = value
@@ -92,7 +83,7 @@ export default {
   >
     <x-picker
       v-bind="$attrs"
-      :modelValue="formattedModelValue"
+      :modelValue="_value"
       @update:modelValue="onChange"
       :show="visible"
       :columns="_options"

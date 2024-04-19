@@ -21,6 +21,12 @@ export default {
       set (value) {
         this.$emit(value ? 'show' : 'cancel')
       }
+    },
+    value () {
+      return [this.modelValue]
+    },
+    text () {
+      return this.columns.find(c => c.value === this.modelValue)?.text ?? this.placeholder
     }
   },
   methods: {
@@ -37,7 +43,7 @@ export default {
     @click="$emit('show')"
     :class="`x-picker__${modelValue ? 'value' : 'placeholder'}`"
   >
-    {{ modelValue || placeholder }}
+    {{ text }}
   </span>
   <van-popup
     class="x-picker"
@@ -48,6 +54,7 @@ export default {
   >
     <van-picker
       v-bind="$attrs"
+      :modelValue="value"
       :title="$attrs.title"
       :columns
       @cancel="$emit('cancel')"

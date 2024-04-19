@@ -3459,6 +3459,13 @@ const Ii = /* @__PURE__ */ O(Fi, [["render", Di]]), Ri = {
       set(e) {
         this.$emit(e ? "show" : "cancel");
       }
+    },
+    value() {
+      return [this.modelValue];
+    },
+    text() {
+      var e;
+      return ((e = this.columns.find((t) => t.value === this.modelValue)) == null ? void 0 : e.text) ?? this.placeholder;
     }
   },
   methods: {
@@ -3473,7 +3480,7 @@ function Pi(e, t, s, l, i, n) {
     j("span", {
       onClick: t[0] || (t[0] = (r) => e.$emit("show")),
       class: J(`x-picker__${s.modelValue ? "value" : "placeholder"}`)
-    }, A(s.modelValue || s.placeholder), 3),
+    }, A(n.text), 3),
     p(o, b({
       class: "x-picker",
       round: "",
@@ -3484,11 +3491,12 @@ function Pi(e, t, s, l, i, n) {
     }), {
       default: c(() => [
         p(a, b(e.$attrs, {
+          modelValue: n.value,
           title: e.$attrs.title,
           columns: s.columns,
           onCancel: t[1] || (t[1] = (r) => e.$emit("cancel")),
           onConfirm: n.onConfirm
-        }), null, 16, ["title", "columns", "onConfirm"])
+        }), null, 16, ["modelValue", "title", "columns", "onConfirm"])
       ]),
       _: 1
     }, 16, ["show"])
@@ -3808,13 +3816,6 @@ const ll = /* @__PURE__ */ O(nl, [["render", il]]), Me = async (e, t, s) => {
       _options: []
     };
   },
-  computed: {
-    formattedModelValue() {
-      var t;
-      let e = this._value;
-      return (e === "true" || e === "false") && (e = e === "true"), ((t = this._options.find((s) => s.value === e)) == null ? void 0 : t.text) ?? "";
-    }
-  },
   watch: {
     modelValue(e) {
       this._value = e;
@@ -3858,7 +3859,7 @@ function ol(e, t, s, l, i, n) {
     class: "mobile-x-select"
   }, [
     p(a, b(e.$attrs, {
-      modelValue: n.formattedModelValue,
+      modelValue: i._value,
       "onUpdate:modelValue": n.onChange,
       show: i.visible,
       columns: i._options,
@@ -6488,7 +6489,7 @@ const { ElInfiniteScroll: et } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ho = {
-  version: "1.5.18",
+  version: "1.5.19",
   ...Ve,
   ...ht,
   ...Ut,
