@@ -62,6 +62,9 @@ export default {
       }
     },
     onConfirm () {
+      if (this._value == null || this._value === '') {
+        this._value = this._options[0].value
+      }
       this.visible = false
       this.$emit('update:modelValue', this._value)
       this.$emit('change', this._value)

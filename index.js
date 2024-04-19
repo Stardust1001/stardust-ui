@@ -3845,7 +3845,7 @@ const ll = /* @__PURE__ */ O(nl, [["render", il]]), Me = async (e, t, s) => {
       e.target.classList.contains("van-overlay") || this.onShow();
     },
     onConfirm() {
-      this.visible = !1, this.$emit("update:modelValue", this._value), this.$emit("change", this._value);
+      (this._value == null || this._value === "") && (this._value = this._options[0].value), this.visible = !1, this.$emit("update:modelValue", this._value), this.$emit("change", this._value);
     },
     onChange(e) {
       this._value = e.selectedValues[0];
@@ -6489,7 +6489,7 @@ const { ElInfiniteScroll: et } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ho = {
-  version: "1.5.20",
+  version: "1.5.21",
   ...Ve,
   ...ht,
   ...Ut,
