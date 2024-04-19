@@ -3839,7 +3839,7 @@ const ll = /* @__PURE__ */ O(nl, [["render", il]]), Me = async (e, t, s) => {
       Me(this.service.restful, e, this);
     },
     onShow() {
-      (this._value == null || this._value === "") && (this._value = this._options[0].value), this.visible = !0;
+      this.visible = !0;
     },
     onClick(e) {
       e.target.classList.contains("van-overlay") || this.onShow();
@@ -6489,7 +6489,7 @@ const { ElInfiniteScroll: et } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ho = {
-  version: "1.5.19",
+  version: "1.5.20",
   ...Ve,
   ...ht,
   ...Ut,

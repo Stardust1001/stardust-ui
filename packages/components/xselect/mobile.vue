@@ -54,9 +54,6 @@ export default {
       remoteSearch(this.service.restful, query, this)
     },
     onShow () {
-      if (this._value == null || this._value === '') {
-        this._value = this._options[0].value
-      }
       this.visible = true
     },
     onClick (e) {
