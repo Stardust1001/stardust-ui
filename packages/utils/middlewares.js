@@ -37,14 +37,14 @@ export const checkRolesPages = (router, store, routes) => {
         inited = true
       }
       const paths = store.acl.paths
-      const update = (route, parent) => {
-        const path = (parent?.path ? (parent.path + '/') : '') + route.path
+      const update = (route, parents) => {
+        const path = [...parents, route].reduce((path, p) => path + '/' + p.path, '').replace('//', '/')
         route.meta ||= {}
         if (route.meta.acl === false) {
           route.children?.forEach(sub => {
             sub.meta ||= {}
             sub.meta.acl ||= false
-            update(sub, route)
+            update(sub, [...parents, route])
           })
         } else {
           route.meta._hidden = route.meta.hidden
@@ -58,8 +58,8 @@ export const checkRolesPages = (router, store, routes) => {
               route.meta = { ...route.meta }
             }
           }
-          route.children?.forEach(sub => update(sub, route))
-          if (route.meta.hidden !== false && route.meta._hidden == null) {
+          route.children?.forEach(sub => update(sub, [...parents, route]))
+          if (route.meta.hidden !== false && route.meta._hidden !== true) {
             route.meta.hidden = !paths.includes(path)
             if (route.children?.some(sub => sub.meta.hidden === false)) {
               route.meta.hidden = false
@@ -67,7 +67,7 @@ export const checkRolesPages = (router, store, routes) => {
           }
         }
       }
-      routes.forEach(update)
+      routes.forEach(route => update(route, []))
     }, { immediate: true })
   })
 }
