@@ -25,7 +25,7 @@ export const checkRolesPages = (router, store, routes) => {
       if (store.getters.logined) {
         Message.e('无权访问页面: ' + to.path)
       }
-      return next(store.acl.paths[0] || '/404')
+      return next(store.acl.paths[0] || '/404?redirectTo=' + (to.query.redirectTo || to.path))
     }
     return next()
   })
