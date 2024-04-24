@@ -2,12 +2,8 @@ import { watch, nextTick } from 'vue'
 import { Message } from './message.js'
 
 export const check404 = (router, store, routes) => {
-  router.beforeEach((to, from, next) => {
-    if (to.matched.length) {
-      next()
-    } else {
-      next('/404')
-    }
+  router.beforeEach(async (to, from) => {
+    return !!to.matched.length || '/404'
   })
 }
 
@@ -18,16 +14,17 @@ export const setTitle = (router, store, routes) => {
 }
 
 export const checkRolesPages = (router, store, routes) => {
-  router.beforeEach((to, from, next) => {
+  router.beforeEach(async (to, from) => {
     const path = to.matched[to.matched.length - 1].path.split('/:')[0]
-    if (to.meta.acl === false || to.meta?.visitable) return next()
+    if (to.meta.acl === false || to.meta?.visitable) return true
     if (!store.acl.paths.includes(path)) {
       if (store.getters.logined) {
         Message.e('无权访问页面: ' + to.path)
       }
-      return next(store.acl.paths[0] || '/404?redirectTo=' + (to.query.redirectTo || to.path))
+      const query = { redirectTo: to.path, ...to.query }
+      return { path: store.acl.paths[0] || '/404', query }
     }
-    return next()
+    return true
   })
   nextTick(() => {
     let inited = false
@@ -73,11 +70,11 @@ export const checkRolesPages = (router, store, routes) => {
 }
 
 export const redirectTo = (router, store, routes) => {
-  router.beforeEach((to, from, next) => {
+  router.beforeEach(async (to, from) => {
     if (to.name === 'Login' && store.getters.logined && to.query.redirectTo) {
-      next(to.query.redirectTo)
+      return to.query.redirectTo
     } else {
-      next()
+      return true
     }
   })
 }
