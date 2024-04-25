@@ -59,17 +59,3 @@ export default {
     </van-radio>
   </van-radio-group>
 </template>
-
-<style lang="scss" scoped>
-.mobile-x-radios--plain {
-  :deep(.van-radio) {
-    margin-right: 20px;
-    .van-radio__icon {
-      display: none;
-    }
-    .van-radio__icon--checked ~ .van-radio__label {
-      color: var(--van-blue);
-    }
-  }
-}
-</style>

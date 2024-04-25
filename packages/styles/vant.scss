@@ -79,3 +79,17 @@ main {
     }
   }
 }
+
+.mobile-x-radios--plain {
+  .van-radio {
+    margin-right: 20px;
+    .van-radio__icon {
+      display: none;
+    }
+  }
+}
+.van-radio[aria-checked="true"] {
+  .van-radio__label {
+    color: var(--van-blue);
+  }
+}

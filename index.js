@@ -3564,7 +3564,7 @@ function Li(e, t, s, l, n, i) {
     _: 1
   }, 16, ["class", "direction"]);
 }
-const Ni = /* @__PURE__ */ O(Mi, [["render", Li], ["__scopeId", "data-v-667a10bc"]]), Ui = {
+const Ni = /* @__PURE__ */ O(Mi, [["render", Li]]), Ui = {
   name: "PcXRadios",
   inheritAttrs: !1,
   props: {
@@ -6490,7 +6490,7 @@ const { ElInfiniteScroll: et } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ho = {
-  version: "1.5.27",
+  version: "1.5.28",
   ...Ve,
   ...ht,
   ...Ut,
