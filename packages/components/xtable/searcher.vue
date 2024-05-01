@@ -70,7 +70,7 @@ export default {
       try {
         params = this.calcParams()
       } catch (err) {
-        Message({ type: 'warning', message: err.toString() })
+        Message.w(err.toString())
         return
       }
       this.uid && params && this.saveCache()

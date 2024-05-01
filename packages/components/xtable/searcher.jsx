@@ -139,7 +139,10 @@ function calcConditionValueComponent (vm, condition) {
         condition.config,
         {
           modelValue: condition.value,
-          'onUpdate:modelValue': (value) => condition.value = value
+          'onUpdate:modelValue': (value) => condition.value = value,
+          onKeyup: e => {
+            if (e.key === 'Enter') vm.handleSearch()
+          }
         },
         options
       )

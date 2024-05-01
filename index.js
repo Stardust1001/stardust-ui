@@ -4253,7 +4253,10 @@ function Sl() {
 function kl(e, t) {
   const s = (n) => Z(u((n == null ? void 0 : n.component) || t.component), Object.assign({}, t.config, {
     modelValue: t.value,
-    "onUpdate:modelValue": (i) => t.value = i
+    "onUpdate:modelValue": (i) => t.value = i,
+    onKeyup: (i) => {
+      i.key === "Enter" && e.handleSearch();
+    }
   }, n)), l = {
     multiple: !1,
     "collapse-tags": !0
@@ -4333,7 +4336,7 @@ const { storage: ye } = StardustBrowser, { deepCopy: Cl } = StardustJs.funcs, $l
       try {
         e = this.calcParams();
       } catch (t) {
-        N({ type: "warning", message: t.toString() });
+        N.w(t.toString());
         return;
       }
       this.uid && e && this.saveCache(), e = e || { where: {} }, e.page = 1, this.$emit("search", e), this.visible = !1;
@@ -4451,7 +4454,7 @@ const { storage: ye } = StardustBrowser, { deepCopy: Cl } = StardustJs.funcs, $l
       e.op = t, t === "between" ? e.value = ["", ""] : ["in", "notIn"].includes(t) && (e.value = []), (t === "special" || !["between", "in", "notIn"].includes(t) && Array.isArray(t)) && (e.value = "");
     }
   }
-}, Le = /* @__PURE__ */ O($l, [["__scopeId", "data-v-872870a1"]]), xl = {
+}, Le = /* @__PURE__ */ O($l, [["__scopeId", "data-v-da836e24"]]), xl = {
   name: "MobileXTable",
   inheritAttrs: !1,
   props: {
@@ -6490,7 +6493,7 @@ const { ElInfiniteScroll: et } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ho = {
-  version: "1.5.28",
+  version: "1.5.29",
   ...Ve,
   ...ht,
   ...Ut,
