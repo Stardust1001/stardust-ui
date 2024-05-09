@@ -1,3 +1,4 @@
+import xarray from './components/xarray/xarray.vue'
 import xautorows from './components/xautorows/xautorows.vue'
 import mobilexbutton from './components/xbutton/mobile.vue'
 import pcxbutton from './components/xbutton/pc.vue'
@@ -17,6 +18,7 @@ import mobilexicon from './components/xicon/mobile.vue'
 import pcxicon from './components/xicon/pc.vue'
 import xinfo from './components/xinfo/xinfo.vue'
 import xlooper from './components/xlooper/xlooper.vue'
+import xmap from './components/xmap/xmap.vue'
 import mobilexpagination from './components/xpagination/mobile.vue'
 import pcxpagination from './components/xpagination/pc.vue'
 import xpicker from './components/xpicker/xpicker.vue'
@@ -42,6 +44,7 @@ import xfileuploader from './components/xuploader/xfileuploader.vue'
 import ximageuploader from './components/xuploader/ximageuploader.vue'
 
 const modules = {
+  xarray,
   xautorows,
   mobilexbutton,
   pcxbutton,
@@ -61,6 +64,7 @@ const modules = {
   pcxicon,
   xinfo,
   xlooper,
+  xmap,
   mobilexpagination,
   pcxpagination,
   xpicker,
