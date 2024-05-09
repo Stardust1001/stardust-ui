@@ -85,7 +85,7 @@ export default {
               :placeholder="calcPlaceholder(item)"
               @update:modelValue="item.onChange || null"
             >
-              <slot v-if="item.slot" :name="item.slot" />
+              <slot v-if="item.slot" :name="item.slot" :item="item" :index="index" />
             </pc-x-form-item>
           </el-col>
         </el-row>

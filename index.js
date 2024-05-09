@@ -2411,7 +2411,11 @@ function Hs(e, t, s, l, n, i) {
                         placeholder: e.calcPlaceholder(y)
                       }), {
                         default: c(() => [
-                          y.slot ? V(e.$slots, y.slot, { key: 0 }) : k("", !0)
+                          y.slot ? V(e.$slots, y.slot, {
+                            key: 0,
+                            item: y,
+                            index: _
+                          }) : k("", !0)
                         ]),
                         _: 2
                       }, 1040, ["label-width", "show-tooltip", "modelValue", "onUpdate:modelValue", "prop", "clearable", "placeholder"])
@@ -6493,7 +6497,7 @@ const { ElInfiniteScroll: et } = window.ElementPlus || {}, ce = ".el-scrollbar__
   for (let s in Se)
     e.directive(Se[s].name, Se[s]);
 }, ho = {
-  version: "1.5.29",
+  version: "1.5.30",
   ...Ve,
   ...ht,
   ...Ut,
