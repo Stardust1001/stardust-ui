@@ -9,6 +9,7 @@ import mobilexcol from './components/xcol/mobile.vue'
 import pcxcol from './components/xcol/pc.vue'
 import mobilexdialog from './components/xdialog/mobile.vue'
 import pcxdialog from './components/xdialog/pc.vue'
+import xdict from './components/xdict/xdict.vue'
 import xdistrictselect from './components/xdistrictselect/xdistrictselect.vue'
 import mobilexform from './components/xform/mobile.vue'
 import pcxform from './components/xform/pc.vue'
@@ -18,7 +19,6 @@ import mobilexicon from './components/xicon/mobile.vue'
 import pcxicon from './components/xicon/pc.vue'
 import xinfo from './components/xinfo/xinfo.vue'
 import xlooper from './components/xlooper/xlooper.vue'
-import xmap from './components/xmap/xmap.vue'
 import mobilexpagination from './components/xpagination/mobile.vue'
 import pcxpagination from './components/xpagination/pc.vue'
 import xpicker from './components/xpicker/xpicker.vue'
@@ -55,6 +55,7 @@ const modules = {
   pcxcol,
   mobilexdialog,
   pcxdialog,
+  xdict,
   xdistrictselect,
   mobilexform,
   pcxform,
@@ -64,7 +65,6 @@ const modules = {
   pcxicon,
   xinfo,
   xlooper,
-  xmap,
   mobilexpagination,
   pcxpagination,
   xpicker,

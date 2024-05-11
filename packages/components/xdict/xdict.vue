@@ -3,7 +3,7 @@ import { baseForm } from '../../utils/model.js'
 import { initForm } from '../../utils/modelUtils.js'
 
 export default {
-  name: 'XMap',
+  name: 'XDict',
   props: {
     modelValue: Object | String | undefined,
     items: Array
@@ -42,13 +42,7 @@ export default {
 </script>
 
 <template>
-  <div class="x-map">
+  <div class="x-dict">
     <x-form :form hide-labels :gutter="10" v-bind="$attrs" />
   </div>
 </template>
-
-<style lang="scss" scoped>
-.x-map {
-
-}
-</style>
