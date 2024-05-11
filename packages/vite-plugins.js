@@ -61,8 +61,14 @@ const instantiateTables = (src, id) => {
     if (names.size) {
       let top = ''
       names.forEach(name => {
-        const tablename = name.replace(/[A-Z]/g, c => '_' + c.toLowerCase()).slice(1)
-        top += `const ${name} = new Table(DbName, '${tablename}')\n`
+        let [dbname, tablename] = name.split('_').map(n => n.replace(/[A-Z]/g, c => '_' + c.toLowerCase()).slice(1))
+        if (tablename) {
+          dbname = `'${dbname}'`
+        } else {
+          tablename = dbname
+          dbname = 'DbName'
+        }
+        top += `const ${name} = new Table(${dbname}, '${tablename}')\n`
       })
       if (isVue) {
         src = src.replace('<script setup>', '<script setup>\n' + top).replace('<script>', '<script>\n' + top)

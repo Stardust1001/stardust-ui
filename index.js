@@ -6641,7 +6641,7 @@ const { ElInfiniteScroll: tt } = window.ElementPlus || {}, he = ".el-scrollbar__
   for (let s in Ce)
     e.directive(Ce[s].name, Ce[s]);
 }, So = {
-  version: "1.5.31",
+  version: "1.5.36",
   ...Ae,
   ...ht,
   ...Ut,
