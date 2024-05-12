@@ -22,13 +22,19 @@ const model = reactive({
         ].map(ele => ({ ...ele, required: true }))
       },
       {
-        label: '其他', prop: 'others', comp: 'x-map',
+        label: '其他', prop: 'others', comp: 'x-dict',
         items: [
           { label: '座右铭', prop: 'motto' },
           { label: '备注', prop: 'remark' },
         ]
       }
-    ]
+    ],
+    form: {
+      educations: [
+        { school: '11', start: '2024-05', end: '2024-06' },
+        { school: '22', start: '2024-06', end: '2024-07' }
+      ]
+    }
   }
 })
 

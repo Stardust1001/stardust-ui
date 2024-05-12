@@ -16,21 +16,35 @@ export default {
     }
   },
   watch: {
-    items: {
+    modelValue: {
       immediate: true,
       deep: true,
-      handler () {
-        this.groups = [this.makeForm()]
-      }
+      handler: 'makeGroups'
+    },
+    items: {
+      deep: true,
+      handler: 'makeGroups'
     },
     groups: {
       deep: true,
       handler () {
-        this.$emit('update:modelValue', this.groups.map(g => g.form))
+        const value = this.groups.map(g => g.form)
+        if (JSON.stringify(this.modelValue) !== JSON.stringify(value)) {
+          this.$emit('update:modelValue', value)
+        }
       }
     }
   },
   methods: {
+    makeGroups () {
+      let value = this.modelValue
+      if (!Array.isArray(value) || !value.length) value = [{}]
+      this.groups = value.map(v => {
+        const form = this.makeForm()
+        Object.assign(form.form, v)
+        return form
+      })
+    },
     makeForm () {
       const form = baseForm()
       const span = Math.floor(24 / this.items.length)
@@ -45,8 +59,7 @@ export default {
       this.groups.push(JSON.parse(JSON.stringify(group)))
     },
     async handleClear () {
-      const ok = await Confirm.w({ message: '确定删除全部组吗？', title: '警告' })
-      if (ok) this.groups = []
+      if (await Confirm.w({ message: '确定删除全部组吗？', title: '警告' })) this.groups = []
     }
   }
 }
