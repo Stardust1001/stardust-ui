@@ -68,16 +68,16 @@ export default {
 <template>
   <div class="x-array">
     <div class="group-operates">
-      <x-button type="primary" class="add-item" @click="handleAdd">
+      <x-button type="primary" plain class="add-item" @click="handleAdd">
         <x-icon name="Plus" class="icon" />添加一组
       </x-button>
-      <x-button type="danger" class="clear-items" @click="handleClear">全部删除</x-button>
+      <x-button type="danger" plain class="clear-items" @click="handleClear">全部删除</x-button>
     </div>
     <div class="groups">
       <div v-for="(group, index) in groups" :key="index" class="group">
         <x-form :form="group" hide-labels :gutter="10" v-bind="$attrs" class="form" />
-        <x-button type="success" icon="CopyDocument" @click="handleCopy(group, index)" class="button" />
-        <x-button type="danger" icon="DeleteFilled" @click="groups.splice(index, 1)" class="button" />
+        <x-button type="success" plain icon="CopyDocument" @click="handleCopy(group, index)" class="button" />
+        <x-button type="danger" plain icon="DeleteFilled" @click="groups.splice(index, 1)" class="button" />
       </div>
     </div>
   </div>

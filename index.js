@@ -1117,6 +1117,7 @@ function Ht(e, t, s, l, n, i) {
     j("div", zt, [
       p(a, {
         type: "primary",
+        plain: "",
         class: "add-item",
         onClick: i.handleAdd
       }, {
@@ -1131,6 +1132,7 @@ function Ht(e, t, s, l, n, i) {
       }, 8, ["onClick"]),
       p(a, {
         type: "danger",
+        plain: "",
         class: "clear-items",
         onClick: i.handleClear
       }, {
@@ -1152,12 +1154,14 @@ function Ht(e, t, s, l, n, i) {
         }, e.$attrs, { class: "form" }), null, 16, ["form"]),
         p(a, {
           type: "success",
+          plain: "",
           icon: "CopyDocument",
           onClick: (S) => i.handleCopy(h, m),
           class: "button"
         }, null, 8, ["onClick"]),
         p(a, {
           type: "danger",
+          plain: "",
           icon: "DeleteFilled",
           onClick: (S) => n.groups.splice(m, 1),
           class: "button"
@@ -1166,7 +1170,7 @@ function Ht(e, t, s, l, n, i) {
     ])
   ]);
 }
-const Kt = /* @__PURE__ */ A(qt, [["render", Ht], ["__scopeId", "data-v-9eea6627"]]), Jt = {
+const Kt = /* @__PURE__ */ A(qt, [["render", Ht], ["__scopeId", "data-v-424f69b7"]]), Jt = {
   name: "XAutoRows",
   props: {
     span: {
@@ -6651,7 +6655,7 @@ const { ElInfiniteScroll: tt } = window.ElementPlus || {}, he = ".el-scrollbar__
   for (let s in Ce)
     e.directive(Ce[s].name, Ce[s]);
 }, So = {
-  version: "1.5.50",
+  version: "1.5.51",
   ...Ae,
   ...ht,
   ...Ut,
