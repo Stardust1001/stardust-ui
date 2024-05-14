@@ -35,7 +35,7 @@ const handleClearStorage = () => {
   session.clear()
   local.noClearKeys.add('cacheState')
   local.clear()
-  local.noClearKeys.remove('cacheState')
+  local.noClearKeys.delete('cacheState')
   window.location.reload()
 }
 
