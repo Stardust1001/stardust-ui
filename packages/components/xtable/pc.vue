@@ -265,8 +265,10 @@ export default {
                 <el-button
                   v-bind="{ type: 'primary', ..._attrs['operates-btn'] }"
                   icon="arrow-down"
+                  v-domid="domids['operates']"
+                  class="x-table-operates"
                 >
-                  操作
+                  {{ _attrs['operates-btn-text'] ?? '操作' }}
                 </el-button>
                 <template #dropdown>
                   <el-dropdown-menu class="operates-dropdown-menu">
@@ -275,9 +277,10 @@ export default {
                         v-bind="{ type: 'warning', ..._attrs['edit-btn'] }"
                         v-domid="domids['edit']"
                         icon="edit"
+                        class="x-table-edit"
                         @click="_emit('edit', scope)"
                       >
-                        编辑
+                        {{ _attrs['edit-btn-text'] ?? '编辑' }}
                       </el-button>
                     </el-dropdown-item>
                     <el-dropdown-item v-if="canSave(scope.row)">
@@ -287,9 +290,10 @@ export default {
                         :disabled="scope.row._loading"
                         v-domid="domids['row-edit']"
                         icon="collection"
+                        class="x-table-row-edit"
                         @click="_emit('row-edit', scope)"
                       >
-                        保存
+                        {{ _attrs['row-edit-btn-text'] ?? '保存' }}
                       </el-button>
                     </el-dropdown-item>
                     <el-dropdown-item v-if="canCancelEdit(scope.row)">
@@ -297,9 +301,10 @@ export default {
                         v-bind="{ type: 'warning', ..._attrs['cancel-edit-btn'] }"
                         v-domid="domids['cancel-edit']"
                         icon="refresh-left"
+                        class="x-table-cancel-edit"
                         @click="_emit('cancel-edit', scope)"
                       >
-                        取消编辑
+                        {{ _attrs['cancel-edit-btn-text'] ?? '取消编辑' }}
                       </el-button>
                     </el-dropdown-item>
                     <el-dropdown-item v-if="canDelete(scope.row)">
@@ -307,9 +312,10 @@ export default {
                         v-bind="{ type: 'danger', ..._attrs['delete-btn'] }"
                         v-domid="domids['delete']"
                         icon="DeleteFilled"
+                        class="x-table-delete"
                         @click="_emit('delete', scope)"
                       >
-                        删除
+                        {{ _attrs['delete-btn-text'] ?? '删除' }}
                       </el-button>
                     </el-dropdown-item>
                   </el-dropdown-menu>
@@ -320,9 +326,10 @@ export default {
                 v-bind="{ type: 'warning', ..._attrs['edit-btn'] }"
                 v-domid="domids['edit']"
                 icon="edit"
+                class="x-table-edit"
                 @click="_emit('edit', scope)"
               >
-                编辑
+                {{ _attrs['edit-btn-text'] ?? '编辑' }}
               </el-button>
               <el-button
                 v-if="!operatesDropdown && canSave(scope.row)"
@@ -331,27 +338,30 @@ export default {
                 :disabled="scope.row._loading"
                 v-domid="domids['row-edit']"
                 icon="collection"
+                class="x-table-row-edit"
                 @click="_emit('row-edit', scope)"
               >
-                保存
+                {{ _attrs['row-edit-btn-text'] ?? '保存' }}
               </el-button>
               <el-button
                 v-if="!operatesDropdown && canCancelEdit(scope.row)"
                 v-bind="{ type: 'warning', ..._attrs['cancel-edit-btn'] }"
                 v-domid="domids['cancel-edit']"
                 icon="refresh-left"
+                class="x-table-cancel-edit"
                 @click="_emit('cancel-edit', scope)"
               >
-                取消编辑
+                {{ _attrs['cancel-edit-btn-text'] ?? '取消编辑' }}
               </el-button>
               <el-button
                 v-if="!operatesDropdown && canDelete(scope.row)"
                 v-bind="{ type: 'danger', ..._attrs['delete-btn'] }"
                 v-domid="domids['delete']"
                 icon="DeleteFilled"
+                class="x-table-delete"
                 @click="_emit('delete', scope)"
               >
-                删除
+                {{ _attrs['delete-btn-text'] ?? '删除' }}
               </el-button>
               <slot
                 name="operates-suffix"
