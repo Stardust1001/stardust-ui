@@ -9,7 +9,7 @@ import Inner from './inner.vue'
 const { funcs } = StardustJs
 const { storage, fullscreen } = StardustBrowser
 
-const { local, session } = storage
+const { session, local } = storage
 const { app, user } = store
 const { info } = user
 
@@ -32,8 +32,10 @@ const handleToggleFullscreen = () => {
 }
 
 const handleClearStorage = () => {
+  session.clear()
+  local.noClearKeys.add('cacheState')
   local.clear()
-  local.setJson('cacheState', { user: user.$state })
+  local.noClearKeys.remove('cacheState')
   window.location.reload()
 }
 
