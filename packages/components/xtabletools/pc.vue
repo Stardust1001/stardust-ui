@@ -41,7 +41,7 @@ export default {
         class="x-table-search"
         @click="$emit('search')"
       >
-        高级查询
+        {{ $attrs['search-btn-text'] ?? '高级查询' }}
       </el-button>
       <el-button
         v-if="!!$attrs.onAdd"
@@ -51,7 +51,7 @@ export default {
         class="x-table-add"
         @click="$emit('add')"
       >
-        新增
+        {{ $attrs['add-btn-text'] ?? '新增' }}
       </el-button>
       <el-button
         v-if="!!$attrs.onMultiEdit"
@@ -61,7 +61,7 @@ export default {
         class="x-table-edit"
         @click="$emit('multi-edit')"
       >
-        编辑
+        {{ $attrs['edit-btn-text'] ?? '编辑' }}
       </el-button>
       <el-button
         v-if="!!$attrs.onMultiDelete"
@@ -71,7 +71,7 @@ export default {
         class="x-table-multi-delete"
         @click="$emit('multi-delete')"
       >
-        批量删除
+        {{ $attrs['multi-delete-btn-text'] ?? '批量删除' }}
       </el-button>
       <el-button
         v-if="!!$attrs.onExport"
@@ -81,7 +81,7 @@ export default {
         class="x-table-export"
         @click="$emit('export')"
       >
-        导出
+        {{ $attrs['export-btn-text'] ?? '导出' }}
       </el-button>
       <el-button
         v-if="!!$attrs.onSearchExport"
@@ -91,7 +91,7 @@ export default {
         class="x-table-search-export"
         @click="$emit('search-export')"
       >
-        查询导出
+        {{ $attrs['search-export-btn-text'] ?? '查询导出' }}
       </el-button>
       <el-button
         v-if="!!$attrs.onImport"
@@ -101,7 +101,7 @@ export default {
         class="x-table-import"
         @click="$emit('import')"
       >
-        导入
+        {{ $attrs['import-btn-text'] ?? '导入' }}
       </el-button>
 
       <slot name="tools-suffix" />
