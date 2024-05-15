@@ -8,7 +8,7 @@ const model = reactive({
     ...baseForm(),
     formItems: [
       {
-        label: '姓名', prop: 'name', required: true
+        label: '姓名', prop: 'name', required: true, directives: { domid: 'name' }
       },
       {
         label: '年龄', prop: 'age', comp: 'ElInputNumber', min: 1, required: true,
