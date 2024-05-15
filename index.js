@@ -2984,7 +2984,8 @@ function kn() {
     "edit",
     "row-edit",
     "cancel-edit",
-    "delete"
+    "delete",
+    "operates"
   ].forEach((s) => e[s] = s), { ...e, ...this.$attrs.domids };
 }
 function $n() {
@@ -6676,7 +6677,7 @@ const { ElInfiniteScroll: tt } = window.ElementPlus || {}, he = ".el-scrollbar__
   for (let s in $e)
     e.directive($e[s].name, $e[s]);
 }, So = {
-  version: "1.5.62",
+  version: "1.5.65",
   ...Ae,
   ...ht,
   ...Ut,

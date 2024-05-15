@@ -96,7 +96,8 @@ export function domids () {
     'edit',
     'row-edit',
     'cancel-edit',
-    'delete'
+    'delete',
+    'operates'
   ]
   keys.forEach(key => domids[key] = key)
   return { ...domids, ...this.$attrs.domids }
