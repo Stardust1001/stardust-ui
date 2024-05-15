@@ -637,7 +637,7 @@ class pt extends mt {
     let S = { list: l, header: h, data: o, filename: s };
     S = await this.processExporting(S), m(S), this.table.loading = !1;
   }
-  async handleSearchExport(t = this.exportType, s = "查询导出数据") {
+  async handleSearchExport(t = this.exportType, s = document.title) {
     if (this.table.loading) {
       q.w("导出中...");
       return;
@@ -6664,7 +6664,7 @@ const { ElInfiniteScroll: tt } = window.ElementPlus || {}, he = ".el-scrollbar__
   for (let s in $e)
     e.directive($e[s].name, $e[s]);
 }, So = {
-  version: "1.5.58",
+  version: "1.5.59",
   ...Ae,
   ...ht,
   ...Ut,

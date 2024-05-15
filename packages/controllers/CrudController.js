@@ -277,7 +277,7 @@ class CrudController extends BaseController {
     this.table.loading = false
   }
 
-  async handleSearchExport (type = this.exportType, filename = '查询导出数据') {
+  async handleSearchExport (type = this.exportType, filename = document.title) {
     if (this.table.loading) {
       Message.w('导出中...')
       return
