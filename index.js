@@ -619,8 +619,8 @@ class pt extends mt {
   async handleCancelEdit({ row: t }) {
     Object.assign(t, JSON.parse(t.originData)), delete t.originData, t.isEditing = !1;
   }
-  async handleExport(t = this.exportType, s = document.title) {
-    if (this.table.loading)
+  async handleExport(t = this.exportType, s) {
+    if (s || (s = this.table.ref.title || document.title), this.table.loading)
       return;
     if (t instanceof Event && (t = ""), t = t || this.config.exportType || "csv", !["csv", "excel"].includes(t)) {
       q("不支持的导出类型");
@@ -637,8 +637,8 @@ class pt extends mt {
     let S = { list: l, header: h, data: o, filename: s };
     S = await this.processExporting(S), m(S), this.table.loading = !1;
   }
-  async handleSearchExport(t = this.exportType, s = document.title) {
-    if (this.table.loading) {
+  async handleSearchExport(t = this.exportType, s) {
+    if (s || (s = this.table.ref.title || document.title), this.table.loading) {
       q.w("导出中...");
       return;
     }
@@ -6664,7 +6664,7 @@ const { ElInfiniteScroll: tt } = window.ElementPlus || {}, he = ".el-scrollbar__
   for (let s in $e)
     e.directive($e[s].name, $e[s]);
 }, So = {
-  version: "1.5.59",
+  version: "1.5.60",
   ...Ae,
   ...ht,
   ...Ut,

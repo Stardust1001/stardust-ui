@@ -248,7 +248,8 @@ class CrudController extends BaseController {
     row.isEditing = false
   }
 
-  async handleExport (type = this.exportType, filename = document.title) {
+  async handleExport (type = this.exportType, filename) {
+    filename ||= this.table.ref.title || document.title
     if (this.table.loading) return
     if (type instanceof Event) type = ''
     type = type || this.config.exportType || 'csv'
@@ -277,7 +278,8 @@ class CrudController extends BaseController {
     this.table.loading = false
   }
 
-  async handleSearchExport (type = this.exportType, filename = document.title) {
+  async handleSearchExport (type = this.exportType, filename) {
+    filename ||= this.table.ref.title || document.title
     if (this.table.loading) {
       Message.w('导出中...')
       return
