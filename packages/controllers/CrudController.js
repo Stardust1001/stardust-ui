@@ -18,10 +18,6 @@ class CrudController extends BaseController {
 
     // 是否在提交中
     this._isSubmitting = false
-    // 是否导入中
-    this._isImporting = false
-    // 是否导出中
-    this._isExporting = false
     // 上次查询条件，json 字符串
     this._lastSearchParams = null
 
@@ -253,17 +249,14 @@ class CrudController extends BaseController {
   }
 
   async handleExport (type = this.exportType, filename = document.title) {
-    if (this._isExporting) {
-      Message.w('导出中...')
-      return
-    }
+    if (this.table.loading) return
     if (type instanceof Event) type = ''
     type = type || this.config.exportType || 'csv'
     if (!['csv', 'excel'].includes(type)) {
       Message('不支持的导出类型')
       return
     }
-    this._isExporting = true
+    this.table.loading = true
     const { list, selection, ref } = this.table
     let data = selection.length > 0 ? selection : list
     data = funcs.deepCopy(data)
@@ -281,11 +274,11 @@ class CrudController extends BaseController {
     let options = { list, header, data, filename }
     options = await this.processExporting(options)
     func(options)
-    this._isExporting = false
+    this.table.loading = false
   }
 
   async handleSearchExport (type = this.exportType, filename = '查询导出数据') {
-    if (this._isExporting) {
+    if (this.table.loading) {
       Message.w('导出中...')
       return
     }
@@ -294,7 +287,7 @@ class CrudController extends BaseController {
       Message('不支持的导出类型')
       return
     }
-    this._isExporting = true
+    this.table.loading = true
     const res = await this.dbTable.search(this.getSearchExportParams())
     let data = res.data
     data = this.formatList(data, res)
@@ -312,16 +305,13 @@ class CrudController extends BaseController {
     let options = { list: res.data, header, data, filename }
     options = await this.processExporting(options)
     func(options)
-    this._isExporting = false
+    this.table.loading = false
   }
 
   async handleImport () {
-    if (this._isImporting) {
-      Message.w('导入中...')
-      return
-    }
+    if (this.table.loading) return
     const f = await file.select('.xlsx,.csv')
-    this._isImporting = true
+    this.table.loading = true
     const isCsv = f.name.toLowerCase().endsWith('.csv')
     const content = await file.toType(f, isCsv ? 'text' : 'arraybuffer')
     let data = []
@@ -347,7 +337,7 @@ class CrudController extends BaseController {
     data = this.processImportingData(data)
     await this.dbTable.func(['bulkCreate', data])
     Message.s('导入成功')
-    this._isImporting = false
+    this.table.loading = false
     this.handleSearch()
   }
 
