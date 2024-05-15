@@ -39,7 +39,12 @@ export const checkRolesPages = (router, store, routes) => {
       }
       const paths = store.acl.paths
       const update = (route, parents) => {
-        const path = [...parents, route].reduce((path, p) => path + '/' + p.path, '').replace('//', '/')
+        let path
+        if (route.redirect && !route.component) {
+          path = route.redirect
+        } else {
+          path = [...parents, route].reduce((path, p) => path + '/' + p.path, '').replace('//', '/')
+        }
         route.meta ||= {}
         if (route.meta.acl === false) {
           route.children?.forEach(sub => {

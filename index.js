@@ -166,8 +166,8 @@ const { funcs: jt } = StardustJs, Ft = (e, t, s) => {
       }
       const l = t.acl.paths, o = (a, r) => {
         var m, v, b, _, V, F, g;
-        const h = [...r, a].reduce((C, T) => C + "/" + T.path, "").replace("//", "/");
-        a.meta || (a.meta = {}), a.meta.acl === !1 ? (m = a.children) == null || m.forEach((C) => {
+        let h;
+        a.redirect && !a.component ? h = a.redirect : h = [...r, a].reduce((C, T) => C + "/" + T.path, "").replace("//", "/"), a.meta || (a.meta = {}), a.meta.acl === !1 ? (m = a.children) == null || m.forEach((C) => {
           var T;
           C.meta || (C.meta = {}), (T = C.meta).acl || (T.acl = !1), o(C, [...r, a]);
         }) : (a.meta._hidden = a.meta.hidden, parent && (a.meta.hidden == null && ((b = a.meta).hidden ?? (b.hidden = (v = parent.meta) == null ? void 0 : v.hidden), a.meta = { ...a.meta }), a.meta.visitable == null && ((V = a.meta).visitable ?? (V.visitable = (_ = parent.meta) == null ? void 0 : _.visitable), a.meta = { ...a.meta })), (F = a.children) == null || F.forEach((C) => o(C, [...r, a])), a.meta.hidden !== !1 && a.meta._hidden !== !0 && (a.meta.hidden = !l.includes(h), (g = a.children) != null && g.some((C) => C.meta.hidden === !1) && (a.meta.hidden = !1)));
@@ -6676,7 +6676,7 @@ const { ElInfiniteScroll: tt } = window.ElementPlus || {}, he = ".el-scrollbar__
   for (let s in $e)
     e.directive($e[s].name, $e[s]);
 }, So = {
-  version: "1.5.61",
+  version: "1.5.62",
   ...Ae,
   ...ht,
   ...Ut,
