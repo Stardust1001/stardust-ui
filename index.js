@@ -5250,7 +5250,7 @@ function ua(e, t, s, n, l, i) {
                   p(r, _({
                     modelValue: l.settings,
                     "onUpdate:modelValue": t[1] || (t[1] = (S) => l.settings = S)
-                  }, e.$attrs, {
+                  }, { ...e._attrs.settings, ...e.$attrs }, {
                     visible: !e.hideSettings,
                     width: e._attrs["cols-popover-width"] || 500,
                     onSort: t[2] || (t[2] = (S) => e.$emit("sort", S)),
@@ -6690,7 +6690,7 @@ const { ElInfiniteScroll: tt } = window.ElementPlus || {}, he = ".el-scrollbar__
   for (let s in $e)
     e.directive($e[s].name, $e[s]);
 }, So = {
-  version: "1.5.66",
+  version: "1.5.67",
   ...Ae,
   ...ht,
   ...Ut,

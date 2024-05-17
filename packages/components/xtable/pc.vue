@@ -161,7 +161,7 @@ export default {
             />
             <settings
               v-model="settings"
-              v-bind="$attrs"
+              v-bind="{ ..._attrs.settings, ...$attrs }"
               :visible="!hideSettings"
               :width="_attrs['cols-popover-width'] || 500"
               @sort="$emit('sort', $event)"
