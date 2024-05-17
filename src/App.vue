@@ -3,6 +3,14 @@ import { reactive } from 'vue'
 
 import { baseTable, baseForm } from '../packages/utils/model.js'
 
+const table = {
+  ...baseTable(),
+  columns: [
+    { label: '姓名', prop: 'name' },
+    { label: '年龄', prop: 'age' }
+  ]
+}
+
 const model = reactive({
   form: {
     ...baseForm(),
@@ -48,9 +56,8 @@ const controller = {
 
 <template>
   <div style="padding: 10px;">
-    <x-form :form="model.form" label-width="100px">
-
-    </x-form>
+    <x-form :form="model.form" label-width="100px"></x-form>
     <el-button type="primary" @click="controller.handleSubmit">提交</el-button>
+    <x-table :table :controller></x-table>
   </div>
 </template>

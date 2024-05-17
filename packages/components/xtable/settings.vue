@@ -18,6 +18,16 @@ export default {
       ]
     }
   },
+  computed: {
+    hideColumns () {
+      const value = this.$attrs['hide-settings-columns']
+      return value === '' || value === true
+    },
+    hideSorts () {
+      const value = this.$attrs['hide-settings-sorts']
+      return value === '' || value === true
+    }
+  },
   watch: {
     modelValue: {
       handler (value) {
@@ -100,7 +110,7 @@ export default {
     </template>
 
     <el-tabs v-model="activeName">
-      <el-tab-pane name="columns" label="展示列">
+      <el-tab-pane v-if="!hideColumns" name="columns" label="展示列">
         <el-button type="warning" plain icon="Close" @click="handleResetColumns">重置</el-button>
         <div class="table" ref="colsTable">
           <div
@@ -119,7 +129,7 @@ export default {
           </div>
         </div>
       </el-tab-pane>
-      <el-tab-pane name="sorts" label="多列排序">
+      <el-tab-pane v-if="!hideSorts" name="sorts" label="多列排序">
         <el-button type="primary" plain icon="Plus" @click="handleAddSort">添加排序</el-button>
         <div class="table" ref="sortsTable">
           <div
