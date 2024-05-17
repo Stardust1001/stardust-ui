@@ -16,13 +16,13 @@ export default {
   emits: ['update:modelValue'],
   data () {
     return {
-      id: 'tm-' + Date.now().toString(16),
-      instance: null
+      id: 'tm-' + Date.now().toString(16)
     }
   },
   watch: {
     modelValue (value) {
-      this.instance?.[0].setContent(value)
+      if (value === this._content) return
+      this.instance?.setContent(value)
     }
   },
   mounted () {
@@ -30,13 +30,13 @@ export default {
   },
   beforeUnmount () {
     if (this.instance) {
-      this.instance[0].destroy()
+      this.instance.destroy()
       this.instance = null
     }
   },
   methods: {
     async initEditor () {
-      const instance = await window.tinymce.init({
+      const instances = await window.tinymce.init({
         language: 'zh_CN',
         selector: 'textarea#' + this.id,
         height: 500,
@@ -55,19 +55,12 @@ export default {
         placeholder: '请输入、编辑富文本内容~',
         ...this.config
       })
-      this.instance = Object.freeze(instance)
-      this.addSaveButton()
-    },
-    handleSave () {
-      this.$emit('update:modelValue', this.instance[0].getContent())
-    },
-    addSaveButton () {
-      const menu = document.querySelector('.tox-menubar')
-      const button = menu.childNodes[0].cloneNode(true)
-      button.textContent = '保存'
-      button.style.color = '#409EFF'
-      button.onclick = this.handleSave.bind(this)
-      menu.appendChild(button)
+      const instance = instances[instances.length - 1]
+      instance.on('input', e => {
+        this._content = e.target.innerHTML
+        this.$emit('update:modelValue', this._content)
+      })
+      this.instance = instance
     }
   }
 }

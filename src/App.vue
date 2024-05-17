@@ -12,6 +12,7 @@ const table = {
 }
 
 const model = reactive({
+  richtext: '',
   form: {
     ...baseForm(),
     formItems: [
@@ -48,10 +49,10 @@ const model = reactive({
 
 const controller = {
   handleSubmit () {
-    window.model = model
     model.form.formRef.validate()
   }
 }
+window.model = model
 </script>
 
 <template>
@@ -59,5 +60,6 @@ const controller = {
     <x-form :form="model.form" label-width="100px"></x-form>
     <el-button type="primary" @click="controller.handleSubmit">提交</el-button>
     <x-table :table :controller></x-table>
+    <x-tinymce v-model="model.richtext" />
   </div>
 </template>
