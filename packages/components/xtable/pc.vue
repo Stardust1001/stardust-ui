@@ -215,7 +215,7 @@ export default {
               </el-tag>
               <router-link
                 v-else-if="column.slot === '$link'"
-                :to="column.to(scope)"
+                :to="column.to(scope.row)"
               >
                 {{ calcLink(scope.row, column) }}
               </router-link>

@@ -5317,7 +5317,7 @@ function ua(e, t, s, n, l, i) {
                           _: 2
                         }, 1032, ["type"])) : S.slot === "$link" ? (d(), f(b, {
                           key: 3,
-                          to: S.to(L)
+                          to: S.to(L.row)
                         }, {
                           default: c(() => [
                             x($(e.calcLink(L.row, S)), 1)
@@ -6684,7 +6684,7 @@ const { ElInfiniteScroll: tt } = window.ElementPlus || {}, he = ".el-scrollbar__
   for (let s in $e)
     e.directive($e[s].name, $e[s]);
 }, So = {
-  version: "1.5.68",
+  version: "1.5.69",
   ...Ae,
   ...ht,
   ...Ut,
