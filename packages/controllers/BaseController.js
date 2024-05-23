@@ -1,8 +1,22 @@
 import { nextTick } from 'vue'
-
 import uiUtils from '../utils/index.js'
 
-const { funcs } = StardustJs
+const { funcs, highdict, dates } = window.StardustJs
+const { storage } = window.StardustBrowser
+
+const VUE_LIFE_HOOKS = [
+  'onBeforeMount',
+  'onMounted',
+  'onBeforeUpdate',
+  'onUpdated',
+  'onBeforeUnmount',
+  'onUnmounted',
+  'onErrorCaptured',
+  'onRenderTracked',
+  'onRenderTriggered',
+  'onActivated',
+  'onDeactivated'
+]
 
 class BaseController {
   constructor ({ model, vue }) {
@@ -14,7 +28,7 @@ class BaseController {
         vue: { get: () => vue },
         vm: { get: () => vm }
       })
-      this._initLifeCycles()
+      this._initLifeHooks()
     }
     nextTick(this.onInit)
   }
@@ -53,19 +67,19 @@ class BaseController {
 
   get $browser () { return window.StardustBrowser }
 
-  get $dates () { return this.$js?.dates }
+  get $dates () { return dates }
 
-  get $highdict () { return this.$js?.highdict }
+  get $highdict () { return highdict }
 
-  get $copy () { return this.$js?.funcs.deepCopy }
+  get $copy () { return funcs.deepCopy }
 
-  get $sleep () { return this.$js?.funcs.sleep }
+  get $sleep () { return funcs.sleep }
 
-  get $storage () { return this.$browser?.storage }
+  get $storage () { return storage }
 
-  get $local () { return this.$storage?.local }
+  get $local () { return storage.local }
 
-  get $session () { return this.$storage?.session }
+  get $session () { return storage.session }
 
   _bindMethods () {
     const thisKeys = [...Object.keys(this), ...this._getMethods()]
@@ -78,21 +92,8 @@ class BaseController {
     })
   }
 
-  _initLifeCycles () {
-    const hooks = [
-      'onBeforeMount',
-      'onMounted',
-      'onBeforeUpdate',
-      'onUpdated',
-      'onBeforeUnmount',
-      'onUnmounted',
-      'onErrorCaptured',
-      'onRenderTracked',
-      'onRenderTriggered',
-      'onActivated',
-      'onDeactivated'
-    ]
-    hooks.forEach(hook => {
+  _initLifeHooks () {
+    VUE_LIFE_HOOKS.forEach(hook => {
       this[hook] && this.vue[hook](this[hook])
     })
   }
@@ -108,7 +109,7 @@ class BaseController {
   _getMethods () {
     return [
       '_bindMethods',
-      '_initLifeCycles',
+      '_initLifeHooks',
       '_evalAction',
       '_getMethods',
       'onInit'

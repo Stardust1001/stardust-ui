@@ -52,6 +52,7 @@ class CrudController extends BaseController {
   _getMethods () {
     return [
       ...super._getMethods(),
+
       'handleKeywordsSearch',
       'handleSearch',
       'handleAdd',
@@ -109,13 +110,14 @@ class CrudController extends BaseController {
 
       'updatePartials',
 
-      '_defaultFormatList',
-      '_fillRelatedField',
       'formatList',
       'processExportingColumns',
       'processExportingData',
       'processExporting',
       'processImportingData',
+
+      '_defaultFormatList',
+      '_fillRelatedField',
       '_resetForm',
       '_clearValidate',
       '_trimForm',
