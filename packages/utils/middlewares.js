@@ -24,10 +24,11 @@ export const checkRolesPages = (router, store, routes) => {
     }
     await nextTick()
     if (store.acl.paths.includes(path)) return true
-    if (store.getters.logined) {
-      Message.e('无权访问页面: ' + to.path)
-    }
     const query = { redirectTo: to.path, ...to.query }
+    if (store.getters.logined) {
+      query.error = '受限于您的账号权限，暂时无法访问 ' + to.path + ' 页面，如有需要请联系我们'
+      Message({ message: query.error, duration: 1e4 })
+    }
     return { path: store.acl.paths[0] || '/404', query }
   })
   nextTick(() => {
