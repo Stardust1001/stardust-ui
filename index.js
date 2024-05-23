@@ -153,9 +153,8 @@ const { funcs: jt } = StardustJs, Ft = (e, t, s) => {
       await jt.sleep(20);
     if (await le(), t.acl.paths.includes(i))
       return !0;
-    t.getters.logined && q.e("无权访问页面: " + n.path);
     const o = { redirectTo: n.path, ...n.query };
-    return { path: t.acl.paths[0] || "/404", query: o };
+    return t.getters.logined && (o.error = "受限于您的账号权限，暂时无法访问 " + n.path + " 页面，如有需要请联系我们", q({ message: o.error, duration: 1e4 })), { path: t.acl.paths[0] || "/404", query: o };
   }), le(() => {
     let n = !1;
     Oe(() => t.acl.menus, (l) => {
@@ -6684,7 +6683,7 @@ const { ElInfiniteScroll: tt } = window.ElementPlus || {}, he = ".el-scrollbar__
   for (let s in $e)
     e.directive($e[s].name, $e[s]);
 }, So = {
-  version: "1.5.69",
+  version: "1.5.71",
   ...Ae,
   ...ht,
   ...Ut,
