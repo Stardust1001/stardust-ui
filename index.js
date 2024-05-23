@@ -6360,7 +6360,9 @@ const Ga = /* @__PURE__ */ O(Ka, [["render", Ya], ["__scopeId", "data-v-bd702be1
         placeholder: "请输入、编辑富文本内容~",
         ...this.config
       }), t = e[e.length - 1];
-      t.on("input", (s) => {
+      t.on("change", (s) => {
+        this._content = t.getContent(), this.$emit("update:modelValue", this._content);
+      }), t.on("input", (s) => {
         this._content = s.target.innerHTML, this.$emit("update:modelValue", this._content);
       }), this.instance = t, window._tinymce_instances_ = e;
     }
@@ -6684,7 +6686,7 @@ const { ElInfiniteScroll: tt } = window.ElementPlus || {}, he = ".el-scrollbar__
   for (let s in $e)
     e.directive($e[s].name, $e[s]);
 }, So = {
-  version: "1.5.75",
+  version: "1.5.76",
   ...Ae,
   ...ht,
   ...Ut,

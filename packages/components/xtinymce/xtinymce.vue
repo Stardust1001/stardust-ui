@@ -57,6 +57,10 @@ export default {
         ...this.config
       })
       const instance = instances[instances.length - 1]
+      instance.on('change', e => {
+        this._content = instance.getContent()
+        this.$emit('update:modelValue', this._content)
+      })
       instance.on('input', e => {
         this._content = e.target.innerHTML
         this.$emit('update:modelValue', this._content)
