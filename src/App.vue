@@ -12,6 +12,7 @@ const table = {
 }
 
 const model = reactive({
+  visible: true,
   richtext: '',
   form: {
     ...baseForm(),
@@ -60,6 +61,8 @@ window.model = model
     <x-form :form="model.form" label-width="100px"></x-form>
     <el-button type="primary" @click="controller.handleSubmit">提交</el-button>
     <x-table :table :controller></x-table>
-    <x-tinymce v-model="model.richtext" />
+    <x-dialog v-model="model.visible">
+      <x-tinymce v-model="model.richtext" />
+    </x-dialog>
   </div>
 </template>

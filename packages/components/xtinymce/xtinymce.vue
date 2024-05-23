@@ -61,6 +61,7 @@ export default {
         this.$emit('update:modelValue', this._content)
       })
       this.instance = instance
+      window._tinymce_instances_ = instances
     }
   }
 }

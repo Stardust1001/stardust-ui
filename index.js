@@ -6361,7 +6361,7 @@ const Ga = /* @__PURE__ */ O(Ka, [["render", Ya], ["__scopeId", "data-v-bd702be1
       }), t = e[e.length - 1];
       t.on("input", (s) => {
         this._content = s.target.innerHTML, this.$emit("update:modelValue", this._content);
-      }), this.instance = t;
+      }), this.instance = t, window._tinymce_instances_ = e;
     }
   }
 }, Za = { class: "x-tinymce" }, eo = ["id", "innerHTML"];
@@ -6683,7 +6683,7 @@ const { ElInfiniteScroll: tt } = window.ElementPlus || {}, he = ".el-scrollbar__
   for (let s in $e)
     e.directive($e[s].name, $e[s]);
 }, So = {
-  version: "1.5.71",
+  version: "1.5.72",
   ...Ae,
   ...ht,
   ...Ut,
