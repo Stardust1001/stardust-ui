@@ -6328,6 +6328,7 @@ const Ga = /* @__PURE__ */ O(Ka, [["render", Ya], ["__scopeId", "data-v-bd702be1
     async initEditor() {
       const e = await window.tinymce.init({
         language: "zh_CN",
+        language_url: "./lib/tinymce/zh_CN.js",
         selector: "textarea#" + this.id,
         height: 500,
         plugins: [
@@ -6683,7 +6684,7 @@ const { ElInfiniteScroll: tt } = window.ElementPlus || {}, he = ".el-scrollbar__
   for (let s in $e)
     e.directive($e[s].name, $e[s]);
 }, So = {
-  version: "1.5.72",
+  version: "1.5.75",
   ...Ae,
   ...ht,
   ...Ut,
