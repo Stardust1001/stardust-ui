@@ -62,6 +62,7 @@ export default {
           },
           { label: '边距', slot: 'grid' },
           { label: '数据筛选', slot: 'filter' },
+          { label: '字体大小', slot: 'font-sizes' }
         ],
         form: {
           categories: [],
@@ -78,7 +79,8 @@ export default {
           filter: {
             categories: { isLimit: false, limit: 10, mergeOthers: false },
             series: { isLimit: false, limit: 10, mergeOthers: false }
-          }
+          },
+          fontSizes: [12, 12, 12]
         }
       }
     }
@@ -98,6 +100,9 @@ export default {
     },
     series () {
       return this.dialog.form.filter.series
+    },
+    fontSizes () {
+      return this.dialog.form.fontSizes
     }
   },
   watch: {
@@ -119,6 +124,7 @@ export default {
     }
   },
   async mounted () {
+    window.v = this
     await this.init()
     this.initDatasource()
   },
@@ -178,7 +184,7 @@ export default {
       return value
     },
     setRich (rich) {
-      const { categories, data, attr, summary, type, filter, grid } = rich
+      const { categories, data, attr, summary, type, filter, grid, fontSizes } = rich
       const opts = {}
       const hasCategories = Array.isArray(categories) && categories.length || categories?.data?.length
       const cateAttrs = hasCategories && (Array.isArray(categories) ? categories : categories.data)
@@ -256,7 +262,7 @@ export default {
           {
             type,
             colorBy: 'data',
-            label: { show: true, position: 'top' },
+            label: { show: true, position: 'top', fontSize: fontSizes[2] },
             data: legend.map(name => {
               return { name, value: counts[name] }
             })
@@ -271,7 +277,12 @@ export default {
             ? (!categories.formatter ? cates : cates.map(c => categories.formatter(c)))
             : (!seriesName.formatter ? seriesNames : seriesNames.map(c => seriesName.formatter(c)))
         },
-        yAxis: { type: 'value' },
+        yAxis: {
+          type: 'value',
+          axisLabel: {
+            fontSize: fontSizes[1]
+          }
+        },
         series
       }, this.option, { grid })
       this.update(opts)
@@ -294,7 +305,7 @@ export default {
         }
       }
       if (option.xAxis && !option.xAxis.axisLabel?.formatter) {
-        option.xAxis.axisLabel ||= {}
+        option.xAxis.axisLabel ||= { fontSize: this.fontSizes[0] }
         option.xAxis.axisLabel.formatter = this.labelSplitFormatter(this.option.charsLimitPerLine || 5)
       }
       console.log(option)
@@ -364,6 +375,22 @@ export default {
               </div>
             </el-tab-pane>
           </el-tabs>
+        </template>
+        <template #font-sizes>
+          <el-row :gutter="5">
+            <el-col :span="8">
+              X轴
+              <el-input-number v-model="fontSizes[0]" />
+            </el-col>
+            <el-col :span="8">
+              Y轴
+              <el-input-number v-model="fontSizes[1]" />
+            </el-col>
+            <el-col :span="8">
+              值
+              <el-input-number v-model="fontSizes[2]" />
+            </el-col>
+          </el-row>
         </template>
       </x-form>
     </x-dialog>
