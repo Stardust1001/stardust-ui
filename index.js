@@ -5267,13 +5267,13 @@ const wt = /* @__PURE__ */ O(na, [["render", ua], ["__scopeId", "data-v-a9d96f8a
       await this.$nextTick(), this.$refs.chartRef.chart.resize();
     },
     async search() {
-      const { remote: e, params: t, remoteMethod: s, search: l } = this._chartOption;
+      const { remote: e, query: t, remoteMethod: s, search: l } = this._chartOption;
       if (l)
         return l();
       if (this.controller[s])
         return this.controller[s]();
       if (e && this.controller.getSearchParams) {
-        const i = { ...this.controller.table.query }, n = this.controller.getSearchParams({ page: 1, limit: -1, ...n });
+        const i = { ...this.controller.table.query }, n = this.controller.getSearchParams({ page: 1, limit: -1, ...t });
         Object.assign(this.controller.table.query, i);
         const a = await this.controller.search(n);
         let o = ha.get(a, this.controller.listProp);
@@ -6797,7 +6797,7 @@ const { ElInfiniteScroll: lt } = window.ElementPlus || {}, pe = ".el-scrollbar__
   for (let s in Ee)
     e.directive(Ee[s].name, Ee[s]);
 }, Fo = {
-  version: "1.6.0",
+  version: "1.6.1",
   ...Te,
   ...gt,
   ...Kt,

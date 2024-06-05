@@ -73,15 +73,15 @@ export default {
       this.$refs.chartRef.chart.resize()
     },
     async search () {
-      const { remote, params, remoteMethod, search } = this._chartOption
+      const { remote, query, remoteMethod, search } = this._chartOption
       if (search) {
         return search()
       } else if (this.controller[remoteMethod]) {
         return this.controller[remoteMethod]()
       } else if (remote && this.controller.getSearchParams) {
-        const query = { ...this.controller.table.query }
-        const params = this.controller.getSearchParams({ page: 1, limit: -1, ...params })
-        Object.assign(this.controller.table.query, query)
+        const oldQuery = { ...this.controller.table.query }
+        const params = this.controller.getSearchParams({ page: 1, limit: -1, ...query })
+        Object.assign(this.controller.table.query, oldQuery)
         const data = await this.controller.search(params)
         let list = highdict.get(data, this.controller.listProp)
         list = this.controller.formatList(this.controller._defaultFormatList(list, data), data)
