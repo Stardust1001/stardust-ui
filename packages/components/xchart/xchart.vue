@@ -308,6 +308,10 @@ export default {
         option.xAxis.axisLabel ||= { fontSize: this.fontSizes[0] }
         option.xAxis.axisLabel.formatter = this.labelSplitFormatter(this.option.charsLimitPerLine || 5)
       }
+      if (option.series?.[0]?.data.length) {
+        option.series[0].data.sort((a, b) => b.value - a.value)
+        option.xAxis.data = option.series[0].data.map(e => e.name)
+      }
       console.log(option)
       this.chart?.setOption(option, true)
     },

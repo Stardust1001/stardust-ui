@@ -1469,7 +1469,7 @@ const ds = /* @__PURE__ */ A(os, [["render", rs]]), { funcs: cs } = StardustBrow
       }, this.option, { grid: a }), this.update(m);
     },
     update(e = {}) {
-      var t, s, i;
+      var t, s, i, l, n;
       this.zoom = 1 / (parseFloat(document.documentElement.style.zoom) || 1), e = {
         tooltip: {},
         toolbox: { feature: { saveAsImage: {} } },
@@ -1487,7 +1487,7 @@ const ds = /* @__PURE__ */ A(os, [["render", rs]]), { funcs: cs } = StardustBrow
           padding: [0, 60],
           ...e.legend
         }
-      }, e.xAxis && !((t = e.xAxis.axisLabel) != null && t.formatter) && ((s = e.xAxis).axisLabel || (s.axisLabel = { fontSize: this.fontSizes[0] }), e.xAxis.axisLabel.formatter = this.labelSplitFormatter(this.option.charsLimitPerLine || 5)), console.log(e), (i = this.chart) == null || i.setOption(e, !0);
+      }, e.xAxis && !((t = e.xAxis.axisLabel) != null && t.formatter) && ((s = e.xAxis).axisLabel || (s.axisLabel = { fontSize: this.fontSizes[0] }), e.xAxis.axisLabel.formatter = this.labelSplitFormatter(this.option.charsLimitPerLine || 5)), (l = (i = e.series) == null ? void 0 : i[0]) != null && l.data.length && (e.series[0].data.sort((o, a) => a.value - o.value), e.xAxis.data = e.series[0].data.map((o) => o.name)), console.log(e), (n = this.chart) == null || n.setOption(e, !0);
     },
     labelSplitFormatter(e) {
       return (t) => t.length < e ? t : Array.from({
@@ -1498,12 +1498,12 @@ const ds = /* @__PURE__ */ A(os, [["render", rs]]), { funcs: cs } = StardustBrow
   }
 }, Ke = () => {
   Te((e) => ({
-    "7ea8e032": e.zoomedHeight,
-    "1f7dd58c": e.zoom
+    "0caf9fd6": e.zoomedHeight,
+    "29d0b86f": e.zoom
   }));
 }, Je = Be.setup;
 Be.setup = Je ? (e, t) => (Ke(), Je(e, t)) : Ke;
-const ge = (e) => (De("data-v-bd54d87e"), e = e(), Ie(), e), hs = { class: "x-chart" }, ms = {
+const ge = (e) => (De("data-v-d6fdcec7"), e = e(), Ie(), e), hs = { class: "x-chart" }, ms = {
   class: "chart",
   ref: "el"
 }, ps = /* @__PURE__ */ ge(() => /* @__PURE__ */ j("span", null, "左", -1)), fs = /* @__PURE__ */ ge(() => /* @__PURE__ */ j("span", null, "上", -1)), gs = /* @__PURE__ */ ge(() => /* @__PURE__ */ j("span", null, "右", -1)), bs = /* @__PURE__ */ ge(() => /* @__PURE__ */ j("span", null, "下", -1));
@@ -1712,7 +1712,7 @@ function _s(e, t, s, i, l, n) {
     [V, l.loading]
   ]);
 }
-const ys = /* @__PURE__ */ A(Be, [["render", _s], ["__scopeId", "data-v-bd54d87e"]]), ws = {
+const ys = /* @__PURE__ */ A(Be, [["render", _s], ["__scopeId", "data-v-d6fdcec7"]]), ws = {
   name: "MobileXCheckboxs",
   inheritAttrs: !1,
   props: {
@@ -6726,7 +6726,7 @@ const { ElInfiniteScroll: nt } = window.ElementPlus || {}, me = ".el-scrollbar__
   for (let s in xe)
     e.directive(xe[s].name, xe[s]);
 }, xo = {
-  version: "1.5.79",
+  version: "1.5.80",
   ...je,
   ...pt,
   ...Wt,
