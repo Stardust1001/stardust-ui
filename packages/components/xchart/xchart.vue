@@ -142,10 +142,9 @@ export default {
       }
     }
   },
-  async mounted () {
+  mounted () {
     window.v = this
-    await this.init()
-    this.initDatasource()
+    this.init()
   },
   beforeUnmount () {
     document.removeEventListener('resize', this.update)
@@ -182,6 +181,7 @@ export default {
       item.formatters = item.options.find(op => op.prop === value).formatters
     },
     async handleMakeChart () {
+      if (this.loading) return
       this.dialog.visible = false
       this.loading = true
       const rich = { ...this.dialog.form }

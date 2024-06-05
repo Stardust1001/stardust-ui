@@ -518,9 +518,11 @@ class CrudController extends BaseController {
     return this.dbTable.remove(params[this.idField])
   }
 
-  getSearchParams (params) {
-    if (params?.page) this.table.query.page = params.page
-    if (params?.limit) this.table.query.limit = params.limit
+  getSearchParams (params, setQuery = true) {
+    if (setQuery) {
+      if (params?.page) this.table.query.page = params.page
+      if (params?.limit) this.table.query.limit = params.limit
+    }
     return Object.assign({ where: {} }, JSON.parse(this._lastSearchParams), this.table.query, params)
   }
 

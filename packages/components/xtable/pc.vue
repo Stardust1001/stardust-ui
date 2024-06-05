@@ -79,12 +79,14 @@ export default {
       } else if (this.controller[remoteMethod]) {
         return this.controller[remoteMethod]()
       } else if (remote && this.controller.getSearchParams) {
-        const oldQuery = { ...this.controller.table.query }
-        const params = this.controller.getSearchParams({ page: 1, limit: -1, ...query })
-        Object.assign(this.controller.table.query, oldQuery)
+        const params = this.controller.getSearchParams({ page: 1, limit: 100, ...query }, false)
+        const paramsJson = JSON.stringify(params)
+        if (paramsJson === this._lastSearchParams) return this._lastList
+        this._lastSearchParams = paramsJson
         const data = await this.controller.search(params)
         let list = highdict.get(data, this.controller.listProp)
         list = this.controller.formatList(this.controller._defaultFormatList(list, data), data)
+        this._lastList = list
         return list
       }
       return this._data
