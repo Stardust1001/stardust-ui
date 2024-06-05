@@ -1,8 +1,25 @@
 <script>
 import { baseDialog } from '../../utils/model.js'
+const { format, formatDate, formatTime } = StardustJs.dates
 const { funcs } = StardustBrowser
 
 const TYPES = ['index', 'selection', 'expand', 'radio', '_index']
+
+const FORMATTERS = {
+  '原样': v => v,
+  '年份': v => format(v, 'YYYY年'),
+  '月份': v => format(v, 'MM月'),
+  '年月': v => format(v, 'YYYY-MM'),
+  '年月日': v => format(v, 'YYYY-MM-DD'),
+  '时分': v => format(v, 'HH:mm'),
+  '时分秒': v => format(v, 'HH:mm:ss'),
+}
+
+const SORTS = [
+  { text: '原样', value: '' },
+  { text: '升序', value: 'asc' },
+  { text: '降序', value: 'desc' },
+]
 
 export default {
   name: 'XChart',
@@ -23,23 +40,24 @@ export default {
       zoom: 1,
       loading: false,
       filterType: '分类',
+      SORTS,
       dialog: {
         ...baseDialog(),
         formItems: [
           {
             label: '分类', prop: 'categories', comp: 'x-select', multiple: true, 'collapse-tags': true, clearable: false,
             text: 'label', value: 'prop',
-            options: [],
+            options: []
           },
           {
             label: '系列', prop: 'series', comp: 'x-select', clearable: false, required: true,
             text: 'label', value: 'prop',
-            options: []
+            options: [], slot: 'selects-formatters', formatters: []
           },
           {
             label: '值', prop: 'attr', comp: 'x-select', clearable: false, required: true,
             text: 'label', value: 'prop',
-            options: []
+            options: [], slot: 'selects-formatters', formatters: []
           },
           {
             label: '汇总方式', prop: 'summary', comp: 'x-select', clearable: false, required: true,
@@ -65,6 +83,7 @@ export default {
           { label: '字体大小', slot: 'font-sizes' }
         ],
         form: {
+          sort: '',
           categories: [],
           series: '',
           attr: '',
@@ -146,9 +165,21 @@ export default {
     },
     initDatasource () {
       if (!this.datasource) return
-      const columns = this.datasource.columns.filter(col => !TYPES.includes(col.type))
+      const columns = this.datasource.columns.filter(col => !TYPES.includes(col.type)).map(col => {
+        const column = { ...col }
+        column.formatters = ['原样']
+        if (col.comp === 'el-date-picker' || col.comp === 'ElDatePicker' || col.type === 'date') {
+          column.formatters = Object.keys(FORMATTERS)
+        }
+        return column
+      })
       this.dialog.formItems.slice(0, 3).forEach(it => it.options = columns)
       this.handleMakeChart()
+    },
+    handleCalcFormatters (item) {
+      const value = this.dialog.form[item.prop]
+      if (!value) return item.formatters = []
+      item.formatters = item.options.find(op => op.prop === value).formatters
     },
     async handleMakeChart () {
       this.dialog.visible = false
@@ -195,12 +226,16 @@ export default {
       const cates = []
       const otherCateSet = new Set()
       const seriesNames = []
+      const seriesFormatter = rich.series_formatter === '原样' ? null : FORMATTERS[rich.series_formatter]
+      const attrFormatter = rich.attr_formatter === '原样' ? null : FORMATTERS[rich.attr_formatter]
+      console.log(data)
       data.forEach(ele => {
-        let name = ele[seriesName] || '未知'
+        let name = (seriesFormatter ? seriesFormatter(ele[seriesName]) : ele[seriesName]) ?? '未知'
         if (limitSeries && seriesNames.length >= filter.series.limit && !seriesNames.includes(name)) {
           if (!filter.series.mergeOthers) return
           name = '其他'
         }
+        const value = attrFormatter ? attrFormatter(ele[attr]) : ele[attr]
         if (hasCategories) {
           let cate = cateAttrs.map(c => ele[c]).join('/') || '未知'
           if (limitCategories && cates.length >= filter.categories.limit && !cates.includes(cate)) {
@@ -212,11 +247,11 @@ export default {
           counts[cate] ||= {}
           if (!seriesNames.includes(name)) seriesNames.push(name)
           counts[cate][name] ||= []
-          counts[cate][name].push(ele[attr])
+          counts[cate][name].push(value)
         } else {
           if (!counts[name]) seriesNames.push(name)
           counts[name] ||= []
-          counts[name].push(ele[attr])
+          counts[name].push(value)
         }
       })
       const legend = hasCategories && !limitSeries ? [...new Set(data.map(e => e[seriesName]))] : seriesNames
@@ -308,8 +343,9 @@ export default {
         option.xAxis.axisLabel ||= { fontSize: this.fontSizes[0] }
         option.xAxis.axisLabel.formatter = this.labelSplitFormatter(this.option.charsLimitPerLine || 5)
       }
-      if (option.series?.[0]?.data.length) {
-        option.series[0].data.sort((a, b) => b.value - a.value)
+      if (this.series.sort && option.series?.[0]?.data.length) {
+        const symbol = this.series.sort === 'asc' ? 1 : -1
+        option.series[0].data.sort((a, b) => (a.value - b.value) * symbol)
         option.xAxis.data = option.series[0].data.map(e => e.name)
       }
       console.log(option)
@@ -340,6 +376,22 @@ export default {
       @cancel="dialog.visible = false"
     >
       <x-form :dialog>
+        <template #selects-formatters="{ item }">
+          <el-row :gutter="5" class="grid">
+            <el-col :span="12">
+              <x-select
+                v-model="dialog.form[item.prop]" v-bind="item"
+                @change="handleCalcFormatters(item)"
+              />
+            </el-col>
+            <el-col :span="12">
+              <x-select
+                v-model="dialog.form[item.prop + '_formatter']" :options="item.formatters"
+                placeholder="格式化方式"
+              />
+            </el-col>
+          </el-row>
+        </template>
         <template #grid>
           <el-row :gutter="5" class="grid">
             <el-col :span="12">
@@ -361,6 +413,10 @@ export default {
           </el-row>
         </template>
         <template #filter>
+          <label class="sorts flex-center">
+            排序方式
+            <x-radios v-model="dialog.form.sort" :options="SORTS" />
+          </label>
           <el-tabs v-model="filterType">
             <el-tab-pane label="分类" name="分类">
               <el-checkbox v-model="categories.isLimit">只使用前有限条记录</el-checkbox>
@@ -410,6 +466,9 @@ export default {
   .chart {
     height: 100%;
   }
+  :deep(.el-form-item) {
+    margin-bottom: 10px;
+  }
   .grid {
     .el-col {
       margin-bottom: 5px;
@@ -420,6 +479,13 @@ export default {
     }
     .el-input-number {
       width: calc(100% - 20px);
+    }
+  }
+  .sorts {
+    height: 32px;
+    justify-content: flex-start;
+    .el-radio-group {
+      margin-left: 20px;
     }
   }
   .settings {
