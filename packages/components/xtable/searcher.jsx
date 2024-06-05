@@ -26,9 +26,9 @@ export const COMPONENT_OPS = {
   'XSelect': ['eq', 'ne', 'in', 'notIn', 'special'],
   'XRadios': ['eq', 'ne', 'special'],
   'XCheckboxs': ['eq', 'ne', 'in', 'notIn', 'special'],
-  'ElDatePicker': ['eq', 'gt', 'gte', 'lt', 'lte', 'between', 'special'],
-  'ElInputNumber': ['eq', 'ne', 'gt', 'gte', 'lt', 'lte', 'between', 'special'],
-  'ElInput': ['eq', 'ne', 'like', 'notLike', 'between', 'special'],
+  'ElDatePicker': ['eq', 'gt', 'gte', 'lt', 'lte', 'between', 'in', 'notIn', 'special'],
+  'ElInputNumber': ['eq', 'ne', 'gt', 'gte', 'lt', 'lte', 'between', 'in', 'notIn', 'special'],
+  'ElInput': ['eq', 'ne', 'like', 'notLike', 'between', 'in', 'notIn', 'special'],
   'universal': ['eq', 'ne', 'gt', 'gte', 'lt', 'lte', 'in', 'like', 'notIn', 'notLike', 'between', 'special']
 }
 COMPONENT_OPS['x-select'] = COMPONENT_OPS['XSelect']
@@ -148,7 +148,7 @@ function calcConditionValueComponent (vm, condition) {
       )
     )
   }
-  const options = { multiple: false, 'collapse-tags': true }
+  const options = { multiple: false }
   if (condition.op === 'between') {
     return <div class="col-2">
       {
@@ -168,6 +168,9 @@ function calcConditionValueComponent (vm, condition) {
     </div>
   } else if (['in', 'notIn'].includes(condition.op)) {
     options.multiple = true
+    if (!condition.item.options) {
+      options.placeholder = '可以填写多项，用英文逗号分割'
+    }
     return component(options)
   } else if (condition.op === 'special') {
     return component({

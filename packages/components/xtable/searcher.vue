@@ -153,7 +153,7 @@ export default {
       return tree
     },
     parseCondition (condition) {
-      let { prop, op, value } = condition
+      let { item, component, prop, op, value } = condition
       const where = {}
       if (op === 'special') {
         const isNot = value.startsWith('NOT_')
@@ -174,9 +174,15 @@ export default {
       if (op === 'like' || op === 'notLike') {
         value = '%' + value + '%'
       }
-      where[prop] = {
-        [`[Op.${op}]`]: value
+      if (op === 'in' || op === 'notIn') {
+        if (!item.options) {
+          value = value.split(',')
+          if (component === 'ElInputNumber' || component === 'el-input-number' || condition.type === 'number') {
+            value = value.map(Number)
+          }
+        }
       }
+      where[prop] = { [`[Op.${op}]`]: value }
       return where
     },
     checkFilled (condition) {
