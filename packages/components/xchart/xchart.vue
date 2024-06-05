@@ -343,8 +343,8 @@ export default {
         option.xAxis.axisLabel ||= { fontSize: this.fontSizes[0] }
         option.xAxis.axisLabel.formatter = this.labelSplitFormatter(this.option.charsLimitPerLine || 5)
       }
-      if (this.series.sort && option.series?.[0]?.data.length) {
-        const symbol = this.series.sort === 'asc' ? 1 : -1
+      if (this.dialog.form.sort && option.series?.[0]?.data.length) {
+        const symbol = this.dialog.form.sort === 'asc' ? 1 : -1
         option.series[0].data.sort((a, b) => (a.value - b.value) * symbol)
         option.xAxis.data = option.series[0].data.map(e => e.name)
       }

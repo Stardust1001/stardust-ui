@@ -1517,8 +1517,8 @@ const us = /* @__PURE__ */ O(ds, [["render", cs]]), { format: ae, formatDate: Oo
           padding: [0, 60],
           ...e.legend
         }
-      }, e.xAxis && !((t = e.xAxis.axisLabel) != null && t.formatter) && ((s = e.xAxis).axisLabel || (s.axisLabel = { fontSize: this.fontSizes[0] }), e.xAxis.axisLabel.formatter = this.labelSplitFormatter(this.option.charsLimitPerLine || 5)), this.series.sort && ((i = (l = e.series) == null ? void 0 : l[0]) != null && i.data.length)) {
-        const o = this.series.sort === "asc" ? 1 : -1;
+      }, e.xAxis && !((t = e.xAxis.axisLabel) != null && t.formatter) && ((s = e.xAxis).axisLabel || (s.axisLabel = { fontSize: this.fontSizes[0] }), e.xAxis.axisLabel.formatter = this.labelSplitFormatter(this.option.charsLimitPerLine || 5)), this.dialog.form.sort && ((i = (l = e.series) == null ? void 0 : l[0]) != null && i.data.length)) {
+        const o = this.dialog.form.sort === "asc" ? 1 : -1;
         e.series[0].data.sort((a, r) => (a.value - r.value) * o), e.xAxis.data = e.series[0].data.map((a) => a.name);
       }
       console.log(e), (n = this.chart) == null || n.setOption(e, !0);
@@ -1532,12 +1532,12 @@ const us = /* @__PURE__ */ O(ds, [["render", cs]]), { format: ae, formatDate: Oo
   }
 }, Ye = () => {
   Ie((e) => ({
-    "826b6224": e.zoomedHeight,
-    "68e7c048": e.zoom
+    "0840f360": e.zoomedHeight,
+    "7f7af6ba": e.zoom
   }));
 }, Ge = Le.setup;
 Le.setup = Ge ? (e, t) => (Ye(), Ge(e, t)) : Ye;
-const be = (e) => (Re("data-v-c7fe843c"), e = e(), Pe(), e), fs = { class: "x-chart" }, gs = {
+const be = (e) => (Re("data-v-32f30786"), e = e(), Pe(), e), fs = { class: "x-chart" }, gs = {
   class: "chart",
   ref: "el"
 }, bs = /* @__PURE__ */ be(() => /* @__PURE__ */ F("span", null, "左", -1)), _s = /* @__PURE__ */ be(() => /* @__PURE__ */ F("span", null, "上", -1)), ys = /* @__PURE__ */ be(() => /* @__PURE__ */ F("span", null, "右", -1)), vs = /* @__PURE__ */ be(() => /* @__PURE__ */ F("span", null, "下", -1)), ws = { class: "sorts flex-center" };
@@ -1786,7 +1786,7 @@ function Ss(e, t, s, l, i, n) {
     [A, i.loading]
   ]);
 }
-const ks = /* @__PURE__ */ O(Le, [["render", Ss], ["__scopeId", "data-v-c7fe843c"]]), Cs = {
+const ks = /* @__PURE__ */ O(Le, [["render", Ss], ["__scopeId", "data-v-32f30786"]]), Cs = {
   name: "MobileXCheckboxs",
   inheritAttrs: !1,
   props: {
@@ -6801,7 +6801,7 @@ const { ElInfiniteScroll: lt } = window.ElementPlus || {}, pe = ".el-scrollbar__
   for (let s in Ee)
     e.directive(Ee[s].name, Ee[s]);
 }, Fo = {
-  version: "1.6.2",
+  version: "1.6.5",
   ...Te,
   ...gt,
   ...Jt,
