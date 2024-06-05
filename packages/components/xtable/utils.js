@@ -178,7 +178,7 @@ export function _chartHeight () {
 
 export function _chartOption () {
   const { table, chartOption } = this.$props
-  return chartOption || table?.chartOption || []
+  return chartOption || table?.chartOption  || this._attrs.chartOption || {}
 }
 
 export function _onKeywordsSearch () {

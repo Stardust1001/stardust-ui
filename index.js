@@ -3153,7 +3153,7 @@ function Ln() {
 }
 function Nn() {
   const { table: e, chartOption: t } = this.$props;
-  return t || (e == null ? void 0 : e.chartOption) || [];
+  return t || (e == null ? void 0 : e.chartOption) || this._attrs.chartOption || {};
 }
 function Un() {
   return this.onKeywordsSearch || this._listen["keywords-search"] ? (...e) => this._emit("keywords-search", ...e) : null;
@@ -5267,15 +5267,17 @@ const wt = /* @__PURE__ */ O(na, [["render", ua], ["__scopeId", "data-v-a9d96f8a
       await this.$nextTick(), this.$refs.chartRef.chart.resize();
     },
     async search() {
-      const { remote: e, remoteMethod: t, search: s } = this._chartOption;
-      if (s)
-        return s();
-      if (this.controller[t])
-        return this.controller[t]();
+      const { remote: e, params: t, remoteMethod: s, search: l } = this._chartOption;
+      if (l)
+        return l();
+      if (this.controller[s])
+        return this.controller[s]();
       if (e && this.controller.getSearchParams) {
-        const l = this.controller.getSearchParams(), i = await this.controller.search(l);
-        let n = ha.get(i, this.controller.listProp);
-        return n = this.controller.formatList(this.controller._defaultFormatList(n, i), i), n;
+        const i = { ...this.controller.table.query }, n = this.controller.getSearchParams({ page: 1, limit: -1, ...n });
+        Object.assign(this.controller.table.query, i);
+        const a = await this.controller.search(n);
+        let o = ha.get(a, this.controller.listProp);
+        return o = this.controller.formatList(this.controller._defaultFormatList(o, a), a), o;
       }
       return this._data;
     },
@@ -6795,7 +6797,7 @@ const { ElInfiniteScroll: lt } = window.ElementPlus || {}, pe = ".el-scrollbar__
   for (let s in Ee)
     e.directive(Ee[s].name, Ee[s]);
 }, Fo = {
-  version: "1.5.82",
+  version: "1.6.0",
   ...Te,
   ...gt,
   ...Kt,
