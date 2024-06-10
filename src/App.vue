@@ -6,23 +6,33 @@ import { baseTable, baseForm } from '../packages/utils/model.js'
 const table = {
   ...baseTable(),
   columns: [
-    { label: '姓名', prop: 'name' },
-    { label: '年龄', prop: 'age' }
+    { label: '水果', prop: 'fruit' },
+    { label: '年份', prop: 'year' },
+    { label: '价格', prop: 'price' }
+  ],
+  list: [
+    { fruit: '苹果', year: 2015, price: 43.3 },
+    { fruit: '苹果', year: 2016, price: 85.8 },
+    { fruit: '苹果', year: 2017, price: 93.7 },
+    { fruit: '葡萄', year: 2015, price: 83.1 },
+    { fruit: '葡萄', year: 2016, price: 73.4 },
+    { fruit: '葡萄', year: 2017, price: 55.1 },
+    { fruit: '西瓜', year: 2015, price: 86.4 },
+    { fruit: '西瓜', year: 2016, price: 65.2 },
+    { fruit: '西瓜', year: 2017, price: 82.5 },
+    { fruit: '香蕉', year: 2015, price: 72.4 },
+    { fruit: '香蕉', year: 2016, price: 53.9 },
+    { fruit: '香蕉', year: 2017, price: 39.1 },
   ]
 }
 
 const model = reactive({
-  visible: true,
   richtext: '',
   form: {
     ...baseForm(),
     formItems: [
-      {
-        label: '姓名', prop: 'name', required: true, directives: { domid: 'name' }
-      },
-      {
-        label: '年龄', prop: 'age', comp: 'ElInputNumber', min: 1, required: true,
-      },
+      { label: '姓名', prop: 'name', required: true, directives: { domid: 'name' } },
+      { label: '年龄', prop: 'age', comp: 'ElInputNumber', min: 1, required: true },
       {
         label: '教育经历', prop: 'educations', comp: 'x-array', required: true,
         items: [
@@ -38,7 +48,10 @@ const model = reactive({
           { label: '备注', prop: 'remark' },
         ]
       }
-    ],
+    ].map(ele => {
+      const { span = 12 } = ele
+      return Object.assign(ele, { span })
+    }),
     form: {
       educations: [
         { school: '11', start: '2024-05', end: '2024-06' },
@@ -58,11 +71,8 @@ window.model = model
 
 <template>
   <div style="padding: 10px;">
-    <x-form :form="model.form" label-width="100px"></x-form>
+    <x-form :form="model.form" :gutter="10" label-width="100px"></x-form>
     <el-button type="primary" @click="controller.handleSubmit">提交</el-button>
-    <x-table :table :controller></x-table>
-    <x-dialog v-model="model.visible">
-      <x-tinymce v-model="model.richtext" />
-    </x-dialog>
+    <x-table :table :controller hide-operates></x-table>
   </div>
 </template>
