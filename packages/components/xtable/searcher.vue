@@ -120,7 +120,7 @@ export default {
       return { where }
     },
     calcTree () {
-      const expression = this.expression.trim()
+      const expression = this.expression.trim().replaceAll('&&', 'and').replaceAll('||', 'or')
       if (!expression) return null
       const symbols = expression.split(/(\(|\)|\s)/).filter(p => p.trim())
 
