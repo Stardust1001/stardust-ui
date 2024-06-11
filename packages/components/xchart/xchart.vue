@@ -1,39 +1,13 @@
 <script>
 import { baseDialog } from '../../utils/model.js'
+import utils from './utils.js'
+import { TYPES, FORMATTERS, SORTS } from './constants.js'
 const { format, formatDate, formatTime } = StardustJs.dates
-const { funcs } = StardustBrowser
-
-const TYPES = ['index', 'selection', 'expand', 'radio', '_index']
-
-const FORMATTERS = {
-  '原样': v => v,
-  '年份': v => format(v, 'YYYY年'),
-  '月份': v => format(v, 'MM月'),
-  '年月': v => format(v, 'YYYY-MM'),
-  '年月日': v => format(v, 'YYYY-MM-DD'),
-  '时分': v => format(v, 'HH:mm'),
-  '时分秒': v => format(v, 'HH:mm:ss'),
-}
-
-const SORTS = [
-  { text: '原样', value: '' },
-  { text: '升序', value: 'asc' },
-  { text: '降序', value: 'desc' },
-]
 
 export default {
   name: 'XChart',
   props: {
-    height: {
-      type: String,
-      default: '150px'
-    },
-    option: {
-      type: Object,
-      default: () => ({})
-    },
-    updator: Object,
-    datasource: Object
+    ...utils.props
   },
   data () {
     return {
@@ -43,96 +17,23 @@ export default {
       SORTS,
       dialog: {
         ...baseDialog(),
-        formItems: [
-          {
-            label: '分类', prop: 'categories', comp: 'x-select', multiple: true, 'collapse-tags': true, clearable: false,
-            text: 'label', value: 'prop',
-            options: []
-          },
-          {
-            label: '系列', prop: 'series', comp: 'x-select', clearable: false, required: true,
-            text: 'label', value: 'prop',
-            options: [], slot: 'selects-formatters', formatters: []
-          },
-          {
-            label: '值', prop: 'attr', comp: 'x-select', clearable: false, required: true,
-            text: 'label', value: 'prop',
-            options: [], slot: 'selects-formatters', formatters: []
-          },
-          {
-            label: '汇总方式', prop: 'summary', comp: 'x-select', clearable: false, required: true,
-            options: [
-              { text: '求和', value: 'sum' },
-              { text: '平均', value: 'average' },
-              { text: '首个', value: 'first' },
-              { text: '最后一个', value: 'last' },
-              { text: '最大值', value: 'max' },
-              { text: '最小值', value: 'min' },
-              { text: '个数', value: 'count' },
-            ]
-          },
-          {
-            label: '图表类型', prop: 'type', comp: 'x-select', clearable: false, required: true,
-            options: [
-              { text: '柱状图', value: 'bar' },
-              { text: '折线图', value: 'line' }
-            ]
-          },
-          { label: '边距', slot: 'grid' },
-          { label: '数据筛选', slot: 'filter' },
-          { label: '字体大小', slot: 'font-sizes' }
-        ],
-        form: {
-          sort: '',
-          categories: [],
-          series: '',
-          attr: '',
-          summary: 'count',
-          type: 'bar',
-          grid: {
-            left: 30,
-            top: 40,
-            right: 20,
-            bottom: 30
-          },
-          filter: {
-            categories: { isLimit: false, limit: 10, mergeOthers: false },
-            series: { isLimit: false, limit: 10, mergeOthers: false }
-          },
-          fontSizes: [12, 12, 12]
-        }
+        formItems: utils.formItems,
+        form: utils.form
       }
     }
   },
   computed: {
-    zoomedHeight () {
-      return funcs.calcPixel(this.height) * this.zoom + 'px'
-    },
-    sidebarCollapse () {
-      return this.$store.app.sidebarCollapse
-    },
-    grid () {
-      return this.dialog.form.grid
-    },
-    categories () {
-      return this.dialog.form.filter.categories
-    },
-    series () {
-      return this.dialog.form.filter.series
-    },
-    fontSizes () {
-      return this.dialog.form.fontSizes
-    }
+    ...utils.computed
   },
   watch: {
+    option: {
+      handler: 'update',
+      immediate: true
+    },
     zoomedHeight () {
       this.$nextTick(() => {
         this.chart?.resize()
       })
-    },
-    option: {
-      handler: 'update',
-      immediate: true
     },
     sidebarCollapse () {
       const duration = (this.$store.app.toggleDuration || 0) * 1000 + 50
