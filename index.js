@@ -3520,7 +3520,7 @@ const W = {
       default: !1
     },
     labelWidth: {
-      type: Number | String,
+      type: String,
       default: "80px"
     },
     labelSlot: {
@@ -3566,9 +3566,9 @@ const W = {
   }
 }, tt = () => {
   Ie((e) => ({
-    "29b49346": e.labelWidth,
-    "404ac708": e._labelAlign,
-    "8812dfc2": e._valueAlign
+    "5cf44854": e.labelWidth,
+    "323265ec": e._labelAlign,
+    "0e4e598f": e._valueAlign
   }));
 }, st = Ue.setup;
 Ue.setup = st ? (e, t) => (tt(), st(e, t)) : tt;
@@ -3630,7 +3630,7 @@ function Gi(e, t, s, l, n, i) {
     _: 3
   }, 8, ["modelValue", "class"]);
 }
-const Qi = /* @__PURE__ */ O(Ue, [["render", Gi], ["__scopeId", "data-v-d406cfaf"]]), Zi = {
+const Qi = /* @__PURE__ */ O(Ue, [["render", Gi], ["__scopeId", "data-v-d4d685d3"]]), Zi = {
   name: "XLooper",
   props: {
     compName: String,
@@ -6845,7 +6845,7 @@ const { ElInfiniteScroll: it } = window.ElementPlus || {}, pe = ".el-scrollbar__
   for (let s in Ee)
     e.directive(Ee[s].name, Ee[s]);
 }, Na = {
-  version: "1.6.6",
+  version: "1.6.8",
   ...Te,
   ...ft,
   ...Jt,

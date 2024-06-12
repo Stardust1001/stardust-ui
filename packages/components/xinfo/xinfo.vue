@@ -15,7 +15,7 @@ export default {
       default: false
     },
     labelWidth: {
-      type: Number | String,
+      type: String,
       default: '80px'
     },
     labelSlot: {
