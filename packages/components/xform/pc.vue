@@ -15,7 +15,7 @@ export default {
       default: false
     },
     labelWidth: {
-      type: String,
+      type: Number | String,
       default: props => props.labelWidth || (props.dialog ? '100px' : '0px')
     },
     useCollapse: {
