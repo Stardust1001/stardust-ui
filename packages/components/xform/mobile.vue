@@ -11,7 +11,7 @@ export default {
       default: false
     },
     labelWidth: {
-      type: Number | String,
+      type: String,
       default: props => props.labelWidth || '80px'
     },
     useWhen: {
