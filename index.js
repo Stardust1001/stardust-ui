@@ -818,6 +818,7 @@ class bt extends gt {
   injectAddParams(t) {
   }
   injectUpdateParams(t) {
+    this.injectAddParams(t);
   }
   injectDeleteParams(t) {
   }
@@ -6845,7 +6846,7 @@ const { ElInfiniteScroll: it } = window.ElementPlus || {}, pe = ".el-scrollbar__
   for (let s in Ee)
     e.directive(Ee[s].name, Ee[s]);
 }, Ba = {
-  version: "1.6.9",
+  version: "1.7.0",
   ...Te,
   ...ft,
   ...Jt,

@@ -574,7 +574,9 @@ class CrudController extends BaseController {
 
   injectAddParams (params) { }
 
-  injectUpdateParams (params) { }
+  injectUpdateParams (params) {
+    this.injectAddParams(params)
+  }
 
   injectDeleteParams (params) { }
 
