@@ -31,7 +31,7 @@ const model = reactive({
   form: {
     ...baseForm(),
     formItems: [
-      { label: '姓名', prop: 'name', required: true, directives: { domid: 'name' } },
+      { label: '姓名', prop: 'name', required: true, directives: { domid: 'name' }, info: false },
       { label: '年龄', prop: 'age', comp: 'ElInputNumber', min: 1, required: true },
       {
         label: '教育经历', prop: 'educations', comp: 'x-array', required: true,
@@ -49,10 +49,11 @@ const model = reactive({
         ]
       }
     ].map(ele => {
-      const { span = 12 } = ele
-      return Object.assign(ele, { span })
+      const { span = 12, xs = 24 } = ele
+      return Object.assign(ele, { span, xs })
     }),
     form: {
+      name: 'Stardust',
       educations: [
         { school: '11', start: '2024-05', end: '2024-06' },
         { school: '22', start: '2024-06', end: '2024-07' }

@@ -9,6 +9,10 @@ export default {
       type: Boolean,
       default: true
     },
+    info: {
+      type: Boolean,
+      default: false
+    },
 
     // 接收下面这几个属性，为了避免这些属性被绑定到当前组件根节点上，在下面会进行过滤传给子组件
     comp: String,
