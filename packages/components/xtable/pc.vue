@@ -223,6 +223,9 @@ export default {
               >
                 {{ calcLink(scope.row, column) }}
               </router-link>
+              <a :href="`tel:${scope.row[column.prop]}`" v-else-if="column.slot === '$phone'">
+                {{ scope.row[column.prop] }}
+              </a>
               <el-icon v-else-if="column.slot === '$icon'" class="cell-icon">
                 <component :is="scope.row[column.prop]" />
               </el-icon>

@@ -104,6 +104,9 @@ export default {
             >
               {{ calcLink(data, field) }}
             </router-link>
+            <a :href="`tel:${data[field.prop]}`" v-else-if="field.slot === '$phone'">
+              {{ data[field.prop] }}
+            </a>
             <slot
               v-else-if="field.slot"
               :name="field.slot"
