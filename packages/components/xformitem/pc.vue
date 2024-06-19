@@ -13,7 +13,7 @@ export default {
       type: Boolean,
       default: false
     },
-    info: {
+    viewonly: {
       type: Boolean,
       default: false
     },

@@ -26,7 +26,7 @@ export const compRender = (vm) => {
 
 export const PcItem = (vm) => {
   const { $props, $attrs, attrs, $emit, $slots } = vm
-  const { modelValue, info, slot, showTooltip, placeholder } = $props
+  const { modelValue, viewonly, slot, showTooltip, placeholder } = $props
 
   let directives
   if (attrs.directives && typeof attrs.directives === 'object') {
@@ -41,7 +41,7 @@ export const PcItem = (vm) => {
     let inner = null
     if (slot) {
       inner = $slots.default()
-    } else if (info) {
+    } else if (viewonly) {
       inner = modelValue
     } else if (showTooltip) {
       inner = (
@@ -73,7 +73,7 @@ export const PcItem = (vm) => {
 
 export const MobileItem = (vm) => {
   const { $props, $attrs, attrs, $emit, $slots, mValue } = vm
-  const { info, slot, comp, modelValue } = $props
+  const { viewonly, slot, comp, modelValue } = $props
 
   let directives
   if (attrs.directives && typeof attrs.directives === 'object') {
@@ -96,14 +96,14 @@ export const MobileItem = (vm) => {
         input: () => {
           if (slot && $attrs.label) {
             return $slots.default()
-          } else if (info) {
+          } else if (viewonly) {
             return modelValue
           }
           return compRender(vm)
         }
       })
     } else {
-      if (info) {
+      if (viewonly) {
         Object.assign(opts, { readonly: true })
       }
       vnode = h(resolveComponent('van-field'), Object.assign(opts, attrs))

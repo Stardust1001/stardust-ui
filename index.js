@@ -2762,7 +2762,7 @@ const Oe = (e) => {
     $slots: i
   } = e, {
     modelValue: a,
-    info: o,
+    viewonly: o,
     slot: r,
     showTooltip: m,
     placeholder: h
@@ -2814,7 +2814,7 @@ const Oe = (e) => {
     $slots: i,
     mValue: a
   } = e, {
-    info: o,
+    viewonly: o,
     slot: r,
     comp: m,
     modelValue: h
@@ -2849,7 +2849,7 @@ const Oe = (e) => {
       type: Boolean,
       default: !0
     },
-    info: {
+    viewonly: {
       type: Boolean,
       default: !1
     },
@@ -2913,7 +2913,7 @@ const Oe = (e) => {
       type: Boolean,
       default: !1
     },
-    info: {
+    viewonly: {
       type: Boolean,
       default: !1
     },
@@ -2969,11 +2969,11 @@ const Oe = (e) => {
   }
 }, Ge = () => {
   Ie((e) => ({
-    "2629898f": e.width
+    "70706ade": e.width
   }));
 }, Qe = Le.setup;
 Le.setup = Qe ? (e, t) => (Ge(), Qe(e, t)) : Ge;
-const Vn = /* @__PURE__ */ O(Le, [["__scopeId", "data-v-d9e5ed63"]]), Ze = /* @__PURE__ */ Object.assign({}), En = {
+const Vn = /* @__PURE__ */ O(Le, [["__scopeId", "data-v-dba34d65"]]), Ze = /* @__PURE__ */ Object.assign({}), En = {
   name: "MobileXIcon",
   props: {
     name: String
@@ -6867,7 +6867,7 @@ const { ElInfiniteScroll: it } = window.ElementPlus || {}, pe = ".el-scrollbar__
   for (let s in Ee)
     e.directive(Ee[s].name, Ee[s]);
 }, Na = {
-  version: "1.7.2",
+  version: "1.7.5",
   ...Te,
   ...ft,
   ...Jt,
