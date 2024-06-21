@@ -1,7 +1,8 @@
 
 const remoteSearch = async (restful, query, vm) => {
-  if (vm.loading) return
+  if (vm.loading || vm.options._loading) return
   vm.loading = true
+  vm.options._loading = true
   const keywords = query?.trim()
   const { text = 'text', value = 'value', labelTexts, params = {} } = vm
   params.attributes = [...new Set(params.attributes || [...(labelTexts || []), text, value])]
@@ -21,6 +22,7 @@ const remoteSearch = async (restful, query, vm) => {
   const data = await restful.search(vm.modelName, params)
   vm.options.splice(0, vm.options.length, ...data.data)
   vm.loading = false
+  vm.options._loading = false
 }
 
 const calcMainLabel = (option, vm) => {

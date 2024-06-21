@@ -4120,15 +4120,15 @@ function Fl(e, t, s, l, n, i) {
 }
 const Tl = /* @__PURE__ */ O(jl, [["render", Fl]]), qe = async (e, t, s) => {
   var m;
-  if (s.loading)
+  if (s.loading || s.options._loading)
     return;
-  s.loading = !0;
+  s.loading = !0, s.options._loading = !0;
   const l = t == null ? void 0 : t.trim(), { text: n = "text", value: i = "value", labelTexts: o, params: a = {} } = s;
   a.attributes = [...new Set(a.attributes || [...o || [], n, i])], a.page || (a.page = 1), a.limit || (a.limit = 100), l && (a.where = a.where || {}, (o == null ? void 0 : o.length) > 1 ? a.where["[Op.or]"] = o.map((h) => ({
     [h]: { "[Op.like]": `%${l}%` }
   })) : ((m = a.where)[n] || (m[n] = {}), a.where[n]["[Op.like]"] = `%${l}%`));
   const r = await e.search(s.modelName, a);
-  s.options.splice(0, s.options.length, ...r.data), s.loading = !1;
+  s.options.splice(0, s.options.length, ...r.data), s.loading = !1, s.options._loading = !1;
 }, je = (e, t) => !e || typeof e != "object" ? e : !t.labelTexts || !t.labelTexts.length ? e[t.text] : t.labelTexts.map((l) => e[l])[0], Fe = (e, t) => !e || typeof e != "object" || !t.labelTexts || t.labelTexts.length < 2 ? "" : "(" + t.labelTexts.map((l) => e[l]).slice(1).join(" - ") + ")", Dl = {
   name: "MobileXSelect",
   inheritAttrs: !1,
@@ -6870,7 +6870,7 @@ const { ElInfiniteScroll: it } = window.ElementPlus || {}, pe = ".el-scrollbar__
   for (let s in Ee)
     e.directive(Ee[s].name, Ee[s]);
 }, Na = {
-  version: "1.7.6",
+  version: "1.7.7",
   ...Te,
   ...ft,
   ...Jt,
