@@ -9,8 +9,14 @@ const remoteSearch = async (restful, query, vm) => {
   params.limit ||= 100
   if (keywords) {
     params.where = params.where || {}
-    params.where[text] = params.where[text] || {}
-    params.where[text]['[Op.like]'] = `%${keywords}%`
+    if (labelTexts?.length > 1) {
+      params.where['[Op.or]'] = labelTexts.map(t => ({
+        [t]: { '[Op.like]': `%${keywords}%` }
+      }))
+    } else {
+      params.where[text] ||= {}
+      params.where[text]['[Op.like]'] = `%${keywords}%`
+    }
   }
   const data = await restful.search(vm.modelName, params)
   vm.options.splice(0, vm.options.length, ...data.data)
