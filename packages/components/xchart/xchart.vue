@@ -2,7 +2,8 @@
 import { baseDialog } from '../../utils/model.js'
 import utils from './utils.js'
 import { TYPES, FORMATTERS, SORTS } from './constants.js'
-const { format, formatDate, formatTime } = StardustJs.dates
+const { StardustEcharts } = StardustBrowser
+window.echarts.registerTransform(StardustEcharts.grouping)
 
 export default {
   name: 'XChart',
@@ -86,7 +87,7 @@ export default {
       this.dialog.visible = false
       this.loading = true
       const rich = { ...this.dialog.form }
-      if (!rich.filter?.categories.isLimit) rich.filter.categories.mergeOthers = false
+      if (!rich.filter?.category.isLimit) rich.filter.category.mergeOthers = false
       if (!rich.filter?.series.isLimit) rich.filter.series.mergeOthers = false
       let list = this.datasource.list
       if (this.datasource.search) {
@@ -96,160 +97,53 @@ export default {
       this.setRich(rich)
       this.loading = false
     },
-    calcSummary (values, summary, count) {
-      let value
-      if (summary === 'sum' || summary === 'average') {
-        value = values.reduce((sum, v) => sum + v, 0).toFixed(3) * 1
-      }
-      if (summary === 'count') {
-        value = values.length
-      } else if (summary === 'average') {
-        if (values.length) value = (value / (count || values.length)).toFixed(3) * 1
-        else value = undefined
-      } else if (summary === 'first') {
-        value = values[0]
-      } else if (summary === 'last') {
-        value = values[values.length - 1]
-      } else if (summary === 'max' || summary === 'min') {
-        value = Math[summary].apply(null, values)
-      }
-      return value
-    },
     setRich (rich) {
-      const { categories, data, attr, summary, type, filter, grid, fontSizes } = rich
-      const opts = {}
-      const hasCategories = Array.isArray(categories) && categories.length || categories?.data?.length
-      const cateAttrs = hasCategories && (Array.isArray(categories) ? categories : categories.data)
-      const seriesName = typeof rich.series === 'string' ? rich.series : rich.series.data
-      const limitCategories = filter?.categories.limit > -1
-      const limitSeries = filter?.series.limit > -1
-      const counts = {}
-      const cates = []
-      const otherCateSet = new Set()
-      const seriesNames = []
-      const seriesFormatter = rich.series_formatter === '原样' ? null : FORMATTERS[rich.series_formatter]
-      const attrFormatter = rich.attr_formatter === '原样' ? null : FORMATTERS[rich.attr_formatter]
-      console.log(data)
-      data.forEach(ele => {
-        let name = (seriesFormatter ? seriesFormatter(ele[seriesName]) : ele[seriesName]) ?? '未知'
-        if (limitSeries && seriesNames.length >= filter.series.limit && !seriesNames.includes(name)) {
-          if (!filter.series.mergeOthers) return
-          name = '其他'
-        }
-        const value = attrFormatter ? attrFormatter(ele[attr]) : ele[attr]
-        if (hasCategories) {
-          let cate = cateAttrs.map(c => ele[c]).join('/') || '未知'
-          if (limitCategories && cates.length >= filter.categories.limit && !cates.includes(cate)) {
-            if (!filter.categories.mergeOthers) return
-            otherCateSet.add(cate)
-            cate = '其他'
-          }
-          if (!counts[cate]) cates.push(cate)
-          counts[cate] ||= {}
-          if (!seriesNames.includes(name)) seriesNames.push(name)
-          counts[cate][name] ||= []
-          counts[cate][name].push(value)
-        } else {
-          if (!counts[name]) seriesNames.push(name)
-          counts[name] ||= []
-          counts[name].push(value)
-        }
-      })
-      const legend = hasCategories && !limitSeries ? [...new Set(data.map(e => e[seriesName]))] : seriesNames
-      if (hasCategories) {
-        for (let cate in counts) {
-          for (let name in counts[cate]) {
-            counts[cate][name] = this.calcSummary(
-              counts[cate][name],
-              summary,
-              limitCategories && cate === '其他' ? (counts[cate][name].length / otherCateSet.size) : counts[cate][name].length
-            )
-          }
-        }
-      } else {
-        for (let name in counts) {
-          counts[name] = this.calcSummary(counts[name], summary)
-        }
+      const { data, category, series, value, summary, chartType, filter, grid, fontSizes } = rich
+      if (!series || !value) return
+      const dimensions = this.datasource.columns.map(col => col.prop)
+      const source = data.map(ele => dimensions.map(d => ele[d]))
+      const params = {
+        dimensions,
+        source,
+        category,
+        series,
+        value,
+        summary,
+        chartType
       }
-      let _legend = legend
-      if (typeof rich.series === 'object' && rich.series.formatter) {
-        _legend = legend.map(l => rich.series.formatter(l))
-      }
-      let series = []
-      if (hasCategories) {
-        series = legend.map((name, i) => {
-          return {
-            name: _legend[i],
-            type,
-            label: { show: true, position: 'top' },
-            data: cates.map(c => ({ name: c, value: counts[c][name] }))
-          }
-        })
-      } else {
-        // series = legend.map((name, i) => {
-        //   return {
-        //     name: _legend[i],
-        //     type,
-        //     label: { show: true, position: 'top' },
-        //     data: legend.map(n => ({ name: n, value: n === name ? counts[name] : undefined }))
-        //   }
-        // })
-        series = [
-          {
-            type,
-            colorBy: 'data',
-            label: { show: true, position: 'top', fontSize: fontSizes[2] },
-            data: legend.map(name => {
-              return { name, value: counts[name] }
-            })
-          }
+      const opts = StardustEcharts.generateOptions(params)
+      const option = {
+        dataset: [
+          { dimensions, source }
         ]
       }
-      Object.assign(opts, {
-        legend: { data: _legend },
-        xAxis: {
-          type: 'category',
-          data: hasCategories
-            ? (!categories.formatter ? cates : cates.map(c => categories.formatter(c)))
-            : (!seriesName.formatter ? seriesNames : seriesNames.map(c => seriesName.formatter(c)))
-        },
-        yAxis: {
-          type: 'value',
-          axisLabel: {
-            fontSize: fontSizes[1]
-          }
-        },
-        series
-      }, this.option, { grid })
-      this.update(opts)
+      option.dataset = [option.dataset[0], ...opts.dataset]
+      option.series = opts.series
+      this.update(option)
     },
-    update (option = {}) {
+    update (opts = {}) {
       this.zoom = 1 / (parseFloat(document.documentElement.style.zoom) || 1)
-      option = {
+      const option = {
         tooltip: {},
         toolbox: { feature: { saveAsImage: {} } },
+        xAxis: { type: 'category' },
+        yAxis: {},
         ...this.option,
-        ...option,
+        ...opts,
         grid: {
           left: 30, top: 40, right: 20, bottom: 20,
           ...this.option.grid,
-          ...option.grid
+          ...opts.grid
         },
         legend: {
           padding: [0, 60],
-          ...option.legend
+          ...opts.legend
         }
       }
       if (option.xAxis && !option.xAxis.axisLabel?.formatter) {
         option.xAxis.axisLabel ||= { fontSize: this.fontSizes[0] }
         option.xAxis.axisLabel.formatter = this.labelSplitFormatter(this.option.charsLimitPerLine || 5)
       }
-      if (this.dialog.form.sort && option.series?.[0]?.data.length) {
-        const symbol = this.dialog.form.sort === 'asc' ? 1 : -1
-        option.series[0].data.sort((a, b) => (a.value - b.value) * symbol)
-        option.xAxis.data = option.series[0].data.map(e => e.name)
-      }
-      console.log(option)
       this.chart?.setOption(option, true)
     },
     labelSplitFormatter (limit) {
@@ -320,11 +214,11 @@ export default {
           </label>
           <el-tabs v-model="filterType">
             <el-tab-pane label="分类" name="分类">
-              <el-checkbox v-model="categories.isLimit">只使用前有限条记录</el-checkbox>
-              <div v-show="categories.isLimit">
+              <el-checkbox v-model="category.isLimit">只使用前有限条记录</el-checkbox>
+              <div v-show="category.isLimit">
                 记录条数
-                <el-input-number v-model="categories.limit" :min="0" :precision="0" />
-                <el-checkbox v-model="categories.mergeOthers">合并剩余项为其他</el-checkbox>
+                <el-input-number v-model="category.limit" :min="0" :precision="0" />
+                <el-checkbox v-model="category.mergeOthers">合并剩余项为其他</el-checkbox>
               </div>
             </el-tab-pane>
             <el-tab-pane label="系列" name="系列">

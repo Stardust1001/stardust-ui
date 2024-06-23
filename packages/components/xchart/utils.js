@@ -15,19 +15,18 @@ export const props = {
 
 export const formItems = [
   {
-    label: '分类', prop: 'categories', comp: 'x-select', multiple: true, 'collapse-tags': true, clearable: false,
-    text: 'label', value: 'prop',
-    options: []
+    label: '分类', prop: 'category', comp: 'x-select',
+    text: 'label', value: 'prop', options: []
   },
   {
     label: '系列', prop: 'series', comp: 'x-select', clearable: false, required: true,
-    text: 'label', value: 'prop',
-    options: [], slot: 'selects-formatters', formatters: []
+    text: 'label', value: 'prop', options: [],
+    slot: 'selects-formatters', formatters: []
   },
   {
-    label: '值', prop: 'attr', comp: 'x-select', clearable: false, required: true,
-    text: 'label', value: 'prop',
-    options: [], slot: 'selects-formatters', formatters: []
+    label: '值', prop: 'value', comp: 'x-select', clearable: false, required: true,
+    text: 'label', value: 'prop', options: [],
+    slot: 'selects-formatters', formatters: []
   },
   {
     label: '汇总方式', prop: 'summary', comp: 'x-select', clearable: false, required: true,
@@ -42,10 +41,11 @@ export const formItems = [
     ]
   },
   {
-    label: '图表类型', prop: 'type', comp: 'x-select', clearable: false, required: true,
+    label: '图表类型', prop: 'chartType', comp: 'x-select', clearable: false, required: true,
     options: [
       { text: '柱状图', value: 'bar' },
-      { text: '折线图', value: 'line' }
+      { text: '折线图', value: 'line' },
+      { text: '饼图', value: 'pie' },
     ]
   },
   { label: '边距', slot: 'grid' },
@@ -55,11 +55,11 @@ export const formItems = [
 
 export const form = {
   sort: '',
-  categories: [],
+  category: '',
   series: '',
-  attr: '',
+  value: '',
   summary: 'count',
-  type: 'bar',
+  chartType: 'bar',
   grid: {
     left: 30,
     top: 40,
@@ -67,7 +67,7 @@ export const form = {
     bottom: 30
   },
   filter: {
-    categories: { isLimit: false, limit: 10, mergeOthers: false },
+    category: { isLimit: false, limit: 10, mergeOthers: false },
     series: { isLimit: false, limit: 10, mergeOthers: false }
   },
   fontSizes: [12, 12, 12]
@@ -85,8 +85,8 @@ export function grid () {
   return this.dialog.form.grid
 }
 
-export function categories () {
-  return this.dialog.form.filter.categories
+export function category () {
+  return this.dialog.form.filter.category
 }
 
 export function series () {
@@ -105,7 +105,7 @@ export default {
     zoomedHeight,
     sidebarCollapse,
     grid,
-    categories,
+    category,
     series,
     fontSizes
   }
