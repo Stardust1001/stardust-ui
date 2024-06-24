@@ -3,7 +3,7 @@ import { baseDialog } from '../../utils/model.js'
 import utils from './utils.js'
 import { TYPES, FORMATTERS, SORTS } from './constants.js'
 const { StardustEcharts } = StardustBrowser
-window.echarts.registerTransform(StardustEcharts.grouping)
+window.echarts?.registerTransform(StardustEcharts.grouping)
 
 export default {
   name: 'XChart',
