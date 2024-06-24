@@ -44,7 +44,7 @@ export default {
     <el-row :gutter="$attrs.gutter" :justify="$attrs.justify" :align="$attrs.align" :tag="$attrs.tag">
       <el-col
         v-for="(item, index) in _visibleItems"
-        :key="index"
+        :key="item.prop"
         :span="item.span" :offset="item.offset" :tag="item.tag"
         :xs="item.xs" :sm="item.sm" :md="item.md" :lg="item.lg" :xl="item.xl"
       >

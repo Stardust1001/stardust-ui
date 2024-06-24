@@ -23,7 +23,7 @@ export function _model () {
 export function _items () {
   const { hideLabels, dialog, form } = this.$props
   const its = this.items || (dialog || form).formItems
-  return its.map(it => {
+  return its.map((it, index) => {
     delete it.visible
     if (!hideLabels) {
       return it
@@ -31,7 +31,8 @@ export function _items () {
     return {
       ...it,
       label: ' ',
-      _label: it.label
+      _label: it.label,
+      prop: it.prop || ('_' + index)
     }
   }).filter(it => {
     if (!this.dialog) {
