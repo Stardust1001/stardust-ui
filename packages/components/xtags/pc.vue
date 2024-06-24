@@ -23,6 +23,7 @@ export default {
     <el-tag
       v-for="(item, index) in _data" :key="index"
       v-bind="{ ...$attrs, item }"
+      :type="item.type || $attrs.type"
       @close="$emit('close', item[text], index)"
     >
       {{ item[text] }}
