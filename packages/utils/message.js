@@ -74,7 +74,7 @@ export const Prompt = options => {
     inputPattern: /\w+/,
     inputErrorMessage: '请输入',
     ...options
-  })
+  }).then(({ value }) => value).catch(() => '')
 }
 
 for (let type of ['success', 'warning', 'info', 'error', 'primary', 'loading', 'fail', 'html']) {
