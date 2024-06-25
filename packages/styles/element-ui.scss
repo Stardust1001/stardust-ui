@@ -59,10 +59,10 @@
     }
   }
   &.no-footer {
-    .el-dialog__body {
+    & > .el-dialog__body {
       padding-bottom: 15px;
     }
-    .el-dialog__footer {
+    & > .el-dialog__footer {
       display: none;
     }
   }
