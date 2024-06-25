@@ -9,7 +9,8 @@ import {
 import {
   Message,
   Notify,
-  Confirm
+  Confirm,
+  Prompt
 } from './message.js'
 
 import middlewares from './middlewares.js'
@@ -41,6 +42,7 @@ export {
   Message,
   Notify,
   Confirm,
+  Prompt,
   baseForm,
   baseTable,
   baseDialog,
@@ -64,6 +66,7 @@ export default {
   Message,
   Notify,
   Confirm,
+  Prompt,
   middlewares,
   baseForm,
   baseTable,

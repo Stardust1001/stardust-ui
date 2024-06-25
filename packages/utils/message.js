@@ -66,6 +66,17 @@ export const Confirm = options => {
   })
 }
 
+export const Prompt = options => {
+  if (isMobile) throw '暂不支持移动端 Prompt'
+  return ElMessageBox.prompt(options.message, options.title, {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    inputPattern: /\w+/,
+    inputErrorMessage: '请输入',
+    ...options
+  })
+}
+
 for (let type of ['success', 'warning', 'info', 'error', 'primary', 'loading', 'fail', 'html']) {
   Message[type] = Message[type[0]] = options => {
     const opts = typeof options !== 'string' ? options : { message: options }
@@ -81,5 +92,6 @@ for (let type of ['success', 'warning', 'info', 'error', 'primary', 'loading', '
 export default {
   Message,
   Notify,
-  Confirm
+  Confirm,
+  Prompt
 }

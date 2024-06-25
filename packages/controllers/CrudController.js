@@ -1,6 +1,6 @@
 import { watch, nextTick } from 'vue'
 import BaseController from './BaseController.js'
-import { Message, Confirm } from '../utils/message.js'
+import { Message, Confirm, Prompt } from '../utils/message.js'
 const { funcs, highdict, dates } = StardustJs
 const { file, excel } = StardustBrowser
 
