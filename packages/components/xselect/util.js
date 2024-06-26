@@ -4,14 +4,14 @@ const remoteSearch = async (restful, query, vm) => {
   vm.loading = true
   vm.options._loading = true
   const keywords = query?.trim()
-  const { text = 'text', value = 'value', labelTexts, params = {} } = vm
+  const { text = 'text', value = 'value', labelTexts, $attrs, params = {} } = vm
   params.attributes = [...new Set(params.attributes || [...(labelTexts || []), text, value])]
   params.page ||= 1
   params.limit ||= 20
   params.where ||= {}
   const ors = []
-  if (vm.modelValue !== undefined && vm.modelValue !== '') {
-    ors.push({ [text]: vm.modelValue })
+  if ($attrs.modelValue !== undefined && $attrs.modelValue !== '') {
+    ors.push({ [text]: $attrs.modelValue })
   }
   if (keywords) {
     if (labelTexts?.length > 1) {
