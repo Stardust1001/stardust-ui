@@ -4092,7 +4092,7 @@ const Rl = /* @__PURE__ */ O(Dl, [["render", Il]]), Ue = async (e, t, s) => {
   const l = t == null ? void 0 : t.trim(), { text: n = "text", value: i = "value", labelTexts: o, $attrs: a, params: r = {} } = s;
   r.attributes = [...new Set(r.attributes || [...o || [], n, i])], r.page || (r.page = 1), r.limit || (r.limit = 20), r.where || (r.where = {});
   const h = [];
-  a.modelValue !== void 0 && a.modelValue !== "" && h.push({ [n]: a.modelValue }), l && ((o == null ? void 0 : o.length) > 1 ? h.push(...o.map((S) => ({
+  a.modelValue !== void 0 && a.modelValue !== "" && h.push({ [i]: a.modelValue }), l && ((o == null ? void 0 : o.length) > 1 ? h.push(...o.map((S) => ({
     [S]: { "[Op.like]": `%${l}%` }
   }))) : h.push({ [n]: { "[Op.like]": `%${l}%` } })), h.length && (r.where["[Op.or]"] = h);
   const p = await e.search(s.modelName, r);
@@ -6839,7 +6839,7 @@ const { ElInfiniteScroll: nt } = window.ElementPlus || {}, pe = ".el-scrollbar__
   for (let s in Ve)
     e.directive(Ve[s].name, Ve[s]);
 }, za = {
-  version: "1.8.6",
+  version: "1.8.7",
   ...Te,
   ...gt,
   ...Yt,
