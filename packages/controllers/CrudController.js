@@ -123,7 +123,8 @@ class CrudController extends BaseController {
       '_trimForm',
       '_validateForm',
       '_checkAllNone',
-      '_showError'
+      '_showError',
+      '_focusDialogInput'
     ]
   }
 
@@ -182,6 +183,7 @@ class CrudController extends BaseController {
     await nextTick()
     await funcs.sleep(50)
     this._clearValidate()
+    this._focusDialogInput()
     this.afterAdd()
   }
 
@@ -204,6 +206,7 @@ class CrudController extends BaseController {
       })
       await nextTick()
       this.dialog.formRef?.validate().catch(Function())
+      this._focusDialogInput()
     }
     this.afterEdit({ $index, row })
   }
@@ -771,6 +774,17 @@ class CrudController extends BaseController {
 
   _showError (err) {
     Message(typeof err === 'object' ? (err.message || err.err || err.toString()) : err)
+  }
+
+  _focusDialogInput () {
+    const node = document.querySelector('.el-dialog')
+    let inputs = [...node.querySelectorAll('input')].filter(i => !i.disabled && !i.readonly)
+    let input = inputs.find(i => i.type === 'text' || i.type === 'number')
+    if (!input) {
+      inputs = [...node.querySelectorAll('textarea')].filter(i => !i.disabled && !i.readonly)
+      input = inputs[0]
+    }
+    input?.focus()
   }
 
   get _isMobile () {

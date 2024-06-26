@@ -543,7 +543,8 @@ class _t extends bt {
       "_trimForm",
       "_validateForm",
       "_checkAllNone",
-      "_showError"
+      "_showError",
+      "_focusDialogInput"
     ];
   }
   onInit() {
@@ -578,7 +579,7 @@ class _t extends bt {
     await this.beforeAdd() && (this._resetForm(), Object.assign(this.dialog, {
       visible: !0,
       isEditing: !1
-    }), await ie(), await We.sleep(50), this._clearValidate(), this.afterAdd());
+    }), await ie(), await We.sleep(50), this._clearValidate(), this._focusDialogInput(), this.afterAdd());
   }
   async handleEdit({ $index: t, row: s }) {
     var l;
@@ -591,7 +592,7 @@ class _t extends bt {
         ...this.dialog.form,
         ...s
       }
-    }), await ie(), (l = this.dialog.formRef) == null || l.validate().catch(Function())), this.afterEdit({ $index: t, row: s }));
+    }), await ie(), (l = this.dialog.formRef) == null || l.validate().catch(Function()), this._focusDialogInput()), this.afterEdit({ $index: t, row: s }));
   }
   async handleDelete({ $index: t, row: s }) {
     if (this.table.loading || !await this.beforeDelete({ $index: t, row: s }) || !await Q.w({ message: "确定要删除吗？", title: "警告" }))
@@ -975,6 +976,11 @@ class _t extends bt {
   }
   _showError(t) {
     N(typeof t == "object" ? t.message || t.err || t.toString() : t);
+  }
+  _focusDialogInput() {
+    const t = document.querySelector(".el-dialog");
+    let s = [...t.querySelectorAll("input")].filter((n) => !n.disabled && !n.readonly), l = s.find((n) => n.type === "text" || n.type === "number");
+    l || (s = [...t.querySelectorAll("textarea")].filter((n) => !n.disabled && !n.readonly), l = s[0]), l == null || l.focus();
   }
   get _isMobile() {
     var s, l;
@@ -6832,7 +6838,7 @@ const { ElInfiniteScroll: nt } = window.ElementPlus || {}, pe = ".el-scrollbar__
   for (let s in Ve)
     e.directive(Ve[s].name, Ve[s]);
 }, za = {
-  version: "1.8.2",
+  version: "1.8.3",
   ...Te,
   ...gt,
   ...Yt,
