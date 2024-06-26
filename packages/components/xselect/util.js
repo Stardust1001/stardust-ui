@@ -7,18 +7,22 @@ const remoteSearch = async (restful, query, vm) => {
   const { text = 'text', value = 'value', labelTexts, params = {} } = vm
   params.attributes = [...new Set(params.attributes || [...(labelTexts || []), text, value])]
   params.page ||= 1
-  params.limit ||= 100
+  params.limit ||= 20
+  params.where ||= {}
+  const ors = []
+  if (vm.modelValue !== undefined && vm.modelValue !== '') {
+    ors.push({ [text]: vm.modelValue })
+  }
   if (keywords) {
-    params.where = params.where || {}
     if (labelTexts?.length > 1) {
-      params.where['[Op.or]'] = labelTexts.map(t => ({
+      ors.push(...labelTexts.map(t => ({
         [t]: { '[Op.like]': `%${keywords}%` }
-      }))
+      })))
     } else {
-      params.where[text] ||= {}
-      params.where[text]['[Op.like]'] = `%${keywords}%`
+      ors.push({ [text]: { '[Op.like]': `%${keywords}%` } })
     }
   }
+  if (ors.length) params.where['[Op.or]'] = ors
   const data = await restful.search(vm.modelName, params)
   vm.options.splice(0, vm.options.length, ...data.data)
   vm.loading = false

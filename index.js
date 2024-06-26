@@ -4086,16 +4086,17 @@ function Il(e, t, s, l, n, i) {
   }, 16, ["modelValue", "readonly", "onClick"]);
 }
 const Rl = /* @__PURE__ */ O(Dl, [["render", Il]]), Ue = async (e, t, s) => {
-  var p;
   if (s.loading || s.options._loading)
     return;
   s.loading = !0, s.options._loading = !0;
   const l = t == null ? void 0 : t.trim(), { text: n = "text", value: i = "value", labelTexts: a, params: o = {} } = s;
-  o.attributes = [...new Set(o.attributes || [...a || [], n, i])], o.page || (o.page = 1), o.limit || (o.limit = 100), l && (o.where = o.where || {}, (a == null ? void 0 : a.length) > 1 ? o.where["[Op.or]"] = a.map((h) => ({
+  o.attributes = [...new Set(o.attributes || [...a || [], n, i])], o.page || (o.page = 1), o.limit || (o.limit = 20), o.where || (o.where = {});
+  const r = [];
+  s.modelValue !== void 0 && s.modelValue !== "" && r.push({ [n]: s.modelValue }), l && ((a == null ? void 0 : a.length) > 1 ? r.push(...a.map((h) => ({
     [h]: { "[Op.like]": `%${l}%` }
-  })) : ((p = o.where)[n] || (p[n] = {}), o.where[n]["[Op.like]"] = `%${l}%`));
-  const r = await e.search(s.modelName, o);
-  s.options.splice(0, s.options.length, ...r.data), s.loading = !1, s.options._loading = !1;
+  }))) : r.push({ [n]: { "[Op.like]": `%${l}%` } })), r.length && (o.where["[Op.or]"] = r);
+  const p = await e.search(s.modelName, o);
+  s.options.splice(0, s.options.length, ...p.data), s.loading = !1, s.options._loading = !1;
 }, Oe = (e, t) => !e || typeof e != "object" ? e : !t.labelTexts || !t.labelTexts.length ? e[t.text] : t.labelTexts.map((l) => e[l])[0], je = (e, t) => !e || typeof e != "object" || !t.labelTexts || t.labelTexts.length < 2 ? "" : "(" + t.labelTexts.map((l) => e[l]).slice(1).join(" - ") + ")", Pl = {
   name: "MobileXSelect",
   inheritAttrs: !1,
@@ -6838,7 +6839,7 @@ const { ElInfiniteScroll: nt } = window.ElementPlus || {}, pe = ".el-scrollbar__
   for (let s in Ve)
     e.directive(Ve[s].name, Ve[s]);
 }, za = {
-  version: "1.8.3",
+  version: "1.8.5",
   ...Te,
   ...gt,
   ...Yt,
