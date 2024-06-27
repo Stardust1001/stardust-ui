@@ -103,10 +103,11 @@ export const MobileItem = (vm) => {
         }
       })
     } else {
+      Object.assign(opts, attrs)
       if (viewonly) {
-        Object.assign(opts, { readonly: true })
+        Object.assign(opts, { readonly: true, placeholder: '--' })
       }
-      vnode = h(resolveComponent('van-field'), Object.assign(opts, attrs))
+      vnode = h(resolveComponent('van-field'), opts)
     }
   }
   return directives ? withDirectives(vnode, directives) : vnode

@@ -2803,9 +2803,10 @@ const Ae = (e) => {
     };
     r && s.label || h ? b = ee(u("van-field"), g, {
       input: () => r && s.label ? i.default() : a ? p : Ae(e)
-    }) : (a && Object.assign(g, {
-      readonly: !0
-    }), b = ee(u("van-field"), Object.assign(g, l)));
+    }) : (Object.assign(g, l), a && Object.assign(g, {
+      readonly: !0,
+      placeholder: "--"
+    }), b = ee(u("van-field"), g));
   }
   return S ? F(b, S) : b;
 }, An = {
@@ -6839,7 +6840,7 @@ const { ElInfiniteScroll: nt } = window.ElementPlus || {}, pe = ".el-scrollbar__
   for (let s in Ve)
     e.directive(Ve[s].name, Ve[s]);
 }, za = {
-  version: "1.8.7",
+  version: "1.8.8",
   ...Te,
   ...gt,
   ...Yt,
