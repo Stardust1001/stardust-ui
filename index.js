@@ -1199,7 +1199,7 @@ const ss = /* @__PURE__ */ O(Gt, [["render", ts], ["__scopeId", "data-v-424f69b7
       return this.cols.forEach((l) => {
         const n = l.span || this.span;
         t.push(l), s += n, s >= 24 && (t = [], e.push(t), s = 0);
-      }), e;
+      }), t.length || e.pop(), e;
     }
   }
 }, is = { class: "x-auto-rows" }, ls = { key: 1 };
@@ -6840,7 +6840,7 @@ const { ElInfiniteScroll: nt } = window.ElementPlus || {}, pe = ".el-scrollbar__
   for (let s in Ve)
     e.directive(Ve[s].name, Ve[s]);
 }, za = {
-  version: "1.8.8",
+  version: "1.8.9",
   ...Te,
   ...gt,
   ...Yt,

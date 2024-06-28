@@ -29,6 +29,7 @@ export default {
           rowSumSpan = 0
         }
       })
+      if (!currentRow.length) rows.pop()
       return rows
     }
   }
