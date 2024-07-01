@@ -12,7 +12,9 @@ const remoteSearch = async (restful, query, vm) => {
   const ors = []
   if ($attrs.modelValue !== undefined && $attrs.modelValue !== '') {
     if (Array.isArray($attrs.modelValue)) {
-      ors.push({ [value]: { '[Op.in]': $attrs.modelValue } })
+      if ($attrs.modelValue.length) {
+        ors.push({ [value]: { '[Op.in]': $attrs.modelValue } })
+      }
     } else {
       ors.push({ [value]: $attrs.modelValue })
     }
