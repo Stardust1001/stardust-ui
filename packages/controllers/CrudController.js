@@ -778,6 +778,7 @@ class CrudController extends BaseController {
 
   _focusDialogInput () {
     const node = document.querySelector('.el-dialog')
+    if (!node) return
     let inputs = [...node.querySelectorAll('input')].filter(i => !i.disabled && !i.readonly)
     let input = inputs.find(i => i.type === 'text' || i.type === 'number')
     if (!input) {

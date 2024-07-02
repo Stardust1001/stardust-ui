@@ -979,6 +979,8 @@ class _t extends bt {
   }
   _focusDialogInput() {
     const t = document.querySelector(".el-dialog");
+    if (!t)
+      return;
     let s = [...t.querySelectorAll("input")].filter((n) => !n.disabled && !n.readonly), l = s.find((n) => n.type === "text" || n.type === "number");
     l || (s = [...t.querySelectorAll("textarea")].filter((n) => !n.disabled && !n.readonly), l = s[0]), l == null || l.focus();
   }
@@ -6840,7 +6842,7 @@ const { ElInfiniteScroll: nt } = window.ElementPlus || {}, pe = ".el-scrollbar__
   for (let s in Ve)
     e.directive(Ve[s].name, Ve[s]);
 }, za = {
-  version: "1.9.2",
+  version: "1.9.3",
   ...Te,
   ...gt,
   ...Yt,
