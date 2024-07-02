@@ -1,5 +1,7 @@
 import { h, resolveDirective, withDirectives, resolveComponent } from 'vue'
 
+const OPTIONS_COMPS = ['x-select', 'XSelect', 'x-radios', 'XRadios', 'x-checkboxs', 'XCheckboxs']
+
 export const compRender = (vm) => {
   const { $props, $attrs, attrs, $emit } = vm
   let { comp, compType, html, text } = $props
@@ -42,7 +44,11 @@ export const PcItem = (vm) => {
     if (slot) {
       inner = $slots.default()
     } else if (viewonly) {
-      inner = modelValue
+      if (OPTIONS_COMPS.includes($props.comp)) {
+        inner = attrs.options.find(o => o[attrs.value] == modelValue)?.[attrs.text] ?? modelValue
+      } else {
+        inner = modelValue
+      }
     } else if (showTooltip) {
       inner = (
         <el-tooltip effect="dark" content={placeholder} placement="bottom">
