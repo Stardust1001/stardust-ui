@@ -37,7 +37,7 @@ export default {
 <template>
   <van-form
     ref="formRef"
-    :class="['mobile-x-form', { 'hide-labels': hideLabels }]"
+    :class="['mobile-x-form', { 'hide-labels': hideLabels, viewonly: _viewonly }]"
   >
     <slot v-if="$slots.pre" name="pre" />
 
@@ -51,6 +51,7 @@ export default {
         <mobile-x-form-item
           :label-width="labelWidth"
           :label-position="$attrs['label-position'] || 'left'"
+          :viewonly="_viewonly"
           v-bind="item"
           :rules="_rules[item.prop] || item.rules"
           :modelValue="formatModelValue(_model[item.prop])"

@@ -64,7 +64,7 @@ export default {
         :rules="_rules"
         :label-width="labelWidth"
         :label-position="$attrs['label-position'] || 'right'"
-        :class="['pc-x-form', { 'hide-labels': hideLabels }]"
+        :class="['pc-x-form', { 'hide-labels': hideLabels, viewonly: _viewonly }]"
       >
         <slot v-if="$slots.pre" name="pre" />
 
@@ -78,6 +78,7 @@ export default {
             <pc-x-form-item
               :label-width="labelWidth"
               :show-tooltip="$attrs.showTooltip || false"
+              :viewonly="_viewonly"
               v-bind="item"
               v-model="_model[item.prop]"
               :prop="item.prop || item.model"

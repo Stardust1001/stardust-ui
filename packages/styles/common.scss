@@ -46,6 +46,17 @@ body {
 }
 
 .el-form {
+  &.viewonly {
+    .el-form-item__label {
+      color: #909999;
+      &:before {
+        display: none;
+      }
+    }
+    .el-form-item {
+      margin-bottom: 0;
+    }
+  }
   &.hide-labels {
     .el-form-item__label-wrap, .el-form-item__label {
       display: none;
@@ -57,6 +68,13 @@ body {
 }
 
 .van-form {
+  &.viewonly {
+    .van-field__label {
+      &:before {
+        display: none;
+      }
+    }
+  }
   &.hide-labels {
     .van-cell__title {
       display: none;

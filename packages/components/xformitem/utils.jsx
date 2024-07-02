@@ -46,6 +46,8 @@ export const PcItem = (vm) => {
     } else if (viewonly) {
       if (OPTIONS_COMPS.includes($props.comp)) {
         inner = attrs.options.find(o => o[attrs.value] == modelValue)?.[attrs.text] ?? modelValue
+      } else if (modelValue && typeof modelValue === 'object') {
+        inner = JSON.stringify(modelValue)
       } else {
         inner = modelValue
       }

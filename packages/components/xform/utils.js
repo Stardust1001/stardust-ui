@@ -54,6 +54,11 @@ export function _rules () {
   return rules || (dialog || form).formRules
 }
 
+export function _viewonly () {
+  const { dialog, form } = this.$props
+  return this.$attrs.viewonly ?? (dialog || form).viewonly
+}
+
 export function calcPlaceholder (item) {
   let { placeholder, comp } = item
   if (!placeholder) {
@@ -76,7 +81,8 @@ export default {
     _model,
     _items,
     _visibleItems,
-    _rules
+    _rules,
+    _viewonly
   },
   methods: {
     calcPlaceholder,

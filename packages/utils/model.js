@@ -6,7 +6,8 @@ export const baseForm = () => ({
   formRef: null,
   formRules: {},
   initialFormRules: {},
-  _isBaseForm: true
+  _isBaseForm: true,
+  viewonly: false
 })
 
 export const baseTable = (query = {}) => ({
